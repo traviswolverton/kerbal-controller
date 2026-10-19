@@ -1,0 +1,36 @@
+# Parts shortlist
+
+Checked 2026-10-19 with `docs/tools/parts.py check`. Prices are USD from the US sites at that time, before shipping and tax.
+
+| Role | Source | Part number | Qty | Unit | Extended | Stock | Flags |
+|---|---|---|---|---|---|---|---|
+| Teensy 4.1 (headers fitted) | digikey | 1568-20360-ND | 1 | $33.60 | $33.60 | 136 | ok |
+| 5 V 4 A desktop adapter (Mean Well GST25A05-P1J) | digikey | 1866-2087-ND | 1 | $14.30 | $14.30 | 3039 | ok |
+| Mains cord NEMA 5-15 to IEC C13 for the adapter | digikey | 839-11-00022-ND | 1 | $4.37 | $4.37 | 3666 | ok |
+| Panel DC jack 5.5 x 2.1 mm | digikey | 839-54-00151-ND | 1 | $4.81 | $4.81 | 6633 | ok |
+| Panel fuse holder 5 x 20 mm | digikey | 732-952005000010000-ND | 1 | $2.15 | $2.15 | 1923 | ok |
+| 4 A fuse 5 x 20 mm (1 spare) | digikey | F1724-ND | 2 | $0.57 | $1.14 | 19807 | ok |
+| Master power switch, 12 mm toggle | digikey | EG4810-ND | 1 | $6.52 | $6.52 | 2269 | ok |
+| STAGE key switch (12 mm cutout) | digikey | EG5876-ND | 1 | $7.07 | $7.07 | 458 | ok |
+| Big STAGE button, 30 mm arcade, red LED | digikey | 1528-2316-ND | 1 | $2.50 | $2.50 | 355 | ok |
+| Motorised 100 mm fader (Adafruit 5466) | digikey | 1528-5466-ND | 1 | $24.95 | $24.95 | 37 | ok |
+| L9110H fader driver | digikey | 1528-4489-ND | 1 | $1.50 | $1.50 | 928 | ok |
+| Conductive nubbin for the fader | digikey | 1528-5741-ND | 1 | $6.19 | $6.19 | 37 | ok |
+| Rotary encoders (time warp, camera, page) | digikey | PEC11R-4215F-S0024-ND | 3 | $2.95 | $8.85 | 12333 | ok |
+| I2C expander for the switch panel | digikey | MCP23017-E/SP-ND | 1 | $1.69 | $1.69 | 7990 | ok |
+| DIP-28 socket for the expander | digikey | 1175-1490-ND | 1 | $1.29 | $1.29 | 1569 | ok |
+| 74AHCT125 level shifter, DIP | digikey | 296-4655-5-ND | 1 | $1.00 | $1.00 | 20191 | ok |
+| DIP-14 socket for the level shifter | digikey | 1175-1487-ND | 1 | $0.73 | $0.73 | 5745 | ok |
+| Matrix diodes (24 plus spares) | digikey | 1N4148FS-ND | 30 | $0.06 | $1.80 | 599669 | ok |
+| 330 ohm pixel data resistor (1 spare) | digikey | CF14JT330RCT-ND | 2 | $0.10 | $0.20 | 283148 | ok |
+| 4.7 kohm I2C pull-ups (spares) | digikey | CF14JT4K70CT-ND | 3 | $0.10 | $0.30 | 249799 | ok |
+| 10 kohm expander reset pull-up (spares) | digikey | CF14JT10K0CT-ND | 3 | $0.10 | $0.30 | 569130 | ok |
+| 1000 uF 16 V rail capacitor (1 spare) | digikey | 1189-1147-ND | 2 | $0.71 | $1.42 | 15853 | ok |
+| 47 uF 25 V fader driver capacitor (1 spare) | digikey | 732-8823-1-ND | 2 | $0.10 | $0.20 | 37988 | ok |
+| 0.1 uF decoupling and wiper capacitors | digikey | BC1101CT-ND | 12 | $0.17 | $2.04 | 304716 | ok |
+| DB25 female panel jack (middle strip) | digikey | 1003-ZDB25S-ND | 4 | $3.99 | $15.96 | 1587 | ok |
+| DB25 male panel jack (outer pieces) | digikey | 1003-ZDB25P-ND | 4 | $3.42 | $13.68 | 3640 | ok |
+| DB25 shielded cable, female to male, 1 m | digikey | 277-12299-ND | 4 | $15.70 | $62.80 | 1240 | ok |
+| Panel USB micro-B extension for the Teensy | digikey | 1568-15464-ND | 1 | $4.42 | $4.42 | 1666 | ok |
+
+**Total: $225.78**

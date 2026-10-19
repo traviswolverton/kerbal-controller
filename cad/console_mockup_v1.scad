@@ -64,8 +64,8 @@ function key_u(c) = key_u0 + 9.525 + c * pitch_c;
 function key_v(r) = key_v0 + (1 - r) * pitch_r + 9.525;
 // switch panel (strip left): every input here goes to the MCP23017 expander sitting behind it
 sw_tog   = [[162, 125], [162, 104]];  sw_tog_lbl = ["ABORT", "ENGAGE"];       // guarded toggles, cover lies along u
-sw_key   = [162, 82];                                                         // key switch that arms STAGE, 19 mm hole
-sw_stage = [208, 103];                                                       // big STAGE button, 28 mm hole
+sw_key   = [162, 82];                                                         // key switch that arms STAGE, 12 mm hole (E-Switch KO133)
+sw_stage = [208, 103];                                                       // big STAGE button, 30 mm hole (Adafruit 3489)
 sw_cols  = [150, 169.05, 188.1, 207.15];  sw_rows = [14, 35.3, 56.6];  // MX button grid, 3 rows front to back
 sw_lbl   = ["FULL","CUT","PRECISION","PAUSE", "MAP","FOCUS-","FOCUS+","UI",
             "QSAVE","QLOAD","SPARE","SPARE"];                                  // 12 buttons, filled from the back row
@@ -121,8 +121,8 @@ module cuts(i) {
     } else if (i == 2) {
         key_cuts(key_lbl_l);
         for (p = sw_tog) place(p[0], p[1]) hole_round(12.2);
-        place(sw_key[0], sw_key[1]) hole_round(19.2);
-        place(sw_stage[0], sw_stage[1]) hole_round(28);
+        place(sw_key[0], sw_key[1]) hole_round(12.2);
+        place(sw_stage[0], sw_stage[1]) hole_round(30.2);
         for (k = [0 : len(sw_lbl) - 1]) place(sw_pos(k)[0], sw_pos(k)[1]) hole_rect(cut_mx, cut_mx);
     } else if (i == 3) {
         for (p = oled_pos) place(p[0], p[1]) hole_rect(58, 31);
@@ -152,8 +152,8 @@ module key_proxy() {
     color("#e6e6e6") translate([-9, -9, 5.5]) cube([18, 18, 8]);
 }
 module guard_proxy() { toggle_proxy(); color([0.85, 0.1, 0.1, 0.55]) translate([-23.5, -8.5, 0]) cube([47, 17, 14]); }
-module stage_proxy() color("#d22") cylinder(d = 32, h = 14, $fn = 48);
-module key_switch_proxy() { color("#bbb") cylinder(d = 22, h = 10, $fn = 40); color("#cc9") translate([-1.5, -7, 10]) cube([3, 14, 8]); }
+module stage_proxy() color("#d22") cylinder(d = 33, h = 14, $fn = 48);
+module key_switch_proxy() { color("#bbb") cylinder(d = 16, h = 10, $fn = 40); color("#cc9") translate([-1.5, -6, 10]) cube([3, 12, 8]); }
 module glow(c = "#3c3") color(c) translate([0, 0, -0.2]) cylinder(d = window_d - 0.4, h = 0.6, $fn = 24);
 module key_proxies(blue = false) {
     for (r = [0 : 1], c = [0 : 5]) {

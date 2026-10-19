@@ -37,6 +37,12 @@ class DigiKeyReading(unittest.TestCase):
     def test_price_breaks(self):
         self.assertEqual([digikey.price_at(DK, q) for q in (1, 12, 500)], [4.5, 4.0, 3.2])
 
+    def test_prefers_the_lowest_minimum_order(self):
+        reel = {"DigiKeyProductNumber": "1-TR-ND", "MinimumOrderQuantity": 5000, "StandardPricing": []}
+        cut = {"DigiKeyProductNumber": "1-CT-ND", "MinimumOrderQuantity": 1, "StandardPricing": []}
+        self.assertEqual(digikey.row({"ProductVariations": [reel, cut]})["pn"], "1-CT-ND")
+        self.assertEqual(digikey.row({"ProductVariations": [reel, cut]}, "1-TR-ND")["pn"], "1-TR-ND")
+
     def test_missing_fields(self):
         r = digikey.row({"ManufacturerProductNumber": "X"})
         self.assertEqual((r["pn"], r["unit_price"], r["status"]), ("", None, ""))

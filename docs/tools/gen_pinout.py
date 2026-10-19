@@ -238,7 +238,7 @@ def d_db25():
                 b += text(x + 100, y + 4, "open", 9.5, "var(--silk-dim)", "middle")
     b += text(40, 66, "pin", 9, "var(--silk-dim)", "middle")
     return figure(svg(1000, 700, "DB25 pinouts for the four ports, pin by pin", b),
-                  "Standard DB25 numbering. Every port uses the same connector, and the pins are laid out so a cable "
+                  "Standard DB25 numbering. All four middle jacks are alike, and the pins are laid out so a cable "
                   "in the wrong port does no damage: ground and 5 V sit on the same pins everywhere, and everything "
                   "the Teensy drives (matrix rows, pixel data, fader PWM) is on pins 15&ndash;23, which any module "
                   "that does not use them leaves open. COL0&ndash;5 appear on both strip ports and join in the "
@@ -386,7 +386,7 @@ def d_switch_panel():
         b += text(74, y + 4, label, 10.5, "var(--silk-dim)") + dot(270, y, SIGCOL[sig])
         b += pill(290, y, 150, "→ " + tag, "grey", size=10)
     b += text(60, box_bottom + 24, "Other leg of every switch to GND. Pull-ups are inside the expander. Mirror both interrupt ports onto INTA.", 9.5, "var(--silk-dim)")
-    b += text(60, box_bottom + 40, "Address pins as shipped (the Waveshare board answers at 0x27: confirm with a bus scan).", 9.5, "var(--silk-dim)")
+    b += text(60, box_bottom + 40, "A0-A2 to GND (0x20), RESET through 10 k to 3V3, 0.1 uF decoupling. Confirm the address with a bus scan.", 9.5, "var(--silk-dim)")
     return figure(svg(1100, box_bottom + 64, "Switch panel: the MCP23017 expander and its 16 inputs", b),
                   "All sixteen inputs live on one panel and one chip. The expander sits right behind the panel, so only "
                   "its I&sup2;C lines (SDA, SCL), the interrupt and 3V3 cross the DB25 cable to the Teensy. Fit 4.7 k&Omega; "
@@ -719,8 +719,9 @@ spares) or a second MCP23017 at another address.
 
 ## Switch-panel expander
 
-MCP23017, address pins as shipped (the Waveshare board answers at 0x27, to be confirmed with a bus scan). Mirror
-both interrupt ports onto INTA. Internal pull-ups on, the other leg of every switch to GND.
+MCP23017-E/SP (DIP-28), hand-wired on perfboard behind the panel. Address pins A0-A2 tied to GND (address 0x20), RESET
+through 10 kΩ to 3V3, 0.1 uF across its supply. Mirror both interrupt ports onto INTA. Internal pull-ups on, the other
+leg of every switch to GND.
 
 | Expander pin | Input |
 |---|---|
@@ -748,8 +749,9 @@ while engaged. Check how Simpit hands the throttle back (its changelog mentions 
 
 ## DB25 pinouts
 
-Standard DB25 numbering, pins 1-13 on the wide row and 14-25 on the other. All four ports use the same
-connector, so a cable can be plugged into the wrong port. The pins are laid out so that is **harmless**:
+Standard DB25 numbering, pins 1-13 on the wide row and 14-25 on the other. The outer pieces have male jacks and the
+middle strip female jacks, joined by female-to-male cables, but all four middle jacks are alike, so a cable can still go
+in the wrong middle port. The pins are laid out so that is **harmless**:
 
 - Ground is on pins 1, 7, 13, 24, 25 on every port.
 - 3.3 V (pin 2) is provided on the two wing ports and the left-strip port. 5 V (pins 20, 21) is provided on the

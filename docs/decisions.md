@@ -19,6 +19,15 @@ This file records what has been settled and what is still open.
 - KSP1 mod dependency: **Alternate Resource Panel** (via CKAN) for liquid fuel,
   monoprop, electric charge and some other resource telemetry.
 
+## Sourcing (decided)
+- **Digi-Key is the primary source,** through its API (`docs/tools/parts.py`): one order, live price, stock and
+  parametric data (panel cutouts, ratings). It also sells SparkFun, Adafruit and PJRC items, so the Teensy, fader, driver,
+  nubbin and arcade button all moved there from Adafruit, PJRC and Amazon.
+- **Amazon.com exceptions:** the SaiDian joysticks (not stocked), the MX switches and buzzers already owned, the DSA keycaps,
+  the matched AITRIP guarded toggles, the encoder knobs (nothing suitable found at Digi-Key), the Waveshare OLEDs (Digi-Key's
+  2.42" OLEDs cost $30 to $57 each) and the steel ballast plates.
+- **Reel trap:** many small parts default to reels with minimums of 4,000 to 5,000. The tool prefers cut tape or bulk.
+
 ## Key bank
 - **4 x 6 MX keys**, each with a state-feedback pixel (action groups, SAS mode bank, custom
   action groups).
@@ -78,13 +87,13 @@ This file records what has been settled and what is still open.
   from each stick, with margin.
 
 ## Throttle (motorised fader chosen)
-- **Fader:** [Adafruit 5466](https://www.adafruit.com/product/5466) motorised slide pot, 10 kOhm linear,
-  100 mm travel, $24.95 (US, in stock on 2026-10-19). Motor 6-10 V DC (Adafruit runs it at 5 V),
+- **Fader:** Adafruit 5466 motorised slide pot (Digi-Key 1528-5466-ND), 10 kOhm linear,
+  100 mm travel, $24.95 (in stock on 2026-10-19, 37 left). Motor 6-10 V DC (Adafruit runs it at 5 V),
   pot and motor circuits isolated, slider moves freely by hand when the motor is off.
-- **Driver:** [Adafruit L9110H H-bridge (4489)](https://www.adafruit.com/product/4489), $1.50, 2.5-12 V,
+- **Driver:** Adafruit L9110H H-bridge (Digi-Key 1528-4489-ND), $1.50, 2.5-12 V,
   800 mA per channel. Adafruit's author runs it from 3.3 V logic. Add the 47 uF capacitor from their
   [Flying Faders guide](https://learn.adafruit.com/flying-faders/overview) near the driver.
-- **Knob:** [Adafruit conductive nubbin (5741)](https://www.adafruit.com/product/5741), $4.95, 26 x 11 x 10 mm,
+- **Knob:** Adafruit conductive nubbin (Digi-Key 1528-5741-ND), $6.19, 26 x 11 x 10 mm,
   shaft slot 18.8 x 1.8 mm. It has to be conductive so the touch pad on the slider works.
 - **Behaviour:** the motor follows the game's throttle while you are not touching the fader; when you
   touch it, you drive the throttle. Simpit's `THROTTLE_CMD_MESSAGE` (game to device) gives the game
@@ -107,8 +116,7 @@ This file records what has been settled and what is still open.
   - Confirm every dimension on the real unit before printing the left module.
 
 ## Encoders and knobs (proposed)
-- **Encoder:** [Bourns PEC11R-4215F-S0024](https://www.amazon.com/BOURNS-PEC11R-4215F-S0024-Incremental-Momentary-Mechanical-6pack/dp/B093P29XL8)
-  (6-pack, 3 used). 24 detents and 24 pulses per revolution, push switch, 6 mm flatted shaft 15 mm
+- **Encoder:** Bourns PEC11R-4215F-S0024 (Digi-Key PEC11R-4215F-S0024-ND, $2.95 each, 3 needed). 24 detents and 24 pulses per revolution, push switch, 6 mm flatted shaft 15 mm
   long. Metal M7 bushing about 5 mm long, with a flat washer and nut included.
 - **Pitch conflict:** Mouser lists M7 x 0.75, the Bourns datasheet text suggests M7 x 0.5. Only matters if
   you buy a different nut or print a thread; the supplied nut will fit.
@@ -151,8 +159,15 @@ This file records what has been settled and what is still open.
   changelog mentions throttle authority being released.
 - **Skipped, decided:** the reference's two arrow buttons beside its attitude stick. Our two sticks and the
   camera encoder cover that job; revisit only if you find you want attitude trim.
-- **Open:** the key switch, the big STAGE button and the master switch are not picked, and the expander's address
-  and interrupt behaviour are untested.
+- **Parts picked (all Digi-Key):**
+  - STAGE key switch: E-Switch KO133A801 (EG5876-ND, $7.07), 2-position SPST, **12 mm cutout**, key removable in
+    position 1 only. Confirm in the datasheet that position 1 is OFF.
+  - Big STAGE button: Adafruit 3489 arcade button (1528-2316-ND, $2.50), **30 mm cutout**, red 5 V LED, 2.8 mm quick-connect.
+    The LED is open: always on, or driven later.
+  - Master power switch: E-Switch ST141D00 toggle (EG4810-ND, $6.52), SPST, 12 mm cutout.
+  - Expander: MCP23017-E/SP (DIP-28, $1.69) with a socket, hand-wired on perfboard behind the panel instead of a breakout
+    board. A0-A2 tied to GND (address 0x20), RESET through 10 k to 3V3, 0.1 uF across its supply.
+- **Open:** the expander's interrupt behaviour is untested, and the Digi-Key key switch's key position needs confirming.
 
 ## Inter-module links (proposed, five-piece layout)
 - **Approach:** direct wiring from the Teensy in the middle strip piece to each of the four outer pieces
@@ -165,9 +180,10 @@ This file records what has been settled and what is still open.
   (12 key pixels and 9 annunciator pixels). A break in the chain darkens everything after it.
 - **Keys:** one 4 x 6 matrix. The left strip carries rows 0-1, the right strip rows 2-3, both carry all six
   column lines.
-- **Parts:** eight female panel-mount DB25 solder-cup jacks (four on the middle piece, one on each outer
-  piece) and four male-to-male straight-through shielded cables (not null modem), listed in `parts-list.md`.
-  The wing cables pass through a strip shell and are longer (about 0.5 m); the strip cables about 0.3 m.
+- **Parts (Digi-Key):** four **female** DB25 panel jacks on the middle piece (ITT Cannon ZDB25S) and one **male** jack
+  on each outer piece (ZDB25P), joined by four straight-through shielded female-to-male cables, 1 m (Phoenix Contact
+  1656291), listed in `parts-list.md`. The cables fit only one way round. The wing cables pass through a strip shell
+  (about 0.5 m of path); coil the slack. They are 1 m for all four to keep one part number.
   Keep analog runs short and put 0.1 uF on each wiper.
 - **Swapped-cable rule:** all four ports use the same connector, so a cable in the wrong port must be
   harmless. Ground and 5 V sit on the same pins everywhere, and everything the Teensy drives (rows, pixel
@@ -177,16 +193,14 @@ This file records what has been settled and what is still open.
   the chosen jack (measure it; standard D-sub shell B hardware should match but I have not checked), and prices.
 
 ## 5 V power (chosen, not yet ordered)
-- **Supply:** [Adafruit 1466](https://www.adafruit.com/product/1466), 5 V 4 A regulated, UL listed,
-  5.5 x 2.1 mm plug with positive tip, US 2-prong, $14.95. Adafruit's own warning: it is not for
-  powering an Arduino through its DC jack (not an issue here, see below).
-- **Panel connector:** [Tugermoola 6-set kit OLA012, Amazon B0D9B7WR23](https://www.amazon.com/Tugermoola-Threaded-Female-Connector-Adapter/dp/B0D9B7WR23),
-  $9.99 for 6 sets. Threaded female 5.5 x 2.1 mm jack, seller-stated about **12 mm mounting hole**, 5 A / 50 V,
-  20 AWG leads, 150 mm on the female jack. This replaces the Adafruit 5607 (1" hole, 30 cm lead, no
-  current rating), which was the earlier pick.
-  - The jack must sit within about 15 cm of the fuse and 5 V rail, or extend the leads.
-  - Ratings are the seller's claims. Cheap threaded jacks vary, one seen was only rated 1.5-2 A.
-  - Lead colours red and black do not prove polarity: check the centre pin with a meter before wiring.
+- **Supply:** Mean Well GST25A05-P1J (Digi-Key 1866-2087-ND, $14.30): 5 V, 4 A max, 20 W, positive centre, 2.1 x 5.5 mm plug,
+  1 m lead, cULus approved. It has an IEC C14 inlet, so a mains cord is a separate part (Tensility 11-00022, NEMA 5-15 to
+  C13, $4.37). This replaces the Adafruit 1466.
+- **Panel connector:** Tensility 54-00151 (Digi-Key 839-54-00151-ND, $4.81): 5.5 x 2.1 mm panel jack, 7.5 A, solder cup,
+  rear nut. **Its panel cutout is not verified** (the datasheet is an image), so measure the jack or read the drawing
+  before cutting. This replaces the Tugermoola kit from Amazon.
+  - Wire from the solder cups: the centre pin is +. Check polarity with a meter before connecting anything.
+  - Keep the jack close to the fuse and 5 V rail, or extend the wires.
 - **Budget:** pixels are 65 x 60 mA = 3.9 A worst case (all white, which firmware must never allow); fader motor is unknown at 5 V, measure
   it. Cap total pixel draw in firmware so real use stays well under 4 A. The usual guidance is to keep
   the rail above 4.5 V at full load and to leave 20-25 % headroom.
@@ -200,6 +214,8 @@ This file records what has been settled and what is still open.
   - The pixels are spread over the three strip pieces (12, 32, 21). Each outer strip takes 5 V over its DB25 cable; one power input in the middle strip feeds everything.
 
 ## Guarded toggles (chosen, not yet ordered)
+- **Why not Digi-Key:** it sells the guard (e.g. CW Industries GT-4R, $5.72) and the toggle separately, and that
+  cover is made for CW Industries' own toggle series, so mixing is a fit risk. The matched AITRIP pack stays.
 - **Part:** [AITRIP 6-pack, 12 V 20 A, 2-pin SPST ON/OFF toggle switches with red aircraft-style covers](https://www.amazon.com/Heavy-Rocker-Toggle-Switch-Cover/dp/B0CL4GNMJX)
   (Amazon B0CL4GNMJX). Seller-reported 12 mm mounting hole; price and stock not checked.
   Two are used (ABORT and ENGAGE / DISENGAGE, on the switch panel), so four are left over. A guarded toggle is cheap enough to keep for ABORT;

@@ -18,7 +18,7 @@ Each used pin is drawn in the wire colour of its signal, with a grey tag showing
 
 ![The four DB25 ports](diagrams/db25.svg)
 
-Standard DB25 numbering. Every port uses the same connector, and the pins are laid out so a cable in the wrong port does no damage: ground and 5 V sit on the same pins everywhere, and everything the Teensy drives (matrix rows, pixel data, fader PWM) is on pins 15&ndash;23, which any module that does not use them leaves open. COL0&ndash;5 appear on both strip ports and join in the middle piece.
+Standard DB25 numbering. All four middle jacks are alike, and the pins are laid out so a cable in the wrong port does no damage: ground and 5 V sit on the same pins everywhere, and everything the Teensy drives (matrix rows, pixel data, fader PWM) is on pins 15&ndash;23, which any module that does not use them leaves open. COL0&ndash;5 appear on both strip ports and join in the middle piece.
 
 ## Left wing
 

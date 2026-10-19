@@ -53,7 +53,7 @@ Pink and teal are not in a basic Dupont set. Use striped wire or tape a coloured
 - [ ] Both OLEDs on 3V3 until you have confirmed their SPI lines are safe at 5 V. Share SCK, MOSI, DC and RES; one chip select each (pins 10 and 24).
 - [ ] Buzzer module on **3V3**, I/O to pin 25. At 5 V its transistor may not switch off.
 - [ ] SDA, SCL and the interrupt go to the left-strip jack (pins 10, 11, 12), with 3V3 on pin 2.
-- [ ] Four DB25 jacks, one per outer piece. All four are the same connector, so label them LW, RW, LS and RS.
+- [ ] Four **female** DB25 panel jacks on the middle strip, one per outer piece. All four are alike, so label them LW, RW, LS and RS. Each outer piece gets a **male** jack.
 
 ## Wings
 
@@ -81,7 +81,7 @@ Left strip (DB25 LS, 21 conductors) and right strip (DB25 RS, 16 conductors):
 ### Switch panel (left strip)
 
 - [ ] One MCP23017 expander behind the panel. SDA, SCL, INTA and 3V3 to the DB25 LS pins 10, 11, 12 and 2, ground to pins 1, 7, 13. Mirror both interrupt ports onto INTA.
-- [ ] Address pins as shipped; confirm the address with a bus scan before wiring switches.
+- [ ] MCP23017-E/SP in a DIP-28 socket on perfboard: A0, A1, A2 tied to GND (address 0x20), RESET through 10 kΩ to 3V3, 0.1 µF across its supply. Confirm the address with a bus scan before wiring switches.
 - [ ] Sixteen inputs, one wire each to its pin, the other leg of every switch to GND (internal pull-ups, no resistors): PA0 ABORT, PA1 STAGE key switch, PA2 STAGE, PA3 throttle FULL, PA4 throttle CUT, PA5 MAP, PA6 focus previous, PA7 focus next, PB0 quicksave, PB1 quickload, PB2 precision, PB3 pause, PB4 UI hide, PB5 ENGAGE / DISENGAGE, PB6 and PB7 spare.
 - [ ] Thirteen small buttons are MX switches with blank DSA caps; ABORT and ENGAGE / DISENGAGE are the guarded toggles, the STAGE key switch arms STAGE, and STAGE is the big button. Ten of the small buttons are used, plus two spares. ENGAGE / DISENGAGE turns the sticks and throttle live or ignored in firmware.
 
@@ -91,7 +91,7 @@ Left strip (DB25 LS, 21 conductors) and right strip (DB25 RS, 16 conductors):
 
 ## Cables
 
-- [ ] Four male-to-male straight-through shielded DB25 cables, **not null modem**. Short for the strips, longer for the wings, which pass through a strip shell.
+- [ ] Four straight-through shielded DB25 cables, 1 m, female to male (Phoenix Contact 1656291). The male end goes into a middle jack and the female end onto an outer jack. Coil the slack; the wing cables pass through a strip shell.
 - [ ] Ground each cable's shield at the **middle** end only.
 - [ ] A cable in the wrong port does no damage by design (see the DB25 grid in `pinout.html`) but will not work, so plug each into its labelled port.
 

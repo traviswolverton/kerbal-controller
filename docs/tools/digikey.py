@@ -94,12 +94,13 @@ def details(dkpn):
 
 # ---- reading a product, tolerant of missing fields -----------------------------------------------------
 def pick_variation(product, dkpn=None):
+    """The variation for a Digi-Key number, else the one with the lowest minimum order (reels lose to cut tape)."""
     vs = product.get("ProductVariations") or []
     if dkpn:
         for v in vs:
             if v.get("DigiKeyProductNumber") == dkpn:
                 return v
-    return vs[0] if vs else {}
+    return min(vs, key=lambda v: v.get("MinimumOrderQuantity") or 1, default={})
 
 
 def price_at(product, qty, dkpn=None):
@@ -130,6 +131,8 @@ def row(product, dkpn=None, qty=1):
         "unit_price": price_at(product, qty, dkpn),
         "status": (product.get("ProductStatus") or {}).get("Status", ""),
         "min_qty": v.get("MinimumOrderQuantity", 1),
+        "variations": [{"pn": x.get("DigiKeyProductNumber", ""), "package": (x.get("PackageType") or {}).get("Name", ""),
+                        "min_qty": x.get("MinimumOrderQuantity", 1)} for x in product.get("ProductVariations") or []],
         "package": (v.get("PackageType") or {}).get("Name", ""),
         "url": product.get("ProductUrl", ""),
         "datasheet": product.get("DatasheetUrl", ""),

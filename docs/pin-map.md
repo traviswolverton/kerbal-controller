@@ -108,8 +108,9 @@ spares) or a second MCP23017 at another address.
 
 ## Switch-panel expander
 
-MCP23017, address pins as shipped (the Waveshare board answers at 0x27, to be confirmed with a bus scan). Mirror
-both interrupt ports onto INTA. Internal pull-ups on, the other leg of every switch to GND.
+MCP23017-E/SP (DIP-28), hand-wired on perfboard behind the panel. Address pins A0-A2 tied to GND (address 0x20), RESET
+through 10 kΩ to 3V3, 0.1 uF across its supply. Mirror both interrupt ports onto INTA. Internal pull-ups on, the other
+leg of every switch to GND.
 
 | Expander pin | Input |
 |---|---|
@@ -137,8 +138,9 @@ while engaged. Check how Simpit hands the throttle back (its changelog mentions 
 
 ## DB25 pinouts
 
-Standard DB25 numbering, pins 1-13 on the wide row and 14-25 on the other. All four ports use the same
-connector, so a cable can be plugged into the wrong port. The pins are laid out so that is **harmless**:
+Standard DB25 numbering, pins 1-13 on the wide row and 14-25 on the other. The outer pieces have male jacks and the
+middle strip female jacks, joined by female-to-male cables, but all four middle jacks are alike, so a cable can still go
+in the wrong middle port. The pins are laid out so that is **harmless**:
 
 - Ground is on pins 1, 7, 13, 24, 25 on every port.
 - 3.3 V (pin 2) is provided on the two wing ports and the left-strip port. 5 V (pins 20, 21) is provided on the

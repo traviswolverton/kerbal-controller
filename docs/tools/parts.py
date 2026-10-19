@@ -90,6 +90,8 @@ def cmd_part(a):
         return
     print(f"{r['mpn']}  ({r['manufacturer']})  [{src}]\n{r['description']}\npart number {r['pn']}  minimum order {r['min_qty']}")
     print(f"stock {r['stock']}  unit {money(r['unit_price'])}  status {r['status']}\n{r['url']}\ndatasheet: {r['datasheet'] or '-'}\n")
+    if r.get("variations") and len(r["variations"]) > 1:
+        print("packaging options: " + "; ".join(f"{v['pn']} ({v['package']}, min {v['min_qty']})" for v in r["variations"]) + "\n")
     for k, v in r["params"].items():
         print(f"  {k}: {v}")
 
