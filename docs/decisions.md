@@ -125,7 +125,7 @@ This file records what has been settled and what is still open.
   (two wings, left and right strip) through one **DB25 D-sub** each. One USB cable, no extra boards.
   Satellite microcontrollers with a 4-wire link would need fewer wires but add firmware and a second USB
   or serial path; revisit only if the cable count becomes a problem.
-- **Conductors per port:** left wing 19, right wing 13, left strip 19, right strip 18, all of 25. Full
+- **Conductors per port:** left wing 19, right wing 14, left strip 19, right strip 18, all of 25. Full
   pinouts and the Teensy pin table are in `pin-map.md`.
 - **Pixels:** one chain of 56 on a single data pin: left strip (12), fuel bars in the middle (32), right strip
   (12). A break in the chain darkens everything after it.
