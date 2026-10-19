@@ -149,7 +149,7 @@ def d_overview():
     b += line(570, 37, 570, 100, "grey") + text(582, 72, "USB serial", 11, "var(--silk-dim)")
     pieces = [
         (20, 100, "STRIP LEFT", "28° · 12 nav keys", "switch panel + expander, 12 pixels"),
-        (420, 100, "STRIP MIDDLE", "28° · Teensy 4.1", "2 OLEDs, buzzer, master power, 32 fuel pixels"),
+        (420, 100, "STRIP MIDDLE", "28° · Teensy 4.1", "OLEDs, buzzer, master switch, 32 pixels"),
         (820, 100, "STRIP RIGHT", "28° · 12 action-group keys", "annunciator, 21 pixels"),
         (20, 360, "LEFT WING", "12° · translation stick", "throttle fader, time-warp encoder"),
         (820, 360, "RIGHT WING", "12° · rotation stick", "camera and page encoders"),
@@ -163,15 +163,15 @@ def d_overview():
     b += line(320, 175, 420, 175, "yellow", 4) + pill(330, 150, 80, "DB25 · 21", "yellow", size=10)
     b += line(720, 175, 820, 175, "yellow", 4) + pill(730, 150, 80, "DB25 · 16", "yellow", size=10)
     b += path([(320, 435), (470, 435), (470, 250)], "yellow", 4)
-    b += pill(335, 410, 100, "DB25 · 19", "yellow", size=10) + text(335, 458, "through the strip shell", 10, "var(--silk-dim)")
+    b += pill(335, 410, 100, "DB25 · 19", "yellow", size=10) + text(335, 458, "round the back", 10, "var(--silk-dim)")
     b += path([(820, 435), (670, 435), (670, 250)], "yellow", 4)
-    b += pill(705, 410, 100, "DB25 · 14", "yellow", size=10) + text(690, 458, "through the strip shell", 10, "var(--silk-dim)")
+    b += pill(705, 410, 100, "DB25 · 14", "yellow", size=10) + text(705, 458, "round the back", 10, "var(--silk-dim)")
     b += line(570, 250, 570, 300, "orange", 4) + text(582, 282, "DC jack, fuse", 10, "var(--silk-dim)")
     b += pill(480, 318, 180, "5 V 4 A wall adapter", "orange", size=11)
     b += text(20, 535, "Yellow = DB25 cable (conductor count). Orange = 5 V in.", 11, "var(--silk-dim)")
     return figure(svg(1140, 550, "Block diagram: five pieces joined by four DB25 cables to the middle strip", b),
                   "The middle strip holds the Teensy and everything that is not a switch. Each wing sits in front of "
-                  "an outer strip piece, so its cable has to pass through that strip's shell on the way. The Teensy "
+                  "an outer strip piece, so its jack is on the wing's outer end wall and its cable runs round the back. The Teensy "
                   "is powered over USB only; the 5 V adapter feeds the pixels, the level shifter and the fader driver.")
 
 
@@ -681,9 +681,9 @@ Edit the data in the script, not this file.** Draft: nothing is built yet. Conte
   the guarded ABORT toggle, a key switch that arms STAGE, a big STAGE button, throttle FULL and CUT, MAP, focus
   previous and next, quicksave, quickload, precision, pause, UI hide, a guarded ENGAGE / DISENGAGE toggle and two spares.
 - The **right strip** carries a 3 x 3 **annunciator**: one pixel behind each of nine windows.
-- The two **wings** sit in front of the outer strip pieces. Their cables to the middle piece have to pass
-  through the strip shell (a hole in the strip's front wall and one in its side wall). That routing is
-  still to be designed in CAD.
+- The two **wings** sit in front of the outer strip pieces, so their jacks are on the wings' outer end walls. The
+  strip pieces and the middle strip have their jacks on their back walls. Every cable runs outside, behind the console
+  (the middle strip has the four female jacks in two rows). About 0.6 m of path for a wing cable, so a 1 m cable has slack.
 - **Pixels are one chain of 65** on a single data pin: left strip (12 key pixels), then the 32 fuel bars in the
   middle, then the right strip (12 key pixels and 9 annunciator pixels). The data goes out to the left strip on
   pin 17, comes back on pin 18, runs through the fuel bars, and leaves for the right strip on pin 17 of that
@@ -775,12 +775,12 @@ Notes:
   5 V rail. A 100 uF capacitor across 5 V in each strip piece is optional.
 - **Left wing:** the L9110H fader driver is in the wing next to the motor, so only the two PWM lines and 5 V
   cross the cable. Pots take 3V3 on pin 2, never 5 V.
-- **Cables:** the wing cables go through a strip piece, so they are longer (about 0.5 m). The strip-to-middle
-  cables can be about 0.3 m. Keep analog and I2C runs short.
+- **Cables:** a wing cable runs from the wing's end wall round the back to the middle strip, about 0.6 m of path. The
+  strip-to-middle cables are about 0.3 m. All four are 1 m, so coil the slack. Keep analog and I2C runs short.
 
 ## Open
 
-- **Wing cable routing** through the strip shells (holes, strain relief): to be drawn in CAD.
+- **Cable management** behind the console (clips or a cable channel, strain relief): not designed.
 - **I2C over the cable:** about 30 cm at 400 kHz with 4.7 kΩ pull-ups should be fine; not tested.
 - **OLED modules:** confirm their logic level and supply. They accept 3.3-5 V, so power them from 5 V, but
   check the SPI lines are 3.3 V safe in that case. Not verified.

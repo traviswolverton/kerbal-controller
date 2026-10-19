@@ -91,7 +91,7 @@ Left strip (DB25 LS, 21 conductors) and right strip (DB25 RS, 16 conductors):
 
 ## Cables
 
-- [ ] Four straight-through shielded DB25 cables, 1 m, female to male (Phoenix Contact 1656291). The male end goes into a middle jack and the female end onto an outer jack. Coil the slack; the wing cables pass through a strip shell.
+- [ ] Four straight-through shielded DB25 cables, 1 m, female to male (Phoenix Contact 1656291). The male end goes into a middle jack and the female end onto an outer jack. Coil the slack; the cables run outside, behind the console.
 - [ ] Ground each cable's shield at the **middle** end only.
 - [ ] A cable in the wrong port does no damage by design (see the DB25 grid in `pinout.html`) but will not work, so plug each into its labelled port.
 

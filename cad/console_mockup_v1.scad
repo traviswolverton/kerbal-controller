@@ -78,6 +78,16 @@ oled_pos = [[50, 100], [120, 100]];                  // 58 x 31 windows
 bar_u = [175, 189, 203, 217];  bar_v0 = 20;  bar_pitch = 11.5;   // 4 fuel bars of 8
 bar_lbl = ["LF", "OX", "MONO", "EC"];
 buzzer = [30, 45];
+
+// ---- DB25 inter-piece jacks (ITT Cannon ZDB25S / ZDB25P, rear-mount cutout from the datasheet) ----
+db25_cut   = [42.52, 11.40];   // cutout, long side x short side
+db25_pitch = 47.04;            // two mounting holes, 3.05 mm + 0.15 mm
+db25_hole  = 3.2;
+db25_flange = [53.09, 12.55];
+// jack centres, [along the wall, height]. Middle strip back wall: LS and RS on the top row, LW and RW below.
+mid_jacks   = [[62, 80, "LS"], [178, 80, "RS"], [62, 40, "LW"], [178, 40, "RW"]];
+strip_jack  = [[120, 40], [0, 0], [110, 40]];   // strip left / (unused) / strip right: back wall, [x, z]
+wing_jack   = [118, 24];                          // wing outer end wall: [y, z]
 master = [100, 45];      // master 5 V power switch
 
 // ---- placement --------------------------------------------------------
@@ -194,6 +204,37 @@ module proxies(i) {
     }
 }
 
+// ---- DB25 wall cutouts ---------------------------------------------------
+module db25_back_cut(x, z, yb) {        // on a vertical back wall at y = yb
+    translate([x - db25_cut[0] / 2, yb - wall - 1, z - db25_cut[1] / 2]) cube([db25_cut[0], wall + 2, db25_cut[1]]);
+    for (s = [-1, 1]) translate([x + s * db25_pitch / 2, yb - wall - 1, z]) rotate([-90, 0, 0]) cylinder(d = db25_hole, h = wall + 2, $fn = 24);
+}
+module db25_side_cut(y, z, xw, dir) {   // on a vertical end wall at x = xw; dir +1 = wall faces +x
+    xs = dir > 0 ? xw - wall - 1 : xw - 1;
+    translate([xs, y - db25_cut[0] / 2, z - db25_cut[1] / 2]) cube([wall + 2, db25_cut[0], db25_cut[1]]);
+    for (s = [-1, 1]) translate([xs, y + s * db25_pitch / 2, z]) rotate([0, 90, 0]) cylinder(d = db25_hole, h = wall + 2, $fn = 24);
+}
+module wall_cuts(i) {
+    yb = DD() * cos(T());
+    if (i == 0) db25_side_cut(wing_jack[0], wing_jack[1], 0, -1);                 // left wing: left end wall
+    else if (i == 1) db25_side_cut(wing_jack[0], wing_jack[1], W[1], 1);          // right wing: right end wall
+    else if (i == 3) for (j = mid_jacks) db25_back_cut(j[0], j[1], yb);
+    else db25_back_cut(strip_jack[i - 2][0], strip_jack[i - 2][1], yb);
+}
+// jack in its own frame: x along the wall, z up, y outward. The flange sits against the inside face, the body passes
+// through the wall and stands 11 mm proud.
+module jack3d(female) color(female ? "#9a9a9a" : "#c4c4c4") translate([-db25_flange[0] / 2, 0, -db25_flange[1] / 2]) {
+    cube([db25_flange[0], 1.2, db25_flange[1]]);
+    translate([(db25_flange[0] - 38.96) / 2, 1.2, (db25_flange[1] - 8.4) / 2]) cube([38.96, wall + 11, 8.4]);
+}
+module jack_proxies(i) {
+    yb = DD() * cos(T());
+    if (i == 3) for (j = mid_jacks) translate([j[0], yb - wall - 1.2, j[1]]) jack3d(true);
+    else if (i >= 2) translate([strip_jack[i - 2][0], yb - wall - 1.2, strip_jack[i - 2][1]]) jack3d(false);
+    else if (i == 0) translate([wall + 1.2, wing_jack[0], wing_jack[1]]) rotate([0, 0, 90]) jack3d(false);
+    else translate([W[1] - wall - 1.2, wing_jack[0], wing_jack[1]]) rotate([0, 0, -90]) jack3d(false);
+}
+
 // ---- hollow shell, ballast and feet -------------------------------------
 module shell_body(i) {
     difference() {
@@ -202,6 +243,7 @@ module shell_body(i) {
         translate([wall, wall, wall]) cube([W[i] - 2 * wall, DD() * cos(T()) - 2 * wall, 400]);
         // rebate: everything above the plane one plate thickness below the panel surface
         place(0, 0) translate([-1, -1, -plate_t]) cube([W[i] + 2, DD() + 2, 400]);
+        wall_cuts(i);
     }
 }
 function foot_pos(i) = [[30, 30], [W[i] - 30, 30], [30, DD() * cos(T()) - 30], [W[i] - 30, DD() * cos(T()) - 30]];
@@ -227,7 +269,7 @@ module piece3d(i) {
                     place(0, 0) translate([0, 0, -plate_t]) cube([W[i], DD(), plate_t + (part == "all" ? 0.1 : 0)]);
                     cuts(i);
                 }
-            if (part == "all") { proxies(i); extras(i); }
+            if (part == "all") { proxies(i); extras(i); jack_proxies(i); }
         }
         if (cut_x >= 0) translate([cut_x, -50, -50]) cube([500, 800, 800]);
     }

@@ -50,7 +50,8 @@ The printed pieces plus parts weigh only about 3 kg, which a hand on the throttl
 - Hold-down for the steel plates (a printed strap with two screws, or corner ribs).
 - Faceplate screw bosses and the rebate lip.
 - Joints and alignment between pieces.
-- Cable pass-throughs: the wing cables go through the strip shells.
+- Cable management behind the console, and the cutouts for the DC jack, fuse holder and USB extension.
+- DB25 jacks are modelled: cutouts 42.52 x 11.40 mm with two mounting holes, on each wing's outer end wall and the strips' back walls.
 - Internal mounts: the fader, stick, encoders, OLEDs, Teensy and DC jack.
 
 Renders: `docs/mockup/v1/renders/v1-wing-cutaway.png` and `v1-strip-cutaway.png`.

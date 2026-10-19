@@ -182,15 +182,18 @@ This file records what has been settled and what is still open.
   column lines.
 - **Parts (Digi-Key):** four **female** DB25 panel jacks on the middle piece (ITT Cannon ZDB25S) and one **male** jack
   on each outer piece (ZDB25P), joined by four straight-through shielded female-to-male cables, 1 m (Phoenix Contact
-  1656291), listed in `parts-list.md`. The cables fit only one way round. The wing cables pass through a strip shell
-  (about 0.5 m of path); coil the slack. They are 1 m for all four to keep one part number.
+  1656291), listed in `parts-list.md`. The cables fit only one way round. The jacks mount from inside, with the flange
+  against the inner wall and the body standing 11 mm proud. The wing jack is on the wing's outer end wall; the two outer
+  strips and the middle strip carry theirs on the back wall, so every cable runs outside, behind the console (about 0.6 m of
+  path for a wing cable). They are 1 m for all four to keep one part number; coil the slack.
   Keep analog runs short and put 0.1 uF on each wiper.
 - **Swapped-cable rule:** all four ports use the same connector, so a cable in the wrong port must be
   harmless. Ground and 5 V sit on the same pins everywhere, and everything the Teensy drives (rows, pixel
   data, fader PWM) is on pins 15-23, which any module not using them leaves open. A script check of all 16
   module and port pairs found no conflict.
-- **Open:** how the wing cables route through the strip shells, the exact panel cutout and screw spacing for
-  the chosen jack (measure it; standard D-sub shell B hardware should match but I have not checked), and prices.
+- **DB25 cutout (from the ITT Cannon ZD datasheet, rear mount):** 42.52 x 11.40 mm, with two 3.05 mm mounting holes
+  47.04 mm apart (modelled 3.2 mm). The flange is 53.09 mm wide.
+- **Open:** cable management behind the console, and the cutouts for the DC jack, fuse holder and USB extension.
 
 ## 5 V power (chosen, not yet ordered)
 - **Supply:** Mean Well GST25A05-P1J (Digi-Key 1866-2087-ND, $14.30): 5 V, 4 A max, 20 W, positive centre, 2.1 x 5.5 mm plug,

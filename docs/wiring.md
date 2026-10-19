@@ -6,7 +6,7 @@ Colour-coded wiring for the five-piece console, in the same style as the goodnig
 
 ![The five pieces](diagrams/overview.svg)
 
-The middle strip holds the Teensy and everything that is not a switch. Each wing sits in front of an outer strip piece, so its cable has to pass through that strip's shell on the way. The Teensy is powered over USB only; the 5 V adapter feeds the pixels, the level shifter and the fader driver.
+The middle strip holds the Teensy and everything that is not a switch. Each wing sits in front of an outer strip piece, so its jack is on the wing's outer end wall and its cable runs round the back. The Teensy is powered over USB only; the 5 V adapter feeds the pixels, the level shifter and the fader driver.
 
 ## Teensy 4.1
 
