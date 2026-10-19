@@ -82,12 +82,12 @@ Left strip (DB25 LS, 21 conductors) and right strip (DB25 RS, 16 conductors):
 
 - [ ] One MCP23017 expander behind the panel. SDA, SCL, INTA and 3V3 to the DB25 LS pins 10, 11, 12 and 2, ground to pins 1, 7, 13. Mirror both interrupt ports onto INTA.
 - [ ] Address pins as shipped; confirm the address with a bus scan before wiring switches.
-- [ ] Sixteen inputs, one wire each to its pin, the other leg of every switch to GND (internal pull-ups, no resistors): PA0 ABORT, PA1 STAGE key switch, PA2 STAGE, PA3 throttle FULL, PA4 throttle CUT, PA5 MAP, PA6 focus previous, PA7 focus next, PB0 quicksave, PB1 quickload, PB2 precision, PB3 pause, PB4 UI hide, PB5 RESET, PB6 and PB7 spare.
-- [ ] Thirteen small buttons are MX switches with blank DSA caps; ABORT is the guarded toggle, the STAGE key switch arms STAGE, and STAGE is the big button. RESET is one of the MX buttons: the firmware reboots the Teensy when it is pressed.
+- [ ] Sixteen inputs, one wire each to its pin, the other leg of every switch to GND (internal pull-ups, no resistors): PA0 ABORT, PA1 STAGE key switch, PA2 STAGE, PA3 throttle FULL, PA4 throttle CUT, PA5 MAP, PA6 focus previous, PA7 focus next, PB0 quicksave, PB1 quickload, PB2 precision, PB3 pause, PB4 UI hide, PB5 ENGAGE / DISENGAGE, PB6 and PB7 spare.
+- [ ] Thirteen small buttons are MX switches with blank DSA caps; ABORT and ENGAGE / DISENGAGE are the guarded toggles, the STAGE key switch arms STAGE, and STAGE is the big button. Ten of the small buttons are used, plus two spares. ENGAGE / DISENGAGE turns the sticks and throttle live or ignored in firmware.
 
 ### Annunciator (right strip)
 
-- [ ] Nine pixels, one behind each 24 x 12 mm window, after the 12 key pixels in the chain. Windows: low fuel, low power, overheat, low altitude, stable orbit, atmosphere, chute safe, link, spare. Give each window its own light-tight cell so the colours do not bleed.
+- [ ] Nine pixels, one behind each 24 x 12 mm window, after the 12 key pixels in the chain. Windows: low fuel, low power, overheat, low altitude, stable orbit, atmosphere, chute safe, link, controls (lit while engaged). Give each window its own light-tight cell so the colours do not bleed.
 
 ## Cables
 

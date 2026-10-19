@@ -122,7 +122,7 @@ This file records what has been settled and what is still open.
 
 ## Switch panel and annunciator (proposed)
 - **Switch panel (left strip):** all inputs that are not wired to a stick or encoder go on one panel and one
-  chip, an MCP23017 I2C expander sitting right behind it: ABORT (guarded toggle), a key switch that arms STAGE, a big STAGE
+  chip, an MCP23017 I2C expander sitting right behind it: ABORT (guarded toggle), a key switch that arms STAGE, a guarded ENGAGE / DISENGAGE toggle, a big STAGE
   button, throttle FULL and CUT, MAP, focus previous and next, quicksave, quickload, precision, pause, UI hide,
   and three spares. That is 16 inputs, listed in `pin-map.md`. Only SDA, SCL, the interrupt and 3V3 cross the
   cable to the Teensy.
@@ -134,7 +134,7 @@ This file records what has been settled and what is still open.
 - **Game side:** MAP, quicksave and the rest are key presses through Simpit's keyboard emulator (Windows only).
   FULL and CUT drive the throttle, and the motorised fader follows through Simpit's throttle command message.
 - **Annunciator (right strip):** 3 x 3 windows, one pixel each: low fuel, low power, overheat, low altitude,
-  stable orbit, atmosphere, chute safe, link, and a spare. Most of these come straight from Simpit messages
+  stable orbit, atmosphere, chute safe, link, and CONTROLS (lit while engaged). Most of these come straight from Simpit messages
   (resources, temperature limit, atmosphere conditions, altitude, orbit, flight status). Chute-safe would be derived
   from altitude and airspeed. **High G was dropped: Simpit has no G-force message.**
 - **Master power switch (middle strip):** in series with the 5 V rail. It cuts the pixels and the fader driver
@@ -143,13 +143,14 @@ This file records what has been settled and what is still open.
   the annunciator, and the middle strip gets the master switch.
 - **STAGE key (decided):** a key switch arms STAGE. The big STAGE button only fires while the key is on, which
   replaces the second guarded toggle. The key position is an expander input, so the firmware does the interlock.
-- **RESET (decided):** a button on the panel that reboots the Teensy from firmware, so it re-handshakes with
-  Simpit. It does not help if the chip is completely hung.
+- **RESET: skipped (decided).** Recovery from a hang is replugging the USB cable.
+- **ENGAGE / DISENGAGE (decided):** a guarded toggle on the switch panel, modelled on the reference build's toggle by the
+  throttle. Engaged, the sticks and throttle send input; disengaged, the firmware sends zero rotation and translation
+  (which leaves SAS and the game in control) and stops sending throttle, so a bump or a leaning arm does nothing.
+  The annunciator's ninth window, CONTROLS, lights while engaged. Check how Simpit hands the throttle back: its
+  changelog mentions throttle authority being released.
 - **Skipped, decided:** the reference's two arrow buttons beside its attitude stick. Our two sticks and the
   camera encoder cover that job; revisit only if you find you want attitude trim.
-- **Possible use of the reference's ENGAGE / DISENGAGE toggle (speculation from the photos, not confirmed):**
-  most likely a "controls live" interlock: engaged, the lever and stick send input; disengaged, they are ignored
-  or the game keeps the throttle. That is cheap to build here with a spare guarded toggle and a spare expander input.
 - **Open:** the key switch, the big STAGE button and the master switch are not picked, and the expander's address
   and interrupt behaviour are untested.
 
@@ -201,7 +202,7 @@ This file records what has been settled and what is still open.
 ## Guarded toggles (chosen, not yet ordered)
 - **Part:** [AITRIP 6-pack, 12 V 20 A, 2-pin SPST ON/OFF toggle switches with red aircraft-style covers](https://www.amazon.com/Heavy-Rocker-Toggle-Switch-Cover/dp/B0CL4GNMJX)
   (Amazon B0CL4GNMJX). Seller-reported 12 mm mounting hole; price and stock not checked.
-  One is used (ABORT, on the switch panel), so five are left over. A guarded toggle is cheap enough to keep for ABORT;
+  Two are used (ABORT and ENGAGE / DISENGAGE, on the switch panel), so four are left over. A guarded toggle is cheap enough to keep for ABORT;
   the price in the Amazon listing was not visible when checked. Its title calls it a "rocker toggle": check the photos
   before ordering that it is the bat-handle style with a flip cover.
 - **Wiring:** one pin to ground, the other to a Teensy input with `INPUT_PULLUP`; debounce in firmware.

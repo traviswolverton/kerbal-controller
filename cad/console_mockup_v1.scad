@@ -6,7 +6,7 @@
 //
 //   piece 0  LEFT WING     translation stick, throttle fader, time-warp encoder
 //   piece 1  RIGHT WING    rotation stick, camera and page encoders
-//   piece 2  STRIP LEFT    12 navigation keys + the SWITCH PANEL (everything on the I2C expander, incl. the STAGE key switch and RESET)
+//   piece 2  STRIP LEFT    12 navigation keys + the SWITCH PANEL (everything on the I2C expander, incl. the STAGE key switch and ENGAGE toggle)
 //   piece 3  STRIP MIDDLE  2 OLEDs, 4 fuel bars, buzzer, master power, Teensy and power jack inside
 //   piece 4  STRIP RIGHT   12 action-group keys + the ANNUNCIATOR (9 pixel windows)
 //
@@ -63,16 +63,16 @@ key_lbl_r = [["GEAR","LIGHT","BRAKE","AG1","AG2","AG3"],
 function key_u(c) = key_u0 + 9.525 + c * pitch_c;
 function key_v(r) = key_v0 + (1 - r) * pitch_r + 9.525;
 // switch panel (strip left): every input here goes to the MCP23017 expander sitting behind it
-sw_tog   = [[163, 122]];  sw_tog_lbl = ["ABORT"];                            // guarded toggle, cover lies along u
-sw_key   = [163, 98];                                                        // key switch that arms STAGE, 19 mm hole
-sw_stage = [208, 111];                                                       // big STAGE button, 28 mm hole
-sw_cols  = [150, 169.05, 188.1, 207.15];  sw_rows = [14, 35.3, 56.6, 77.9];  // MX button grid, rows front to back
+sw_tog   = [[162, 125], [162, 104]];  sw_tog_lbl = ["ABORT", "ENGAGE"];       // guarded toggles, cover lies along u
+sw_key   = [162, 82];                                                         // key switch that arms STAGE, 19 mm hole
+sw_stage = [208, 103];                                                       // big STAGE button, 28 mm hole
+sw_cols  = [150, 169.05, 188.1, 207.15];  sw_rows = [14, 35.3, 56.6];  // MX button grid, 3 rows front to back
 sw_lbl   = ["FULL","CUT","PRECISION","PAUSE", "MAP","FOCUS-","FOCUS+","UI",
-            "QSAVE","QLOAD","RESET","SPARE", "SPARE"];                       // 13 buttons, filled from the back row
-function sw_pos(k) = [sw_cols[k % 4], sw_rows[3 - floor(k / 4)]];
+            "QSAVE","QLOAD","SPARE","SPARE"];                                  // 12 buttons, filled from the back row
+function sw_pos(k) = [sw_cols[k % 4], sw_rows[2 - floor(k / 4)]];
 // annunciator (strip right): one pixel behind each 24 x 12 mm window
 ann_cols = [150, 176, 202];  ann_rows = [88, 72, 56];
-ann_lbl  = ["LOW FUEL","LOW POWER","OVERHEAT", "LOW ALT","STABLE ORBIT","ATMOSPHERE", "CHUTE SAFE","LINK","SPARE"];
+ann_lbl  = ["LOW FUEL","LOW POWER","OVERHEAT", "LOW ALT","STABLE ORBIT","ATMOSPHERE", "CHUTE SAFE","LINK","CONTROLS"];
 function ann_pos(k) = [ann_cols[k % 3], ann_rows[floor(k / 3)]];
 oled_pos = [[50, 100], [120, 100]];                  // 58 x 31 windows
 bar_u = [175, 189, 203, 217];  bar_v0 = 20;  bar_pitch = 11.5;   // 4 fuel bars of 8

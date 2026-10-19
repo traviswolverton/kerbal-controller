@@ -356,7 +356,7 @@ def d_pieces():
 # ---- diagram 4b: the switch panel -------------------------------------------------------------------
 SWITCHES = ["ABORT (guarded toggle)", "STAGE KEY (arms STAGE)", "STAGE (big button)", "THROTTLE FULL",
             "THROTTLE CUT", "MAP", "FOCUS PREVIOUS", "FOCUS NEXT", "QUICKSAVE", "QUICKLOAD", "PRECISION",
-            "PAUSE", "UI HIDE", "RESET (reboots Teensy)", "SPARE 1", "SPARE 2"]
+            "PAUSE", "UI HIDE", "ENGAGE / DISENGAGE (guarded toggle)", "SPARE 1", "SPARE 2"]
 
 
 def d_switch_panel():
@@ -391,7 +391,7 @@ def d_switch_panel():
                   "All sixteen inputs live on one panel and one chip. The expander sits right behind the panel, so only "
                   "its I&sup2;C lines (SDA, SCL), the interrupt and 3V3 cross the DB25 cable to the Teensy. Fit 4.7 k&Omega; "
                   "pull-ups on SDA and SCL at the Teensy end. Buttons are MX switches with blank DSA caps; the guarded ABORT "
-                  "toggle, the STAGE key switch and the big STAGE button are separate parts.")
+                  "and ENGAGE / DISENGAGE toggles, the STAGE key switch and the big STAGE button are separate parts.")
 
 
 # ---- diagram 5: the middle piece -------------------------------------------------------------------------
@@ -679,7 +679,7 @@ Edit the data in the script, not this file.** Draft: nothing is built yet. Conte
 - The **left strip** carries a **switch panel**: 16 inputs on one MCP23017 I2C expander that sits right behind
   the panel. The inputs wire locally, so only SDA, SCL, the interrupt and 3V3 cross the cable. The inputs are
   the guarded ABORT toggle, a key switch that arms STAGE, a big STAGE button, throttle FULL and CUT, MAP, focus
-  previous and next, quicksave, quickload, precision, pause, UI hide, a RESET button and two spares.
+  previous and next, quicksave, quickload, precision, pause, UI hide, a guarded ENGAGE / DISENGAGE toggle and two spares.
 - The **right strip** carries a 3 x 3 **annunciator**: one pixel behind each of nine windows.
 - The two **wings** sit in front of the outer strip pieces. Their cables to the middle piece have to pass
   through the strip shell (a hole in the strip's front wall and one in its side wall). That routing is
@@ -737,13 +737,14 @@ both interrupt ports onto INTA. Internal pull-ups on, the other leg of every swi
 | PB2 | PRECISION |
 | PB3 | PAUSE |
 | PB4 | UI HIDE |
-| PB5 | RESET (reboots the Teensy from firmware) |
+| PB5 | ENGAGE / DISENGAGE (guarded toggle: sticks and throttle live or ignored) |
 | PB6-PB7 | spare |
 
 MAP, quicksave, quickload and the rest go to the game as key presses through Simpit's keyboard emulator
 (Windows only). FULL and CUT drive the throttle, and the motorised fader follows through the throttle command
-Simpit sends back. RESET asks the firmware to reboot the Teensy through the ARM reset register, so it
-re-handshakes with Simpit; a chip that is completely hung still needs the USB cable replugged.
+Simpit sends back. ENGAGE / DISENGAGE is a controls-live interlock: disengaged, the firmware sends zero rotation and
+translation (so SAS and the game keep control) and stops sending throttle; the annunciator's CONTROLS window lights
+while engaged. Check how Simpit hands the throttle back (its changelog mentions throttle authority being released).
 
 ## DB25 pinouts
 

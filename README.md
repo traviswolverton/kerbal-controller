@@ -16,7 +16,7 @@ open. Each piece is a printed shell with a removable 3 mm faceplate.
 |---|---|---|
 | Left wing | 12 deg | translation stick, motorised throttle fader, time-warp encoder |
 | Right wing | 12 deg | rotation stick, camera and display-page encoders |
-| Strip left | 28 deg | 12 navigation / SAS keys and the switch panel: 16 inputs (ABORT, a STAGE key switch, big STAGE button, throttle FULL/CUT, utility buttons, RESET) on an I2C expander |
+| Strip left | 28 deg | 12 navigation / SAS keys and the switch panel: 16 inputs (ABORT, a STAGE key switch, big STAGE button, throttle FULL/CUT, utility buttons, ENGAGE / DISENGAGE) on an I2C expander |
 | Strip middle | 28 deg | 2 OLEDs, 4 fuel bars, buzzer, master power switch, Teensy, power input |
 | Strip right | 28 deg | 12 action-group keys and a 3 x 3 annunciator (low fuel, low power, overheat, low altitude, ...) |
 
