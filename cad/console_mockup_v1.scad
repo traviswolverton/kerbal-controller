@@ -29,6 +29,13 @@ tilt_m  = [12, 12, 28, 28, 28];           // panel tilt toward you, degrees
 fh_m    = [30, 30, 65, 65, 65];           // height of the front edge above the desk
 D_m     = [180, 180, 135, 135, 135];      // length of the panel along the slope
 plate_t = 3;                              // removable faceplate thickness
+hollow  = true;                           // shells are hollow: walls and floor, faceplate separate
+wall    = 2.4;                            // shell wall and floor thickness
+ballast = true;                           // 6 x 6 x 1/4 in steel plates in the wings (2 per wing)
+cut_x   = -1;                             // >= 0: slice away everything beyond this x (local to the piece)
+part    = "all";                          // "all", "shell" or "plate": one part for STL export (use with mod)
+foot_d  = 20;                             // self-adhesive silicone foot diameter
+steel   = [152.4, 152.4, 6.35];           // ballast plate
 
 // ---- shared sizes -----------------------------------------------------
 cut_mx   = 14.0;   // MX plate cutout
@@ -164,16 +171,42 @@ module proxies(i) {
     }
 }
 
-// ---- top level ----------------------------------------------------------
+// ---- hollow shell, ballast and feet -------------------------------------
+module shell_body(i) {
+    difference() {
+        wedge(W[i]);
+        // cavity: a column from the floor up through the sloped top
+        translate([wall, wall, wall]) cube([W[i] - 2 * wall, DD() * cos(T()) - 2 * wall, 400]);
+        // rebate: everything above the plane one plate thickness below the panel surface
+        place(0, 0) translate([-1, -1, -plate_t]) cube([W[i] + 2, DD() + 2, 400]);
+    }
+}
+function foot_pos(i) = [[30, 30], [W[i] - 30, 30], [30, DD() * cos(T()) - 30], [W[i] - 30, DD() * cos(T()) - 30]];
+module feet(i) color("#111") for (p = foot_pos(i)) translate([p[0], p[1], -3]) cylinder(d = foot_d, h = 3, $fn = 32);
+module ballast_stack(i) color("#7d8a99") {
+    u0 = i == 0 ? 58 : 20;                  // left wing: keep clear of the fader body at u 21..39
+    for (k = [0, 1]) translate([u0, 12, wall + k * steel[2]]) cube(steel);
+}
+module extras(i) {
+    feet(i);
+    if (ballast && i < 2) ballast_stack(i);
+}
+
+// ---- top level --------------------------------------------------------
 module piece3d(i) {
     $m = i;
-    translate([x_off[i], y_off[i], 0]) {
-        color("#9aa0a6") difference() { wedge(W[i]); cuts(i); }                       // shell
-        color("#1b1b1f") difference() {                                                // faceplate
-            place(0, 0) translate([0, 0, -plate_t]) cube([W[i], DD(), plate_t + 0.1]);
-            cuts(i);
+    translate([x_off[i], y_off[i], 0]) difference() {
+        union() {
+            if (part == "all" || part == "shell")
+                color("#9aa0a6") { if (hollow) shell_body(i); else difference() { wedge(W[i]); cuts(i); } }
+            if (part == "all" || part == "plate")
+                color("#1b1b1f") difference() {
+                    place(0, 0) translate([0, 0, -plate_t]) cube([W[i], DD(), plate_t + (part == "all" ? 0.1 : 0)]);
+                    cuts(i);
+                }
+            if (part == "all") { proxies(i); extras(i); }
         }
-        proxies(i);
+        if (cut_x >= 0) translate([cut_x, -50, -50]) cube([500, 800, 800]);
     }
 }
 
