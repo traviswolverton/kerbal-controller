@@ -23,7 +23,7 @@ part = "assembly";
 cols      = 2;
 rows      = 2;
 col_pitch = 19.05;
-row_pitch = 30.0;     // 19.05 key slot + 10.95 for the pixel above it
+row_pitch = 36.0;     // 19.05 key slot + 16.95 for the pixel above it (36 so it clears the keycap in front)
 margin    = 6;        // plate border outside the keys / pixels
 
 // ---- MX switch --------------------------------------------------------

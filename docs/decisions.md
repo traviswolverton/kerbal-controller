@@ -22,9 +22,13 @@ This file records what has been settled and what is still open.
 ## Key bank
 - **4 x 6 MX keys**, each with a state-feedback pixel (action groups, SAS mode bank, custom
   action groups).
-- **Layout B, "annunciator rows":** 19.05 mm column pitch, **30 mm row pitch**, with
+- **Layout B, "annunciator rows":** 19.05 mm column pitch, **36 mm row pitch**, with
   one pixel in its own clear space directly above each key.
-  See `docs/pitch-examples.png` (drawn at 28 mm rows; 30 mm gives about 1 mm clearance to the keycap footprint).
+  `docs/pitch-examples.png` is the earlier 28 mm drawing and is superseded for row pitch.
+- **Revised after the mockup:** at 30 mm rows and a 12 degree tilt the pixel above each key is
+  hidden behind the keycap in front of it (a keycap is about 13.5 mm tall). The seat-view renders in
+  `docs/mockup/renders/` show it. The fix is a **steeper centre panel (28 degrees)** plus the
+  **36 mm row pitch**; the two side modules stay at 12 degrees. Needs a real-world check with the test plate.
 - **Matrix:** hand-wired diode matrix (one 1N4148 per switch), 4 rows + 6 columns.
   Adafruit NeoKey boards were considered and dropped because they are hard to find.
 - **Pixels:** BTF-LIGHTING WS2812B, 5050 on 10 mm round white PCBs (100 pcs, owned).
@@ -67,6 +71,10 @@ This file records what has been settled and what is still open.
   (ignore the fader until it matches the game value) so nothing jumps.
 - Keep the left module's 100 mm slot able to take a motorised fader later.
 
+## Mockup (v0 proposal)
+See `docs/mockup/README.md`. Three modules of 220 / 240 / 220 mm width, 245 mm deep, tilted
+12 / 28 / 12 degrees. All positions are a first proposal to react to.
+
 ## Open items
 - Measure the real pixel board (diameter and height) with calipers.
 - Print the test plate (`cad/test_plate.scad`) and settle the MX cutout tolerance and
@@ -76,4 +84,5 @@ This file records what has been settled and what is still open.
 - Confirm plain fader with ghost strip, or motorised.
 - Whether to include the round attitude TFT.
 - Column pitch: 19.05 mm for now, 22-25 mm is an option for finger room.
+- Check the 28 degree centre tilt feels right at your desk (prop the test plate at that angle).
 - Firmware: key assignment map, Simpit channel list, serpentine pixel mapping.

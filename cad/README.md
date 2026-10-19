@@ -4,7 +4,7 @@ Parametric OpenSCAD source. STL exports live in `stl/`.
 
 ## test_plate.scad
 
-A 2 x 2 test of layout B (19.05 mm columns, 30 mm rows), with a 10 mm WS2812B pixel
+A 2 x 2 test of layout B (19.05 mm columns, 36 mm rows), with a 10 mm WS2812B pixel
 board in a pocket above each key. Three parts print separately and stack:
 
 | Part | Thickness | Filament | Purpose |
@@ -31,3 +31,13 @@ openscad -D 'part="diffusers"' -o stl/test_plate_diffusers.stl test_plate.scad
 
 Not yet verified by a real print. In particular the MX cutout is a plain 14 mm square
 (no side notches), and the pixel pad positions on the board are assumed.
+
+## Checking pixel visibility
+
+Fit the switches and keycaps, then prop the plate at about 28 degrees (a book or a wedge) and look at it from
+where you would sit. The pixel above each key should be clearly visible past the keycap in front. If it is
+not, we need a steeper tilt, a bigger row pitch, or a raised light post.
+
+## console_mockup.scad
+
+The full console mockup. See `../docs/mockup/README.md`. Regenerate everything with `./build_mockup.sh`.
