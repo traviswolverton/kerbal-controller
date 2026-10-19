@@ -1,53 +1,58 @@
 # Tools
 
-## Digi-Key parts selection: `dk.py`
+## Parts selection: `parts.py` (Digi-Key and Mouser)
 
-Searches Digi-Key through its Product Information V4 API (US site, USD), keeps a shortlist, and re-checks live
-price, stock and status. Standard library only. Digi-Key is the **primary** source for parts selection: it
-returns real price, stock, lifecycle status and datasheet links, which Amazon pages do not give reliably.
+Searches Digi-Key and Mouser through their APIs (US sites, USD), keeps a shortlist, and re-checks live price, stock
+and status. Standard library only. Digi-Key is the primary source and its parametric data is richer; Mouser works
+the same way and is simpler to set up. Every source that has credentials is searched.
 
-**Status:** written and tested offline against a fake API (`python3 -B -m unittest` in this folder). It has not
-been run against the live API yet, because that needs your credentials. The response field names come from
-Digi-Key's own docs and a community example, and the parser tolerates missing fields.
+**Status:**
+- **Mouser:** tested live (search, part details, shortlist, check).
+- **Digi-Key:** written and tested only against a fake API, because the developer portal would not let the owner
+  create an app. The field names come from Digi-Key's docs and a community example, and the parser tolerates missing
+  fields. Expect a small fix on the first real run.
+- **Tests:** `python3 -B -m unittest` in this folder runs 16 offline tests.
 
-### One-time setup (you do this, it is an account sign-up)
+### Setup (an account sign-up, so you do it)
 
-1. Sign in or register at [developer.digikey.com](https://developer.digikey.com).
-2. Create an organization, then an app. Add the **Product Information V4** API to it. Create a **production** app:
-   the sandbox returns incomplete or dummy data. The app form asks for an OAuth callback URL; this tool uses the
-   two-legged client-credentials flow and never calls it, so any HTTPS URL such as `https://localhost` should do.
-3. Copy the app's **Client ID** and **Client Secret** into a file named `.env` in the repo root (it is
-   git-ignored; never commit it):
+Copy `.env.example` to `.env` in the repo root (it is git-ignored; never commit it) and fill in what you have:
 
-   ```
-   DIGIKEY_CLIENT_ID=your-client-id
-   DIGIKEY_CLIENT_SECRET=your-client-secret
-   ```
+```
+MOUSER_API_KEY=your-key
+DIGIKEY_CLIENT_ID=your-client-id
+DIGIKEY_CLIENT_SECRET=your-client-secret
+```
 
-   Variables already set in your shell win over `.env`. `DIGIKEY_SANDBOX=true` switches to the sandbox.
-   `DIGIKEY_SITE` and `DIGIKEY_CURRENCY` default to `US` and `USD`; keep them, since this project sources from the US.
+- **Mouser:** create a My Mouser account and request a **Search** API key at https://www.mouser.com/en/api-hub/ (the
+  cart and order key is separate). Limits: 50 results per call, 30 calls a minute, 1,000 a day. The tool paces itself.
+- **Digi-Key:** register at [developer.digikey.com](https://developer.digikey.com), create an organization and a
+  **production** app with the Product Information V4 API (the sandbox returns dummy data). The app form asks for an OAuth
+  callback URL; this tool uses the two-legged client-credentials flow and never calls it, so any HTTPS URL such as
+  `https://localhost` should do. `DIGIKEY_SANDBOX=true` switches to the sandbox.
+
+Variables already set in your shell win over `.env`. Secrets are never printed, and the Digi-Key access token is cached
+under `~/.cache/kerbal-controller/`, outside the repo.
 
 ### Use
 
 ```
-python3 docs/tools/dk.py search "key switch 2 position panel mount" --in-stock --active --max-price 15
-python3 docs/tools/dk.py part 123-456-ND            # parameters, links, price, stock for one part
-python3 docs/tools/dk.py add 123-456-ND --role "STAGE key switch" --qty 1
-python3 docs/tools/dk.py check --md                 # re-check the shortlist, write docs/digikey-bom.md
+python3 docs/tools/parts.py search "key switch 2 position panel mount" --in-stock --active --max-price 20
+python3 docs/tools/parts.py part 612-KO131A102        # parameters, links, price, stock for one part
+python3 docs/tools/parts.py add 612-KO131A102 --role "STAGE key switch" --qty 1
+python3 docs/tools/parts.py check --md                # re-check the shortlist, write docs/parts-bom.md
 ```
 
-- `search` is a keyword search. Filters (`--in-stock`, `--active`, `--max-price`) are applied locally. Add
-  `--json` for raw rows.
-- Use the **Digi-Key part number** (ends in `-ND`) with `part` and `add`: manufacturer numbers can repeat.
-- `add` stores the part in `docs/digikey-parts.json` with a price and stock snapshot.
-- `check` flags a part that is no longer Active, below the quantity you need, or changed in price. `--update`
-  saves the new prices.
-- The access token is cached under `~/.cache/kerbal-controller/`, outside the repo, and secrets are never printed.
-- The API has rate limits per app. The tool prints the remaining request count when the API reports it. Check your
-  app's limit in the developer portal, and mind Digi-Key's API terms of use.
+- `search` queries every configured source and merges the rows. Filters (`--in-stock`, `--active`, `--max-price`) are
+  applied locally. `--source digikey|mouser` limits it to one, and `--json` gives raw rows. If one source fails, the other's
+  results still show, with a warning.
+- A Digi-Key number ends in `-ND`; anything else is treated as a Mouser number unless you pass `--source`.
+- `add` stores the part in `docs/parts-shortlist.json` with a price and stock snapshot.
+- `check` flags a part that is no longer Active, below the quantity you need, below the minimum order, or changed in price.
+  `--update` saves the new prices.
+- Mind each service's API terms of use.
 
-Digi-Key does not stock everything we use (consumer modules, multi-packs, printed-part hardware). For those,
-fall back to Amazon.com and say the price or stock came from a web page, not the API.
+Neither distributor stocks everything we use (consumer modules, multi-packs). For those, fall back to Amazon.com and
+say the price or stock came from a web page, not an API.
 
 ## Wiring diagrams: `gen_pinout.py`
 
