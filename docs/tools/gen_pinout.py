@@ -133,7 +133,11 @@ def svg_vb(vb, label, body):
     return f'<svg class="wiring" viewBox="{vb}" role="img" aria-label="{e(label)}">{body}</svg>'
 
 
+FIGS = []        # (svg, caption) in the order the page builds them
+
+
 def figure(svg_text, caption):
+    FIGS.append((svg_text, caption))
     return (f'<figure class="diagram-figure"><div class="diagram-scroll">{svg_text}</div>'
             f'<figcaption>{caption}</figcaption></figure>')
 
@@ -287,8 +291,11 @@ def harness(title, port, devices, note, extra_h=0):
     for p, sig in pins:
         if sig in ("3V3", "5V", "GND"):
             b += pill(238, jack_y[p], 46, sig, SIGCOL[sig])
-    height = max(jy0 + jh, y) + 40 + extra_h
-    b += text(60, height - 14, note, 9.5, "var(--silk-dim)")
+    import textwrap
+    lines = textwrap.wrap(note, 140)
+    height = max(jy0 + jh, y) + 30 + 14 * len(lines) + extra_h
+    for i, ln in enumerate(lines):
+        b += text(60, height - 14 * (len(lines) - i), ln, 9.5, "var(--silk-dim)")
     return svg(1100, height, f"{title}: wiring from the DB25 jack to each device", b)
 
 
@@ -375,9 +382,9 @@ def d_middle():
                 b += path([(260, ty[sig]), (mx, ty[sig]), (mx, py), (dx, py)], SIGCOL[sig])
                 k += 1
         y += h + 16
-    b += text(60, y + 24, "⚠ OLED VCC on 3V3 until you have checked that the modules' SPI lines are safe at 5 V. The "
-                          "buzzer module must run from 3V3: at 5 V its transistor may not switch off.", 9.5, "var(--wire-warn)")
-    return figure(svg(1100, y + 50, "Middle strip: Teensy to the OLEDs, buzzer module and level shifter", b),
+    b += text(60, y + 24, "⚠ OLED VCC on 3V3 until you have checked that the modules' SPI lines are safe at 5 V.", 9.5, "var(--wire-warn)")
+    b += text(60, y + 40, "⚠ The buzzer module must run from 3V3: at 5 V its transistor may not switch off.", 9.5, "var(--wire-warn)")
+    return figure(svg(1100, y + 64, "Middle strip: Teensy to the OLEDs, buzzer module and level shifter", b),
                   "The two OLEDs share the SPI clock, data, DC and reset lines and have a chip-select each. The pixel "
                   "chain starts at the level shifter: its output goes through a 330&ndash;470 &Omega; resistor to "
                   "the left strip (LS pin 17), comes back on LS pin 18 into the 32 fuel-bar pixels here, and leaves "
@@ -427,7 +434,11 @@ def t_teensy():
             f'<tbody>{rows}</tbody></table></div>')
 
 
+COLOUR_ROWS = None
+
+
 def t_colours():
+    global COLOUR_ROWS
     items = [
         ("3V3", "red", "pots, buzzer module and OLEDs: from the Teensy"), ("5V", "orange", "pixels, level shifter, fader driver"),
         ("GND", "black", "everything; drawn with a light edge so it shows"),
@@ -438,6 +449,7 @@ def t_colours():
         ("OLED SCK / MOSI / DC / RES / CS", "yellow", "yellow, blue, grey, teal, green (CS2 purple)"),
         ("Buzzer I/O", "brown", ""),
     ]
+    COLOUR_ROWS = items
     rows = "".join(f"<tr><td>{e(n)}</td><td>{swatch(c)}{c}</td><td class=\"note\">{e(t)}</td></tr>" for n, c, t in items)
     return ('<div class="table-wrap"><table><thead><tr><th>Signal</th><th>Colour</th><th>Note</th></tr></thead>'
             f'<tbody>{rows}</tbody></table></div>')
@@ -536,9 +548,60 @@ def page():
     return "\n".join(p)
 
 
+FIG_NAMES = ["overview", "teensy", "db25", "left-wing", "right-wing", "strip-left", "strip-right",
+             "strip-middle", "power"]
+FIG_TITLES = ["The five pieces", "Teensy 4.1", "The four DB25 ports", "Left wing", "Right wing", "Strip left",
+              "Strip right", "Strip middle", "Power"]
+SVG_VARS = ("--pcb:#123d2e;--pcb-edge:#1f5c45;--silk:#eef1ea;--silk-dim:#8fa097;--wire-power:#d9a35f;"
+            "--wire-gnd:#7b8a82;--wire-warn:#e2666a;--c-red:#e5484d;--c-black:#161a18;--c-white:#f4f4f4;"
+            "--c-blue:#3b82f6;--c-yellow:#eab308;--c-green:#22c55e;--c-orange:#f97316;--c-brown:#a35a2a;"
+            "--c-purple:#a855f7;--c-grey:#9ca3af;--c-pink:#ec4899;--c-teal:#14b8a6;")
+
+
+def standalone(svg_text):
+    """A self-contained .svg: namespace, the colour variables, and the dark panel as a background rectangle."""
+    import re
+    m = re.search(r'viewBox="([\d.\- ]+)"', svg_text)
+    x, y, w, h = (float(v) for v in m.group(1).split())
+    head = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{m.group(1)}" width="{int(w)}" height="{int(h)}" '
+            f'font-family="IBM Plex Mono, DejaVu Sans Mono, monospace">'
+            f'<style>svg{{{SVG_VARS}}}</style><rect x="{x}" y="{y}" width="{w}" height="{h}" fill="#0c1210"/>')
+    body = svg_text.split(">", 1)[1]                       # drop the original opening <svg ...> tag
+    return head + body
+
+
+def markdown():
+    md = ["# Wiring diagrams", "",
+          "Colour-coded wiring for the five-piece console, in the same style as the goodnight-device diagrams. "
+          "Nothing is built yet and none of this has been checked on real hardware: treat it as the plan to wire from. "
+          "The pin tables are in [pin-map.md](pin-map.md), the checklist in [wiring-checklist.md](wiring-checklist.md), "
+          "and [pinout.html](pinout.html) is the same page for a browser. Generated by "
+          "`docs/tools/gen_pinout.py`.", ""]
+    for name, title, (_, cap) in zip(FIG_NAMES, FIG_TITLES, FIGS):
+        md += [f"## {title}", "", f"![{title}](diagrams/{name}.svg)", "", cap, ""]
+    md += ["## Wire colours", "", "The same signal is the same colour at both ends of its wire. Red is always 3V3, "
+           "black is always GND, orange is always 5 V.", "", "| Signal | Colour | Note |", "|---|---|---|"]
+    for n, c, t in COLOUR_ROWS:
+        md.append(f"| {n} | {c} | {t} |")
+    md += ["", "## Teensy pins", "", "| Teensy pin | Signal | Goes to |", "|---|---|---|"]
+    for pin in sorted(TEENSY):
+        a = f" ({ANALOG[pin]})" if pin in ANALOG else ""
+        md.append(f"| {pin}{a} | {TEENSY[pin]} | {dest(TEENSY[pin])} |")
+    return "\n".join(md) + "\n"
+
+
 if __name__ == "__main__":
     out = page()
     for chunk in out.split("<svg")[1:]:                      # every diagram must be well-formed XML
         xml.dom.minidom.parseString("<svg" + chunk.split("</svg>")[0] + "</svg>")
     open(OUT, "w").write(out)
     print("wrote", OUT, len(out), "bytes")
+    import os
+    ddir = os.path.join(os.path.dirname(OUT) or ".", "diagrams")
+    os.makedirs(ddir, exist_ok=True)
+    assert len(FIGS) == len(FIG_NAMES), (len(FIGS), len(FIG_NAMES))
+    for name, (svg_text, _) in zip(FIG_NAMES, FIGS):
+        xml.dom.minidom.parseString(standalone(svg_text))
+        open(os.path.join(ddir, name + ".svg"), "w").write(standalone(svg_text))
+    open(os.path.join(os.path.dirname(OUT) or ".", "wiring.md"), "w").write(markdown())
+    print("wrote", len(FIGS), "svg files and wiring.md")
