@@ -29,6 +29,17 @@ This file records what has been settled and what is still open.
   hidden behind the keycap in front of it (a keycap is about 13.5 mm tall). The seat-view renders in
   `docs/mockup/renders/` show it. The fix is a **steeper centre panel (28 degrees)** plus the
   **36 mm row pitch**; the two side modules stay at 12 degrees. Needs a real-world check with the test plate.
+- **Switches (owned):** Josojoou 72-piece pack of **blue clicky, 3-pin, pre-lubricated** MX-style switches
+  ([Amazon listing](https://www.amazon.com/dp/B0GC33V4HK)), bought 2026-10-10. 24 are used, so 48 spare.
+  3-pin means no plastic side pegs, so a plain 14 mm square cutout should work. Clicky is loud;
+  fine for a desk controller. Check snap-fit on the test plate (1.5 mm plate) and measure the
+  housing below the plate (about 5 mm, plus pins) against the spacer depth.
+- **Keycaps (chosen):** blank 1u **DSA profile** (about 7.6 mm tall, flat top), 24 pieces, from the
+  [Mechkeeb 24 pcs DSA blank PBT listing](https://www.amazon.com/Mechkeeb-Profile-Switches-Keyboard-Replacement/dp/B0BWDQ3NKK)
+  (B0BWDQ3NKK, Amazon.com). Colours still to pick: group by function (SAS / navigation, action groups,
+  red for STAGE). Key labels go on the panel, not on the caps. The mockup's keycap proxy
+  (18 mm wide, top at 13.5 mm above the plate) already assumes DSA. When they arrive, measure the real
+  height with a switch fitted and re-check pixel visibility at 28 degrees.
 - **Matrix:** hand-wired diode matrix (one 1N4148 per switch), 4 rows + 6 columns.
   Adafruit NeoKey boards were considered and dropped because they are hard to find.
 - **Pixels:** BTF-LIGHTING WS2812B, 5050 on 10 mm round white PCBs (100 pcs, owned).
@@ -66,10 +77,34 @@ This file records what has been settled and what is still open.
   the stick axis (estimated from the drawing scale). Keep keys and other controls at least that far
   from each stick, with margin.
 
-## Throttle (proposed, not yet confirmed)
-- Plain 100 mm fader with a "ghost" pixel strip showing the game's throttle, plus pickup mode
-  (ignore the fader until it matches the game value) so nothing jumps.
-- Keep the left module's 100 mm slot able to take a motorised fader later.
+## Throttle (motorised fader chosen)
+- **Fader:** [Adafruit 5466](https://www.adafruit.com/product/5466) motorised slide pot, 10 kOhm linear,
+  100 mm travel, $24.95 (US, in stock on 2026-10-19). Motor 6-10 V DC (Adafruit runs it at 5 V),
+  pot and motor circuits isolated, slider moves freely by hand when the motor is off.
+- **Driver:** [Adafruit L9110H H-bridge (4489)](https://www.adafruit.com/product/4489), $1.50, 2.5-12 V,
+  800 mA per channel. Adafruit's author runs it from 3.3 V logic. Add the 47 uF capacitor from their
+  [Flying Faders guide](https://learn.adafruit.com/flying-faders/overview) near the driver.
+- **Knob:** [Adafruit conductive nubbin (5741)](https://www.adafruit.com/product/5741), $4.95, 26 x 11 x 10 mm,
+  shaft slot 18.8 x 1.8 mm. It has to be conductive so the touch pad on the slider works.
+- **Behaviour:** the motor follows the game's throttle while you are not touching the fader; when you
+  touch it, you drive the throttle. Simpit's `THROTTLE_CMD_MESSAGE` (game to device) gives the game
+  value (value range not yet verified, check the current Simpit source). The fader shows the throttle
+  itself, so the 8-pixel ghost strip is no longer needed (mockup: `ghost_strip = false`).
+- **Mechanical (Soundwell drawing linked from the Adafruit page, my reading of a scanned image):**
+  - Face 146.5 x 17.2 mm (74 + 72.5 long). Adafruit says 144 x 28.6 x 17 mm. Plan a 150 mm cavity.
+  - **Mounting: two M3 x 0.5 threaded holes in the front face, 120 mm apart on the slot axis.**
+    Screw them from the front through the panel. The panel sits directly on the face.
+  - Body 26 mm deep below the face, plus 3.5 mm of PCB pins.
+  - Slider tab: about 1.2 mm thick, 18.5 mm wide, about 8.2 mm above the face, with two 2 mm holes.
+    The nubbin slot (1.8 mm) is loose on a 1.2 mm tab, so it may need glue or tape.
+  - Pins at 3.75 mm pitch (pot: 1, T = touch, 3, 2) at one end, motor pins (A, B) 8 mm apart at the other.
+- **Still open:**
+  - Teensy 4.1 has no `touchRead()`. Options: FastTouch or CapacitiveSensor library, or treat wiper
+    movement the motor did not cause as a hand.
+  - Motor current at 5 V is not listed: measure it. Expect ADC noise while it moves.
+  - Panel thickness vs the tab: the tab is only about 8 mm tall, so a thick panel may bury the holes.
+    Use a thin panel or spacers behind it.
+  - Confirm every dimension on the real unit before printing the left module.
 
 ## Mockup (v0 proposal)
 See `docs/mockup/README.md`. Three modules of 220 / 240 / 220 mm width, 245 mm deep, tilted

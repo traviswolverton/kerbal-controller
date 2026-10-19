@@ -17,7 +17,7 @@ Each has a 100 mm scale bar: measure it on the printout. Cut the template out an
 ## What is in each module
 | Module | Width | Tilt | Contents |
 |---|---|---|---|
-| Left | 220 mm | 12 deg | Left stick (translation X/Y, twist = Z), 100 mm throttle fader with a ghost strip of 8 pixels, time-warp encoder |
+| Left | 220 mm | 12 deg | Left stick (translation X/Y, twist = Z), motorised 100 mm throttle fader (Adafruit 5466, 146.5 mm body, two M3 holes 120 mm apart), time-warp encoder |
 | Centre | 240 mm | 28 deg | 4 x 6 key bank with a pixel above each key, 4 guarded toggles (abort, stage arm, 2 spare), 2 OLEDs, 4 fuel bars of 8 pixels, buzzer |
 | Right | 220 mm | 12 deg | Right stick (pitch/yaw, twist = roll), camera and display-page encoders |
 
@@ -39,6 +39,12 @@ Key assignments, back row to front row:
   need to tilt as much because they have no tall keycaps.
 - **Stick clearance.** A 38 mm ring around each stick (estimated tilt sweep of the grip) is drawn on the
   templates. Nothing else is inside it.
+
+## Left module update (not yet re-rendered)
+The fader is now the motorised Adafruit 5466, so the 8-pixel ghost strip is off (`ghost_strip = false`
+in `cad/console_mockup.scad`), the fader has two M3 holes, and the paper template shows its 146.5 x 17.2 mm body
+outline. The renders and templates in this folder predate that change; run `cad/build_mockup.sh`
+on a machine with OpenSCAD to refresh them.
 
 ## What is provisional
 - **Joystick flange and mounting holes are unknown.** The seller drawing is a side view only. The stick

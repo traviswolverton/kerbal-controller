@@ -36,10 +36,14 @@ pitch_c    = 19.05;  // key column pitch
 pitch_r    = 36.0;   // key row pitch (layout B, revised from 30: pixels were hidden behind the keycaps)
 
 // ---- LEFT module layout ----------------------------------------------
-fader_u   = 30;      // 100 mm fader, pull toward you = less throttle
+fader_u   = 30;      // motorised fader (Adafruit 5466), pull toward you = less throttle
 fader_v0  = 50;      // v of 0 %
 fader_len = 100;     // travel
-ghost_u   = 52;      // ghost strip of 8 pixels alongside the fader
+fader_body = [17.2, 146.5, 26];   // face width, length, depth below the panel (from the Soundwell drawing)
+fader_hole_span = 120;            // two M3 threaded holes in the face, on the slot axis
+nubbin    = [11, 26, 10];         // conductive knob (Adafruit 5741): across, along travel, height
+ghost_strip = false; // 8 pixels beside the fader; not needed now the fader is motorised
+ghost_u   = 52;      // ghost strip position
 stick_l   = [140, 95];
 enc_l     = [[190, 165]];
 enc_l_lbl = ["TIME WARP"];
@@ -106,7 +110,8 @@ module wedge(w) {
 module cuts(i) {
     if (i == 0) {
         place(fader_u, fader_v0 + fader_len / 2) hole_rect(6, fader_len + 12);
-        for (k = [0 : 7]) place(ghost_u, fader_v0 + k * fader_len / 7) hole_round(window_d);
+        for (s = [-1, 1]) place(fader_u, fader_v0 + fader_len / 2 + s * fader_hole_span / 2) hole_round(3.4);
+        if (ghost_strip) for (k = [0 : 7]) place(ghost_u, fader_v0 + k * fader_len / 7) hole_round(window_d);
         place(stick_l[0], stick_l[1]) hole_rect(stick_cut[0], stick_cut[1]);
         for (p = enc_l) place(p[0], p[1]) hole_round(7);
     } else if (i == 1) {
@@ -144,8 +149,9 @@ module glow(c = "#3c3") color(c) translate([0, 0, -0.2]) cylinder(d = window_d -
 
 module proxies(i) {
     if (i == 0) {
-        place(fader_u, fader_v0 + 0.6 * fader_len) color("#c33") translate([-11, -6, 0]) cube([22, 12, 14]);
-        for (k = [0 : 7]) place(ghost_u, fader_v0 + k * fader_len / 7) glow(k < 5 ? "#3c3" : "#555");
+        place(fader_u, fader_v0 + 0.6 * fader_len) color("#c33")
+            translate([-nubbin[0] / 2, -nubbin[1] / 2, 0]) cube(nubbin);
+        if (ghost_strip) for (k = [0 : 7]) place(ghost_u, fader_v0 + k * fader_len / 7) glow(k < 5 ? "#3c3" : "#555");
         place(stick_l[0], stick_l[1]) stick_proxy();
         for (p = enc_l) place(p[0], p[1]) encoder_proxy();
     } else if (i == 1) {
@@ -186,10 +192,12 @@ module notes(i) {
     translate([8, -4]) { square([100, 0.6]); for (x = [0, 50, 100]) translate([x, 0]) square([0.6, 3]); }
     lbl("100 mm scale bar: measure it on your print", 8, -8.5, 2.8, "left");
     if (i == 0) {
-        place(fader_u, fader_v0 + fader_len / 2) cross(6);
-        lbl("THROTTLE", fader_u, fader_v0 + fader_len + 14, 3.5);
+        place(fader_u, fader_v0 + fader_len / 2) { cross(6); ring_sq(fader_body[0], fader_body[1]); }   // body outline under the panel
+        for (s = [-1, 1]) translate([fader_u, fader_v0 + fader_len / 2 + s * fader_hole_span / 2]) cross(3);
+        lbl("2x M3, 120 mm apart", fader_u + 8, fader_v0 + fader_len / 2 + fader_hole_span / 2, 2.6, "left");
+        lbl("THROTTLE", fader_u, fader_v0 + fader_len + 28, 3.5);
         lbl("0%", fader_u + 12, fader_v0, 3); lbl("100%", fader_u + 12, fader_v0 + fader_len, 3);
-        translate([ghost_u, fader_v0 + 55]) lbl("ghost strip", 12, 0, 3, "left");
+        if (ghost_strip) translate([ghost_u, fader_v0 + 55]) lbl("ghost strip", 12, 0, 3, "left");
         translate(stick_l) { ring_sq(stick_flange[0], stick_flange[1]); ring_c(stick_clear); cross(6);
             lbl("PROVISIONAL", 0, -34, 3); lbl("L STICK: X/Y + twist Z", 0, -46, 3.2); }
         for (k = [0 : len(enc_l) - 1]) translate(enc_l[k]) { cross(5); lbl(enc_l_lbl[k], 0, -17, 3.2); }
