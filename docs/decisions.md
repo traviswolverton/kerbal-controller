@@ -106,6 +106,26 @@ This file records what has been settled and what is still open.
     Use a thin panel or spacers behind it.
   - Confirm every dimension on the real unit before printing the left module.
 
+## 5 V power (chosen, not yet ordered)
+- **Supply:** [Adafruit 1466](https://www.adafruit.com/product/1466), 5 V 4 A regulated, UL listed,
+  5.5 x 2.1 mm plug with positive tip, US 2-prong, $14.95. Adafruit's own warning: it is not for
+  powering an Arduino through its DC jack (not an issue here, see below).
+- **Panel connector:** [Adafruit 5607](https://www.adafruit.com/product/5607), round panel-mount 5.5/2.1 mm
+  jack on a 30 cm lead, $4.95. Needs a 1" (25.4 mm) hole, flange 30 mm, threaded part 23 mm, panels up
+  to 16 mm. Current rating not stated on the page: confirm before running 4 A through it. Cheaper
+  threaded jacks on Amazon were also seen, one rated only 1.5-2 A, so do not buy those blind.
+- **Budget:** pixels are 56 x 60 mA = 3.4 A worst case (all white); fader motor is unknown at 5 V, measure
+  it. Cap total pixel draw in firmware so real use stays well under 4 A. The usual guidance is to keep
+  the rail above 4.5 V at full load and to leave 20-25 % headroom.
+- **Wiring plan:**
+  - The Teensy is powered **only from USB**. The external 5 V feeds the pixels, the level shifter and the
+    fader driver, with ground shared with the Teensy. Do not tie the 5 V rail to the Teensy's VIN.
+  - Put a fuse sized just above the capped load on the 5 V rail, and the 1000 uF capacitor where the rail
+    enters the pixel run.
+  - The 2.42" OLED modules accept 3.3-5 V, so power them from the 5 V rail to keep load off the Teensy's
+    3.3 V regulator. Confirm the module's logic level first.
+  - All 56 pixels are in the centre module, so one power feed is enough.
+
 ## Guarded toggles (chosen, not yet ordered)
 - **Part:** [AITRIP 6-pack, 12 V 20 A, 2-pin SPST ON/OFF toggle switches with red aircraft-style covers](https://www.amazon.com/Heavy-Rocker-Toggle-Switch-Cover/dp/B0CL4GNMJX)
   (Amazon B0CL4GNMJX). Seller-reported 12 mm mounting hole; price and stock not checked.

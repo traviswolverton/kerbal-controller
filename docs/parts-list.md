@@ -12,7 +12,8 @@ listing on the date given, and a blank price means it has not been checked. Desi
 | Teensy 4.1 | 1 | chosen | [PJRC](https://www.pjrc.com/store/teensy41.html) | 3.3 V pins, not 5 V tolerant. No `touchRead()` on 4.x. |
 | WS2812B 10 mm pixel boards | 56 of 100 owned | owned | BTF-LIGHTING | 24 keys + 4 fuel bars of 8. GRB. No ghost strip any more. |
 | 74AHCT125 level shifter | 1 | chosen | - | For the pixel data line. |
-| 5 V supply, 3 A or more | 1 | open | - | Also powers the fader motor. Cap pixel brightness. |
+| 5 V supply, 4 A | 1 | chosen | [Adafruit 1466, UL listed, 5.5 x 2.1 mm centre-positive](https://www.adafruit.com/product/1466), $14.95, in stock 2026-10-19 | Powers pixels and the fader motor. Cap pixel brightness in firmware. Not ordered yet. |
+| Panel-mount DC jack | 1 | chosen | [Adafruit 5607 round panel mount 5.5/2.1 mm barrel jack extension cable, 30 cm](https://www.adafruit.com/product/5607), $4.95, in stock 2026-10-19 | 1" (25.4 mm) hole, panels up to 16 mm. Current rating not listed: check before relying on it at 4 A. Cut or terminate the plug end inside. Not ordered yet. |
 | 330-470 ohm resistor, 1000 uF cap (10 V+) | 1 each | chosen | - | Pixel data line and 5 V rail. |
 | 1N4148 diodes | 24 | chosen | - | One per key. |
 | Inter-module connectors | 2 sets | open | - | Link the left and right modules to the centre module, which holds the Teensy. |
@@ -43,4 +44,4 @@ listing on the date given, and a blank price means it has not been checked. Desi
 ## Hardware and consumables (not yet specified)
 
 M3 screws and heat-set inserts (the fader needs two M3 screws, countersunk), hookup wire, panel-mount
-USB extension, DC jack and power switch, filament.
+USB extension, power switch, rail fuse, filament.
