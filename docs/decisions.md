@@ -106,6 +106,22 @@ This file records what has been settled and what is still open.
     Use a thin panel or spacers behind it.
   - Confirm every dimension on the real unit before printing the left module.
 
+## Buzzer (owned)
+- **Part:** DIYables "Passive Buzzer Module, 5V", 5 pieces, $6.99
+  ([Amazon B0DHGP95K4](https://www.amazon.com/dp/B0DHGP95K4)), ordered 2026-10-10. Seen in the listing
+  photos: a small PCB with a black cylindrical buzzer, a 3-pin header (GND, I/O, VCC), one SMD
+  transistor and one SMD resistor marked 102, and a mounting hole beside the buzzer. The board text
+  (Chinese) reads "low level trigger".
+- **Wiring (my reading of the photo, not verified against a schematic):** the on-board transistor drives
+  the buzzer, so no external transistor is needed. "Low level trigger" means the I/O pin LOW switches it
+  on. Power VCC from the Teensy's **3.3 V**, not 5 V: with VCC at 5 V and a 3.3 V logic high, a PNP
+  transistor stays partly on and the buzzer would not switch off cleanly.
+- **Bench test before relying on it:** apply power with I/O held low. A continuous tone means it is
+  actually an **active** buzzer (fixed pitch, no `tone()` melodies); a single click means it is passive.
+- **Mounting idea:** PCB behind the panel, buzzer poking through a hole of about 12.4 mm (the mockup has
+  12 mm), or a 3-4 mm sound port if the buzzer stays behind. Measure the buzzer diameter and height first.
+- **Open:** the board size and mounting hole position are not known. Measure one.
+
 ## Mockup (v0 proposal)
 See `docs/mockup/README.md`. Three modules of 220 / 240 / 220 mm width, 245 mm deep, tilted
 12 / 28 / 12 degrees. All positions are a first proposal to react to.

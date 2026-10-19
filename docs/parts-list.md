@@ -31,7 +31,7 @@ listing on the date given, and a blank price means it has not been checked. Desi
 | Rotary encoder with push switch | 3 | proposed | [Bourns PEC11R-4215F-S0024, 6-pack, Amazon](https://www.amazon.com/BOURNS-PEC11R-4215F-S0024-Incremental-Momentary-Mechanical-6pack/dp/B093P29XL8) | 24 detents. Check bushing vs the 7 mm hole. |
 | Encoder knobs, 25 mm, flatted 6 mm shaft | 3 | open | - | |
 | Guarded toggle switch, 12 mm | 4 | proposed | Switch: not picked. Cover: [uxcell 12 mm flip cover, Amazon](https://www.amazon.com/Mount-Safety-Cover-Toggle-Switch/dp/B009IS66F8) | Closed cover is about 47 x 17 mm. |
-| Buzzer, 12 mm | 1 | open | - | Passive (tones via a transistor) recommended. |
+| Buzzer module, low-level trigger | 1 of 5 owned | owned | DIYables "Passive Buzzer Module, 5V", [Amazon B0DHGP95K4](https://www.amazon.com/dp/B0DHGP95K4), $6.99 for 5, ordered 2026-10-10 | 3 pins (GND, I/O, VCC), on-board transistor, board marked "low level trigger". The black cylinder with a "+" looks like a magnetic buzzer. Bench-test whether it is really passive. Measure the board and buzzer diameter. |
 
 ## Displays
 
