@@ -30,7 +30,7 @@ listing on the date given, and a blank price means it has not been checked. Desi
 | 47 uF 25 V electrolytic capacitor | 1 | chosen | - | From Adafruit's Flying Faders guide. |
 | Rotary encoder with push switch | 3 | proposed | [Bourns PEC11R-4215F-S0024, 6-pack, Amazon](https://www.amazon.com/BOURNS-PEC11R-4215F-S0024-Incremental-Momentary-Mechanical-6pack/dp/B093P29XL8) | 24 detents. Check bushing vs the 7 mm hole. |
 | Encoder knobs, 25 mm, flatted 6 mm shaft | 3 | open | - | |
-| Guarded toggle switch, 12 mm | 4 | proposed | Switch: not picked. Cover: [uxcell 12 mm flip cover, Amazon](https://www.amazon.com/Mount-Safety-Cover-Toggle-Switch/dp/B009IS66F8) | Closed cover is about 47 x 17 mm. |
+| Guarded toggle switch, 12 mm | 4 (6-pack) | chosen | [AITRIP 6-pack, 12 V 20 A, 2-pin SPST ON/OFF with red covers, Amazon B0CL4GNMJX](https://www.amazon.com/Heavy-Rocker-Toggle-Switch-Cover/dp/B0CL4GNMJX) | Not ordered yet; price and stock unchecked. Listing says 12 mm mounting hole. 2 spares cover the two SPARE slots. Wire one pin to ground and the other to a Teensy pin with `INPUT_PULLUP`. Measure the thread length vs panel thickness and the closed-cover footprint (the 40 x 60 mm toggle spacing assumes about 47 x 17 mm). |
 | Buzzer module, low-level trigger | 1 of 5 owned | owned | DIYables "Passive Buzzer Module, 5V", [Amazon B0DHGP95K4](https://www.amazon.com/dp/B0DHGP95K4), $6.99 for 5, ordered 2026-10-10 | 3 pins (GND, I/O, VCC), on-board transistor, board marked "low level trigger". The black cylinder with a "+" looks like a magnetic buzzer. Bench-test whether it is really passive. Measure the board and buzzer diameter. |
 
 ## Displays

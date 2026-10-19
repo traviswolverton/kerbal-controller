@@ -106,6 +106,14 @@ This file records what has been settled and what is still open.
     Use a thin panel or spacers behind it.
   - Confirm every dimension on the real unit before printing the left module.
 
+## Guarded toggles (chosen, not yet ordered)
+- **Part:** [AITRIP 6-pack, 12 V 20 A, 2-pin SPST ON/OFF toggle switches with red aircraft-style covers](https://www.amazon.com/Heavy-Rocker-Toggle-Switch-Cover/dp/B0CL4GNMJX)
+  (Amazon B0CL4GNMJX). Seller-reported 12 mm mounting hole; price and stock not checked.
+  Four are used (ABORT, STAGE ARM, 2 spare), so two are left over.
+- **Wiring:** one pin to ground, the other to a Teensy input with `INPUT_PULLUP`; debounce in firmware.
+- **To check on arrival:** thread length against panel thickness, and the closed-cover footprint against
+  the mockup's 40 x 60 mm toggle spacing (a cover seen earlier was about 47 mm long).
+
 ## Buzzer (owned)
 - **Part:** DIYables "Passive Buzzer Module, 5V", 5 pieces, $6.99
   ([Amazon B0DHGP95K4](https://www.amazon.com/dp/B0DHGP95K4)), ordered 2026-10-10. Seen in the listing
