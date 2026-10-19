@@ -135,8 +135,8 @@ This file records what has been settled and what is still open.
   down these, so use about 0.5 m, not 1.5 m, and put 0.1 uF on each wiper.
 - **Cross-plug rule:** both side ports use the same connector, so make a swapped cable harmless. Put 3.3 V and
   ground on the same pins on both ports, put 5 V on a pin the right module leaves unconnected, and never
-  put a signal on a pin that is 5 V at the other port. Pin maps are still to be drawn once the Teensy pin
-  assignment is done.
+  put a signal on a pin that is 5 V at the other port. The draft pin maps are in `pin-map.md`: the left
+  port uses 19 conductors (5 V and the motor return are doubled up) and the right port 13.
 - **Open:** exact panel cutout and screw spacing for the chosen jack (measure it; standard D-sub shell B
   hardware should match but I have not checked), and prices.
 
