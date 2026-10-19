@@ -19,6 +19,18 @@ This file records what has been settled and what is still open.
 - KSP1 mod dependency: **Alternate Resource Panel** (via CKAN) for liquid fuel,
   monoprop, electric charge and some other resource telemetry.
 
+## Keyboard (decided): designed for a 12.2 in 60%
+- **The console is sized around a 12.2 in (310 mm) 60% keyboard** standing in the open middle between the wings. Strips are
+  245 mm wide (735 mm in all, the most the 256 mm bed allows after clearance) and the wings 195 mm, so the gap is **345 mm** wide
+  and 176 mm deep: about 17 mm each side of the keyboard, with room for its depth (a 60% is roughly 100-125 mm) and your wrists.
+  The mockup shows a 310 x 110 mm keyboard in the gap.
+- **If the keyboard changes:** a board wider than about 330 mm will not fit; a full-size one (480 mm) does not, and would
+  need six pieces and about 940 mm. A narrower one just leaves more room.
+- **Why a keyboard at all:** the controller covers nearly all flight controls. The keyboard is for typing (names, saves, mod
+  windows), the VAB and SPH, EVA and the odd hotkey. The mouse is needed throughout.
+- **Wing layouts at 195 mm:** left wing fader at u=25, stick at u=108, time-warp encoder at u=168; right wing stick at u=75 and
+  encoders at u=150. The stick clearance ring (38 mm) stays clear, and the ballast plates still fit.
+
 ## Sourcing (decided)
 - **Digi-Key is the primary source,** through its API (`docs/tools/parts.py`): one order, live price, stock and
   parametric data (panel cutouts, ratings). It also sells SparkFun, Adafruit and PJRC items, so the Teensy, fader, driver,
@@ -147,8 +159,8 @@ This file records what has been settled and what is still open.
   from altitude and airspeed. **High G was dropped: Simpit has no G-force message.**
 - **Master power switch (middle strip):** in series with the 5 V rail. It cuts the pixels and the fader driver
   but leaves the Teensy and expander powered over USB.
-- **Layout effect:** the left strip is 240 mm wide (the console is 700 mm), the right strip's freed corner holds
-  the annunciator, and the middle strip gets the master switch.
+- **Layout effect:** the right strip's freed corner holds the annunciator and the middle strip gets the master switch. The
+  strips are now 245 mm wide (see the keyboard decision below).
 - **STAGE key (decided):** a key switch arms STAGE. The big STAGE button only fires while the key is on, which
   replaces the second guarded toggle. The key position is an expander input, so the firmware does the interlock.
 - **RESET: skipped (decided).** Recovery from a hang is replugging the USB cable.

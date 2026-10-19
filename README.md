@@ -10,7 +10,8 @@ specs are seller claims still to be checked on the real parts.
 ## Layout
 
 A raised, steep back strip of three pieces, with two lower wings at the front ends and the middle front left
-open. Each piece is a printed shell with a removable 3 mm faceplate.
+open. Each piece is a printed shell with a removable 3 mm faceplate. The console is 735 mm wide and
+**designed around a 12.2 in (310 mm) 60% keyboard** that stands in the open middle (a 345 mm gap).
 
 | Piece | Tilt | Holds |
 |---|---|---|

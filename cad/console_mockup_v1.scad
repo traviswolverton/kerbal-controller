@@ -22,8 +22,8 @@ mod  = -1;         // 3D: -1 = all pieces; flat: 0..4
 
 // ---- the five pieces --------------------------------------------------
 names   = ["LEFT WING", "RIGHT WING", "STRIP LEFT", "STRIP MIDDLE", "STRIP RIGHT"];
-W       = [220, 220, 240, 240, 220];      // width of each piece
-x_off   = [0, 480, 0, 240, 480];          // left edge, across the console
+W       = [195, 195, 245, 245, 245];      // width of each piece (sized so a 12.2 in / 310 mm 60% keyboard fits between the wings)
+x_off   = [0, 540, 0, 245, 490];          // left edge, across the console: 735 mm in all, wings 345 mm apart
 y_off   = [0, 0, 176, 176, 176];          // front edge, away from you (strip starts where the wings end)
 tilt_m  = [12, 12, 28, 28, 28];           // panel tilt toward you, degrees
 fh_m    = [30, 30, 65, 65, 65];           // height of the front edge above the desk
@@ -44,12 +44,12 @@ pitch_c  = 19.05;  // key column pitch
 pitch_r  = 36.0;   // key row pitch (pixel above each key stays visible past the keycap in front)
 
 // ---- wings ------------------------------------------------------------
-fader_u = 30;  fader_v0 = 45;  fader_len = 100;        // Adafruit 5466, 100 mm travel
+fader_u = 25;  fader_v0 = 45;  fader_len = 100;        // Adafruit 5466, 100 mm travel
 fader_body = [17.2, 146.5, 26];  fader_hole_span = 120;
 nubbin = [11, 26, 10];
-stick_l = [140, 95];   stick_r = [105, 95];
-enc_l = [[190, 140]];              enc_l_lbl = ["TIME WARP"];
-enc_r = [[185, 55], [185, 120]];   enc_r_lbl = ["CAMERA", "PAGE"];
+stick_l = [108, 95];   stick_r = [75, 95];
+enc_l = [[168, 140]];              enc_l_lbl = ["TIME WARP"];
+enc_r = [[150, 55], [150, 120]];   enc_r_lbl = ["CAMERA", "PAGE"];
 
 stick_cut = [52, 42];  stick_flange = [62, 62];        // PROVISIONAL, flange unmeasured
 stick_clear = 38;  stick_h = 58.5;  stick_grip = [35, 42];  stick_btn = 10.5;
@@ -85,14 +85,14 @@ db25_pitch = 47.04;            // two mounting holes, 3.05 mm + 0.15 mm
 db25_hole  = 3.2;
 db25_flange = [53.09, 12.55];
 // jack centres, [along the wall, height]. Middle strip back wall: LS and RS on the top row, LW and RW below.
-mid_jacks   = [[62, 80, "LS"], [178, 80, "RS"], [62, 40, "LW"], [178, 40, "RW"]];
-strip_jack  = [[120, 40], [0, 0], [110, 40]];   // strip left / (unused) / strip right: back wall, [x, z]
+mid_jacks   = [[64.5, 80, "LS"], [180.5, 80, "RS"], [64.5, 40, "LW"], [180.5, 40, "RW"]];
+strip_jack  = [[122.5, 40], [0, 0], [122.5, 40]];   // strip left / (unused) / strip right: back wall, [x, z]
 wing_jack   = [118, 24];                          // wing outer end wall: [y, z]
 
 // ---- PROVISIONAL rear-wall cutouts on the middle strip: the part sizes are NOT verified, these only hold the place ----
-dc_jack_cut = [120, 100, 11];     // x, z, hole diameter. Tensility 54-00151: datasheet is an image, cutout unknown
-fuse_cut    = [120, 70, 12.5];    // x, z, hole diameter. Wurth 952005000010000: hole unknown
-usb_cut     = [120, 40];          // x, z: 15 x 8 slot and two 2.5 mm screw holes 22 mm apart. SparkFun 15464: unknown
+dc_jack_cut = [122.5, 100, 11];     // x, z, hole diameter. Tensility 54-00151: datasheet is an image, cutout unknown
+fuse_cut    = [122.5, 70, 12.5];    // x, z, hole diameter. Wurth 952005000010000: hole unknown
+usb_cut     = [122.5, 40];          // x, z: 15 x 8 slot and two 2.5 mm screw holes 22 mm apart. SparkFun 15464: unknown
 master = [100, 45];      // master 5 V power switch
 
 // ---- placement --------------------------------------------------------
@@ -271,13 +271,18 @@ module shell_body(i) {
 function foot_pos(i) = [[30, 30], [W[i] - 30, 30], [30, DD() * cos(T()) - 30], [W[i] - 30, DD() * cos(T()) - 30]];
 module feet(i) color("#111") for (p = foot_pos(i)) translate([p[0], p[1], -3]) cylinder(d = foot_d, h = 3, $fn = 32);
 module ballast_stack(i) color("#7d8a99") {
-    u0 = i == 0 ? 58 : 20;                  // left wing: keep clear of the fader body at u 21..39
+    u0 = i == 0 ? 38 : 20;                  // left wing: keep clear of the fader body at u 16..34
     for (k = [0, 1]) translate([u0, 12, wall + k * steel[2]]) cube(steel);
 }
 module extras(i) {
     feet(i);
     if (ballast && i < 2) ballast_stack(i);
 }
+
+// keyboard the console is designed around: 12.2 in (310 mm) 60%, shown standing in the gap between the wings
+keyboard = [310, 110, 30];
+show_keyboard = true;
+module keyboard_proxy() color("#3a3a40") translate([x_off[1] - (x_off[1] - W[0]) / 2 - keyboard[0] / 2 + 0, 25, 0]) cube(keyboard);
 
 // ---- top level --------------------------------------------------------
 module piece3d(i) {
@@ -302,4 +307,5 @@ if (flat) {
     difference() { square([W[mod], D_m[mod]]); cuts(mod); }
 } else {
     for (i = [0 : 4]) if (mod < 0 || mod == i) piece3d(i);
+    if (show_keyboard && mod < 0) keyboard_proxy();
 }
