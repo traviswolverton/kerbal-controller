@@ -88,6 +88,11 @@ db25_flange = [53.09, 12.55];
 mid_jacks   = [[62, 80, "LS"], [178, 80, "RS"], [62, 40, "LW"], [178, 40, "RW"]];
 strip_jack  = [[120, 40], [0, 0], [110, 40]];   // strip left / (unused) / strip right: back wall, [x, z]
 wing_jack   = [118, 24];                          // wing outer end wall: [y, z]
+
+// ---- PROVISIONAL rear-wall cutouts on the middle strip: the part sizes are NOT verified, these only hold the place ----
+dc_jack_cut = [120, 100, 11];     // x, z, hole diameter. Tensility 54-00151: datasheet is an image, cutout unknown
+fuse_cut    = [120, 70, 12.5];    // x, z, hole diameter. Wurth 952005000010000: hole unknown
+usb_cut     = [120, 40];          // x, z: 15 x 8 slot and two 2.5 mm screw holes 22 mm apart. SparkFun 15464: unknown
 master = [100, 45];      // master 5 V power switch
 
 // ---- placement --------------------------------------------------------
@@ -214,11 +219,21 @@ module db25_side_cut(y, z, xw, dir) {   // on a vertical end wall at x = xw; dir
     translate([xs, y - db25_cut[0] / 2, z - db25_cut[1] / 2]) cube([wall + 2, db25_cut[0], db25_cut[1]]);
     for (s = [-1, 1]) translate([xs, y + s * db25_pitch / 2, z]) rotate([0, 90, 0]) cylinder(d = db25_hole, h = wall + 2, $fn = 24);
 }
+module prov_back_round(x, z, d, yb) translate([x, yb - wall - 1, z]) rotate([-90, 0, 0]) cylinder(d = d, h = wall + 2, $fn = 40);
+module prov_back_usb(x, z, yb) {
+    translate([x - 7.5, yb - wall - 1, z - 4]) cube([15, wall + 2, 8]);
+    for (s = [-1, 1]) translate([x + s * 11, yb - wall - 1, z]) rotate([-90, 0, 0]) cylinder(d = 2.5, h = wall + 2, $fn = 20);
+}
 module wall_cuts(i) {
     yb = DD() * cos(T());
     if (i == 0) db25_side_cut(wing_jack[0], wing_jack[1], 0, -1);                 // left wing: left end wall
     else if (i == 1) db25_side_cut(wing_jack[0], wing_jack[1], W[1], 1);          // right wing: right end wall
-    else if (i == 3) for (j = mid_jacks) db25_back_cut(j[0], j[1], yb);
+    else if (i == 3) {
+        for (j = mid_jacks) db25_back_cut(j[0], j[1], yb);
+        prov_back_round(dc_jack_cut[0], dc_jack_cut[1], dc_jack_cut[2], yb);
+        prov_back_round(fuse_cut[0], fuse_cut[1], fuse_cut[2], yb);
+        prov_back_usb(usb_cut[0], usb_cut[1], yb);
+    }
     else db25_back_cut(strip_jack[i - 2][0], strip_jack[i - 2][1], yb);
 }
 // jack in its own frame: x along the wall, z up, y outward. The flange sits against the inside face, the body passes
@@ -229,7 +244,14 @@ module jack3d(female) color(female ? "#9a9a9a" : "#c4c4c4") translate([-db25_fla
 }
 module jack_proxies(i) {
     yb = DD() * cos(T());
-    if (i == 3) for (j = mid_jacks) translate([j[0], yb - wall - 1.2, j[1]]) jack3d(true);
+    if (i == 3) {
+        for (j = mid_jacks) translate([j[0], yb - wall - 1.2, j[1]]) jack3d(true);
+        color("#e8a33d") {      // PROVISIONAL parts, orange so they read as placeholders
+            translate([dc_jack_cut[0], yb - 1, dc_jack_cut[1]]) rotate([-90, 0, 0]) cylinder(d = dc_jack_cut[2] + 4, h = 9, $fn = 40);
+            translate([fuse_cut[0], yb - 1, fuse_cut[1]]) rotate([-90, 0, 0]) cylinder(d = fuse_cut[2] + 4, h = 18, $fn = 40);
+            translate([usb_cut[0] - 9, yb - 1, usb_cut[1] - 5]) cube([18, 8, 10]);
+        }
+    }
     else if (i >= 2) translate([strip_jack[i - 2][0], yb - wall - 1.2, strip_jack[i - 2][1]]) jack3d(false);
     else if (i == 0) translate([wall + 1.2, wing_jack[0], wing_jack[1]]) rotate([0, 0, 90]) jack3d(false);
     else translate([W[1] - wall - 1.2, wing_jack[0], wing_jack[1]]) rotate([0, 0, -90]) jack3d(false);
