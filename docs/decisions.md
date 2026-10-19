@@ -76,6 +76,12 @@ This file records what has been settled and what is still open.
   It is the part most KSP controller builds use.
 - **Mapping:** right stick = pitch / yaw, twist = roll (Simpit rotation).
   Left stick = translation X / Y, twist = Z (Simpit translation). No separate rockers needed.
+- **Grip buttons (decided):** the thumb button on each stick.
+  - **Right stick (rotation): SAS toggle.** SAS is mostly about rotation, and the SAS key's pixel still shows the real state.
+  - **Left stick (translation): hold for fine control.** While held, firmware scales that stick's X, Y and twist to about 25%
+    (a tunable factor), then returns to full. It is done in firmware, so it does not depend on the game. Useful for docking.
+    The game's own latching precision mode stays on the PRECISION button of the switch panel.
+  - Both are direct Teensy inputs (pins 5 and 9), not on the expander, so a hold responds immediately.
 - **Electrical:** passive potentiometers, so power them from the Teensy's **3.3 V**, not 5 V,
   to stay inside the ADC range. Listings give +/-20 % resistance tolerance and +/-1 %
   linearity, so calibrate the centre point and ranges in firmware.
@@ -268,8 +274,6 @@ See `docs/mockup/README.md`. Three modules of 220 / 240 / 220 mm width, 245 mm d
 - Print the test plate (`cad/test_plate.scad`) and settle the MX cutout tolerance and
   diffuser thickness.
 - Measure the joysticks on arrival (mounting flange, hole spacing and diameter, cutout).
-- Decide what the two grip buttons do.
-- Confirm plain fader with ghost strip, or motorised.
 - Whether to include the round attitude TFT.
 - Column pitch: 19.05 mm for now, 22-25 mm is an option for finger room.
 - Check the 28 degree centre tilt feels right at your desk (prop the test plate at that angle).

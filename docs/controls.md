@@ -81,7 +81,7 @@ CONTROLS lights while ENGAGE is on. There is no HIGH G window: Simpit has no G-f
 | Control | What it does |
 |---|---|
 | Stick | Translation: X and Y with the stick, Z with the twist |
-| Stick grip button | *Open* |
+| Stick grip button | **Hold for fine control**: while held, this stick's X, Y and twist are scaled to about 25% in firmware. *Decided.* Teensy pin 5 |
 | Motorised fader | Throttle. It follows the game's throttle when you are not touching it; touch it and you drive the throttle |
 | Time-warp encoder | Time warp rate (turn). *Open:* the push function (suggest normal speed) |
 
@@ -90,7 +90,7 @@ CONTROLS lights while ENGAGE is on. There is no HIGH G window: Simpit has no G-f
 | Control | What it does |
 |---|---|
 | Stick | Rotation: pitch and yaw with the stick, roll with the twist |
-| Stick grip button | *Open* |
+| Stick grip button | **SAS toggle.** *Decided.* Teensy pin 9 |
 | Camera encoder | Camera rotation (turn). *Open:* the push function (suggest camera mode) |
 | Display-page encoder | Chooses the OLED page (turn). *Open:* the push function |
 
