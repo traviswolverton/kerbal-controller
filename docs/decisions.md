@@ -120,25 +120,27 @@ This file records what has been settled and what is still open.
   shaft. The mockup knob proxy is 25 x 15 mm; this one is 2 mm shorter, which changes nothing that matters.
 - **Open:** whether the listing includes a set screw, and prices. Both unchecked.
 
-## Inter-module links (proposed)
-- **Approach:** direct wiring from the Teensy in the centre module to each side module through one
-  **DB25 D-sub** per side. One USB cable, no extra boards. Satellite microcontrollers with a 4-wire link
-  would need fewer wires but add firmware and a second USB or serial path; revisit only if the cable
-  count becomes a problem.
-- **Conductor count (my estimate):**
-  - Left, about 16 of 25: stick X, Y, twist Z and grip button (4), fader wiper and touch (2), fader driver
-    PWM pair (2), time-warp encoder A, B, push (3), 3.3 V, 5 V, and 2-3 grounds. The fader driver sits in
-    the left module next to the motor, so only two PWM lines and 5 V travel.
-  - Right, about 13 of 25: stick X, Y, twist and button (4), two encoders A, B, push (6), 3.3 V, and 2-3 grounds.
-- **Parts:** four female panel-mount DB25 solder-cup jacks and two male-to-male straight-through shielded
-  cables (not null modem), listed in `parts-list.md`. Short cables matter: the analog stick signals run
-  down these, so use about 0.5 m, not 1.5 m, and put 0.1 uF on each wiper.
-- **Cross-plug rule:** both side ports use the same connector, so make a swapped cable harmless. Put 3.3 V and
-  ground on the same pins on both ports, put 5 V on a pin the right module leaves unconnected, and never
-  put a signal on a pin that is 5 V at the other port. The draft pin maps are in `pin-map.md`: the left
-  port uses 19 conductors (5 V and the motor return are doubled up) and the right port 13.
-- **Open:** exact panel cutout and screw spacing for the chosen jack (measure it; standard D-sub shell B
-  hardware should match but I have not checked), and prices.
+## Inter-module links (proposed, five-piece layout)
+- **Approach:** direct wiring from the Teensy in the middle strip piece to each of the four outer pieces
+  (two wings, left and right strip) through one **DB25 D-sub** each. One USB cable, no extra boards.
+  Satellite microcontrollers with a 4-wire link would need fewer wires but add firmware and a second USB
+  or serial path; revisit only if the cable count becomes a problem.
+- **Conductors per port:** left wing 19, right wing 13, left strip 19, right strip 18, all of 25. Full
+  pinouts and the Teensy pin table are in `pin-map.md`.
+- **Pixels:** one chain of 56 on a single data pin: left strip (12), fuel bars in the middle (32), right strip
+  (12). A break in the chain darkens everything after it.
+- **Keys:** one 4 x 6 matrix. The left strip carries rows 0-1, the right strip rows 2-3, both carry all six
+  column lines.
+- **Parts:** eight female panel-mount DB25 solder-cup jacks (four on the middle piece, one on each outer
+  piece) and four male-to-male straight-through shielded cables (not null modem), listed in `parts-list.md`.
+  The wing cables pass through a strip shell and are longer (about 0.5 m); the strip cables about 0.3 m.
+  Keep analog runs short and put 0.1 uF on each wiper.
+- **Swapped-cable rule:** all four ports use the same connector, so a cable in the wrong port must be
+  harmless. Ground and 5 V sit on the same pins everywhere, and everything the Teensy drives (rows, pixel
+  data, fader PWM) is on pins 15-23, which any module not using them leaves open. A script check of all 16
+  module and port pairs found no conflict.
+- **Open:** how the wing cables route through the strip shells, the exact panel cutout and screw spacing for
+  the chosen jack (measure it; standard D-sub shell B hardware should match but I have not checked), and prices.
 
 ## 5 V power (chosen, not yet ordered)
 - **Supply:** [Adafruit 1466](https://www.adafruit.com/product/1466), 5 V 4 A regulated, UL listed,
