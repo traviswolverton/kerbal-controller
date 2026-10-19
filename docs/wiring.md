@@ -48,7 +48,7 @@ Strip right: the key matrix (rows 2 and 3), two toggles and 12 pixels.
 
 ![Switch panel](diagrams/switch-panel.svg)
 
-All sixteen inputs live on one panel and one chip. The expander sits right behind the panel, so only its I&sup2;C lines (SDA, SCL), the interrupt and 3V3 cross the DB25 cable to the Teensy. Fit 4.7 k&Omega; pull-ups on SDA and SCL at the Teensy end. Buttons are MX switches with blank DSA caps; the two guarded toggles and the big STAGE button are separate parts.
+All sixteen inputs live on one panel and one chip. The expander sits right behind the panel, so only its I&sup2;C lines (SDA, SCL), the interrupt and 3V3 cross the DB25 cable to the Teensy. Fit 4.7 k&Omega; pull-ups on SDA and SCL at the Teensy end. Buttons are MX switches with blank DSA caps; the guarded ABORT toggle, the STAGE key switch and the big STAGE button are separate parts.
 
 ## Strip middle
 

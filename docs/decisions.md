@@ -122,7 +122,7 @@ This file records what has been settled and what is still open.
 
 ## Switch panel and annunciator (proposed)
 - **Switch panel (left strip):** all inputs that are not wired to a stick or encoder go on one panel and one
-  chip, an MCP23017 I2C expander sitting right behind it: ABORT and STAGE ARM (guarded toggles), a big STAGE
+  chip, an MCP23017 I2C expander sitting right behind it: ABORT (guarded toggle), a key switch that arms STAGE, a big STAGE
   button, throttle FULL and CUT, MAP, focus previous and next, quicksave, quickload, precision, pause, UI hide,
   and three spares. That is 16 inputs, listed in `pin-map.md`. Only SDA, SCL, the interrupt and 3V3 cross the
   cable to the Teensy.
@@ -141,8 +141,17 @@ This file records what has been settled and what is still open.
   but leaves the Teensy and expander powered over USB.
 - **Layout effect:** the left strip is 240 mm wide (the console is 700 mm), the right strip's freed corner holds
   the annunciator, and the middle strip gets the master switch.
-- **Open:** the big STAGE button and master switch parts are not picked, and the expander's address and
-  interrupt behaviour are untested.
+- **STAGE key (decided):** a key switch arms STAGE. The big STAGE button only fires while the key is on, which
+  replaces the second guarded toggle. The key position is an expander input, so the firmware does the interlock.
+- **RESET (decided):** a button on the panel that reboots the Teensy from firmware, so it re-handshakes with
+  Simpit. It does not help if the chip is completely hung.
+- **Skipped, decided:** the reference's two arrow buttons beside its attitude stick. Our two sticks and the
+  camera encoder cover that job; revisit only if you find you want attitude trim.
+- **Possible use of the reference's ENGAGE / DISENGAGE toggle (speculation from the photos, not confirmed):**
+  most likely a "controls live" interlock: engaged, the lever and stick send input; disengaged, they are ignored
+  or the game keeps the throttle. That is cheap to build here with a spare guarded toggle and a spare expander input.
+- **Open:** the key switch, the big STAGE button and the master switch are not picked, and the expander's address
+  and interrupt behaviour are untested.
 
 ## Inter-module links (proposed, five-piece layout)
 - **Approach:** direct wiring from the Teensy in the middle strip piece to each of the four outer pieces
@@ -192,7 +201,9 @@ This file records what has been settled and what is still open.
 ## Guarded toggles (chosen, not yet ordered)
 - **Part:** [AITRIP 6-pack, 12 V 20 A, 2-pin SPST ON/OFF toggle switches with red aircraft-style covers](https://www.amazon.com/Heavy-Rocker-Toggle-Switch-Cover/dp/B0CL4GNMJX)
   (Amazon B0CL4GNMJX). Seller-reported 12 mm mounting hole; price and stock not checked.
-  Two are used (ABORT and STAGE ARM, on the switch panel), so four are left over.
+  One is used (ABORT, on the switch panel), so five are left over. A guarded toggle is cheap enough to keep for ABORT;
+  the price in the Amazon listing was not visible when checked. Its title calls it a "rocker toggle": check the photos
+  before ordering that it is the bat-handle style with a flip cover.
 - **Wiring:** one pin to ground, the other to a Teensy input with `INPUT_PULLUP`; debounce in firmware.
 - **To check on arrival:** thread length against panel thickness, and the closed-cover footprint against
   the mockup's 40 x 60 mm toggle spacing (a cover seen earlier was about 47 mm long).

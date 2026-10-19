@@ -6,7 +6,7 @@
 //
 //   piece 0  LEFT WING     translation stick, throttle fader, time-warp encoder
 //   piece 1  RIGHT WING    rotation stick, camera and page encoders
-//   piece 2  STRIP LEFT    12 navigation keys + the SWITCH PANEL (everything on the I2C expander)
+//   piece 2  STRIP LEFT    12 navigation keys + the SWITCH PANEL (everything on the I2C expander, incl. the STAGE key switch and RESET)
 //   piece 3  STRIP MIDDLE  2 OLEDs, 4 fuel bars, buzzer, master power, Teensy and power jack inside
 //   piece 4  STRIP RIGHT   12 action-group keys + the ANNUNCIATOR (9 pixel windows)
 //
@@ -63,11 +63,12 @@ key_lbl_r = [["GEAR","LIGHT","BRAKE","AG1","AG2","AG3"],
 function key_u(c) = key_u0 + 9.525 + c * pitch_c;
 function key_v(r) = key_v0 + (1 - r) * pitch_r + 9.525;
 // switch panel (strip left): every input here goes to the MCP23017 expander sitting behind it
-sw_tog   = [[163, 122], [163, 100]];  sw_tog_lbl = ["ABORT", "STAGE ARM"];   // guarded toggles, cover lies along u
+sw_tog   = [[163, 122]];  sw_tog_lbl = ["ABORT"];                            // guarded toggle, cover lies along u
+sw_key   = [163, 98];                                                        // key switch that arms STAGE, 19 mm hole
 sw_stage = [208, 111];                                                       // big STAGE button, 28 mm hole
 sw_cols  = [150, 169.05, 188.1, 207.15];  sw_rows = [14, 35.3, 56.6, 77.9];  // MX button grid, rows front to back
 sw_lbl   = ["FULL","CUT","PRECISION","PAUSE", "MAP","FOCUS-","FOCUS+","UI",
-            "QSAVE","QLOAD","SPARE","SPARE", "SPARE"];                       // 13 buttons, filled from the back row
+            "QSAVE","QLOAD","RESET","SPARE", "SPARE"];                       // 13 buttons, filled from the back row
 function sw_pos(k) = [sw_cols[k % 4], sw_rows[3 - floor(k / 4)]];
 // annunciator (strip right): one pixel behind each 24 x 12 mm window
 ann_cols = [150, 176, 202];  ann_rows = [88, 72, 56];
@@ -120,6 +121,7 @@ module cuts(i) {
     } else if (i == 2) {
         key_cuts(key_lbl_l);
         for (p = sw_tog) place(p[0], p[1]) hole_round(12.2);
+        place(sw_key[0], sw_key[1]) hole_round(19.2);
         place(sw_stage[0], sw_stage[1]) hole_round(28);
         for (k = [0 : len(sw_lbl) - 1]) place(sw_pos(k)[0], sw_pos(k)[1]) hole_rect(cut_mx, cut_mx);
     } else if (i == 3) {
@@ -151,6 +153,7 @@ module key_proxy() {
 }
 module guard_proxy() { toggle_proxy(); color([0.85, 0.1, 0.1, 0.55]) translate([-23.5, -8.5, 0]) cube([47, 17, 14]); }
 module stage_proxy() color("#d22") cylinder(d = 32, h = 14, $fn = 48);
+module key_switch_proxy() { color("#bbb") cylinder(d = 22, h = 10, $fn = 40); color("#cc9") translate([-1.5, -7, 10]) cube([3, 14, 8]); }
 module glow(c = "#3c3") color(c) translate([0, 0, -0.2]) cylinder(d = window_d - 0.4, h = 0.6, $fn = 24);
 module key_proxies(blue = false) {
     for (r = [0 : 1], c = [0 : 5]) {
@@ -170,6 +173,7 @@ module proxies(i) {
     } else if (i == 2) {
         key_proxies(true);
         for (p = sw_tog) place(p[0], p[1]) guard_proxy();
+        place(sw_key[0], sw_key[1]) key_switch_proxy();
         place(sw_stage[0], sw_stage[1]) stage_proxy();
         for (k = [0 : len(sw_lbl) - 1]) place(sw_pos(k)[0], sw_pos(k)[1]) key_proxy();
     } else if (i == 3) {
