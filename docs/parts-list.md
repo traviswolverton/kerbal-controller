@@ -16,7 +16,8 @@ listing on the date given, and a blank price means it has not been checked. Desi
 | Panel-mount DC jack | 1 | chosen | [Adafruit 5607 round panel mount 5.5/2.1 mm barrel jack extension cable, 30 cm](https://www.adafruit.com/product/5607), $4.95, in stock 2026-10-19 | 1" (25.4 mm) hole, panels up to 16 mm. Current rating not listed: check before relying on it at 4 A. Cut or terminate the plug end inside. Not ordered yet. |
 | 330-470 ohm resistor, 1000 uF cap (10 V+) | 1 each | chosen | - | Pixel data line and 5 V rail. |
 | 1N4148 diodes | 24 | chosen | - | One per key. |
-| Inter-module connectors | 2 sets | open | - | Link the left and right modules to the centre module, which holds the Teensy. |
+| DB25 female panel-mount connector, solder cup | 4 (5-pack) | proposed | [uxcell DB25 female, 5-pack, Amazon B07LCN17K9](https://www.amazon.com/uxcell-Connector-Mechanical-Equipment-Computers/dp/B07LCN17K9) | One on the left module, one on the right, two on the centre (one per side module). Listing says 5 A. No hood. Price unchecked. |
+| DB25 male-to-male straight-through shielded cable | 2 | proposed | [Amphenol CS-DSPMDB25MM-001.5, 1.5 ft, Amazon B00O0759BO](https://www.amazon.com/Amphenol-CS-DSPMDB25MM-001-5-25-Pin-Premium-Shielded/dp/B00O0759BO) | All 25 lines pin-to-pin, not a null modem. Alternatives: [CablesOnline 3 ft S-0003](https://www.amazon.com/CablesOnline-25-Conductor-Fully-Wired-Straight-Through-S-0003/dp/B09T8LYBTZ). Price unchecked. |
 
 ## Controls
 

@@ -106,6 +106,26 @@ This file records what has been settled and what is still open.
     Use a thin panel or spacers behind it.
   - Confirm every dimension on the real unit before printing the left module.
 
+## Inter-module links (proposed)
+- **Approach:** direct wiring from the Teensy in the centre module to each side module through one
+  **DB25 D-sub** per side. One USB cable, no extra boards. Satellite microcontrollers with a 4-wire link
+  would need fewer wires but add firmware and a second USB or serial path; revisit only if the cable
+  count becomes a problem.
+- **Conductor count (my estimate):**
+  - Left, about 16 of 25: stick X, Y, twist Z and grip button (4), fader wiper and touch (2), fader driver
+    PWM pair (2), time-warp encoder A, B, push (3), 3.3 V, 5 V, and 2-3 grounds. The fader driver sits in
+    the left module next to the motor, so only two PWM lines and 5 V travel.
+  - Right, about 13 of 25: stick X, Y, twist and button (4), two encoders A, B, push (6), 3.3 V, and 2-3 grounds.
+- **Parts:** four female panel-mount DB25 solder-cup jacks and two male-to-male straight-through shielded
+  cables (not null modem), listed in `parts-list.md`. Short cables matter: the analog stick signals run
+  down these, so use about 0.5 m, not 1.5 m, and put 0.1 uF on each wiper.
+- **Cross-plug rule:** both side ports use the same connector, so make a swapped cable harmless. Put 3.3 V and
+  ground on the same pins on both ports, put 5 V on a pin the right module leaves unconnected, and never
+  put a signal on a pin that is 5 V at the other port. Pin maps are still to be drawn once the Teensy pin
+  assignment is done.
+- **Open:** exact panel cutout and screw spacing for the chosen jack (measure it; standard D-sub shell B
+  hardware should match but I have not checked), and prices.
+
 ## 5 V power (chosen, not yet ordered)
 - **Supply:** [Adafruit 1466](https://www.adafruit.com/product/1466), 5 V 4 A regulated, UL listed,
   5.5 x 2.1 mm plug with positive tip, US 2-prong, $14.95. Adafruit's own warning: it is not for
