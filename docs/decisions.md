@@ -34,12 +34,31 @@ This file records what has been settled and what is still open.
   a large capacitor across the 5 V rail, and a separate 5 V supply of at least 3 A.
   Cap brightness in firmware.
 
+## Joysticks (locked)
+- **Two SaiDian JH-D400X-R4** 4-axis industrial joysticks, 10 kOhm potentiometers, 18.79 USD each
+  ([Amazon listing](https://www.amazon.com/SaiDian-4-Axis-Joystick-Potentiometer-JH-D400X-R4/dp/B08CGYGMJL)).
+  It is the part most KSP controller builds use.
+- **Mapping:** right stick = pitch / yaw, twist = roll (Simpit rotation).
+  Left stick = translation X / Y, twist = Z (Simpit translation). No separate rockers needed.
+- **Electrical:** passive potentiometers, so power them from the Teensy's **3.3 V**, not 5 V,
+  to stay inside the ADC range. Listings give +/-20 % resistance tolerance and +/-1 %
+  linearity, so calibrate the centre point and ranges in firmware.
+- **Solder quickly:** the listings warn that heat can burn the part.
+- **Not yet known:** mounting hole spacing and panel cutout. The listing gives overall size
+  only (about 49.6 x 94.5 mm, orientation unclear) and which of the four axes is the fourth.
+  **Measure the units when they arrive** before drawing the stick panels.
+
+## Throttle (proposed, not yet confirmed)
+- Plain 100 mm fader with a "ghost" pixel strip showing the game's throttle, plus pickup mode
+  (ignore the fader until it matches the game value) so nothing jumps.
+- Keep the left module's 100 mm slot able to take a motorised fader later.
+
 ## Open items
 - Measure the real pixel board (diameter and height) with calipers.
 - Print the test plate (`cad/test_plate.scad`) and settle the MX cutout tolerance and
   diffuser thickness.
-- Choose joystick parts (2-axis hall-effect gimbals plus roll and Z rockers, or 3-axis twist sticks).
-- Plain or motorised throttle fader.
+- Measure the joysticks on arrival (mounting holes, cutout, stick height, fourth axis).
+- Confirm plain fader with ghost strip, or motorised.
 - Whether to include the round attitude TFT.
 - Column pitch: 19.05 mm for now, 22-25 mm is an option for finger room.
 - Firmware: key assignment map, Simpit channel list, serpentine pixel mapping.
