@@ -3,15 +3,12 @@
 ## Parts selection: `parts.py` (Digi-Key and Mouser)
 
 Searches Digi-Key and Mouser through their APIs (US sites, USD), keeps a shortlist, and re-checks live price, stock
-and status. Standard library only. Digi-Key is the primary source and its parametric data is richer; Mouser works
-the same way and is simpler to set up. Every source that has credentials is searched.
+and status. Standard library only. Digi-Key is the primary source and its parametric data is richer (panel cutout, ratings, mounting); Mouser works
+the same way, is simpler to set up, and is the better fallback. Every source that has credentials is searched.
 
-**Status:**
-- **Mouser:** tested live (search, part details, shortlist, check).
-- **Digi-Key:** written and tested only against a fake API, because the developer portal would not let the owner
-  create an app. The field names come from Digi-Key's docs and a community example, and the parser tolerates missing
-  fields. Expect a small fix on the first real run.
-- **Tests:** `python3 -B -m unittest` in this folder runs 16 offline tests.
+**Status:** both sources are tested live (search, part details, shortlist, check). Digi-Key returned real data on its
+first run, including parameters such as panel cutout dimensions, with a daily limit of 1,000 requests that the tool
+reports. `python3 -B -m unittest` in this folder runs 16 offline tests.
 
 ### Setup (an account sign-up, so you do it)
 
