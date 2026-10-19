@@ -106,6 +106,20 @@ This file records what has been settled and what is still open.
     Use a thin panel or spacers behind it.
   - Confirm every dimension on the real unit before printing the left module.
 
+## Encoders and knobs (proposed)
+- **Encoder:** [Bourns PEC11R-4215F-S0024](https://www.amazon.com/BOURNS-PEC11R-4215F-S0024-Incremental-Momentary-Mechanical-6pack/dp/B093P29XL8)
+  (6-pack, 3 used). 24 detents and 24 pulses per revolution, push switch, 6 mm flatted shaft 15 mm
+  long. Metal M7 bushing about 5 mm long, with a flat washer and nut included.
+- **Pitch conflict:** Mouser lists M7 x 0.75, the Bourns datasheet text suggests M7 x 0.5. Only matters if
+  you buy a different nut or print a thread; the supplied nut will fit.
+- **Panel thickness matters:** the bushing is only about 5 mm long, so with the washer and nut the panel at
+  the encoders should be about 3 mm or less, or counterbored from behind. The mockup's 7 mm hole is
+  about right for the bushing, but confirm the diameter against the drawing.
+- **Knobs:** [NMOWYBPY 25 x 13 mm aluminium, D-shaped bore](https://www.amazon.com/NMOWYBPY-Aluminum-Potentiometer-25x13mm-Control/dp/B0H3NXPL9Z),
+  2 per pack, so buy 2 packs for 3 knobs plus a spare. The D-hole should seat positively on the flatted
+  shaft. The mockup knob proxy is 25 x 15 mm; this one is 2 mm shorter, which changes nothing that matters.
+- **Open:** whether the listing includes a set screw, and prices. Both unchecked.
+
 ## Inter-module links (proposed)
 - **Approach:** direct wiring from the Teensy in the centre module to each side module through one
   **DB25 D-sub** per side. One USB cable, no extra boards. Satellite microcontrollers with a 4-wire link
