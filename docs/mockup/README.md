@@ -40,11 +40,16 @@ Key assignments, back row to front row:
 - **Stick clearance.** A 38 mm ring around each stick (estimated tilt sweep of the grip) is drawn on the
   templates. Nothing else is inside it.
 
-## Left module update (not yet re-rendered)
+## Left module update
 The fader is now the motorised Adafruit 5466, so the 8-pixel ghost strip is off (`ghost_strip = false`
 in `cad/console_mockup.scad`), the fader has two M3 holes, and the paper template shows its 146.5 x 17.2 mm body
-outline. The renders and templates in this folder predate that change; run `cad/build_mockup.sh`
-on a machine with OpenSCAD to refresh them.
+outline.
+
+- The PNG renders and `left-panel-template.svg` are regenerated with this change. The centre and right SVGs are
+  unchanged because those modules did not change.
+- **`left-panel-template-1to1.pdf` is stale** and still shows the old fader and ghost strip. Do not print it.
+  Print from `left-panel-template.svg` instead, or rebuild the PDF with `cad/build_mockup.sh` on a machine
+  with Chromium (this host has none).
 
 ## What is provisional
 - **Joystick flange and mounting holes are unknown.** The seller drawing is a side view only. The stick
