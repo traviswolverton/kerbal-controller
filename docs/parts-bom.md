@@ -16,21 +16,29 @@ Checked 2026-10-19 with `docs/tools/parts.py check`. Prices are USD from the US 
 | Motorised 100 mm fader (Adafruit 5466) | digikey | 1528-5466-ND | 1 | $24.95 | $24.95 | 37 | ok |
 | L9110H fader driver | digikey | 1528-4489-ND | 1 | $1.50 | $1.50 | 928 | ok |
 | Conductive nubbin for the fader | digikey | 1528-5741-ND | 1 | $6.19 | $6.19 | 37 | ok |
-| Rotary encoders (time warp, camera, page) | digikey | PEC11R-4215F-S0024-ND | 3 | $2.95 | $8.85 | 12333 | ok |
+| Rotary encoders (time warp, camera, page) | digikey | PEC11R-4215F-S0024-ND | 3 | $2.95 | $8.85 | 12326 | ok |
 | I2C expander for the switch panel | digikey | MCP23017-E/SP-ND | 1 | $1.69 | $1.69 | 7990 | ok |
 | DIP-28 socket for the expander | digikey | 1175-1490-ND | 1 | $1.29 | $1.29 | 1569 | ok |
 | 74AHCT125 level shifter, DIP | digikey | 296-4655-5-ND | 1 | $1.00 | $1.00 | 20191 | ok |
 | DIP-14 socket for the level shifter | digikey | 1175-1487-ND | 1 | $0.73 | $0.73 | 5745 | ok |
 | Matrix diodes (24 plus spares) | digikey | 1N4148FS-ND | 30 | $0.06 | $1.80 | 599669 | ok |
-| 330 ohm pixel data resistor (1 spare) | digikey | CF14JT330RCT-ND | 2 | $0.10 | $0.20 | 283148 | ok |
+| 330 ohm pixel data resistor (1 spare) | digikey | CF14JT330RCT-ND | 2 | $0.10 | $0.20 | 283128 | ok |
 | 4.7 kohm I2C pull-ups (spares) | digikey | CF14JT4K70CT-ND | 3 | $0.10 | $0.30 | 249799 | ok |
-| 10 kohm expander reset pull-up (spares) | digikey | CF14JT10K0CT-ND | 3 | $0.10 | $0.30 | 569130 | ok |
+| 10 kohm expander reset pull-up (spares) | digikey | CF14JT10K0CT-ND | 3 | $0.10 | $0.30 | 569120 | ok |
 | 1000 uF 16 V rail capacitor (1 spare) | digikey | 1189-1147-ND | 2 | $0.71 | $1.42 | 15853 | ok |
-| 47 uF 25 V fader driver capacitor (1 spare) | digikey | 732-8823-1-ND | 2 | $0.10 | $0.20 | 37988 | ok |
+| 47 uF 25 V fader driver capacitor (1 spare) | digikey | 732-8823-1-ND | 2 | $0.10 | $0.20 | 37985 | ok |
 | 0.1 uF decoupling and wiper capacitors | digikey | BC1101CT-ND | 12 | $0.17 | $2.04 | 304716 | ok |
 | DB25 female panel jack (middle strip) | digikey | 1003-ZDB25S-ND | 4 | $3.99 | $15.96 | 1587 | ok |
 | DB25 male panel jack (outer pieces) | digikey | 1003-ZDB25P-ND | 4 | $3.42 | $13.68 | 3640 | ok |
 | DB25 shielded cable, female to male, 1 m | digikey | 277-12299-ND | 4 | $15.70 | $62.80 | 1240 | ok |
 | Panel USB micro-B extension for the Teensy | digikey | 1568-15464-ND | 1 | $4.42 | $4.42 | 1666 | ok |
+| Perfboard 81 x 51 mm (expander, wing and bus boards) | digikey | DKS-SOLDERBREAD-02-ND | 4 | $3.49 | $13.96 | 4575 | ok |
+| Perfboard 94 x 63 mm (middle strip main board) | digikey | 1568-12070-ND | 1 | $8.65 | $8.65 | 715 | ok |
+| Screw terminal 5.08 mm, 2 position | digikey | ED2609-ND | 6 | $0.58 | $3.48 | 14953 | ok |
+| Screw terminal 5.08 mm, 4 position | digikey | ED2611-ND | 8 | $1.08 | $8.64 | 12673 | ok |
+| Female header 24 position (Teensy sockets, spare) | digikey | S7022-ND | 3 | $1.34 | $4.02 | 20228 | ok |
+| Hookup wire 22 AWG stranded, 10 colours x 25 ft | digikey | 1528-3175-ND | 1 | $32.29 | $32.29 | 475 | ok |
+| Hookup wire 22 AWG solid, 6 colours x 25 ft (matrix) | digikey | 1528-1743-ND | 1 | $15.95 | $15.95 | 2443 | ok |
+| Heat shrink assortment | digikey | 1528-4559-ND | 1 | $9.95 | $9.95 | 1248 | ok |
 
-**Total: $225.78**
+**Total: $322.72**

@@ -37,6 +37,8 @@ python3 docs/tools/parts.py search "key switch 2 position panel mount" --in-stoc
 python3 docs/tools/parts.py part 612-KO131A102        # parameters, links, price, stock for one part
 python3 docs/tools/parts.py add 612-KO131A102 --role "STAGE key switch" --qty 1
 python3 docs/tools/parts.py check --md                # re-check the shortlist, write docs/parts-bom.md
+python3 docs/tools/parts.py budget --md               # combined totals with the Amazon list, write docs/budget.md
+python3 docs/tools/parts.py amazon-price B0BWDQ3NKK 11.99   # record a price you saw on Amazon
 ```
 
 - `search` queries every configured source and merges the rows. Filters (`--in-stock`, `--active`, `--max-price`) are
@@ -46,6 +48,9 @@ python3 docs/tools/parts.py check --md                # re-check the shortlist, 
 - `add` stores the part in `docs/parts-shortlist.json` with a price and stock snapshot.
 - `check` flags a part that is no longer Active, below the quantity you need, below the minimum order, or changed in price.
   `--update` saves the new prices.
+- `budget` adds the shortlist's stored prices to the hand-kept Amazon list in `docs/amazon-items.json` (Amazon has no price API) and
+  writes `docs/budget.md`. Owned items are listed but not counted, and Amazon items with no price are named, not guessed. `--live`
+  re-checks the distributor prices first.
 - Mind each service's API terms of use.
 
 Neither distributor stocks everything we use (consumer modules, multi-packs). For those, fall back to Amazon.com and

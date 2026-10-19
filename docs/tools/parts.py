@@ -9,6 +9,7 @@ Every source that has credentials is searched, Digi-Key first. From the repo roo
     python3 docs/tools/parts.py part 504-10250T15712H620         # details and parameters for one part
     python3 docs/tools/parts.py add 504-10250T15712H620 --role "STAGE key switch" --qty 1
     python3 docs/tools/parts.py check --md                       # live price/stock/status, writes docs/parts-bom.md
+    python3 docs/tools/parts.py budget --md                      # combined totals with the Amazon list, writes docs/budget.md
 
 The shortlist is docs/parts-shortlist.json. A Digi-Key number ends in -ND; anything else is treated as a Mouser number
 unless you pass --source.
@@ -26,6 +27,8 @@ from common import REPO, PartsError, is_active, load_env, money, table
 SOURCES = {"digikey": digikey, "mouser": mouser}
 SHORTLIST = REPO / "docs" / "parts-shortlist.json"
 BOM_FILE = REPO / "docs" / "parts-bom.md"
+AMAZON_FILE = REPO / "docs" / "amazon-items.json"
+BUDGET_FILE = REPO / "docs" / "budget.md"
 
 
 def active_sources(choice):
@@ -167,6 +170,83 @@ def cmd_check(a):
         print(f"wrote {BOM_FILE.relative_to(REPO)}")
 
 
+def load_amazon():
+    return json.loads(AMAZON_FILE.read_text()) if AMAZON_FILE.exists() else []
+
+
+def budget_summary(shortlist, amazon):
+    """Totals from the stored shortlist prices and the hand-kept Amazon list. Owned items are kept out of the total."""
+    dk = [(p["role"], p["qty"], p.get("unit_price"), p["source"], p["pn"]) for p in shortlist]
+    dk_total = sum(q * u for _, q, u, _, _ in dk if u is not None)
+    buy = [a for a in amazon if a.get("status", "to buy") != "owned"]
+    owned = [a for a in amazon if a.get("status") == "owned"]
+    priced = [a for a in buy if a.get("unit_price") is not None]
+    am_total = sum(a["qty"] * a["unit_price"] for a in priced)
+    return {"dk": dk, "dk_total": dk_total, "buy": buy, "owned": owned, "unpriced": [a for a in buy if a.get("unit_price") is None],
+            "am_total": am_total, "owned_total": sum(a["qty"] * a["unit_price"] for a in owned if a.get("unit_price") is not None),
+            "grand": dk_total + am_total}
+
+
+def cmd_budget(a):
+    parts = load_shortlist()
+    if a.live and parts:
+        check_rows(parts, update=True)
+        save_shortlist(parts)
+    b = budget_summary(parts, load_amazon())
+    n_un = len(b["unpriced"])
+    lines = ["# Budget", "",
+             f"Combined order totals, USD, **before shipping and tax**. Digi-Key and Mouser prices come from the shortlist "
+             f"(`docs/parts-shortlist.json`, last checked {max((p.get('checked', '') for p in parts), default='never')}); Amazon prices are kept by hand in "
+             "`docs/amazon-items.json` because Amazon has no price API. Regenerate with `python3 docs/tools/parts.py budget --md` "
+             "(add `--live` to re-check the distributor prices first).", "",
+             "| | Lines | Amount |", "|---|---|---|",
+             f"| Digi-Key and Mouser | {len(b['dk'])} | {money(b['dk_total'])} |",
+             f"| Amazon.com, priced | {len(b['buy']) - n_un} | {money(b['am_total'])} |",
+             f"| Amazon.com, **no price yet** | {n_un} | not counted |",
+             f"| **Total so far** | | **{money(b['grand'])}** |", ""]
+    if n_un:
+        lines += [f"The total is a floor: {n_un} Amazon item(s) have no price yet. Set one with "
+                  "`python3 docs/tools/parts.py amazon-price ASIN PRICE`.", ""]
+    lines += ["## Amazon.com to buy", "", "| Item | ASIN | Qty | Unit | Extended | Note |", "|---|---|---|---|---|---|"]
+    for x in b["buy"]:
+        u = x.get("unit_price")
+        lines.append(f"| {x['item']} | {x['asin']} | {x['qty']} | {money(u) if u is not None else 'unchecked'} | "
+                     f"{money(u * x['qty']) if u is not None else '-'} | {x.get('note', '')} |")
+    lines += ["", "## Already owned", "", "Not in the total. Prices are the listing price seen, not necessarily what was paid.", "",
+              "| Item | ASIN | Qty | Listing price | Note |", "|---|---|---|---|---|"]
+    for x in b["owned"]:
+        u = x.get("unit_price")
+        lines.append(f"| {x['item']} | {x['asin']} | {x['qty']} | {money(u) if u is not None else 'unknown'} | {x.get('note', '')} |")
+    lines += ["", "## Digi-Key and Mouser", "", "See [parts-bom.md](parts-bom.md) for the per-line list with stock and flags.", "",
+              "| Role | Source | Part number | Qty | Unit | Extended |", "|---|---|---|---|---|---|"]
+    for role, q, u, src, pn in b["dk"]:
+        lines.append(f"| {role} | {src} | {pn} | {q} | {money(u)} | {money(u * q) if u is not None else '-'} |")
+    lines += ["", "## Not counted at all", "", "Solder and flux, cable clips and zip ties, M3 screws and standoffs, silicone feet, filament (2 to 3 kg), "
+              "mains-side extras, the stick and encoder connectors, and shipping and tax.", ""]
+    text = "\n".join(lines)
+    print(f"Digi-Key/Mouser {money(b['dk_total'])} ({len(b['dk'])} lines)   Amazon priced {money(b['am_total'])}   "
+          f"Amazon unpriced: {n_un}   TOTAL so far {money(b['grand'])}")
+    for x in b["unpriced"]:
+        print(f"  no price: {x['item']} x{x['qty']} ({x['asin']})")
+    if a.md:
+        BUDGET_FILE.write_text(text)
+        print(f"wrote {BUDGET_FILE.relative_to(REPO)}")
+
+
+def cmd_amazon_price(a):
+    items = load_amazon()
+    hit = [x for x in items if x["asin"] == a.asin]
+    if not hit:
+        raise PartsError(f"no Amazon item with ASIN {a.asin} in docs/amazon-items.json")
+    hit[0]["unit_price"] = a.price
+    if a.qty:
+        hit[0]["qty"] = a.qty
+    if a.owned:
+        hit[0]["status"] = "owned"
+    AMAZON_FILE.write_text(json.dumps(items, indent=2) + "\n")
+    print(f"{hit[0]['item']}: {money(a.price)} x {hit[0]['qty']} ({hit[0].get('status', 'to buy')})")
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -198,6 +278,16 @@ def main(argv=None):
     s.add_argument("--update", action="store_true", help="save the new prices into the shortlist")
     s.add_argument("--md", action="store_true", help="write docs/parts-bom.md")
     s.set_defaults(fn=cmd_check)
+    s = sub.add_parser("budget", help="combined totals: shortlist plus the hand-kept Amazon list")
+    s.add_argument("--live", action="store_true", help="re-check the distributor prices first")
+    s.add_argument("--md", action="store_true", help="write docs/budget.md")
+    s.set_defaults(fn=cmd_budget)
+    s = sub.add_parser("amazon-price", help="set the price (and optionally quantity) of an Amazon item")
+    s.add_argument("asin")
+    s.add_argument("price", type=float)
+    s.add_argument("--qty", type=int)
+    s.add_argument("--owned", action="store_true", help="mark the item as already owned")
+    s.set_defaults(fn=cmd_amazon_price)
     a = ap.parse_args(argv)
     load_env()
     try:

@@ -1,7 +1,7 @@
 # Electronics build notes (rough recommendation)
 
 How I'd build the electronics for v1: hand-wired on perfboard, no custom PCB. Digi-Key part numbers and prices are from
-the API on 2026-10-19 and are **not** in the shortlist yet. Nothing here is built or tested.
+the API on 2026-10-19 and are in the shortlist and the budget. Nothing here is built or tested.
 
 ## Approach
 

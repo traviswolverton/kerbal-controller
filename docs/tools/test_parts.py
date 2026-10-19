@@ -136,6 +136,19 @@ class Tool(unittest.TestCase):
         self.assertIn("price was $5.00", flags)
         self.assertAlmostEqual(total, 1234.5 * 2000)
 
+    def test_budget_totals(self):
+        shortlist = [{"role": "a", "source": "digikey", "pn": "x", "qty": 2, "unit_price": 3.0},
+                     {"role": "b", "source": "mouser", "pn": "y", "qty": 1, "unit_price": 1.5}]
+        amazon = [{"item": "p", "asin": "1", "qty": 2, "unit_price": 10.0, "status": "to buy"},
+                  {"item": "q", "asin": "2", "qty": 1, "unit_price": None, "status": "to buy"},
+                  {"item": "own", "asin": "3", "qty": 1, "unit_price": 99.0, "status": "owned"}]
+        b = parts.budget_summary(shortlist, amazon)
+        self.assertAlmostEqual(b["dk_total"], 7.5)
+        self.assertAlmostEqual(b["am_total"], 20.0)
+        self.assertAlmostEqual(b["grand"], 27.5)            # the owned 99.0 and the unpriced item are not counted
+        self.assertEqual([x["asin"] for x in b["unpriced"]], ["2"])
+        self.assertAlmostEqual(b["owned_total"], 99.0)
+
     def test_check_survives_an_error(self):
         def boom(*a):
             raise PartsError("HTTP 404")
