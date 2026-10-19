@@ -144,10 +144,13 @@ This file records what has been settled and what is still open.
 - **Supply:** [Adafruit 1466](https://www.adafruit.com/product/1466), 5 V 4 A regulated, UL listed,
   5.5 x 2.1 mm plug with positive tip, US 2-prong, $14.95. Adafruit's own warning: it is not for
   powering an Arduino through its DC jack (not an issue here, see below).
-- **Panel connector:** [Adafruit 5607](https://www.adafruit.com/product/5607), round panel-mount 5.5/2.1 mm
-  jack on a 30 cm lead, $4.95. Needs a 1" (25.4 mm) hole, flange 30 mm, threaded part 23 mm, panels up
-  to 16 mm. Current rating not stated on the page: confirm before running 4 A through it. Cheaper
-  threaded jacks on Amazon were also seen, one rated only 1.5-2 A, so do not buy those blind.
+- **Panel connector:** [Tugermoola 6-set kit OLA012, Amazon B0D9B7WR23](https://www.amazon.com/Tugermoola-Threaded-Female-Connector-Adapter/dp/B0D9B7WR23),
+  $9.99 for 6 sets. Threaded female 5.5 x 2.1 mm jack, seller-stated about **12 mm mounting hole**, 5 A / 50 V,
+  20 AWG leads, 150 mm on the female jack. This replaces the Adafruit 5607 (1" hole, 30 cm lead, no
+  current rating), which was the earlier pick.
+  - The jack must sit within about 15 cm of the fuse and 5 V rail, or extend the leads.
+  - Ratings are the seller's claims. Cheap threaded jacks vary, one seen was only rated 1.5-2 A.
+  - Lead colours red and black do not prove polarity: check the centre pin with a meter before wiring.
 - **Budget:** pixels are 56 x 60 mA = 3.4 A worst case (all white); fader motor is unknown at 5 V, measure
   it. Cap total pixel draw in firmware so real use stays well under 4 A. The usual guidance is to keep
   the rail above 4.5 V at full load and to leave 20-25 % headroom.
