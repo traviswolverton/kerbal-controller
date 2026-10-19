@@ -13,10 +13,10 @@ measured. PLA at 1.24 g/cm3, walls counted as 100% solid.
 |---|---|---|---|
 | Left wing | 216 g | 136 g | 352 g |
 | Right wing | 216 g | 139 g | 355 g |
-| Strip left | 259 g | 99 g | 358 g |
-| Strip middle | 277 g | 103 g | 380 g |
-| Strip right | 259 g | 99 g | 358 g |
-| **Modelled** | | | **1.80 kg** |
+| Strip left | 277 g | 98 g | 375 g |
+| Strip middle | 277 g | 102 g | 379 g |
+| Strip right | 259 g | 91 g | 350 g |
+| **Modelled** | | | **1.81 kg** |
 | **With +15% for ribs, bosses, retainers** | | | **about 2.1 kg** |
 
 Budget 2 to 3 spools (1 kg each) once test prints and reprints are included. PETG is about 2% heavier.
@@ -43,7 +43,7 @@ The printed pieces plus parts weigh only about 3 kg, which a hand on the throttl
 
 - Each shell prints floor down with the open sloped top facing up: the walls rise straight, so I expect no supports.
 - Faceplates print flat.
-- Largest envelopes: wings 220 x 176 x 67 mm, strips 220 to 240 x 119 x 128 mm. All fit the 256 mm bed.
+- Largest envelopes: wings 220 x 176 x 67 mm, strips 220 to 240 x 119 x 128 mm (the left strip is now 240 mm wide, so the console is 700 mm across). All fit the 256 mm bed.
 
 ## Not designed yet
 

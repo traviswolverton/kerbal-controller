@@ -32,6 +32,7 @@ which is which.
 | OLED SCK / SDA / DC / RES | yellow / blue / grey / teal | middle |
 | OLED chip select 1 / 2 | green / purple | middle |
 | Buzzer I/O | brown | middle |
+| Expander SDA / SCL / INT | purple / grey / teal | left strip |
 
 Pink and teal are not in a basic Dupont set. Use striped wire or tape a coloured band on instead.
 
@@ -41,15 +42,17 @@ Pink and teal are not in a basic Dupont set. Use striped wire or tape a coloured
 - [ ] All pins are 3.3 V only. Nothing at 5 V ever touches a Teensy pin.
 - [ ] The Teensy is powered **only over USB**. Do not connect the 5 V rail to its VIN pin.
 - [ ] Wire the Teensy side of each DB25 jack as in the pinout grid (pins 15 to 23 are the pins the Teensy drives).
+- [ ] Pins 18 and 19 are the I2C bus (SDA, SCL) for the switch-panel expander, with 4.7 kΩ pull-ups to 3V3 at the Teensy end. Pin 41 is the expander's interrupt.
 
 ## Middle strip
 
 - [ ] 5 V adapter plugs into the panel jack. **Check the jack's polarity with a meter** (centre pin should be +) before wiring it: red and black leads do not prove which is which.
-- [ ] Jack, then a fuse just above the capped load (about 3 to 4 A), then the 5 V rail with a 1000 µF capacitor across it.
+- [ ] Jack, then the master power switch, then a fuse just above the capped load (about 3 to 4 A), then the 5 V rail with a 1000 µF capacitor across it. The switch cuts the 5 V rail only, so the Teensy and expander stay powered over USB.
 - [ ] 74AHCT125: input from Teensy pin 1, its output enable pin tied to ground, VCC on 5 V, then 330 to 470 Ω to the left strip's data pin (LS 17). Tie the unused buffer inputs to ground.
 - [ ] 32 fuel-bar pixels: data in from LS 18 (the return from the left strip), data out to RS 17. 5 V and GND straight from the rail with short wires.
 - [ ] Both OLEDs on 3V3 until you have confirmed their SPI lines are safe at 5 V. Share SCK, MOSI, DC and RES; one chip select each (pins 10 and 24).
 - [ ] Buzzer module on **3V3**, I/O to pin 25. At 5 V its transistor may not switch off.
+- [ ] SDA, SCL and the interrupt go to the left-strip jack (pins 10, 11, 12), with 3V3 on pin 2.
 - [ ] Four DB25 jacks, one per outer piece. All four are the same connector, so label them LW, RW, LS and RS.
 
 ## Wings
@@ -69,12 +72,22 @@ Right wing (DB25 RW, 14 conductors):
 
 ## Strips
 
-Left strip (DB25 LS, 19 conductors) and right strip (DB25 RS, 18 conductors):
+Left strip (DB25 LS, 21 conductors) and right strip (DB25 RS, 16 conductors):
 
 - [ ] Every key has a diode: **anode to its column, cathode to its row**. Left strip carries rows 0 and 1, right strip rows 2 and 3. Both carry all six columns, on pins 3, 4, 5, 6, 8, 9.
 - [ ] Rows are on pins 15 and 16 of both strip jacks. They are rows 0 and 1 for the left strip and rows 2 and 3 for the right strip, which the Teensy side of each jack handles.
-- [ ] Toggles: one pin to GND, the other to pins 10 and 11. The right strip's second spare toggle has a conductor but no Teensy pin.
-- [ ] Pixels: data in on pin 17. The left strip's last pixel returns on pin 18 (the right strip has no return). 330 to 470 Ω in the data line at the first pixel on the left strip. 5 V on pins 20 and 21, GND on 24 and 25. Optional 100 µF across 5 V in each strip.
+- [ ] Pixels: data in on pin 17. The left strip's last pixel returns on pin 18 (the right strip has no return). 330 to 470 Ω in the data line at the first pixel on the left strip. 5 V on pins 20 and 21, GND on 24 and 25. Optional 100 µF across 5 V in each strip. The right strip has 21 pixels in its chain: 12 under the keys and 9 behind the annunciator windows.
+
+### Switch panel (left strip)
+
+- [ ] One MCP23017 expander behind the panel. SDA, SCL, INTA and 3V3 to the DB25 LS pins 10, 11, 12 and 2, ground to pins 1, 7, 13. Mirror both interrupt ports onto INTA.
+- [ ] Address pins as shipped; confirm the address with a bus scan before wiring switches.
+- [ ] Sixteen inputs, one wire each to its pin, the other leg of every switch to GND (internal pull-ups, no resistors): PA0 ABORT, PA1 STAGE ARM, PA2 STAGE, PA3 throttle FULL, PA4 throttle CUT, PA5 MAP, PA6 focus previous, PA7 focus next, PB0 quicksave, PB1 quickload, PB2 precision, PB3 pause, PB4 UI hide, PB5 to PB7 spare.
+- [ ] Thirteen small buttons are MX switches with blank DSA caps; ABORT and STAGE ARM are the guarded toggles; STAGE is the big button.
+
+### Annunciator (right strip)
+
+- [ ] Nine pixels, one behind each 24 x 12 mm window, after the 12 key pixels in the chain. Windows: low fuel, low power, overheat, low altitude, stable orbit, atmosphere, chute safe, link, spare. Give each window its own light-tight cell so the colours do not bleed.
 
 ## Cables
 

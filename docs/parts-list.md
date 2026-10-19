@@ -10,7 +10,7 @@ listing on the date given, and a blank price means it has not been checked. Desi
 | Part | Qty | Status | Part / source | Notes |
 |---|---|---|---|---|
 | Teensy 4.1 | 1 | chosen | [PJRC](https://www.pjrc.com/store/teensy41.html) | 3.3 V pins, not 5 V tolerant. No `touchRead()` on 4.x. |
-| WS2812B 10 mm pixel boards | 56 of 100 owned | owned | BTF-LIGHTING | 24 keys + 4 fuel bars of 8. GRB. No ghost strip any more. |
+| WS2812B 10 mm pixel boards | 65 of 100 owned | owned | BTF-LIGHTING | 24 keys, 4 fuel bars of 8, 9 annunciator windows. GRB. One chain through three strip pieces. |
 | 74AHCT125 level shifter | 1 | chosen | - | For the pixel data line. |
 | 5 V supply, 4 A | 1 | chosen | [Adafruit 1466, UL listed, 5.5 x 2.1 mm centre-positive](https://www.adafruit.com/product/1466), $14.95, in stock 2026-10-19 | Powers pixels and the fader motor. Cap pixel brightness in firmware. Not ordered yet. |
 | Panel-mount DC jack, 5.5 x 2.1 mm | 1 of 6 sets | chosen | [Tugermoola 6-set kit OLA012, Amazon B0D9B7WR23](https://www.amazon.com/Tugermoola-Threaded-Female-Connector-Adapter/dp/B0D9B7WR23), $9.99 for 6 sets | Seller specs: about 12 mm mounting hole, 5 A / 50 V, 20 AWG, female jack on 150 mm leads, male plug on 200 mm leads, gaskets and dust caps included. Only one female jack is needed; the male plugs and spares can make power pigtails. Not ordered yet. Check which colour/head variant the link is, and check polarity with a meter. |
@@ -24,15 +24,20 @@ listing on the date given, and a blank price means it has not been checked. Desi
 | Part | Qty | Status | Part / source | Notes |
 |---|---|---|---|---|
 | JH-D400X-R4 joystick | 2 | chosen | [SaiDian, Amazon](https://www.amazon.com/SaiDian-4-Axis-Joystick-Potentiometer-JH-D400X-R4/dp/B08CGYGMJL), $18.79 each | Mounting holes unmeasured. Power from 3.3 V. |
-| MX-style switches, blue clicky, 3-pin | 24 of 72 owned | owned | [Josojoou, Amazon](https://www.amazon.com/dp/B0GC33V4HK) | Bought 2026-10-10. |
-| DSA blank keycaps, 1u | 24 | chosen | [Mechkeeb, Amazon](https://www.amazon.com/Mechkeeb-Profile-Switches-Keyboard-Replacement/dp/B0BWDQ3NKK) | Price and colours unchecked. Labels go on the panel. |
+| MX-style switches, blue clicky, 3-pin | 37 of 72 owned | owned | [Josojoou, Amazon](https://www.amazon.com/dp/B0GC33V4HK) | Bought 2026-10-10. |
+| DSA blank keycaps, 1u | 37 (two packs of 24) | chosen | [Mechkeeb, Amazon](https://www.amazon.com/Mechkeeb-Profile-Switches-Keyboard-Replacement/dp/B0BWDQ3NKK) | Price and colours unchecked. Labels go on the panel. |
 | Motorised slide pot, 100 mm | 1 | chosen | [Adafruit 5466](https://www.adafruit.com/product/5466), $24.95 | 6-10 V motor, run at 5 V. Two M3 holes, 120 mm apart. |
 | L9110H H-bridge motor driver | 1 | chosen | [Adafruit 4489](https://www.adafruit.com/product/4489), $1.50 | Drives the fader motor. Add a 47 uF capacitor near it. |
 | **Conductive slide pot nubbin** | 1 | chosen | [Adafruit 5741](https://www.adafruit.com/product/5741), $4.95 | 26 x 11 x 10 mm, slot 18.8 x 1.8 mm. Conductive, for fader touch sensing. |
 | 47 uF 25 V electrolytic capacitor | 1 | chosen | - | From Adafruit's Flying Faders guide. |
 | Rotary encoder with push switch | 3 | proposed | [Bourns PEC11R-4215F-S0024, 6-pack, Amazon](https://www.amazon.com/BOURNS-PEC11R-4215F-S0024-Incremental-Momentary-Mechanical-6pack/dp/B093P29XL8) | 24 detents, 6 mm flatted shaft 15 mm long, M7 bushing only about 5 mm long, nut and washer included. Thread pitch conflicts between sources (0.75 vs 0.5 mm): check the Bourns drawing. |
 | Encoder knobs, 25 x 13 mm aluminium, D-shaped bore | 3 (buy 2 packs) | proposed | [NMOWYBPY 2-pack, Amazon B0H3NXPL9Z](https://www.amazon.com/NMOWYBPY-Aluminum-Potentiometer-25x13mm-Control/dp/B0H3NXPL9Z) | D-hole should seat on the flatted shaft. Listing wording on the set screw is ambiguous. Price unchecked. Alternatives: [Taiss 25 x 15 mm](https://www.amazon.com/clp/B07F26WT4R), [GD-PARTS 25 x 15.5 mm](https://www.amazon.com/clp/B07BTGL1JK). |
-| Guarded toggle switch, 12 mm | 4 (6-pack) | chosen | [AITRIP 6-pack, 12 V 20 A, 2-pin SPST ON/OFF with red covers, Amazon B0CL4GNMJX](https://www.amazon.com/Heavy-Rocker-Toggle-Switch-Cover/dp/B0CL4GNMJX) | Not ordered yet; price and stock unchecked. Listing says 12 mm mounting hole. 2 spares cover the two SPARE slots. Wire one pin to ground and the other to a Teensy pin with `INPUT_PULLUP`. Measure the thread length vs panel thickness and the closed-cover footprint (the 40 x 60 mm toggle spacing assumes about 47 x 17 mm). |
+| Guarded toggle switch, 12 mm | 2 (of a 6-pack) | chosen | [AITRIP 6-pack, 12 V 20 A, 2-pin SPST ON/OFF with red covers, Amazon B0CL4GNMJX](https://www.amazon.com/Heavy-Rocker-Toggle-Switch-Cover/dp/B0CL4GNMJX) | Not ordered yet; price and stock unchecked. Listing says 12 mm mounting hole. 2 spares cover the two SPARE slots. Wire one pin to ground and the other to a Teensy pin with `INPUT_PULLUP`. Measure the thread length vs panel thickness and the closed-cover footprint (the 40 x 60 mm toggle spacing assumes about 47 x 17 mm). |
+| MCP23017 I2C expander | 1 | proposed | Any MCP23017 breakout. The Waveshare IO Expansion Board used in goodnight-device answered at 0x27 | Behind the switch panel in the left strip. 16 inputs. Not bought for this project yet. |
+| 4.7 kOhm resistors | 2 | chosen | - | SDA and SCL pull-ups to 3V3, at the Teensy end. |
+| Big STAGE button, 28 mm | 1 | open | - | Panel-mount arcade-style button, illuminated or not. Not picked. Replaces the STAGE matrix key. |
+| Master power switch, 12 mm hole | 1 | open | - | In series with the 5 V rail, rated for 4 A. Rocker, toggle or key. Not picked. |
+| Annunciator windows | 9 | open | - | 3 x 3, 24 x 12 mm, translucent, one pixel behind each. Printed light box and diffuser. |
 | Buzzer module, low-level trigger | 1 of 5 owned | owned | DIYables "Passive Buzzer Module, 5V", [Amazon B0DHGP95K4](https://www.amazon.com/dp/B0DHGP95K4), $6.99 for 5, ordered 2026-10-10 | 3 pins (GND, I/O, VCC), on-board transistor, board marked "low level trigger". The black cylinder with a "+" looks like a magnetic buzzer. Bench-test whether it is really passive. Measure the board and buzzer diameter. |
 
 ## Displays

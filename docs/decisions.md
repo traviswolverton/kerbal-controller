@@ -44,7 +44,7 @@ This file records what has been settled and what is still open.
   Adafruit NeoKey boards were considered and dropped because they are hard to find.
 - **Pixels:** BTF-LIGHTING WS2812B, 5050 on 10 mm round white PCBs (100 pcs, owned).
   Colour order **GRB**. Four solder pads per board (5V, GND, DIN, DOUT).
-  Roughly 56 are planned (24 keys + 4 fuel bars of 8), so about 44 stay spare.
+  Roughly 65 are planned (24 keys, 4 fuel bars of 8, 9 annunciator windows), so about 35 stay spare.
 - **Data line:** 74AHCT125 level shifter, a 330-470 ohm series resistor near the first pixel,
   a large capacitor across the 5 V rail, and a separate 5 V supply of at least 3 A.
   Cap brightness in firmware.
@@ -120,15 +120,39 @@ This file records what has been settled and what is still open.
   shaft. The mockup knob proxy is 25 x 15 mm; this one is 2 mm shorter, which changes nothing that matters.
 - **Open:** whether the listing includes a set screw, and prices. Both unchecked.
 
+## Switch panel and annunciator (proposed)
+- **Switch panel (left strip):** all inputs that are not wired to a stick or encoder go on one panel and one
+  chip, an MCP23017 I2C expander sitting right behind it: ABORT and STAGE ARM (guarded toggles), a big STAGE
+  button, throttle FULL and CUT, MAP, focus previous and next, quicksave, quickload, precision, pause, UI hide,
+  and three spares. That is 16 inputs, listed in `pin-map.md`. Only SDA, SCL, the interrupt and 3V3 cross the
+  cable to the Teensy.
+- **Why:** the Teensy has no spare header pins, so extra buttons need an expander. A single panel keeps its
+  wiring local and frees the toggle pins. This is also the part of the reference build (Altitude Workshops) we
+  were missing: its guarded LOCK/STAGE block, throttle FULL button and utility buttons.
+- **Buttons:** 13 small ones are the MX switches already owned, with blank DSA caps. A second pack of 24 caps is
+  needed. STAGE moves off the key matrix to the big button, so its matrix slot becomes AG9.
+- **Game side:** MAP, quicksave and the rest are key presses through Simpit's keyboard emulator (Windows only).
+  FULL and CUT drive the throttle, and the motorised fader follows through Simpit's throttle command message.
+- **Annunciator (right strip):** 3 x 3 windows, one pixel each: low fuel, low power, overheat, low altitude,
+  stable orbit, atmosphere, chute safe, link, and a spare. Most of these come straight from Simpit messages
+  (resources, temperature limit, atmosphere conditions, altitude, orbit, flight status). Chute-safe would be derived
+  from altitude and airspeed. **High G was dropped: Simpit has no G-force message.**
+- **Master power switch (middle strip):** in series with the 5 V rail. It cuts the pixels and the fader driver
+  but leaves the Teensy and expander powered over USB.
+- **Layout effect:** the left strip is 240 mm wide (the console is 700 mm), the right strip's freed corner holds
+  the annunciator, and the middle strip gets the master switch.
+- **Open:** the big STAGE button and master switch parts are not picked, and the expander's address and
+  interrupt behaviour are untested.
+
 ## Inter-module links (proposed, five-piece layout)
 - **Approach:** direct wiring from the Teensy in the middle strip piece to each of the four outer pieces
   (two wings, left and right strip) through one **DB25 D-sub** each. One USB cable, no extra boards.
   Satellite microcontrollers with a 4-wire link would need fewer wires but add firmware and a second USB
   or serial path; revisit only if the cable count becomes a problem.
-- **Conductors per port:** left wing 19, right wing 14, left strip 19, right strip 18, all of 25. Full
+- **Conductors per port:** left wing 19, right wing 14, left strip 21, right strip 16, all of 25. Full
   pinouts and the Teensy pin table are in `pin-map.md`.
-- **Pixels:** one chain of 56 on a single data pin: left strip (12), fuel bars in the middle (32), right strip
-  (12). A break in the chain darkens everything after it.
+- **Pixels:** one chain of 65 on a single data pin: left strip (12), fuel bars in the middle (32), right strip
+  (12 key pixels and 9 annunciator pixels). A break in the chain darkens everything after it.
 - **Keys:** one 4 x 6 matrix. The left strip carries rows 0-1, the right strip rows 2-3, both carry all six
   column lines.
 - **Parts:** eight female panel-mount DB25 solder-cup jacks (four on the middle piece, one on each outer
@@ -153,7 +177,7 @@ This file records what has been settled and what is still open.
   - The jack must sit within about 15 cm of the fuse and 5 V rail, or extend the leads.
   - Ratings are the seller's claims. Cheap threaded jacks vary, one seen was only rated 1.5-2 A.
   - Lead colours red and black do not prove polarity: check the centre pin with a meter before wiring.
-- **Budget:** pixels are 56 x 60 mA = 3.4 A worst case (all white); fader motor is unknown at 5 V, measure
+- **Budget:** pixels are 65 x 60 mA = 3.9 A worst case (all white, which firmware must never allow); fader motor is unknown at 5 V, measure
   it. Cap total pixel draw in firmware so real use stays well under 4 A. The usual guidance is to keep
   the rail above 4.5 V at full load and to leave 20-25 % headroom.
 - **Wiring plan:**
@@ -163,12 +187,12 @@ This file records what has been settled and what is still open.
     enters the pixel run.
   - The 2.42" OLED modules accept 3.3-5 V, so power them from the 5 V rail to keep load off the Teensy's
     3.3 V regulator. Confirm the module's logic level first.
-  - All 56 pixels are in the centre module, so one power feed is enough.
+  - The pixels are spread over the three strip pieces (12, 32, 21). Each outer strip takes 5 V over its DB25 cable; one power input in the middle strip feeds everything.
 
 ## Guarded toggles (chosen, not yet ordered)
 - **Part:** [AITRIP 6-pack, 12 V 20 A, 2-pin SPST ON/OFF toggle switches with red aircraft-style covers](https://www.amazon.com/Heavy-Rocker-Toggle-Switch-Cover/dp/B0CL4GNMJX)
   (Amazon B0CL4GNMJX). Seller-reported 12 mm mounting hole; price and stock not checked.
-  Four are used (ABORT, STAGE ARM, 2 spare), so two are left over.
+  Two are used (ABORT and STAGE ARM, on the switch panel), so four are left over.
 - **Wiring:** one pin to ground, the other to a Teensy input with `INPUT_PULLUP`; debounce in firmware.
 - **To check on arrival:** thread length against panel thickness, and the closed-cover footprint against
   the mockup's 40 x 60 mm toggle spacing (a cover seen earlier was about 47 mm long).

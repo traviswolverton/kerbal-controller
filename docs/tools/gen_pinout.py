@@ -24,7 +24,8 @@ SIGCOL.update({"FADER_WIPER": "green", "FADER_TOUCH": "white", "FADER_PWM_A": "p
                "TOG_ABORT": "white", "TOG_ARM": "white", "TOG_SPARE1": "white", "TOG_SPARE2": "white",
                "PIXEL_DATA": "pink", "PIXEL_IN": "pink", "PIXEL_OUT": "pink",
                "OLED_MOSI": "blue", "OLED_SCK": "yellow", "OLED_DC": "grey", "OLED_RES": "teal",
-               "OLED_CS1": "green", "OLED_CS2": "purple", "BUZZER": "brown"})
+               "OLED_CS1": "green", "OLED_CS2": "purple", "BUZZER": "brown",
+               "EXP_SDA": "purple", "EXP_SCL": "grey", "EXP_INT": "teal"})
 for i in range(4):
     SIGCOL[f"ROW{i}"] = "green"
 for i in range(6):
@@ -35,10 +36,10 @@ TEENSY = {
     0: "OLED_RES", 1: "PIXEL_DATA", 2: "FADER_PWM_A", 3: "FADER_PWM_B", 4: "FADER_TOUCH", 5: "L_STICK_BTN",
     6: "L_ENC_A", 7: "L_ENC_B", 8: "L_ENC_SW", 9: "R_STICK_BTN", 10: "OLED_CS1", 11: "OLED_MOSI",
     12: "OLED_DC", 13: "OLED_SCK", 14: "L_STICK_X", 15: "L_STICK_Y", 16: "L_STICK_Z", 17: "FADER_WIPER",
-    18: "R_CAM_A", 19: "R_CAM_B", 20: "R_STICK_X", 21: "R_STICK_Y", 22: "R_STICK_Z", 23: "R_CAM_SW",
-    24: "OLED_CS2", 25: "BUZZER", 26: "TOG_ABORT", 27: "TOG_ARM", 28: "ROW0", 29: "ROW1", 30: "ROW2",
+    18: "EXP_SDA", 19: "EXP_SCL", 20: "R_STICK_X", 21: "R_STICK_Y", 22: "R_STICK_Z", 23: "R_CAM_SW",
+    24: "OLED_CS2", 25: "BUZZER", 26: "R_CAM_A", 27: "R_CAM_B", 28: "ROW0", 29: "ROW1", 30: "ROW2",
     31: "ROW3", 32: "COL0", 33: "COL1", 34: "COL2", 35: "COL3", 36: "COL4", 37: "COL5", 38: "R_PAGE_A",
-    39: "R_PAGE_B", 40: "R_PAGE_SW", 41: "TOG_SPARE1"}
+    39: "R_PAGE_B", 40: "R_PAGE_SW", 41: "EXP_INT"}
 ANALOG = {14: "A0", 15: "A1", 16: "A2", 17: "A3", 20: "A6", 21: "A7", 22: "A8"}
 # Physical header order, USB end at the top. Taken from memory of the Teensy 4.1 card, NOT yet checked
 # against PJRC's pinout card: verify before wiring.
@@ -56,11 +57,11 @@ PORTS = {
     "RW": ("RIGHT WING", {1: "GND", 7: "GND", 13: "GND", 2: "3V3", 3: "R_STICK_X", 4: "R_STICK_Y",
                           5: "R_STICK_Z", 8: "R_STICK_BTN", 9: "R_CAM_A", 10: "R_CAM_B", 11: "R_CAM_SW",
                           12: "R_PAGE_A", 14: "R_PAGE_B", 19: "R_PAGE_SW"}),
-    "LS": ("STRIP LEFT", {**GNDS, 3: "COL0", 4: "COL1", 5: "COL2", 6: "COL3", 8: "COL4", 9: "COL5",
-                          10: "TOG_ABORT", 11: "TOG_ARM", 15: "ROW0", 16: "ROW1", 17: "PIXEL_IN",
+    "LS": ("STRIP LEFT", {**GNDS, 2: "3V3", 3: "COL0", 4: "COL1", 5: "COL2", 6: "COL3", 8: "COL4", 9: "COL5",
+                          10: "EXP_SDA", 11: "EXP_SCL", 12: "EXP_INT", 15: "ROW0", 16: "ROW1", 17: "PIXEL_IN",
                           18: "PIXEL_OUT", **V5}),
     "RS": ("STRIP RIGHT", {**GNDS, 3: "COL0", 4: "COL1", 5: "COL2", 6: "COL3", 8: "COL4", 9: "COL5",
-                           10: "TOG_SPARE1", 11: "TOG_SPARE2", 15: "ROW2", 16: "ROW3", 17: "PIXEL_IN", **V5}),
+                           15: "ROW2", 16: "ROW3", 17: "PIXEL_IN", **V5}),
 }
 MID_DEST = {"OLED_RES": "OLEDs", "OLED_CS1": "OLED 1", "OLED_CS2": "OLED 2", "OLED_MOSI": "OLEDs",
             "OLED_DC": "OLEDs", "OLED_SCK": "OLEDs", "BUZZER": "buzzer", "PIXEL_DATA": "chain, LS 17"}
@@ -147,9 +148,9 @@ def d_overview():
     b = pill(480, 28, 180, "PC · KSP + Simpit", "grey", size=12)
     b += line(570, 37, 570, 100, "grey") + text(582, 72, "USB serial", 11, "var(--silk-dim)")
     pieces = [
-        (20, 100, "STRIP LEFT", "28° · 12 nav keys", "ABORT, STAGE ARM, 12 pixels"),
-        (420, 100, "STRIP MIDDLE", "28° · Teensy 4.1", "2 OLEDs, buzzer, 32 fuel pixels"),
-        (820, 100, "STRIP RIGHT", "28° · 12 action-group keys", "2 spare toggles, 12 pixels"),
+        (20, 100, "STRIP LEFT", "28° · 12 nav keys", "switch panel + expander, 12 pixels"),
+        (420, 100, "STRIP MIDDLE", "28° · Teensy 4.1", "2 OLEDs, buzzer, master power, 32 fuel pixels"),
+        (820, 100, "STRIP RIGHT", "28° · 12 action-group keys", "annunciator, 21 pixels"),
         (20, 360, "LEFT WING", "12° · translation stick", "throttle fader, time-warp encoder"),
         (820, 360, "RIGHT WING", "12° · rotation stick", "camera and page encoders"),
     ]
@@ -159,8 +160,8 @@ def d_overview():
               + text(x + 150, y + 68, s1, 11.5, "var(--silk-dim)", "middle")
               + text(x + 150, y + 90, s2, 11.5, "var(--silk-dim)", "middle"))
     b += text(570, 440, "open front: desk space", 12, "var(--silk-dim)", "middle")
-    b += line(320, 175, 420, 175, "yellow", 4) + pill(330, 150, 80, "DB25 · 19", "yellow", size=10)
-    b += line(720, 175, 820, 175, "yellow", 4) + pill(730, 150, 80, "DB25 · 18", "yellow", size=10)
+    b += line(320, 175, 420, 175, "yellow", 4) + pill(330, 150, 80, "DB25 · 21", "yellow", size=10)
+    b += line(720, 175, 820, 175, "yellow", 4) + pill(730, 150, 80, "DB25 · 16", "yellow", size=10)
     b += path([(320, 435), (470, 435), (470, 250)], "yellow", 4)
     b += pill(335, 410, 100, "DB25 · 19", "yellow", size=10) + text(335, 458, "through the strip shell", 10, "var(--silk-dim)")
     b += path([(820, 435), (670, 435), (670, 250)], "yellow", 4)
@@ -328,30 +329,76 @@ def d_pieces():
     ], "Pots take 3V3, never 5 V. Wire by the printed labels."),
         "The right wing: rotation stick and two encoders.")))
     for port, rows, toggles, pix_out, label in (
-            ("LS", "rows 0 and 1", [("ABORT toggle", "TOG_ABORT"), ("STAGE ARM toggle", "TOG_ARM")], True, "Strip left"),
-            ("RS", "rows 2 and 3", [("SPARE toggle 1", "TOG_SPARE1"), ("SPARE toggle 2", "TOG_SPARE2")], False, "Strip right")):
+            ("LS", "rows 0 and 1", [], True, "Strip left"),
+            ("RS", "rows 2 and 3", [], False, "Strip right")):
         r0 = 0 if port == "LS" else 2
         devs = [{"name": f"KEY MATRIX · {rows}", "sub": "12 keys, a diode on each", "pins": [
             (f"ROW{r0}", f"ROW{r0}"), (f"ROW{r0 + 1}", f"ROW{r0 + 1}")] + [(f"COL{c}", f"COL{c}") for c in range(6)]}]
         for name, sig in toggles:
             devs.append({"name": name.upper(), "sub": "guarded, 2 pin", "pins": [("pin 1", sig), ("pin 2", "GND")]})
+        if port == "LS":
+            devs.append({"name": "SWITCH PANEL EXPANDER", "sub": "MCP23017, behind the panel", "pins": [
+                ("SDA", "EXP_SDA"), ("SCL", "EXP_SCL"), ("INT (INTA)", "EXP_INT"), ("VCC", "3V3"), ("GND", "GND")]})
         pix = [("DIN  (first pixel)", "PIXEL_IN")]
         if pix_out:
             pix.append(("DOUT (last pixel)", "PIXEL_OUT"))
         pix += [("5V", "5V"), ("GND", "GND")]
-        devs.append({"name": "12 PIXELS", "sub": "one chain through the strip", "pins": pix})
+        devs.append({"name": "12 PIXELS" if port == "LS" else "21 PIXELS", "sub":
+                     "one chain through the strip" if port == "LS" else "12 key pixels + 9 annunciator", "pins": pix})
         note = ("Each key's diode: anode to its column, cathode to its row. Series resistor 330–470 Ω in the data "
-                "line at the first pixel. ") if port == "LS" else (
-            "Spare toggle 2 has a conductor but no Teensy pin yet. Each key's diode: anode to its column, cathode to its row.")
+                "line at the first pixel. The 16 switch-panel inputs wire locally to the expander, see the next diagram.") if port == "LS" else (
+            "Each key's diode: anode to its column, cathode to its row. The 9 annunciator pixels follow the 12 key pixels in the chain.")
         out.append((label, figure(harness(label.upper(), port, devs, note),
                                   f"{label}: the key matrix ({rows}), two toggles and 12 pixels.")))
     return out
 
 
+# ---- diagram 4b: the switch panel -------------------------------------------------------------------
+SWITCHES = ["ABORT (guarded toggle)", "STAGE ARM (guarded toggle)", "STAGE (big button)", "THROTTLE FULL",
+            "THROTTLE CUT", "MAP", "FOCUS PREVIOUS", "FOCUS NEXT", "QUICKSAVE", "QUICKLOAD", "PRECISION",
+            "PAUSE", "UI HIDE", "SPARE 1", "SPARE 2", "SPARE 3"]
+
+
+def d_switch_panel():
+    pins = [f"PA{i}" for i in range(8)] + [f"PB{i}" for i in range(8)]
+    y0, pitch = 100, 24
+    b = text(60, 30, "SWITCH PANEL · LEFT STRIP", 12, weight=600)
+    b += text(60, 46, "every input on the I²C expander, wired locally", 9.5, "var(--silk-dim)")
+    last = y0 + pitch * 15
+    iy = last + 50
+    box_bottom = iy + 24 * 4 + 22
+    b += (f'<rect x="60" y="62" width="210" height="{box_bottom - 62}" rx="5" fill="var(--pcb)" stroke="var(--pcb-edge)" stroke-width="2"/>')
+    b += text(165, 82, "MCP23017 expander", 11, anchor="middle", weight=600)
+    for k, pn in enumerate(pins):
+        y = y0 + pitch * k
+        b += text(74, y + 4, pn, 10.5, "var(--silk-dim)") + dot(270, y, "white")
+        b += line(270, y, 640, y, "white", 2)
+    b += (f'<rect x="640" y="{y0 - 44}" width="330" height="{pitch * 16 + 48}" rx="5" fill="var(--pcb)" stroke="var(--pcb-edge)" stroke-width="2"/>')
+    b += text(805, y0 - 22, "THE 16 SWITCHES", 11, anchor="middle", weight=600)
+    for k, name in enumerate(SWITCHES):
+        y = y0 + pitch * k
+        b += dot(640, y, "white") + text(654, y + 4, name, 10.5)
+        b += pill(912, y, 46, "GND", "black", size=9.5)
+    for j, (label, sig, tag) in enumerate([("SDA", "EXP_SDA", "DB25 LS 10"), ("SCL", "EXP_SCL", "DB25 LS 11"),
+                                           ("INTA", "EXP_INT", "DB25 LS 12"), ("VCC", "3V3", "DB25 LS 2"),
+                                           ("GND", "GND", "DB25 LS 1, 7, 13")]):
+        y = iy + 24 * j
+        b += text(74, y + 4, label, 10.5, "var(--silk-dim)") + dot(270, y, SIGCOL[sig])
+        b += pill(290, y, 150, "→ " + tag, "grey", size=10)
+    b += text(60, box_bottom + 24, "Other leg of every switch to GND. Pull-ups are inside the expander. Mirror both interrupt ports onto INTA.", 9.5, "var(--silk-dim)")
+    b += text(60, box_bottom + 40, "Address pins as shipped (the Waveshare board answers at 0x27: confirm with a bus scan).", 9.5, "var(--silk-dim)")
+    return figure(svg(1100, box_bottom + 64, "Switch panel: the MCP23017 expander and its 16 inputs", b),
+                  "All sixteen inputs live on one panel and one chip. The expander sits right behind the panel, so only "
+                  "its I&sup2;C lines (SDA, SCL), the interrupt and 3V3 cross the DB25 cable to the Teensy. Fit 4.7 k&Omega; "
+                  "pull-ups on SDA and SCL at the Teensy end. Buttons are MX switches with blank DSA caps; the two guarded "
+                  "toggles and the big STAGE button are separate parts.")
+
+
 # ---- diagram 5: the middle piece -------------------------------------------------------------------------
 def d_middle():
     b = text(60, 30, "STRIP MIDDLE", 12, weight=600) + text(60, 46, "Teensy-side wiring inside the piece", 9.5, "var(--silk-dim)")
-    sigs = ["OLED_SCK", "OLED_MOSI", "OLED_DC", "OLED_RES", "OLED_CS1", "OLED_CS2", "BUZZER", "PIXEL_DATA"]
+    sigs = ["OLED_SCK", "OLED_MOSI", "OLED_DC", "OLED_RES", "OLED_CS1", "OLED_CS2", "BUZZER", "PIXEL_DATA",
+            "EXP_SDA", "EXP_SCL", "EXP_INT"]
     pin_of = {v: k for k, v in TEENSY.items()}
     b += f'<rect x="60" y="56" width="200" height="{len(sigs) * 24 + 24}" rx="5" fill="var(--pcb)" stroke="var(--pcb-edge)" stroke-width="2"/>'
     ty = {}
@@ -367,6 +414,8 @@ def d_middle():
         ("BUZZER MODULE · low-level trigger", [("I/O", "BUZZER"), ("VCC", "3V3"), ("GND", "GND")]),
         ("74AHCT125 LEVEL SHIFTER", [("1A  (input)", "PIXEL_DATA"), ("1OE", "GND"), ("VCC", "5V"), ("GND", "GND"),
                                       ("1Y  → 330 Ω → LS 17", None)]),
+        ("DB25 LS · to the switch panel", [("pin 10  SDA  (4.7 kΩ to 3V3)", "EXP_SDA"), ("pin 11  SCL  (4.7 kΩ to 3V3)", "EXP_SCL"),
+                                            ("pin 12  INT", "EXP_INT"), ("pin 2  3V3", "3V3")]),
     ]
     dx, y, k, ypos = 720, 56, 0, []
     for name, pins in devs:
@@ -393,27 +442,28 @@ def d_middle():
 
 # ---- diagram 6: power -------------------------------------------------------------------------------------
 def d_power():
-    b = pill(40, 50, 170, "5 V 4 A wall adapter", "orange") + line(210, 50, 270, 50, "orange", 4)
-    b += pill(270, 50, 150, "DC jack, 12 mm", "orange") + line(420, 50, 470, 50, "orange", 4)
-    b += pill(470, 50, 90, "fuse", "orange") + line(560, 50, 620, 50, "orange", 4)
-    b += box(620, 18, 190, 64, "5 V RAIL", "1000 µF across it")
-    b += text(860, 106, "everything below is fed from the rail", 10.5, "var(--silk-dim)")
+    b = pill(20, 50, 170, "5 V 4 A wall adapter", "orange") + line(190, 50, 230, 50, "orange", 4)
+    b += pill(230, 50, 140, "DC jack, 12 mm", "orange") + line(370, 50, 400, 50, "orange", 4)
+    b += pill(400, 50, 130, "master switch", "orange") + line(530, 50, 560, 50, "orange", 4)
+    b += pill(560, 50, 80, "fuse", "orange") + line(640, 50, 690, 50, "orange", 4)
+    b += box(690, 18, 190, 64, "5 V RAIL", "1000 µF across it")
+    b += text(930, 106, "everything below is fed from the rail", 10.5, "var(--silk-dim)")
     outs = [("Left strip pixels", "LS 20, 21"), ("Right strip pixels", "RS 20, 21"),
             ("Left wing: fader driver", "LW 20, 21"), ("32 fuel pixels (middle)", "direct, short wire"),
             ("74AHCT125 level shifter", "direct")]
     for i, (n, t) in enumerate(outs):
         y = 130 + i * 40
-        b += path([(810, 50), (840, 50), (840, y), (860, y)], "orange") + pill(860, y, 190, n, "orange", size=10)
-        b += text(1060, y + 4, t, 10, "var(--silk-dim)")
+        b += path([(880, 50), (910, 50), (910, y), (930, y)], "orange") + pill(930, y, 190, n, "orange", size=10)
+        b += text(1130, y + 4, t, 10, "var(--silk-dim)")
     b += text(40, 150, "Teensy: USB only.", 11, "var(--wire-power)")
     b += text(40, 170, "Never connect the 5 V rail to the", 10, "var(--silk-dim)")
     b += text(40, 184, "Teensy's VIN while USB is plugged in.", 10, "var(--silk-dim)")
     b += pill(40, 230, 46, "GND", "black") + text(96, 234, "one ground, shared by the adapter, the Teensy and every piece", 10, "var(--silk-dim)")
-    b += pill(40, 262, 46, "3V3", "red") + text(96, 266, "from the Teensy only: pots, buzzer module and OLEDs", 10, "var(--silk-dim)")
-    return figure(svg(1200, 330, "Power: adapter, jack, fuse and rail, feeding the pixels, level shifter and fader driver", b),
+    b += pill(40, 262, 46, "3V3", "red") + text(96, 266, "from the Teensy only: pots, buzzer module, OLEDs and the expander", 10, "var(--silk-dim)")
+    return figure(svg(1300, 330, "Power: adapter, jack, master switch, fuse and rail, feeding the pixels, level shifter and fader driver", b),
                   "The Teensy takes power over USB; the 5 V adapter feeds only the pixels, the level shifter and the fader "
-                  "driver, with its ground joined to the Teensy's. Size the fuse just above the capped load (about 3&ndash;4 A) "
-                  "and cap brightness in firmware.")
+                  "driver, with its ground joined to the Teensy's. The master switch cuts the 5 V rail only, so the Teensy and the "
+                  "expander stay alive. Size the fuse just above the capped load (about 3&ndash;4 A) and cap brightness in firmware.")
 
 
 # ---- tables -------------------------------------------------------------------------------------
@@ -447,7 +497,7 @@ def t_colours():
         ("Encoder A / B", "blue", "A blue, B yellow"), ("Fader PWM A / B", "pink", "A pink, B teal"),
         ("Matrix rows / columns", "green", "rows green, columns blue"), ("Pixel data", "pink", "in and out"),
         ("OLED SCK / MOSI / DC / RES / CS", "yellow", "yellow, blue, grey, teal, green (CS2 purple)"),
-        ("Buzzer I/O", "brown", ""),
+        ("Buzzer I/O", "brown", ""), ("Expander SDA / SCL / INT", "purple", "SDA purple, SCL grey, INT teal"),
     ]
     COLOUR_ROWS = items
     rows = "".join(f"<tr><td>{e(n)}</td><td>{swatch(c)}{c}</td><td class=\"note\">{e(t)}</td></tr>" for n, c, t in items)
@@ -536,7 +586,7 @@ def page():
     p.append("<h2>Inside each piece</h2>")
     for name, fig in d_pieces():
         p.append(f"<h3>{e(name)}</h3>{fig}")
-    p += ["<h3>Strip middle</h3>", d_middle(), "<h2>Power</h2>", d_power(),
+    p += ["<h3>Switch panel</h3>", d_switch_panel(), "<h3>Strip middle</h3>", d_middle(), "<h2>Power</h2>", d_power(),
           "<h2>Wire colours</h2>",
           '<p class="note" style="margin-top:14px;max-width:72ch">The same signal is the same colour at both ends of '
           "its wire. Red is always 3V3, black is always GND, orange is always 5 V. A colour can repeat when the wires "
@@ -548,10 +598,198 @@ def page():
     return "\n".join(p)
 
 
+
+# ---- docs/pin-map.md (generated, so it cannot drift from the diagrams) --------------------------------
+OUTPUTS = {"PIXEL_DATA", "OLED_RES", "OLED_CS1", "OLED_CS2", "OLED_MOSI", "OLED_DC", "OLED_SCK", "BUZZER",
+           "FADER_PWM_A", "FADER_PWM_B", "ROW0", "ROW1", "ROW2", "ROW3"}
+ANALOG_SIGS = {"L_STICK_X", "L_STICK_Y", "L_STICK_Z", "R_STICK_X", "R_STICK_Y", "R_STICK_Z", "FADER_WIPER"}
+
+
+def direction(sig):
+    if sig in OUTPUTS:
+        return "out"
+    if sig in ANALOG_SIGS:
+        return "analog"
+    if sig in ("EXP_SDA", "EXP_SCL"):
+        return "I2C, 4.7 kΩ pull-up to 3V3"
+    if sig == "FADER_TOUCH":
+        return "in (FastTouch)"
+    return "in, pull-up"
+
+
+def piece_of(sig):
+    if sig.startswith("COL"):
+        return "both strips"
+    if sig in ("ROW0", "ROW1"):
+        return "left strip"
+    if sig in ("ROW2", "ROW3"):
+        return "right strip"
+    if sig.startswith("EXP_"):
+        return "left strip, switch panel expander"
+    if sig in MID_DEST:
+        return "middle strip"
+    hits = [k for k, (_, pins) in PORTS.items() if sig in pins.values()]
+    return {"LW": "left wing", "RW": "right wing"}.get(hits[0], "strip") if hits else "?"
+
+
+def pinmap_md():
+    t = ["| Pin | Signal | Direction | Piece |", "|---|---|---|---|"]
+    for pin in sorted(TEENSY):
+        sig = TEENSY[pin]
+        a = f" ({ANALOG[pin]})" if pin in ANALOG else ""
+        t.append(f"| {pin}{a} | {sig} | {direction(sig)} | {piece_of(sig)} |")
+    teensy_table = "\n".join(t)
+    heads = " | ".join(PORTS[k][0].title() for k in PORTS)
+    d = [f"| Pin | {heads} |", "|---|---|---|---|---|"]
+    for pin in range(1, 26):
+        cells = []
+        for k in PORTS:
+            sig = PORTS[k][1].get(pin)
+            cells.append(sig if sig else "open")
+        d.append(f"| {pin} | " + " | ".join(cells) + " |")
+    d.append("| **Conductors** | " + " | ".join(str(len(PORTS[k][1])) for k in PORTS) + " |")
+    db25_table = "\n".join(d)
+    return PINMAP_TEMPLATE.replace("@TEENSY@", teensy_table).replace("@DB25@", db25_table)
+
+
+PINMAP_TEMPLATE = """# Pin map and cabling (draft, five-piece layout)
+
+Teensy 4.1 pin assignment, the cabling between the five pieces, and the four DB25 pinouts. Matches
+`cad/console_mockup_v1.scad`. **This file is generated by `docs/tools/gen_pinout.py`, the same script that draws
+the diagrams in [wiring.md](wiring.md) (renders on GitHub) and [pinout.html](pinout.html) (for a browser).
+Edit the data in the script, not this file.** Draft: nothing is built yet. Context is in `decisions.md` and
+`parts-list.md`.
+
+## Topology
+
+```
+                         LEFT WING                          RIGHT WING
+                         stick, fader, enc                  stick, 2 enc
+                              |  DB25 (19)                       |  DB25 (14)
+                              |                                  |
+   STRIP LEFT  --DB25 (21)--  STRIP MIDDLE  --DB25 (16)--  STRIP RIGHT
+   12 nav keys                Teensy, 2 OLEDs, 32 fuel         12 action-group keys
+   switch panel + expander    pixels, buzzer, master switch,   annunciator
+   12 pixels                  power jack                       21 pixels
+                              (5 V in, fuse, 1000 uF)
+```
+
+- The **middle strip** holds the Teensy, the 5 V input, the 74AHCT125 and the OLEDs and buzzer. It has four DB25
+  jacks, one per outer piece.
+- The **left strip** carries a **switch panel**: 16 inputs on one MCP23017 I2C expander that sits right behind
+  the panel. The inputs wire locally, so only SDA, SCL, the interrupt and 3V3 cross the cable. The inputs are
+  the guarded ABORT and STAGE ARM toggles, a big STAGE button, throttle FULL and CUT, MAP, focus previous and
+  next, quicksave, quickload, precision, pause, UI hide and three spares.
+- The **right strip** carries a 3 x 3 **annunciator**: one pixel behind each of nine windows.
+- The two **wings** sit in front of the outer strip pieces. Their cables to the middle piece have to pass
+  through the strip shell (a hole in the strip's front wall and one in its side wall). That routing is
+  still to be designed in CAD.
+- **Pixels are one chain of 65** on a single data pin: left strip (12 key pixels), then the 32 fuel bars in the
+  middle, then the right strip (12 key pixels and 9 annunciator pixels). The data goes out to the left strip on
+  pin 17, comes back on pin 18, runs through the fuel bars, and leaves for the right strip on pin 17 of that
+  port. Put the 330-470 ohm series resistor at the first pixel (in the left strip). If a strip cable is
+  unplugged, every pixel after it goes dark.
+- **Keys are one 4 x 6 matrix** split across the strips: the left strip carries rows 0-1 and the right
+  strip rows 2-3. Both carry all six column lines, which are paralleled in the middle piece. STAGE is no longer
+  a matrix key: its slot is AG9.
+
+## Constraints that shaped it
+
+- All 3.3 V, none of the pins are 5 V tolerant. Analog inputs must stay at or below 3.3 V.
+- Only header pins 0-41 are used. Pins 42 and up are bottom pads.
+- **Pin 1** is the pixel data output: Serial1 TX, supported by the WS2812Serial library (non-blocking, DMA).
+  It goes to the 74AHCT125 level shifter.
+- **Pins 2 and 3** are the fader PWM pair: both are on timer FlexPWM4.2, so they share one frequency
+  (default 4.482 kHz, changeable with `analogWriteFrequency`).
+- **Pins 18 and 19** are the Teensy's I2C pins (SDA, SCL), used for the switch-panel expander. Fit 4.7 kΩ
+  pull-ups to 3V3 at the Teensy end.
+- **Pin 13** has the on-board LED and is the SPI clock for the OLEDs. **Pin 12** is MISO on SPI0 but is a
+  plain GPIO here (OLED DC), because the OLEDs are write-only.
+- Analog inputs are pins 14-27 and 38-41; the seven used are 14-17 and 20-22.
+- The 3.3 V regulator is good for about 250 mA external. The pots and the expander draw almost nothing.
+- The matrix is read by driving a row low and reading the columns with pull-ups. **Leave the other rows
+  as inputs (high impedance), never driven high**, so a stray short cannot fight a driven pin.
+
+## Teensy 4.1 assignment
+
+@TEENSY@
+
+All 42 header pins are used. Any further switch goes on the expander (16 inputs, all assigned including 3
+spares) or a second MCP23017 at another address.
+
+## Switch-panel expander
+
+MCP23017, address pins as shipped (the Waveshare board answers at 0x27, to be confirmed with a bus scan). Mirror
+both interrupt ports onto INTA. Internal pull-ups on, the other leg of every switch to GND.
+
+| Expander pin | Input |
+|---|---|
+| PA0 | ABORT (guarded toggle) |
+| PA1 | STAGE ARM (guarded toggle) |
+| PA2 | STAGE (big button) |
+| PA3 | THROTTLE FULL |
+| PA4 | THROTTLE CUT |
+| PA5 | MAP |
+| PA6 | FOCUS PREVIOUS |
+| PA7 | FOCUS NEXT |
+| PB0 | QUICKSAVE |
+| PB1 | QUICKLOAD |
+| PB2 | PRECISION |
+| PB3 | PAUSE |
+| PB4 | UI HIDE |
+| PB5-PB7 | spare |
+
+MAP, quicksave, quickload and the rest go to the game as key presses through Simpit's keyboard emulator
+(Windows only). FULL and CUT drive the throttle, and the motorised fader follows through the throttle command
+Simpit sends back.
+
+## DB25 pinouts
+
+Standard DB25 numbering, pins 1-13 on the wide row and 14-25 on the other. All four ports use the same
+connector, so a cable can be plugged into the wrong port. The pins are laid out so that is **harmless**:
+
+- Ground is on pins 1, 7, 13, 24, 25 on every port.
+- 3.3 V (pin 2) is provided on the two wing ports and the left-strip port. 5 V (pins 20, 21) is provided on the
+  left-wing and both strip ports.
+- Everything the Teensy **drives** sits on pins 15-23 only: matrix rows and pixel data on pins 15-17 of the
+  strip ports, fader PWM on pins 22 and 23 of the left-wing port. Pins that are not used by a module are left
+  open, never wired to something else. So a module never connects a switch, a wiper or a ground to a pin the
+  Teensy drives.
+- SDA and SCL (pins 10 and 11 of the left-strip port) are weak pulled-up open-drain lines, so a switch pulling
+  them low on another cable only upsets the bus, it cannot damage anything.
+- A script check (all 16 combinations of module and port) found no conflict, only wrong behaviour.
+
+@DB25@
+
+Notes:
+- Analog lines (stick X, Y, twist and the fader wiper) sit between ground pins so they are not neighbours of
+  digital lines. Put a 0.1 uF capacitor from each wiper to ground at the Teensy end.
+- **Cable shield:** ground it to the connector shell at the middle end only, to avoid a ground loop.
+- **Pixel power:** each strip piece takes 5 V on pins 20 and 21 (two conductors, up to about 1.3 A worst case
+  for 21 pixels on the right strip). The 32 fuel-bar pixels are in the middle piece and are fed straight from the
+  5 V rail. A 100 uF capacitor across 5 V in each strip piece is optional.
+- **Left wing:** the L9110H fader driver is in the wing next to the motor, so only the two PWM lines and 5 V
+  cross the cable. Pots take 3V3 on pin 2, never 5 V.
+- **Cables:** the wing cables go through a strip piece, so they are longer (about 0.5 m). The strip-to-middle
+  cables can be about 0.3 m. Keep analog and I2C runs short.
+
+## Open
+
+- **Wing cable routing** through the strip shells (holes, strain relief): to be drawn in CAD.
+- **I2C over the cable:** about 30 cm at 400 kHz with 4.7 kΩ pull-ups should be fine; not tested.
+- **OLED modules:** confirm their logic level and supply. They accept 3.3-5 V, so power them from 5 V, but
+  check the SPI lines are 3.3 V safe in that case. Not verified.
+- **Pixel chain through cables:** a break in the chain (an unplugged strip cable) kills the pixels after it.
+  Fine for a build, worth knowing when debugging.
+- **HIGH G** annunciator window dropped: Simpit has no G-force message.
+- **Confirm the physical Teensy pin positions** before wiring: this map uses pin numbers only.
+- **DB25 jack cutouts** are not in the mockup yet.
+"""
+
 FIG_NAMES = ["overview", "teensy", "db25", "left-wing", "right-wing", "strip-left", "strip-right",
-             "strip-middle", "power"]
+             "switch-panel", "strip-middle", "power"]
 FIG_TITLES = ["The five pieces", "Teensy 4.1", "The four DB25 ports", "Left wing", "Right wing", "Strip left",
-              "Strip right", "Strip middle", "Power"]
+              "Strip right", "Switch panel", "Strip middle", "Power"]
 SVG_VARS = ("--pcb:#123d2e;--pcb-edge:#1f5c45;--silk:#eef1ea;--silk-dim:#8fa097;--wire-power:#d9a35f;"
             "--wire-gnd:#7b8a82;--wire-warn:#e2666a;--c-red:#e5484d;--c-black:#161a18;--c-white:#f4f4f4;"
             "--c-blue:#3b82f6;--c-yellow:#eab308;--c-green:#22c55e;--c-orange:#f97316;--c-brown:#a35a2a;"
@@ -604,4 +842,5 @@ if __name__ == "__main__":
         xml.dom.minidom.parseString(standalone(svg_text))
         open(os.path.join(ddir, name + ".svg"), "w").write(standalone(svg_text))
     open(os.path.join(os.path.dirname(OUT) or ".", "wiring.md"), "w").write(markdown())
+    open(os.path.join(os.path.dirname(OUT) or ".", "pin-map.md"), "w").write(pinmap_md())
     print("wrote", len(FIGS), "svg files and wiring.md")

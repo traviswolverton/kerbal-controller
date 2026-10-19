@@ -44,6 +44,12 @@ Strip left: the key matrix (rows 0 and 1), two toggles and 12 pixels.
 
 Strip right: the key matrix (rows 2 and 3), two toggles and 12 pixels.
 
+## Switch panel
+
+![Switch panel](diagrams/switch-panel.svg)
+
+All sixteen inputs live on one panel and one chip. The expander sits right behind the panel, so only its I&sup2;C lines (SDA, SCL), the interrupt and 3V3 cross the DB25 cable to the Teensy. Fit 4.7 k&Omega; pull-ups on SDA and SCL at the Teensy end. Buttons are MX switches with blank DSA caps; the two guarded toggles and the big STAGE button are separate parts.
+
 ## Strip middle
 
 ![Strip middle](diagrams/strip-middle.svg)
@@ -54,7 +60,7 @@ The two OLEDs share the SPI clock, data, DC and reset lines and have a chip-sele
 
 ![Power](diagrams/power.svg)
 
-The Teensy takes power over USB; the 5 V adapter feeds only the pixels, the level shifter and the fader driver, with its ground joined to the Teensy's. Size the fuse just above the capped load (about 3&ndash;4 A) and cap brightness in firmware.
+The Teensy takes power over USB; the 5 V adapter feeds only the pixels, the level shifter and the fader driver, with its ground joined to the Teensy's. The master switch cuts the 5 V rail only, so the Teensy and the expander stay alive. Size the fuse just above the capped load (about 3&ndash;4 A) and cap brightness in firmware.
 
 ## Wire colours
 
@@ -74,6 +80,7 @@ The same signal is the same colour at both ends of its wire. Red is always 3V3, 
 | Pixel data | pink | in and out |
 | OLED SCK / MOSI / DC / RES / CS | yellow | yellow, blue, grey, teal, green (CS2 purple) |
 | Buzzer I/O | brown |  |
+| Expander SDA / SCL / INT | purple | SDA purple, SCL grey, INT teal |
 
 ## Teensy pins
 
@@ -97,16 +104,16 @@ The same signal is the same colour at both ends of its wire. Red is always 3V3, 
 | 15 (A1) | L_STICK_Y | LW 4 |
 | 16 (A2) | L_STICK_Z | LW 5 |
 | 17 (A3) | FADER_WIPER | LW 6 |
-| 18 | R_CAM_A | RW 9 |
-| 19 | R_CAM_B | RW 10 |
+| 18 | EXP_SDA | LS 10 |
+| 19 | EXP_SCL | LS 11 |
 | 20 (A6) | R_STICK_X | RW 3 |
 | 21 (A7) | R_STICK_Y | RW 4 |
 | 22 (A8) | R_STICK_Z | RW 5 |
 | 23 | R_CAM_SW | RW 11 |
 | 24 | OLED_CS2 | OLED 2 |
 | 25 | BUZZER | buzzer |
-| 26 | TOG_ABORT | LS 10 |
-| 27 | TOG_ARM | LS 11 |
+| 26 | R_CAM_A | RW 9 |
+| 27 | R_CAM_B | RW 10 |
 | 28 | ROW0 | LS 15 |
 | 29 | ROW1 | LS 16 |
 | 30 | ROW2 | RS 15 |
@@ -120,4 +127,4 @@ The same signal is the same colour at both ends of its wire. Red is always 3V3, 
 | 38 | R_PAGE_A | RW 12 |
 | 39 | R_PAGE_B | RW 14 |
 | 40 | R_PAGE_SW | RW 19 |
-| 41 | TOG_SPARE1 | RS 10 |
+| 41 | EXP_INT | LS 12 |

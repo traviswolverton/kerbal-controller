@@ -6,9 +6,9 @@
 //
 //   piece 0  LEFT WING     translation stick, throttle fader, time-warp encoder
 //   piece 1  RIGHT WING    rotation stick, camera and page encoders
-//   piece 2  STRIP LEFT    12 navigation keys, ABORT and STAGE ARM toggles
-//   piece 3  STRIP MIDDLE  2 OLEDs, 4 fuel bars, buzzer, Teensy and power jack inside
-//   piece 4  STRIP RIGHT   12 action-group keys, 2 spare toggles
+//   piece 2  STRIP LEFT    12 navigation keys + the SWITCH PANEL (everything on the I2C expander)
+//   piece 3  STRIP MIDDLE  2 OLEDs, 4 fuel bars, buzzer, master power, Teensy and power jack inside
+//   piece 4  STRIP RIGHT   12 action-group keys + the ANNUNCIATOR (9 pixel windows)
 //
 // Panel coordinates: u across the piece from its left edge, v away from you along the slope from
 // its front edge, both in mm. Every piece fits a 256 mm print bed.
@@ -22,8 +22,8 @@ mod  = -1;         // 3D: -1 = all pieces; flat: 0..4
 
 // ---- the five pieces --------------------------------------------------
 names   = ["LEFT WING", "RIGHT WING", "STRIP LEFT", "STRIP MIDDLE", "STRIP RIGHT"];
-W       = [220, 220, 220, 240, 220];      // width of each piece
-x_off   = [0, 460, 0, 220, 460];          // left edge, across the console
+W       = [220, 220, 240, 240, 220];      // width of each piece
+x_off   = [0, 480, 0, 240, 480];          // left edge, across the console
 y_off   = [0, 0, 176, 176, 176];          // front edge, away from you (strip starts where the wings end)
 tilt_m  = [12, 12, 28, 28, 28];           // panel tilt toward you, degrees
 fh_m    = [30, 30, 65, 65, 65];           // height of the front edge above the desk
@@ -59,15 +59,25 @@ key_u0 = 12;  key_v0 = 30;
 key_lbl_l = [["STAB","PRO","RETRO","NORM","A-NRM","MNVR"],
              ["RAD-IN","RAD-OUT","TGT","A-TGT","SAS","RCS"]];        // row 0 = back row
 key_lbl_r = [["GEAR","LIGHT","BRAKE","AG1","AG2","AG3"],
-             ["AG4","AG5","AG6","AG7","AG8","STAGE"]];
+             ["AG4","AG5","AG6","AG7","AG8","AG9"]];
 function key_u(c) = key_u0 + 9.525 + c * pitch_c;
 function key_v(r) = key_v0 + (1 - r) * pitch_r + 9.525;
-tog_l = [[175, 35], [175, 100]];  tog_l_lbl = ["ABORT", "STAGE ARM"];
-tog_r = [[175, 35], [175, 100]];  tog_r_lbl = ["SPARE", "SPARE"];
+// switch panel (strip left): every input here goes to the MCP23017 expander sitting behind it
+sw_tog   = [[163, 122], [163, 100]];  sw_tog_lbl = ["ABORT", "STAGE ARM"];   // guarded toggles, cover lies along u
+sw_stage = [208, 111];                                                       // big STAGE button, 28 mm hole
+sw_cols  = [150, 169.05, 188.1, 207.15];  sw_rows = [14, 35.3, 56.6, 77.9];  // MX button grid, rows front to back
+sw_lbl   = ["FULL","CUT","PRECISION","PAUSE", "MAP","FOCUS-","FOCUS+","UI",
+            "QSAVE","QLOAD","SPARE","SPARE", "SPARE"];                       // 13 buttons, filled from the back row
+function sw_pos(k) = [sw_cols[k % 4], sw_rows[3 - floor(k / 4)]];
+// annunciator (strip right): one pixel behind each 24 x 12 mm window
+ann_cols = [150, 176, 202];  ann_rows = [88, 72, 56];
+ann_lbl  = ["LOW FUEL","LOW POWER","OVERHEAT", "LOW ALT","STABLE ORBIT","ATMOSPHERE", "CHUTE SAFE","LINK","SPARE"];
+function ann_pos(k) = [ann_cols[k % 3], ann_rows[floor(k / 3)]];
 oled_pos = [[50, 100], [120, 100]];                  // 58 x 31 windows
 bar_u = [175, 189, 203, 217];  bar_v0 = 20;  bar_pitch = 11.5;   // 4 fuel bars of 8
 bar_lbl = ["LF", "OX", "MONO", "EC"];
 buzzer = [30, 45];
+master = [100, 45];      // master 5 V power switch
 
 // ---- placement --------------------------------------------------------
 function T()  = tilt_m[$m];
@@ -109,14 +119,17 @@ module cuts(i) {
         for (p = enc_r) place(p[0], p[1]) hole_round(7);
     } else if (i == 2) {
         key_cuts(key_lbl_l);
-        for (p = tog_l) place(p[0], p[1]) hole_round(12.2);
+        for (p = sw_tog) place(p[0], p[1]) hole_round(12.2);
+        place(sw_stage[0], sw_stage[1]) hole_round(28);
+        for (k = [0 : len(sw_lbl) - 1]) place(sw_pos(k)[0], sw_pos(k)[1]) hole_rect(cut_mx, cut_mx);
     } else if (i == 3) {
         for (p = oled_pos) place(p[0], p[1]) hole_rect(58, 31);
         for (u = bar_u, k = [0 : 7]) place(u, bar_v0 + k * bar_pitch) hole_round(window_d);
         place(buzzer[0], buzzer[1]) hole_round(12);
+        place(master[0], master[1]) hole_round(12.2);
     } else {
         key_cuts(key_lbl_r);
-        for (p = tog_r) place(p[0], p[1]) hole_round(12.2);
+        for (k = [0 : 8]) place(ann_pos(k)[0], ann_pos(k)[1]) hole_rect(24, 12);
     }
 }
 
@@ -136,6 +149,8 @@ module key_proxy() {
     color("#222") translate([-7.8, -7.8, 0]) cube([15.6, 15.6, 5]);
     color("#e6e6e6") translate([-9, -9, 5.5]) cube([18, 18, 8]);
 }
+module guard_proxy() { toggle_proxy(); color([0.85, 0.1, 0.1, 0.55]) translate([-23.5, -8.5, 0]) cube([47, 17, 14]); }
+module stage_proxy() color("#d22") cylinder(d = 32, h = 14, $fn = 48);
 module glow(c = "#3c3") color(c) translate([0, 0, -0.2]) cylinder(d = window_d - 0.4, h = 0.6, $fn = 24);
 module key_proxies(blue = false) {
     for (r = [0 : 1], c = [0 : 5]) {
@@ -154,7 +169,9 @@ module proxies(i) {
         for (p = enc_r) place(p[0], p[1]) encoder_proxy();
     } else if (i == 2) {
         key_proxies(true);
-        for (p = tog_l) place(p[0], p[1]) toggle_proxy();
+        for (p = sw_tog) place(p[0], p[1]) guard_proxy();
+        place(sw_stage[0], sw_stage[1]) stage_proxy();
+        for (k = [0 : len(sw_lbl) - 1]) place(sw_pos(k)[0], sw_pos(k)[1]) key_proxy();
     } else if (i == 3) {
         for (p = oled_pos) {
             place(p[0], p[1]) color("#112244") translate([-29, -15.5, -0.1]) cube([58, 31, 0.4]);
@@ -165,9 +182,11 @@ module proxies(i) {
         }
         for (b = [0 : 3], k = [0 : 7])
             place(bar_u[b], bar_v0 + k * bar_pitch) glow(k < 6 - b ? (b == 3 ? "#fc0" : "#3c3") : "#555");
+        place(master[0], master[1]) toggle_proxy();
     } else {
         key_proxies(false);
-        for (p = tog_r) place(p[0], p[1]) toggle_proxy();
+        for (k = [0 : 8]) place(ann_pos(k)[0], ann_pos(k)[1])
+            color(k == 0 ? "#fa0" : k == 3 ? "#e33" : k == 7 ? "#3c3" : "#3a2d12") translate([-12, -6, -0.3]) cube([24, 12, 0.6]);
     }
 }
 
