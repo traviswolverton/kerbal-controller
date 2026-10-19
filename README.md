@@ -42,7 +42,8 @@ To rebuild images, install OpenSCAD and run `cad/build_mockup.sh` (v0) or the re
 
 ## Sourcing
 
-Parts come from US retailers only, preferably Amazon.com. See `CLAUDE.md`.
+Parts come from US retailers only. Digi-Key is the primary source for selection (`docs/tools/dk.py`, which uses the Digi-Key
+API and needs a free developer account, see `docs/tools/README.md`); Amazon.com covers what Digi-Key does not carry. See `CLAUDE.md`.
 
 ## Inspiration
 
