@@ -1,7 +1,8 @@
 # Kerbal controller
 
 KSP1 controller built around KerbalSimpitRevamped. Settled decisions and open items are in
-`docs/design/decisions.md`; the mockup is described in `docs/archive/v0-mockup/README.md`.
+`docs/design/decisions.md`; the mockup is described in `hardware/mockup/README.md`. Layout: `hardware/` (CAD, electronics,
+sourcing), `firmware/` (PlatformIO code for the Teensy), `docs/` (decisions, control map, to-do, the Pages site) and `tools/` (scripts).
 
 ## Sourcing parts
 
@@ -9,7 +10,7 @@ KSP1 controller built around KerbalSimpitRevamped. Settled decisions and open it
   within the United States (Amazon.com, Adafruit, SparkFun, Digi-Key, Mouser, PJRC and similar). Do not
   search regional stores outside the US (.au, .uk, .ae, .eu and so on) and do not cite them as sources.
   Pass `allowed_domains` to web searches where it helps.
-- **Use the APIs first.** For parts selection use `docs/tools/parts.py` (see `docs/tools/README.md`). It searches Digi-Key
+- **Use the APIs first.** For parts selection use `tools/parts.py` (see `tools/README.md`). It searches Digi-Key
   (primary: richer data) and Mouser through their APIs and gives live US price, stock, lifecycle status and datasheets, which
   is more reliable than a retail page. Credentials live in a git-ignored `.env`. If they are missing, say so instead of
   guessing. Fall back to Amazon.com for what the distributors do not carry (consumer modules, multi-packs), and say when a

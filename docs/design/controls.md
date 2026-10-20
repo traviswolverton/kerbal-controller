@@ -1,7 +1,7 @@
 # Control map
 
-What every control does, panel by panel, so you can read it instead of asking. Labels match `cad/console_mockup_v1.scad`;
-pins and conductors are in [pin-map.md](../wiring/pin-map.md). **Status:** *decided* is in `design/decisions.md`; *proposed* is my reading of
+What every control does, panel by panel, so you can read it instead of asking. Labels match `hardware/cad/console.scad`;
+pins and conductors are in [pin-map.md](../../hardware/electronics/wiring/pin-map.md). **Status:** *decided* is in `design/decisions.md`; *proposed* is my reading of
 the label and not yet settled; *open* means no function chosen. KSP actions go through
 [KerbalSimpitRevamped](https://github.com/Simpit-team/KerbalSimpitRevamped). Nothing here is built or tested.
 
