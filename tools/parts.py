@@ -17,6 +17,7 @@ unless you pass --source.
 import argparse
 import datetime
 import json
+import urllib.parse
 import sys
 from pathlib import Path
 
@@ -182,7 +183,8 @@ def budget_summary(shortlist, amazon):
     owned = [a for a in amazon if a.get("status") == "owned"]
     priced = [a for a in buy if a.get("unit_price") is not None]
     am_total = sum(a["qty"] * a["unit_price"] for a in priced)
-    return {"dk": dk, "dk_total": dk_total, "buy": buy, "owned": owned, "unpriced": [a for a in buy if a.get("unit_price") is None],
+    urls = {p_["pn"]: urllib.parse.quote(p_.get("url", ""), safe=":/?=&%#") for p_ in shortlist}   # e.g. Würth has a non-ASCII slug
+    return {"dk": dk, "urls": urls, "dk_total": dk_total, "buy": buy, "owned": owned, "unpriced": [a for a in buy if a.get("unit_price") is None],
             "am_total": am_total, "owned_total": sum(a["qty"] * a["unit_price"] for a in owned if a.get("unit_price") is not None),
             "grand": dk_total + am_total}
 
@@ -220,7 +222,8 @@ def cmd_budget(a):
     lines += ["", "## Digi-Key and Mouser", "", "See [parts-bom.md](parts-bom.md) for the per-line list with stock and flags.", "",
               "| Role | Source | Part number | Qty | Unit | Extended |", "|---|---|---|---|---|---|"]
     for role, q, u, src, pn in b["dk"]:
-        lines.append(f"| {role} | {src} | {pn} | {q} | {money(u)} | {money(u * q) if u is not None else '-'} |")
+        link = f"[{pn}]({b['urls'][pn]})" if b["urls"].get(pn) else pn
+        lines.append(f"| {role} | {src} | {link} | {q} | {money(u)} | {money(u * q) if u is not None else '-'} |")
     lines += ["", "## Not counted at all", "", "Solder and flux, cable clips and zip ties, M3 screws and standoffs, silicone feet, filament (2 to 3 kg), "
               "mains-side extras, the stick and encoder connectors, and shipping and tax.", ""]
     text = "\n".join(lines)
