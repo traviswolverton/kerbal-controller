@@ -212,10 +212,13 @@ This file records what has been settled and what is still open.
   module and port pairs found no conflict.
 - **DB25 cutout (from the ITT Cannon ZD datasheet, rear mount):** 42.52 x 11.40 mm, with two 3.05 mm mounting holes
   47.04 mm apart (modelled 3.2 mm). The flange is 53.09 mm wide.
-- **Provisional cutouts (orange in the mockup, sizes NOT verified):** DC jack 11 mm, fuse holder 12.5 mm and USB micro-B
-  (15 x 8 mm slot with two 2.5 mm holes), in the middle strip's back wall between the DB25 columns. They only hold the place
-  until the parts arrive and are measured.
-- **Open:** cable management behind the console, and the real sizes of those three cutouts.
+- **DC jack and fuse holder cutouts (from the datasheets, read 2026-10-20):** the Tensility 54-00151 needs a 10.9 mm hole with
+  two flats 9.8 mm apart (panel 1.5 to 4.5 mm); the Wurth fuse holder needs a 13 mm hole with a 1.8 mm key out to 14 mm
+  (panel 0.8 to 2.8 mm). Both sit in the middle strip's back wall (2.4 mm), so the thickness limits are met. Datasheet values,
+  not yet checked on the parts.
+- **Provisional cutout (orange in the mockup, size NOT verified):** the USB micro-B extension (15 x 8 mm slot with two 2.5 mm
+  holes). SparkFun's drawing gives only the 26 mm body length, no panel cutout, so measure the part.
+- **Open:** cable management behind the console, and the USB extension's cutout.
 
 ## 5 V power (chosen, not yet ordered)
 - **Supply:** Mean Well GST25A05-P1J (Digi-Key 1866-2087-ND, $14.30): 5 V, 4 A max, 20 W, positive centre, 2.1 x 5.5 mm plug,

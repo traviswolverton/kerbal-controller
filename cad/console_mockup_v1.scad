@@ -90,8 +90,8 @@ strip_jack  = [[122.5, 40], [0, 0], [122.5, 40]];   // strip left / (unused) / s
 wing_jack   = [118, 24];                          // wing outer end wall: [y, z]
 
 // ---- PROVISIONAL rear-wall cutouts on the middle strip: the part sizes are NOT verified, these only hold the place ----
-dc_jack_cut = [122.5, 100, 11];     // x, z, hole diameter. Tensility 54-00151: datasheet is an image, cutout unknown
-fuse_cut    = [122.5, 70, 12.5];    // x, z, hole diameter. Wurth 952005000010000: hole unknown
+dc_jack_cut = [122.5, 100, 10.9, 9.8]; // x, z, round diameter, flat-to-flat. Tensility 54-00151 datasheet: panel 1.5-4.5 mm, cutout 10.9 round with two 9.8 flats
+fuse_cut    = [122.5, 70, 13, 14, 1.8]; // x, z, round diameter, width to key end, key width. Wurth 952005000010000 datasheet: panel 0.8-2.8 mm
 usb_cut     = [122.5, 40];          // x, z: 15 x 8 slot and two 2.5 mm screw holes 22 mm apart. SparkFun 15464: unknown
 master = [100, 45];      // master 5 V power switch
 
@@ -219,7 +219,12 @@ module db25_side_cut(y, z, xw, dir) {   // on a vertical end wall at x = xw; dir
     translate([xs, y - db25_cut[0] / 2, z - db25_cut[1] / 2]) cube([wall + 2, db25_cut[0], db25_cut[1]]);
     for (s = [-1, 1]) translate([xs, y + s * db25_pitch / 2, z]) rotate([0, 90, 0]) cylinder(d = db25_hole, h = wall + 2, $fn = 24);
 }
-module prov_back_round(x, z, d, yb) translate([x, yb - wall - 1, z]) rotate([-90, 0, 0]) cylinder(d = d, h = wall + 2, $fn = 40);
+module back_dflat(x, z, d, flat, yb) translate([x, yb - wall - 1, z]) rotate([-90, 0, 0])
+    intersection() { cylinder(d = d, h = wall + 2, $fn = 48); translate([-d, -flat / 2, -1]) cube([2 * d, flat, wall + 4]); }
+module back_keyed(x, z, d, wide, key, yb) translate([x, yb - wall - 1, z]) rotate([-90, 0, 0]) {
+    cylinder(d = d, h = wall + 2, $fn = 48);
+    translate([0, -key / 2, 0]) cube([wide - d / 2, key, wall + 2]);   // keyway out to the 14 mm width, measured from the hole's far edge
+}
 module prov_back_usb(x, z, yb) {
     translate([x - 7.5, yb - wall - 1, z - 4]) cube([15, wall + 2, 8]);
     for (s = [-1, 1]) translate([x + s * 11, yb - wall - 1, z]) rotate([-90, 0, 0]) cylinder(d = 2.5, h = wall + 2, $fn = 20);
@@ -230,8 +235,8 @@ module wall_cuts(i) {
     else if (i == 1) db25_side_cut(wing_jack[0], wing_jack[1], W[1], 1);          // right wing: right end wall
     else if (i == 3) {
         for (j = mid_jacks) db25_back_cut(j[0], j[1], yb);
-        prov_back_round(dc_jack_cut[0], dc_jack_cut[1], dc_jack_cut[2], yb);
-        prov_back_round(fuse_cut[0], fuse_cut[1], fuse_cut[2], yb);
+        back_dflat(dc_jack_cut[0], dc_jack_cut[1], dc_jack_cut[2], dc_jack_cut[3], yb);
+        back_keyed(fuse_cut[0], fuse_cut[1], fuse_cut[2], fuse_cut[3], fuse_cut[4], yb);
         prov_back_usb(usb_cut[0], usb_cut[1], yb);
     }
     else db25_back_cut(strip_jack[i - 2][0], strip_jack[i - 2][1], yb);
@@ -246,11 +251,12 @@ module jack_proxies(i) {
     yb = DD() * cos(T());
     if (i == 3) {
         for (j = mid_jacks) translate([j[0], yb - wall - 1.2, j[1]]) jack3d(true);
-        color("#e8a33d") {      // PROVISIONAL parts, orange so they read as placeholders
-            translate([dc_jack_cut[0], yb - 1, dc_jack_cut[1]]) rotate([-90, 0, 0]) cylinder(d = dc_jack_cut[2] + 4, h = 9, $fn = 40);
-            translate([fuse_cut[0], yb - 1, fuse_cut[1]]) rotate([-90, 0, 0]) cylinder(d = fuse_cut[2] + 4, h = 18, $fn = 40);
-            translate([usb_cut[0] - 9, yb - 1, usb_cut[1] - 5]) cube([18, 8, 10]);
+        color("#c4c4c4") {      // cutouts from the datasheets; the bodies are simple proxies (13 mm nut, 16 mm fuse cap)
+            translate([dc_jack_cut[0], yb - 1, dc_jack_cut[1]]) rotate([-90, 0, 0]) cylinder(d = 13, h = 5, $fn = 6);
+            translate([fuse_cut[0], yb - 1, fuse_cut[1]]) rotate([-90, 0, 0]) cylinder(d = 16, h = 10, $fn = 40);
         }
+        color("#e8a33d")        // PROVISIONAL, orange: the USB extension's datasheet gives no cutout
+            translate([usb_cut[0] - 9, yb - 1, usb_cut[1] - 5]) cube([18, 8, 10]);
     }
     else if (i >= 2) translate([strip_jack[i - 2][0], yb - wall - 1.2, strip_jack[i - 2][1]]) jack3d(false);
     else if (i == 0) translate([wall + 1.2, wing_jack[0], wing_jack[1]]) rotate([0, 0, 90]) jack3d(false);

@@ -18,8 +18,8 @@ from [electronics-build.md](electronics-build.md), 36 lines and $328.54 in all. 
 | Teensy 4.1, headers fitted (SparkFun 20360) | 1 | 1568-20360-ND | $33.60 | 3.3 V pins, not 5 V tolerant. No `touchRead()` on 4.x. 16771 is the same board without headers, $31.50. |
 | 5 V 4 A desktop adapter, Mean Well GST25A05-P1J | 1 | 1866-2087-ND | $14.30 | Positive centre, 2.1 x 5.5 mm plug, 1 m lead, cULus. IEC C14 inlet, **cord sold separately**. |
 | Mains cord, NEMA 5-15 to IEC C13 | 1 | 839-11-00022-ND | $4.37 | For the adapter. |
-| Panel DC jack 5.5 x 2.1 mm, Tensility 54-00151 | 1 | 839-54-00151-ND | $4.81 | 7.5 A, solder cup, rear nut. **Panel cutout not verified** (the datasheet is an image): check it before cutting. |
-| Panel fuse holder 5 x 20 mm, Würth | 1 | 732-952005000010000-ND | $2.15 | On the 5 V rail. Panel hole not checked. |
+| Panel DC jack 5.5 x 2.1 mm, Tensility 54-00151 | 1 | 839-54-00151-ND | $4.81 | 7.5 A, solder cup, rear nut. **Panel cutout (datasheet, read 2026-10-20):** 10.9 mm round with two flats 9.8 mm apart, panel 1.5 to 4.5 mm, M11 nut. |
+| Panel fuse holder 5 x 20 mm, Würth | 1 | 732-952005000010000-ND | $2.15 | On the 5 V rail. **Panel hole (datasheet, read 2026-10-20):** 13 mm round with a 1.8 mm key out to 14 mm, panel 0.8 to 2.8 mm. |
 | Fuse 4 A 5 x 20 mm, Littelfuse | 2 | F1724-ND | $0.57 | One spare. Rated for AC; fine at 5 V DC. |
 | STAGE key switch, E-Switch KO133A801 | 1 | EG5876-ND | $7.07 | 2-position SPST, **12 mm cutout**, key removable in position 1 only. Confirm in the datasheet that position 1 is OFF. |
 | Big STAGE button, Adafruit 3489 arcade, red LED | 1 | 1528-2316-ND | $2.50 | **30 mm cutout**, 5 V LED, 2.8 mm quick-connect tabs. LED wiring is open (always on, or driven later). |

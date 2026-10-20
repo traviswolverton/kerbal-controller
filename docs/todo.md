@@ -20,8 +20,8 @@ Compiled from the design session on 2026-10-20. Check items off as you go. Where
 ## 2. When the parts arrive: measure and bench-test
 
 - [ ] **Joysticks**: measure the flange, mounting hole spacing and diameter, and cutout depth; find the pin order. Replace the provisional 52 x 42 mm cutout.
-- [ ] **Panel jack, fuse holder, USB extension**: measure real cutouts and replace the three orange placeholders in `cad/console_mockup_v1.scad`
-  (the jack's datasheet is an image, so its cutout was never verified).
+- [ ] **USB extension**: measure the real cutout and replace the orange placeholder in `cad/console_mockup_v1.scad` (the datasheet has no cutout).
+  The DC jack and fuse holder cutouts now come from their datasheets; check them against the real parts.
 - [ ] **Fader**: confirm the dimensions I read from a scanned drawing (face about 146.5 x 17.2 mm, M3 holes 120 mm apart, 26 mm deep).
 - [ ] **Encoders**: check the bushing diameter and thread against the 7 mm hole; the sources disagree on M7 x 0.75 vs 0.5.
 - [ ] **Pixel boards**: measure the diameter and height with calipers; set `pixel_d` and `pixel_h` in `cad/test_plate.scad`.

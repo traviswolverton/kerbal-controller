@@ -49,7 +49,7 @@ The printed pieces plus parts weigh only about 3 kg, which a hand on the throttl
 - Hold-down for the steel plates (a printed strap with two screws, or corner ribs).
 - Faceplate screw bosses and the rebate lip.
 - Joints and alignment between pieces.
-- Cable management behind the console. The DC jack, fuse holder and USB cutouts are provisional placeholders until the parts are measured.
+- Cable management behind the console. The DC jack and fuse holder cutouts come from their datasheets; only the USB extension's cutout is still a provisional placeholder.
 - DB25 jacks are modelled: cutouts 42.52 x 11.40 mm with two mounting holes, on each wing's outer end wall and the strips' back walls.
 - Internal mounts: the fader, stick, encoders, OLEDs, Teensy and DC jack.
 
