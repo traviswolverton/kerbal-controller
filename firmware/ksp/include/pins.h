@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 namespace pin {
-constexpr uint8_t OLED_RES    = 0;
+constexpr uint8_t TFT_RES     = 0;
 constexpr uint8_t PIXEL_DATA  = 1;
 constexpr uint8_t FADER_PWM_A = 2;
 constexpr uint8_t FADER_PWM_B = 3;
@@ -14,10 +14,10 @@ constexpr uint8_t L_ENC_A     = 6;
 constexpr uint8_t L_ENC_B     = 7;
 constexpr uint8_t L_ENC_SW    = 8;
 constexpr uint8_t R_STICK_BTN = 9;
-constexpr uint8_t OLED_CS1    = 10;
-constexpr uint8_t OLED_MOSI   = 11;
-constexpr uint8_t OLED_DC     = 12;
-constexpr uint8_t OLED_SCK    = 13;
+constexpr uint8_t TFT_CS1     = 10;
+constexpr uint8_t TFT_MOSI    = 11;
+constexpr uint8_t TFT_DC      = 12;
+constexpr uint8_t TFT_SCK     = 13;
 constexpr uint8_t L_STICK_X   = 14;  // A0
 constexpr uint8_t L_STICK_Y   = 15;  // A1
 constexpr uint8_t L_STICK_Z   = 16;  // A2
@@ -28,7 +28,7 @@ constexpr uint8_t R_STICK_X   = 20;  // A6
 constexpr uint8_t R_STICK_Y   = 21;  // A7
 constexpr uint8_t R_STICK_Z   = 22;  // A8
 constexpr uint8_t R_CAM_SW    = 23;
-constexpr uint8_t OLED_CS2    = 24;
+constexpr uint8_t TFT_CS2     = 24;
 constexpr uint8_t BUZZER      = 25;
 constexpr uint8_t R_CAM_A     = 26;
 constexpr uint8_t R_CAM_B     = 27;

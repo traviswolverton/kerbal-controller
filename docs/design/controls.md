@@ -48,7 +48,7 @@ works on Windows only.
 
 | Control | What it does |
 |---|---|
-| Two OLEDs | Telemetry pages, chosen with the display-page encoder. *Open:* the page contents are not decided (the reference build showed Surface, Orbital, Vessel and Mission) |
+| Two TFT displays (3.5", colour) | Telemetry pages, chosen with the display-page encoder. *Open:* the page contents are not decided (the reference build showed Surface, Orbital, Vessel and Mission) |
 | Four fuel bars of 8 pixels | LF, OX, MONO and EC levels, from the resource messages (need the Alternate Resource Panel mod) |
 | Buzzer | Audible alerts. *Open:* which events sound it |
 | Master power switch (guarded toggle) | Cuts the 5 V rail (pixels, level shifter, fader driver). The Teensy stays on USB. The cover stops it being bumped |
@@ -92,7 +92,7 @@ CONTROLS lights while ENGAGE is on. There is no HIGH G window: Simpit has no G-f
 | Stick | Rotation: pitch and yaw with the stick, roll with the twist |
 | Stick grip button | **SAS toggle.** *Decided.* Teensy pin 9 |
 | Camera encoder | Camera rotation (turn). *Open:* the push function (suggest camera mode) |
-| Display-page encoder | Chooses the OLED page (turn). *Open:* the push function |
+| Display-page encoder | Chooses the display page (turn). *Open:* the push function |
 
 ## What is not on the console
 

@@ -7,7 +7,7 @@
 //   piece 0  LEFT WING     translation stick, throttle fader, time-warp encoder
 //   piece 1  RIGHT WING    rotation stick, camera and page encoders
 //   piece 2  STRIP LEFT    12 navigation keys + the SWITCH PANEL (everything on the I2C expander, incl. the STAGE key switch and ENGAGE toggle)
-//   piece 3  STRIP MIDDLE  2 OLEDs, 4 fuel bars, buzzer, guarded master power switch, Teensy and power jack inside
+//   piece 3  STRIP MIDDLE  2 TFT displays, 4 fuel bars, buzzer, guarded master power switch, Teensy and power jack inside
 //   piece 4  STRIP RIGHT   12 action-group keys + the ANNUNCIATOR (9 pixel windows)
 //
 // Panel coordinates: u across the piece from its left edge, v away from you along the slope from
@@ -75,10 +75,13 @@ function sw_pos(k) = [sw_cols[k % 4], sw_rows[2 - floor(k / 4)]];
 ann_cols = [150, 176, 202];  ann_rows = [88, 72, 56];
 ann_lbl  = ["LOW FUEL","LOW POWER","OVERHEAT", "LOW ALT","STABLE ORBIT","ATMOSPHERE", "CHUTE SAFE","LINK","CONTROLS"];
 function ann_pos(k) = [ann_cols[k % 3], ann_rows[floor(k / 3)]];
-oled_pos = [[50, 100], [120, 100]];                  // 58 x 31 windows
-bar_u = [175, 189, 203, 217];  bar_v0 = 20;  bar_pitch = 11.5;   // 4 fuel bars of 8
+// middle strip: two DFRobot DFR0669 3.5" TFTs side by side across the top, fuel bars as four horizontal rows below them
+tft_pos = [[73, 103], [172, 103]];                   // window centres
+tft_win = [75, 50];                                  // window; display area is 73.44 x 48.96 (offset from the board holes NOT verified)
+tft_brd = [95, 55.5];                                // board outline; 2 mm holes on a 90 x 50 mm pitch
+bar_u0 = 34;  bar_pitch = 11.5;  bar_v = [14, 29, 44, 59];   // 4 fuel bars of 8, labels go to the left of each row
 bar_lbl = ["LF", "OX", "MONO", "EC"];
-buzzer = [30, 45];
+buzzer = [150, 20];
 
 // ---- DB25 inter-piece jacks (ITT Cannon ZDB25S / ZDB25P, rear-mount cutout from the datasheet) ----
 db25_cut   = [42.52, 11.40];   // cutout, long side x short side
@@ -94,7 +97,7 @@ wing_jack   = [118, 24];                          // wing outer end wall: [y, z]
 dc_jack_cut = [122.5, 100, 10.9, 9.8]; // x, z, round diameter, flat-to-flat. Tensility 54-00151 datasheet: panel 1.5-4.5 mm, cutout 10.9 round with two 9.8 flats
 fuse_cut    = [122.5, 70, 13, 14, 1.8]; // x, z, round diameter, width to key end, key width. Wurth 952005000010000 datasheet: panel 0.8-2.8 mm
 usb_cut     = [122.5, 40];          // x, z: 15 x 8 slot and two 2.5 mm screw holes 22 mm apart. SparkFun 15464: unknown
-master = [100, 45];      // master 5 V power switch
+master = [190, 40];      // master 5 V power switch
 
 // ---- placement --------------------------------------------------------
 function T()  = tilt_m[$m];
@@ -141,8 +144,8 @@ module cuts(i) {
         place(sw_stage[0], sw_stage[1]) hole_round(30.2);
         for (k = [0 : len(sw_lbl) - 1]) place(sw_pos(k)[0], sw_pos(k)[1]) hole_rect(cut_mx, cut_mx);
     } else if (i == 3) {
-        for (p = oled_pos) place(p[0], p[1]) hole_rect(58, 31);
-        for (u = bar_u, k = [0 : 7]) place(u, bar_v0 + k * bar_pitch) hole_round(window_d);
+        for (p = tft_pos) place(p[0], p[1]) hole_rect(tft_win[0], tft_win[1]);
+        for (b = [0 : 3], k = [0 : 7]) place(bar_u0 + k * bar_pitch, bar_v[b]) hole_round(window_d);
         place(buzzer[0], buzzer[1]) hole_round(12);
         place(master[0], master[1]) hole_round(12.2);
     } else {
@@ -193,15 +196,12 @@ module proxies(i) {
         place(sw_stage[0], sw_stage[1]) stage_proxy();
         for (k = [0 : len(sw_lbl) - 1]) place(sw_pos(k)[0], sw_pos(k)[1]) key_proxy();
     } else if (i == 3) {
-        for (p = oled_pos) {
-            place(p[0], p[1]) color("#112244") translate([-29, -15.5, -0.1]) cube([58, 31, 0.4]);
-            place(p[0], p[1]) color("#333") difference() {
-                translate([-33, -20, 0]) cube([66, 40, 2]);
-                translate([-29, -15.5, -1]) cube([58, 31, 4]);
-            }
+        for (p = tft_pos) {
+            place(p[0], p[1]) color("#112244") translate([-tft_win[0] / 2, -tft_win[1] / 2, -0.1]) cube([tft_win[0], tft_win[1], 0.4]);   // screen
+            place(p[0], p[1]) color("#1b5e20") translate([-tft_brd[0] / 2, -tft_brd[1] / 2, -plate_t - 5.6]) cube([tft_brd[0], tft_brd[1], 1.6]);   // board, 4 mm behind the plate
         }
         for (b = [0 : 3], k = [0 : 7])
-            place(bar_u[b], bar_v0 + k * bar_pitch) glow(k < 6 - b ? (b == 3 ? "#fc0" : "#3c3") : "#555");
+            place(bar_u0 + k * bar_pitch, bar_v[b]) glow(k < 6 - b ? (b == 3 ? "#fc0" : "#3c3") : "#555");
         place(master[0], master[1]) guard_proxy();
     } else {
         key_proxies(false);

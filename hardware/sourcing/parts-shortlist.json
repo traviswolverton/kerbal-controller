@@ -538,5 +538,20 @@
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2169/FIT0203_Web.pdf",
     "qty": 4,
     "checked": "2026-10-20"
+  },
+  {
+    "role": "3.5in IPS TFT display 480x320 SPI (DFRobot DFR0669)",
+    "source": "digikey",
+    "pn": "1738-DFR0669-ND",
+    "mpn": "DFR0669",
+    "manufacturer": "DFRobot",
+    "description": "GRAPHIC DISPLAY TFT RGB 3.5\"",
+    "unit_price": 25.9,
+    "stock": 117,
+    "status": "Active",
+    "url": "https://www.digikey.com/en/products/detail/dfrobot/DFR0669/13280137",
+    "datasheet": "https://wiki.dfrobot.com/3.5inches_480_320_TFT_LCD_Capacitive_Touchscreen_SKU_DFR0669",
+    "qty": 2,
+    "checked": "2026-10-20"
   }
 ]

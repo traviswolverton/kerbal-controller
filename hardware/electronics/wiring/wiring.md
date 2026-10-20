@@ -54,7 +54,7 @@ All sixteen inputs live on one panel and one chip. The expander sits right behin
 
 ![Strip middle](diagrams/strip-middle.svg)
 
-The two OLEDs share the SPI clock, data, DC and reset lines and have a chip-select each. The pixel chain starts at the level shifter: its output goes through a 330&ndash;470 &Omega; resistor to the left strip (LS pin 17), comes back on LS pin 18 into the 32 fuel-bar pixels here, and leaves for the right strip on RS pin 17.
+The two TFT displays share the SPI clock, data, DC and reset lines and have a chip-select each. The pixel chain starts at the level shifter: its output goes through a 330&ndash;470 &Omega; resistor to the left strip (LS pin 17), comes back on LS pin 18 into the 32 fuel-bar pixels here, and leaves for the right strip on RS pin 17.
 
 ## Power
 
@@ -68,7 +68,7 @@ The same signal is the same colour at both ends of its wire. Red is always 3V3, 
 
 | Signal | Colour | Note |
 |---|---|---|
-| 3V3 | red | pots, buzzer module and OLEDs: from the Teensy |
+| 3V3 | red | pots, buzzer module and TFTs: from the Teensy |
 | 5V | orange | pixels, level shifter, fader driver |
 | GND | black | everything; drawn with a light edge so it shows |
 | Stick X / Y / twist | purple | X purple, Y grey, twist brown: both sticks |
@@ -78,7 +78,7 @@ The same signal is the same colour at both ends of its wire. Red is always 3V3, 
 | Fader PWM A / B | pink | A pink, B teal |
 | Matrix rows / columns | green | rows green, columns blue |
 | Pixel data | pink | in and out |
-| OLED SCK / MOSI / DC / RES / CS | yellow | yellow, blue, grey, teal, green (CS2 purple) |
+| TFT SCLK / MOSI / DC / RES / CS | yellow | yellow, blue, grey, teal, green (CS2 purple) |
 | Buzzer I/O | brown |  |
 | Expander SDA / SCL / INT | purple | SDA purple, SCL grey, INT teal |
 
@@ -86,7 +86,7 @@ The same signal is the same colour at both ends of its wire. Red is always 3V3, 
 
 | Teensy pin | Signal | Goes to |
 |---|---|---|
-| 0 | OLED_RES | OLEDs |
+| 0 | TFT_RES | TFTs |
 | 1 | PIXEL_DATA | chain, LS 17 |
 | 2 | FADER_PWM_A | LW 22 |
 | 3 | FADER_PWM_B | LW 23 |
@@ -96,10 +96,10 @@ The same signal is the same colour at both ends of its wire. Red is always 3V3, 
 | 7 | L_ENC_B | LW 10 |
 | 8 | L_ENC_SW | LW 11 |
 | 9 | R_STICK_BTN | RW 8 |
-| 10 | OLED_CS1 | OLED 1 |
-| 11 | OLED_MOSI | OLEDs |
-| 12 | OLED_DC | OLEDs |
-| 13 | OLED_SCK | OLEDs |
+| 10 | TFT_CS1 | TFT 1 |
+| 11 | TFT_MOSI | TFTs |
+| 12 | TFT_DC | TFTs |
+| 13 | TFT_SCK | TFTs |
 | 14 (A0) | L_STICK_X | LW 3 |
 | 15 (A1) | L_STICK_Y | LW 4 |
 | 16 (A2) | L_STICK_Z | LW 5 |
@@ -110,7 +110,7 @@ The same signal is the same colour at both ends of its wire. Red is always 3V3, 
 | 21 (A7) | R_STICK_Y | RW 4 |
 | 22 (A8) | R_STICK_Z | RW 5 |
 | 23 | R_CAM_SW | RW 11 |
-| 24 | OLED_CS2 | OLED 2 |
+| 24 | TFT_CS2 | TFT 2 |
 | 25 | BUZZER | buzzer |
 | 26 | R_CAM_A | RW 9 |
 | 27 | R_CAM_B | RW 10 |

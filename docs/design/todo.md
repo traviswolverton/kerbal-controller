@@ -10,8 +10,9 @@ Compiled from the design session on 2026-10-20. Check items off as you go. Where
 - [ ] **Check the AITRIP photos show a bat-handle toggle with a flip cover**, not a flat rocker. Three of the six switches depend on it
   (ABORT, ENGAGE / DISENGAGE, master power).
 - [ ] **Confirm the key switch's key position**: in the E-Switch KO133A801 datasheet, is position 1 (key removable) OFF?
-- [ ] **Waveshare OLED**: check the board outline against the 58 x 31 mm window, and decide 3.3 V or 5 V supply. I never verified its price,
-  so the earlier "about $15" claim is unconfirmed.
+- [ ] **DFR0669 displays**: the board is 55.5 x 95 mm with 2 mm holes on a 90 x 50 mm pitch and a 73.44 x 48.96 mm active area, but the
+  active area's offset from the holes is not stated: measure it on the real board before cutting the 75 x 50 mm windows. Also confirm the
+  logic level (not stated), the backlight tie-off, and that an ILI9488 driver library works on the Teensy 4.1.
 - [ ] **Verify the Teensy's physical pin order** against [PJRC's pinout card](https://www.pjrc.com/store/teensy41.html). The diagram's order is from memory.
 - [ ] **Fader and nubbin stock** was only 37 each at Digi-Key; order early.
 - [ ] Re-run `python3 tools/parts.py check --md` right before ordering, then place the Digi-Key order (35 lines, about $316) and the Amazon order.
@@ -48,7 +49,7 @@ Compiled from the design session on 2026-10-20. Check items off as you go. Where
 
 - [ ] Screw bosses and the rebate lip for the faceplates.
 - [ ] Joints and alignment between the five pieces (screws or dowels, so they act as one mass).
-- [ ] Internal mounts: fader, sticks, encoders, OLEDs, Teensy, perfboards (printed standoffs).
+- [ ] Internal mounts: fader, sticks, encoders, TFT displays, Teensy, perfboards (printed standoffs).
 - [ ] Ballast hold-down for the steel plates (a strap with two screws, or corner ribs).
 - [ ] Cable management behind the console (clips or a channel, strain relief). Leave a few centimetres beside each wing for the cable plugs.
 - [ ] Annunciator light box: separate cells, diffuser windows, legend.
@@ -58,7 +59,7 @@ Compiled from the design session on 2026-10-20. Check items off as you go. Where
 ## 5. Decisions still open
 
 - [ ] **Encoder push functions** (time warp, camera, display page). Suggestions in `design/controls.md`.
-- [ ] **OLED page contents**, and which events sound the buzzer.
+- [ ] **Display page contents**, and which events sound the buzzer.
 - [ ] **The two spare switch-panel buttons**: camera mode (V) and action group 10 are the suggestions.
 - [ ] **Annunciator**: thresholds, colour bands, and the CHUTE SAFE and STABLE ORBIT logic; off when fine or green when fine.
 - [ ] **Round attitude TFT**: include or not.

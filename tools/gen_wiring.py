@@ -30,8 +30,8 @@ SIGCOL.update({"FADER_WIPER": "green", "FADER_TOUCH": "white", "FADER_PWM_A": "p
                "R_PAGE_A": "blue", "R_PAGE_B": "yellow", "R_PAGE_SW": "white",
                "TOG_ABORT": "white", "TOG_ARM": "white", "TOG_SPARE1": "white", "TOG_SPARE2": "white",
                "PIXEL_DATA": "pink", "PIXEL_IN": "pink", "PIXEL_OUT": "pink",
-               "OLED_MOSI": "blue", "OLED_SCK": "yellow", "OLED_DC": "grey", "OLED_RES": "teal",
-               "OLED_CS1": "green", "OLED_CS2": "purple", "BUZZER": "brown",
+               "TFT_MOSI": "blue", "TFT_SCK": "yellow", "TFT_DC": "grey", "TFT_RES": "teal",
+               "TFT_CS1": "green", "TFT_CS2": "purple", "BUZZER": "brown",
                "EXP_SDA": "purple", "EXP_SCL": "grey", "EXP_INT": "teal"})
 for i in range(4):
     SIGCOL[f"ROW{i}"] = "green"
@@ -135,7 +135,7 @@ def d_overview():
     b += line(570, 37, 570, 100, "grey") + text(582, 72, "USB serial", 11, "var(--silk-dim)")
     pieces = [
         (20, 100, "STRIP LEFT", "28° · 12 nav keys", "switch panel + expander, 12 pixels"),
-        (420, 100, "STRIP MIDDLE", "28° · Teensy 4.1", "OLEDs, buzzer, master switch, 32 pixels"),
+        (420, 100, "STRIP MIDDLE", "28° · Teensy 4.1", "2 TFTs, buzzer, master switch, 32 pixels"),
         (820, 100, "STRIP RIGHT", "28° · 12 action-group keys", "annunciator, 21 pixels"),
         (20, 360, "LEFT WING", "12° · translation stick", "throttle fader, time-warp encoder"),
         (820, 360, "RIGHT WING", "12° · rotation stick", "camera and page encoders"),
@@ -383,7 +383,7 @@ def d_switch_panel():
 # ---- diagram 5: the middle piece -------------------------------------------------------------------------
 def d_middle():
     b = text(60, 30, "STRIP MIDDLE", 12, weight=600) + text(60, 46, "Teensy-side wiring inside the piece", 9.5, "var(--silk-dim)")
-    sigs = ["OLED_SCK", "OLED_MOSI", "OLED_DC", "OLED_RES", "OLED_CS1", "OLED_CS2", "BUZZER", "PIXEL_DATA",
+    sigs = ["TFT_SCK", "TFT_MOSI", "TFT_DC", "TFT_RES", "TFT_CS1", "TFT_CS2", "BUZZER", "PIXEL_DATA",
             "EXP_SDA", "EXP_SCL", "EXP_INT"]
     pin_of = {v: k for k, v in TEENSY.items()}
     b += f'<rect x="60" y="56" width="200" height="{len(sigs) * 24 + 24}" rx="5" fill="var(--pcb)" stroke="var(--pcb-edge)" stroke-width="2"/>'
@@ -393,10 +393,10 @@ def d_middle():
         ty[s] = y
         b += text(74, y + 4, f"D{pin_of[s]}", 10.5, "var(--silk-dim)") + text(112, y + 4, s, 10.5) + dot(260, y, SIGCOL[s])
     devs = [
-        ("OLED 1 · 2.42″ SSD1309", [("SCK", "OLED_SCK"), ("SDA (MOSI)", "OLED_MOSI"), ("DC", "OLED_DC"),
-                                     ("RES", "OLED_RES"), ("CS", "OLED_CS1"), ("VCC", "3V3"), ("GND", "GND")]),
-        ("OLED 2 · 2.42″ SSD1309", [("SCK", "OLED_SCK"), ("SDA (MOSI)", "OLED_MOSI"), ("DC", "OLED_DC"),
-                                     ("RES", "OLED_RES"), ("CS", "OLED_CS2"), ("VCC", "3V3"), ("GND", "GND")]),
+        ("TFT 1 · 3.5″ DFR0669", [("SCLK", "TFT_SCK"), ("MOSI", "TFT_MOSI"), ("DC", "TFT_DC"),
+                                   ("RES", "TFT_RES"), ("CS", "TFT_CS1"), ("VCC", "3V3"), ("BL  (tie to VCC)", "3V3"), ("GND", "GND")]),
+        ("TFT 2 · 3.5″ DFR0669", [("SCLK", "TFT_SCK"), ("MOSI", "TFT_MOSI"), ("DC", "TFT_DC"),
+                                   ("RES", "TFT_RES"), ("CS", "TFT_CS2"), ("VCC", "3V3"), ("BL  (tie to VCC)", "3V3"), ("GND", "GND")]),
         ("BUZZER MODULE · low-level trigger", [("I/O", "BUZZER"), ("VCC", "3V3"), ("GND", "GND")]),
         ("74AHCT125 LEVEL SHIFTER", [("1A  (input)", "PIXEL_DATA"), ("1OE", "GND"), ("VCC", "5V"), ("GND", "GND"),
                                       ("1Y  → 330 Ω → LS 17", None)]),
@@ -417,10 +417,10 @@ def d_middle():
                 b += path([(260, ty[sig]), (mx, ty[sig]), (mx, py), (dx, py)], SIGCOL[sig])
                 k += 1
         y += h + 16
-    b += text(60, y + 24, "⚠ OLED VCC on 3V3 until you have checked that the modules' SPI lines are safe at 5 V.", 9.5, "var(--wire-warn)")
+    b += text(60, y + 24, "⚠ TFT VCC on 3V3: the modules take 3.3-5.5 V (about 50 mA each) but state no logic level. MISO, touch and SD stay unconnected.", 9.5, "var(--wire-warn)")
     b += text(60, y + 40, "⚠ The buzzer module must run from 3V3: at 5 V its transistor may not switch off.", 9.5, "var(--wire-warn)")
-    return figure(svg(1100, y + 64, "Middle strip: Teensy to the OLEDs, buzzer module and level shifter", b),
-                  "The two OLEDs share the SPI clock, data, DC and reset lines and have a chip-select each. The pixel "
+    return figure(svg(1100, y + 64, "Middle strip: Teensy to the TFT displays, buzzer module and level shifter", b),
+                  "The two TFT displays share the SPI clock, data, DC and reset lines and have a chip-select each. The pixel "
                   "chain starts at the level shifter: its output goes through a 330&ndash;470 &Omega; resistor to "
                   "the left strip (LS pin 17), comes back on LS pin 18 into the 32 fuel-bar pixels here, and leaves "
                   "for the right strip on RS pin 17.")
@@ -445,7 +445,7 @@ def d_power():
     b += text(40, 170, "Never connect the 5 V rail to the", 10, "var(--silk-dim)")
     b += text(40, 184, "Teensy's VIN while USB is plugged in.", 10, "var(--silk-dim)")
     b += pill(40, 230, 46, "GND", "black") + text(96, 234, "one ground, shared by the adapter, the Teensy and every piece", 10, "var(--silk-dim)")
-    b += pill(40, 262, 46, "3V3", "red") + text(96, 266, "from the Teensy only: pots, buzzer module, OLEDs and the expander", 10, "var(--silk-dim)")
+    b += pill(40, 262, 46, "3V3", "red") + text(96, 266, "from the Teensy only: pots, buzzer module, TFTs and the expander", 10, "var(--silk-dim)")
     return figure(svg(1300, 330, "Power: adapter, jack, master switch, fuse and rail, feeding the pixels, level shifter and fader driver", b),
                   "The Teensy takes power over USB; the 5 V adapter feeds only the pixels, the level shifter and the fader "
                   "driver, with its ground joined to the Teensy's. The master switch cuts the 5 V rail only, so the Teensy and the "
@@ -476,13 +476,13 @@ COLOUR_ROWS = None
 def t_colours():
     global COLOUR_ROWS
     items = [
-        ("3V3", "red", "pots, buzzer module and OLEDs: from the Teensy"), ("5V", "orange", "pixels, level shifter, fader driver"),
+        ("3V3", "red", "pots, buzzer module and TFTs: from the Teensy"), ("5V", "orange", "pixels, level shifter, fader driver"),
         ("GND", "black", "everything; drawn with a light edge so it shows"),
         ("Stick X / Y / twist", "purple", "X purple, Y grey, twist brown: both sticks"),
         ("Fader wiper", "green", ""), ("Fader touch, every push switch and toggle", "white", "to ground"),
         ("Encoder A / B", "blue", "A blue, B yellow"), ("Fader PWM A / B", "pink", "A pink, B teal"),
         ("Matrix rows / columns", "green", "rows green, columns blue"), ("Pixel data", "pink", "in and out"),
-        ("OLED SCK / MOSI / DC / RES / CS", "yellow", "yellow, blue, grey, teal, green (CS2 purple)"),
+        ("TFT SCLK / MOSI / DC / RES / CS", "yellow", "yellow, blue, grey, teal, green (CS2 purple)"),
         ("Buzzer I/O", "brown", ""), ("Expander SDA / SCL / INT", "purple", "SDA purple, SCL grey, INT teal"),
     ]
     COLOUR_ROWS = items
@@ -491,10 +491,10 @@ def t_colours():
             f'<tbody>{rows}</tbody></table></div>')
 
 
-LEGEND = [("red", "3V3"), ("orange", "5 V"), ("black", "GND"), ("purple", "stick X"), ("grey", "stick Y, OLED DC"),
+LEGEND = [("red", "3V3"), ("orange", "5 V"), ("black", "GND"), ("purple", "stick X"), ("grey", "stick Y, TFT DC"),
           ("brown", "stick twist, buzzer"), ("green", "fader wiper, matrix rows"), ("blue", "encoder A, matrix columns"),
           ("yellow", "encoder B, DB25 cables"), ("white", "switches and fader touch"), ("pink", "fader PWM A, pixel data"),
-          ("teal", "fader PWM B, OLED reset")]
+          ("teal", "fader PWM B, TFT reset")]
 
 
 def legend():
@@ -586,7 +586,7 @@ def page():
 
 
 # ---- hardware/electronics/wiring/pin-map.md (generated, so it cannot drift from the diagrams) --------------------------------
-OUTPUTS = {"PIXEL_DATA", "OLED_RES", "OLED_CS1", "OLED_CS2", "OLED_MOSI", "OLED_DC", "OLED_SCK", "BUZZER",
+OUTPUTS = {"PIXEL_DATA", "TFT_RES", "TFT_CS1", "TFT_CS2", "TFT_MOSI", "TFT_DC", "TFT_SCK", "BUZZER",
            "FADER_PWM_A", "FADER_PWM_B", "ROW0", "ROW1", "ROW2", "ROW3"}
 ANALOG_SIGS = {"L_STICK_X", "L_STICK_Y", "L_STICK_Z", "R_STICK_X", "R_STICK_Y", "R_STICK_Z", "FADER_WIPER"}
 
@@ -654,13 +654,13 @@ Edit the data in the script, not this file.** Draft: nothing is built yet. Conte
                               |  DB25 (19)                       |  DB25 (14)
                               |                                  |
    STRIP LEFT  --DB25 (21)--  STRIP MIDDLE  --DB25 (16)--  STRIP RIGHT
-   12 nav keys                Teensy, 2 OLEDs, 32 fuel         12 action-group keys
+   12 nav keys                Teensy, 2 TFTs, 32 fuel         12 action-group keys
    switch panel + expander    pixels, buzzer, master switch,   annunciator
    12 pixels                  power jack                       21 pixels
                               (5 V in, fuse, 1000 uF)
 ```
 
-- The **middle strip** holds the Teensy, the 5 V input, the 74AHCT125 and the OLEDs and buzzer. It has four DB25
+- The **middle strip** holds the Teensy, the 5 V input, the 74AHCT125 and the TFT displays and buzzer. It has four DB25
   jacks, one per outer piece.
 - The **left strip** carries a **switch panel**: 16 inputs on one MCP23017 I2C expander that sits right behind
   the panel. The inputs wire locally, so only SDA, SCL, the interrupt and 3V3 cross the cable. The inputs are
@@ -689,8 +689,8 @@ Edit the data in the script, not this file.** Draft: nothing is built yet. Conte
   (default 4.482 kHz, changeable with `analogWriteFrequency`).
 - **Pins 18 and 19** are the Teensy's I2C pins (SDA, SCL), used for the switch-panel expander. Fit 4.7 kΩ
   pull-ups to 3V3 at the Teensy end.
-- **Pin 13** has the on-board LED and is the SPI clock for the OLEDs. **Pin 12** is MISO on SPI0 but is a
-  plain GPIO here (OLED DC), because the OLEDs are write-only.
+- **Pin 13** has the on-board LED and is the SPI clock for the TFT displays. **Pin 12** is MISO on SPI0 but is a
+  plain GPIO here (TFT DC), because the displays are write-only.
 - Analog inputs are pins 14-27 and 38-41; the seven used are 14-17 and 20-22.
 - The 3.3 V regulator is good for about 250 mA external. The pots and the expander draw almost nothing.
 - The matrix is read by driving a row low and reading the columns with pull-ups. **Leave the other rows
@@ -768,8 +768,8 @@ Notes:
 
 - **Cable management** behind the console (clips or a cable channel, strain relief): not designed.
 - **I2C over the cable:** about 30 cm at 400 kHz with 4.7 kΩ pull-ups should be fine; not tested.
-- **OLED modules:** confirm their logic level and supply. They accept 3.3-5 V, so power them from 5 V, but
-  check the SPI lines are 3.3 V safe in that case. Not verified.
+- **TFT modules (DFR0669):** the wiki gives a 3.3-5.5 V supply and about 48 mA each, but no logic level. They are wired to 3V3
+  here (about 100 mA for both, within the Teensy's 3.3 V regulator). Check the SPI lines before moving them to 5 V. Not verified.
 - **Pixel chain through cables:** a break in the chain (an unplugged strip cable) kills the pixels after it.
   Fine for a build, worth knowing when debugging.
 - **HIGH G** annunciator window dropped: Simpit has no G-force message.

@@ -13,7 +13,7 @@ Message names below come from the design discussion: check them against the Simp
 | Throttle fader | wiper on an analog pin | throttle command, only when the fader is touched |
 | 4 x 6 key matrix | row and column pins | SAS modes, SAS and RCS, GEAR, LIGHT, BRAKE, action groups |
 | Switch panel (16 inputs) | MCP23017 on I2C, interrupt on a pin | ABORT, STAGE (gated by the key switch), FULL, CUT, ENGAGE / DISENGAGE, utility keys through the keyboard emulator |
-| Three encoders | pins | time warp, camera, OLED page |
+| Three encoders | pins | time warp, camera, display page |
 | Grip buttons | pins | SAS toggle (right), fine control (left) |
 
 ## Outputs
@@ -22,7 +22,7 @@ Message names below come from the design discussion: check them against the Simp
 |---|---|
 | 65 WS2812B pixels (24 key pixels, 32 fuel-bar pixels, 9 annunciator windows) | game state: SAS mode, resources, flight status |
 | Fader motor | throttle value from the game, so the fader follows when untouched |
-| Two OLEDs | telemetry pages, chosen with the display-page encoder |
+| Two 3.5" TFT displays (ILI9488, SPI) | telemetry pages, chosen with the display-page encoder |
 | Buzzer | alert events (to be decided) |
 
 ## Simpit messages in play (to verify)
@@ -43,7 +43,7 @@ G-force message, so the annunciator has no G window.
 | `controls` | ENGAGE / DISENGAGE interlock, STAGE key interlock, fine control |
 | `pixels` | the 65-pixel chain, serpentine mapping and a brightness cap |
 | `annunciator` | threshold logic for the nine windows |
-| `display` | OLED pages |
+| `display` | the two TFT pages (needs an ILI9488 library that works on the Teensy 4.1) |
 
 ## Open points
 
@@ -51,4 +51,4 @@ G-force message, so the annunciator has no G window.
 - Fader touch sensing: Teensy 4.1 has no `touchRead()`, so FastTouch or a different method is needed.
 - Brightness cap: the pixel chain's worst case is more than the 4 A supply can give.
 - Throttle: how authority is handed back when the device stops sending.
-- Annunciator thresholds and colours, OLED page contents and the buzzer's event list are undecided.
+- Annunciator thresholds and colours, display page contents and the buzzer's event list are undecided.

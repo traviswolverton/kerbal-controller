@@ -55,6 +55,6 @@ The printed pieces plus parts weigh only about 3 kg, which a hand on the throttl
 - Joints and alignment between pieces.
 - Cable management behind the console. The DC jack and fuse holder cutouts come from their datasheets; only the USB extension's cutout is still a provisional placeholder.
 - DB25 jacks are modelled: cutouts 42.52 x 11.40 mm with two mounting holes, on each wing's outer end wall and the strips' back walls.
-- Internal mounts: the fader, stick, encoders, OLEDs, Teensy and DC jack.
+- Internal mounts: the fader, stick, encoders, TFT displays, Teensy and DC jack.
 
 Renders: `hardware/mockup/renders/wing-cutaway.png` and `strip-cutaway.png`.

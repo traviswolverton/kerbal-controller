@@ -16,7 +16,7 @@ the API on 2026-10-19 and are in the shortlist and the budget. Nothing here is b
 
 | Piece | Board | What goes on it |
 |---|---|---|
-| Middle strip | one large board, plus a small bus board | Teensy on two 24-pin female headers, 74AHCT125 in a socket with its 330 ohm resistor, SDA/SCL pull-ups, decoupling, the 1000 uF at the 5 V entry, terminal blocks for 5 V in and the GND and 3V3 buses. Wires out to the four female DB25 jacks, two OLED headers, the buzzer. This is the busiest piece: about 45 signal wires, so it is where a custom PCB would later pay off. |
+| Middle strip | one large board, plus a small bus board | Teensy on two 24-pin female headers, 74AHCT125 in a socket with its 330 ohm resistor, SDA/SCL pull-ups, decoupling, the 1000 uF at the 5 V entry, terminal blocks for 5 V in and the GND and 3V3 buses. Wires out to the four female DB25 jacks, two TFT headers (8 of the 13 pins each), the buzzer. This is the busiest piece: about 45 signal wires, so it is where a custom PCB would later pay off. |
 | Left strip | one small board | MCP23017 in a DIP-28 socket, 10 k reset pull-up, 0.1 uF decoupling, terminal blocks for the 16 switch inputs and the GND bus, SDA/SCL/INT/3V3 to the DB25 jack. |
 | Right strip | none or a tiny bus board | Matrix wiring and pixel chain only. |
 | Left wing | one small board | L9110H in a socket, the 47 uF capacitor, three 0.1 uF wiper capacitors, terminal blocks for 3V3, 5 V and GND, wires to the stick, fader, encoder and the DB25 jack. |
@@ -30,7 +30,7 @@ the API on 2026-10-19 and are in the shortlist and the budget. Nothing here is b
 | Perfboard 94 x 63 mm, PTH, SparkFun 12070 | 1 | 1568-12070-ND | $8.65 | Middle strip main board. **Open:** this is also 5-hole-pad (breadboard-style), which suits the busiest board badly. The pad-per-hole Chip Quik SBBTH3040-1 (SBBTH3040-1-ND, 104 x 81 mm, $12.59) is the likely swap and fits the strip in plan view; height clearance under the sloped face is not checked. |
 | Screw terminal, 5.08 mm, 2 position | 6 | ED2609-ND | $0.58 | 5 V in, bus joins. |
 | Screw terminal, 5.08 mm, 4 position | 8 | ED2611-ND | $1.08 | GND, 3V3 and switch inputs. Chain several for the 16 inputs. |
-| Female header, 24 position, 2.54 mm (Sullins) | 3 | S7022-ND | $1.34 | Two for the Teensy, one spare for the OLEDs and cuts. |
+| Female header, 24 position, 2.54 mm (Sullins) | 3 | S7022-ND | $1.34 | Two for the Teensy, one spare for the TFT headers and cuts. |
 | Hookup wire 22 AWG stranded, 10 colours x 25 ft (Adafruit 3175) | 1 | 1528-3175-ND | $32.29 | Wire colours follow the checklist. Pink and teal are not in it: use tape or striped wire. |
 | Hookup wire 22 AWG solid, 6 colours x 25 ft (Adafruit 1311) | 1 | 1528-1743-ND | $15.95 | Matrix rows and columns on the strips. |
 | Heat shrink assortment (Adafruit 4559) | 1 | 1528-4559-ND | $9.95 | |

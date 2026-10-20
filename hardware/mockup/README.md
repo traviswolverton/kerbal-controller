@@ -21,7 +21,7 @@ The renders were last generated before the DC jack and fuse holder cutouts were 
 | Left wing | 195 mm | 12 deg | stick, motorised fader, time-warp encoder |
 | Right wing | 195 mm | 12 deg | stick, camera and display-page encoders |
 | Strip left | 245 mm | 28 deg | 12 navigation keys and the switch panel |
-| Strip middle | 245 mm | 28 deg | 2 OLEDs, 4 fuel bars, buzzer, master power switch |
+| Strip middle | 245 mm | 28 deg | 2 TFT displays, 4 fuel bars, buzzer, master power switch |
 | Strip right | 245 mm | 28 deg | 12 action-group keys and the annunciator |
 
 The console is 735 mm wide with a 345 mm open middle, designed around a 12.2 in (310 mm) 60% keyboard.

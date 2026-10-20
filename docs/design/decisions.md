@@ -36,7 +36,7 @@ This file records what has been settled and what is still open.
   parametric data (panel cutouts, ratings). It also sells SparkFun, Adafruit and PJRC items, so the Teensy, fader, driver,
   nubbin and arcade button all moved there from Adafruit, PJRC and Amazon.
 - **Amazon.com exceptions:** the SaiDian joysticks (not stocked), the MX switches and buzzers already owned, the DSA keycaps,
-  the matched AITRIP guarded toggles and the Waveshare OLEDs (Digi-Key's 2.42" OLEDs cost $30 to $57 each). The encoder knobs
+  the matched AITRIP guarded toggles and the weight-vest plates. The displays and encoder knobs
   moved to Digi-Key. The ballast is Mavee weight-vest plates (the 6 x 6 in plate listings were dead links).
 - **Reel trap:** many small parts default to reels with minimums of 4,000 to 5,000. The tool prefers cut tape or bulk.
 
@@ -236,8 +236,8 @@ This file records what has been settled and what is still open.
     fader driver, with ground shared with the Teensy. Do not tie the 5 V rail to the Teensy's VIN.
   - Put a fuse sized just above the capped load on the 5 V rail, and the 1000 uF capacitor where the rail
     enters the pixel run.
-  - The 2.42" OLED modules accept 3.3-5 V, so power them from the 5 V rail to keep load off the Teensy's
-    3.3 V regulator. Confirm the module's logic level first.
+  - The 3.5" TFT displays take 3.3-5.5 V at about 48 mA each (wiki figure) and state no logic level, so they run from the Teensy's 3.3 V
+    (about 100 mA for both).
   - The pixels are spread over the three strip pieces (12, 32, 21). Each outer strip takes 5 V over its DB25 cable; one power input in the middle strip feeds everything.
 
 ## Guarded toggles (chosen, not yet ordered)
@@ -267,6 +267,18 @@ This file records what has been settled and what is still open.
 - **Mounting idea:** PCB behind the panel, buzzer poking through a hole of about 12.4 mm (the mockup has
   12 mm), or a 3-4 mm sound port if the buzzer stays behind. Measure the buzzer diameter and height first.
 - **Open:** the board size and mounting hole position are not known. Measure one.
+
+## Displays (decided)
+- **Two DFRobot DFR0669, 3.5" IPS TFT, 480 x 320** (Digi-Key `1738-DFR0669-ND`, $25.90 each), replacing the two 2.42" Waveshare OLEDs.
+  IPS was the reason: the cheaper Amazon pair did not say, and the panels sit at 28 degrees.
+- **Specs (DFRobot wiki, not yet checked on the board):** ILI9488 driver, SPI, board 55.5 x 95 mm, 2 mm mounting holes on a
+  90 x 50 mm pitch, display area 73.44 x 48.96 mm, 3.3-5.5 V, 48 mA typical, backlight on a BL pin (high is full brightness, and
+  left open it is on). A 13-pin header carries VCC, GND, SCLK, MOSI, MISO, CS, RES, DC, BL, the touch lines and an SD chip select.
+- **Wiring:** the same pins the OLEDs used: shared SCLK, MOSI, DC and RES, one CS each. BL is tied to VCC (no Teensy pin is free);
+  MISO, touch and SD are unconnected.
+- **Layout:** the two windows sit side by side across the upper middle of the strip, at 75 x 50 mm. The fuel bars are now four
+  horizontal rows of 8 pixels below them, with the buzzer and the guarded master switch to the right. Needs a real-board check
+  of where the display area sits relative to the mounting holes.
 
 ## Mockup
 See `hardware/mockup/README.md`. Five pieces, with the layout modelled in `hardware/cad/console.scad`. All positions are a proposal to react to.

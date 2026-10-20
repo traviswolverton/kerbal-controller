@@ -15,7 +15,7 @@ which is which.
 
 | Signal | Colour | Where |
 |---|---|---|
-| 3V3 | red | pots, buzzer module, OLEDs: from the Teensy |
+| 3V3 | red | pots, buzzer module, TFTs: from the Teensy |
 | 5 V | orange | pixels, level shifter, fader driver |
 | GND | black | everything |
 | Stick X | purple | both sticks |
@@ -29,8 +29,8 @@ which is which.
 | Matrix rows | green | strips |
 | Matrix columns | blue | strips |
 | Pixel data | pink | strips and middle |
-| OLED SCK / SDA / DC / RES | yellow / blue / grey / teal | middle |
-| OLED chip select 1 / 2 | green / purple | middle |
+| TFT SCLK / MOSI / DC / RES | yellow / blue / grey / teal | middle |
+| TFT chip select 1 / 2 | green / purple | middle |
 | Buzzer I/O | brown | middle |
 | Expander SDA / SCL / INT | purple / grey / teal | left strip |
 
@@ -50,7 +50,7 @@ Pink and teal are not in a basic Dupont set. Use striped wire or tape a coloured
 - [ ] Jack, then the master power switch, then a fuse just above the capped load (about 3 to 4 A), then the 5 V rail with a 1000 µF capacitor across it. The switch cuts the 5 V rail only, so the Teensy and expander stay powered over USB.
 - [ ] 74AHCT125: input from Teensy pin 1, its output enable pin tied to ground, VCC on 5 V, then 330 to 470 Ω to the left strip's data pin (LS 17). Tie the unused buffer inputs to ground.
 - [ ] 32 fuel-bar pixels: data in from LS 18 (the return from the left strip), data out to RS 17. 5 V and GND straight from the rail with short wires.
-- [ ] Both OLEDs on 3V3 until you have confirmed their SPI lines are safe at 5 V. Share SCK, MOSI, DC and RES; one chip select each (pins 10 and 24).
+- [ ] Both TFT displays on 3V3 (the DFR0669 states no logic level). Share SCLK, MOSI, DC and RES; one chip select each (pins 10 and 24). Tie BL to VCC. Leave MISO, the touch pins and SDCS unconnected.
 - [ ] Buzzer module on **3V3**, I/O to pin 25. At 5 V its transistor may not switch off.
 - [ ] SDA, SCL and the interrupt go to the left-strip jack (pins 10, 11, 12), with 3V3 on pin 2.
 - [ ] Four **female** DB25 panel jacks on the middle strip, one per outer piece. All four are alike, so label them LW, RW, LS and RS. Each outer piece gets a **male** jack.

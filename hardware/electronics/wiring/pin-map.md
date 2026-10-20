@@ -14,13 +14,13 @@ Edit the data in the script, not this file.** Draft: nothing is built yet. Conte
                               |  DB25 (19)                       |  DB25 (14)
                               |                                  |
    STRIP LEFT  --DB25 (21)--  STRIP MIDDLE  --DB25 (16)--  STRIP RIGHT
-   12 nav keys                Teensy, 2 OLEDs, 32 fuel         12 action-group keys
+   12 nav keys                Teensy, 2 TFTs, 32 fuel         12 action-group keys
    switch panel + expander    pixels, buzzer, master switch,   annunciator
    12 pixels                  power jack                       21 pixels
                               (5 V in, fuse, 1000 uF)
 ```
 
-- The **middle strip** holds the Teensy, the 5 V input, the 74AHCT125 and the OLEDs and buzzer. It has four DB25
+- The **middle strip** holds the Teensy, the 5 V input, the 74AHCT125 and the TFT displays and buzzer. It has four DB25
   jacks, one per outer piece.
 - The **left strip** carries a **switch panel**: 16 inputs on one MCP23017 I2C expander that sits right behind
   the panel. The inputs wire locally, so only SDA, SCL, the interrupt and 3V3 cross the cable. The inputs are
@@ -49,8 +49,8 @@ Edit the data in the script, not this file.** Draft: nothing is built yet. Conte
   (default 4.482 kHz, changeable with `analogWriteFrequency`).
 - **Pins 18 and 19** are the Teensy's I2C pins (SDA, SCL), used for the switch-panel expander. Fit 4.7 kΩ
   pull-ups to 3V3 at the Teensy end.
-- **Pin 13** has the on-board LED and is the SPI clock for the OLEDs. **Pin 12** is MISO on SPI0 but is a
-  plain GPIO here (OLED DC), because the OLEDs are write-only.
+- **Pin 13** has the on-board LED and is the SPI clock for the TFT displays. **Pin 12** is MISO on SPI0 but is a
+  plain GPIO here (TFT DC), because the displays are write-only.
 - Analog inputs are pins 14-27 and 38-41; the seven used are 14-17 and 20-22.
 - The 3.3 V regulator is good for about 250 mA external. The pots and the expander draw almost nothing.
 - The matrix is read by driving a row low and reading the columns with pull-ups. **Leave the other rows
@@ -60,7 +60,7 @@ Edit the data in the script, not this file.** Draft: nothing is built yet. Conte
 
 | Pin | Signal | Direction | Piece |
 |---|---|---|---|
-| 0 | OLED_RES | out | middle strip |
+| 0 | TFT_RES | out | middle strip |
 | 1 | PIXEL_DATA | out | middle strip |
 | 2 | FADER_PWM_A | out | left wing |
 | 3 | FADER_PWM_B | out | left wing |
@@ -70,10 +70,10 @@ Edit the data in the script, not this file.** Draft: nothing is built yet. Conte
 | 7 | L_ENC_B | in, pull-up | left wing |
 | 8 | L_ENC_SW | in, pull-up | left wing |
 | 9 | R_STICK_BTN | in, pull-up | right wing |
-| 10 | OLED_CS1 | out | middle strip |
-| 11 | OLED_MOSI | out | middle strip |
-| 12 | OLED_DC | out | middle strip |
-| 13 | OLED_SCK | out | middle strip |
+| 10 | TFT_CS1 | out | middle strip |
+| 11 | TFT_MOSI | out | middle strip |
+| 12 | TFT_DC | out | middle strip |
+| 13 | TFT_SCK | out | middle strip |
 | 14 (A0) | L_STICK_X | analog | left wing |
 | 15 (A1) | L_STICK_Y | analog | left wing |
 | 16 (A2) | L_STICK_Z | analog | left wing |
@@ -84,7 +84,7 @@ Edit the data in the script, not this file.** Draft: nothing is built yet. Conte
 | 21 (A7) | R_STICK_Y | analog | right wing |
 | 22 (A8) | R_STICK_Z | analog | right wing |
 | 23 | R_CAM_SW | in, pull-up | right wing |
-| 24 | OLED_CS2 | out | middle strip |
+| 24 | TFT_CS2 | out | middle strip |
 | 25 | BUZZER | out | middle strip |
 | 26 | R_CAM_A | in, pull-up | right wing |
 | 27 | R_CAM_B | in, pull-up | right wing |
@@ -198,8 +198,8 @@ Notes:
 
 - **Cable management** behind the console (clips or a cable channel, strain relief): not designed.
 - **I2C over the cable:** about 30 cm at 400 kHz with 4.7 kΩ pull-ups should be fine; not tested.
-- **OLED modules:** confirm their logic level and supply. They accept 3.3-5 V, so power them from 5 V, but
-  check the SPI lines are 3.3 V safe in that case. Not verified.
+- **TFT modules (DFR0669):** the wiki gives a 3.3-5.5 V supply and about 48 mA each, but no logic level. They are wired to 3V3
+  here (about 100 mA for both, within the Teensy's 3.3 V regulator). Check the SPI lines before moving them to 5 V. Not verified.
 - **Pixel chain through cables:** a break in the chain (an unplugged strip cable) kills the pixels after it.
   Fine for a build, worth knowing when debugging.
 - **HIGH G** annunciator window dropped: Simpit has no G-force message.
