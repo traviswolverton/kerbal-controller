@@ -9,8 +9,8 @@ a total is [parts-bom.md](parts-bom.md), and the shortlist is [parts-shortlist.j
 
 ## Digi-Key order
 
-The table lists the 28 main lines ($225.78). The shortlist also holds the perfboard, terminal blocks, headers, wire and heat shrink
-from [electronics-build.md](electronics-build.md), 36 lines and $322.72 in all. **The combined Digi-Key and Amazon total is in
+The table lists the 27 main lines ($219.26). The shortlist also holds the perfboard, terminal blocks, headers, wire and heat shrink
+from [electronics-build.md](electronics-build.md), 35 lines and $316.20 in all, re-checked live on 2026-10-20 with no flags. **The combined Digi-Key and Amazon total is in
 [budget.md](budget.md).**
 
 | Part | Qty | Digi-Key PN | Unit | Notes |
@@ -21,7 +21,6 @@ from [electronics-build.md](electronics-build.md), 36 lines and $322.72 in all. 
 | Panel DC jack 5.5 x 2.1 mm, Tensility 54-00151 | 1 | 839-54-00151-ND | $4.81 | 7.5 A, solder cup, rear nut. **Panel cutout not verified** (the datasheet is an image): check it before cutting. |
 | Panel fuse holder 5 x 20 mm, Würth | 1 | 732-952005000010000-ND | $2.15 | On the 5 V rail. Panel hole not checked. |
 | Fuse 4 A 5 x 20 mm, Littelfuse | 2 | F1724-ND | $0.57 | One spare. Rated for AC; fine at 5 V DC. |
-| Master power switch, E-Switch ST141D00 toggle | 1 | EG4810-ND | $6.52 | SPST, 12 mm cutout. In series with the 5 V rail. |
 | STAGE key switch, E-Switch KO133A801 | 1 | EG5876-ND | $7.07 | 2-position SPST, **12 mm cutout**, key removable in position 1 only. Confirm in the datasheet that position 1 is OFF. |
 | Big STAGE button, Adafruit 3489 arcade, red LED | 1 | 1528-2316-ND | $2.50 | **30 mm cutout**, 5 V LED, 2.8 mm quick-connect tabs. LED wiring is open (always on, or driven later). |
 | Motorised 100 mm fader, Adafruit 5466 | 1 | 1528-5466-ND | $24.95 | 6-10 V motor, run at 5 V. Two M3 holes 120 mm apart. Only 37 in stock. |
@@ -56,7 +55,7 @@ the cut-tape or bulk versions with a minimum order of 1. The tool now prefers th
 | WS2812B 10 mm pixel boards | 65 of 100 | owned | BTF-LIGHTING | 24 keys, 32 fuel bars, 9 annunciator windows. GRB. One chain through three strip pieces. |
 | Buzzer module, low-level trigger | 1 of 5 | owned | [DIYables, Amazon B0DHGP95K4](https://www.amazon.com/dp/B0DHGP95K4) | Ordered 2026-10-10. Bench-test whether it is passive. Power from 3V3. |
 | DSA blank keycaps, 1u | 37 (two packs of 24) | chosen | [Mechkeeb](https://www.amazon.com/Mechkeeb-Profile-Switches-Keyboard-Replacement/dp/B0BWDQ3NKK) | Price and colours unchecked. Labels go on the panel. |
-| Guarded toggle switch, 12 mm | 2 (of a 6-pack) | chosen | [AITRIP 6-pack with red covers, B0CL4GNMJX](https://www.amazon.com/Heavy-Rocker-Toggle-Switch-Cover/dp/B0CL4GNMJX) | ABORT and ENGAGE / DISENGAGE. Kept: Digi-Key sells the guard and the toggle separately, and its cover is made for CW Industries' own series, so fit is a risk. Check the photos show a bat-handle toggle. Price unchecked. |
+| Guarded toggle switch, 12 mm | 3 (of a 6-pack) | chosen | [AITRIP 6-pack with red covers, B0CL4GNMJX](https://www.amazon.com/Heavy-Rocker-Toggle-Switch-Cover/dp/B0CL4GNMJX) | ABORT, ENGAGE / DISENGAGE and the master power switch. Kept: Digi-Key sells the guard and the toggle separately, and its cover is made for CW Industries' own series, so fit is a risk. Check the photos show a bat-handle toggle. Price unchecked. |
 | Encoder knobs, 25 x 13 mm, D-shaped bore | 3 (two packs) | proposed | [NMOWYBPY](https://www.amazon.com/NMOWYBPY-Aluminum-Potentiometer-25x13mm-Control/dp/B0H3NXPL9Z) | Digi-Key searches for knobs returned nothing useful. Set screw wording ambiguous. |
 | 2.42" OLED, 128x64, SSD1309 | 2 | proposed | [Waveshare](https://www.amazon.com/waveshare-Resolution-Raspberry-forArduino-Communication/dp/B0CM3RHMGP) | SPI, 3.3 V. Digi-Key's 2.42" OLEDs are $30 to $57 each, so this is a deliberate exception. Board outline vs the 58 x 31 mm window unchecked. |
 | Steel ballast plates, 6 x 6 x 1/4 in | 4 | proposed | [4-pack](https://www.amazon.com/clp/B07L7DPKW7) | Two per wing. Wipe and paint. |

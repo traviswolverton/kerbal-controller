@@ -51,7 +51,7 @@ works on Windows only.
 | Two OLEDs | Telemetry pages, chosen with the display-page encoder. *Open:* the page contents are not decided (the reference build showed Surface, Orbital, Vessel and Mission) |
 | Four fuel bars of 8 pixels | LF, OX, MONO and EC levels, from the resource messages (need the Alternate Resource Panel mod) |
 | Buzzer | Audible alerts. *Open:* which events sound it |
-| Master power switch | Cuts the 5 V rail (pixels, level shifter, fader driver). The Teensy stays on USB |
+| Master power switch (guarded toggle) | Cuts the 5 V rail (pixels, level shifter, fader driver). The Teensy stays on USB. The cover stops it being bumped |
 
 ## Right strip: action-group keys
 

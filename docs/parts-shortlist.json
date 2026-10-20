@@ -12,7 +12,7 @@
     "url": "https://www.digikey.com/en/products/detail/sparkfun-electronics/20360/16688096",
     "datasheet": "",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "5 V 4 A desktop adapter (Mean Well GST25A05-P1J)",
@@ -27,7 +27,7 @@
     "url": "https://www.digikey.com/en/products/detail/mean-well-usa-inc/GST25A05-P1J/7703645",
     "datasheet": "https://www.meanwellusa.com/upload/pdf/GST25A/GST25A-spec.pdf",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "Mains cord NEMA 5-15 to IEC C13 for the adapter",
@@ -42,7 +42,7 @@
     "url": "https://www.digikey.com/en/products/detail/tensility/11-00022/3900584",
     "datasheet": "https://tensility.s3.us-west-2.amazonaws.com/uploads/pdffiles/11-00022.pdf",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "Panel DC jack 5.5 x 2.1 mm",
@@ -57,7 +57,7 @@
     "url": "https://www.digikey.com/en/products/detail/tensility/54-00151/9829987",
     "datasheet": "https://tensility.s3.us-west-2.amazonaws.com/uploads/pdffiles/54-00151.pdf",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "Panel fuse holder 5 x 20 mm",
@@ -72,7 +72,7 @@
     "url": "https://www.digikey.com/en/products/detail/w\u00fcrth-elektronik/952005000010000/28172649",
     "datasheet": "https://www.we-online.com/components/products/datasheet/952005000010000.pdf",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "4 A fuse 5 x 20 mm (1 spare)",
@@ -87,22 +87,7 @@
     "url": "https://www.digikey.com/en/products/detail/littelfuse-inc/0217004-MXP/777547",
     "datasheet": "https://www.littelfuse.com/assetdocs/littelfuse-fuse-217-datasheet?assetguid=af55be94-c42e-41b1-ad43-e070e09443fe",
     "qty": 2,
-    "checked": "2026-10-19"
-  },
-  {
-    "role": "Master power switch, 12 mm toggle",
-    "source": "digikey",
-    "pn": "EG4810-ND",
-    "mpn": "ST141D00",
-    "manufacturer": "E-Switch",
-    "description": "SWITCH TOGGLE SPST 20A 125V",
-    "unit_price": 6.52,
-    "stock": 2269,
-    "status": "Active",
-    "url": "https://www.digikey.com/en/products/detail/e-switch/ST141D00/2116289",
-    "datasheet": "https://configured-product-images.s3.amazonaws.com/Datasheets/ST1.pdf",
-    "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "STAGE key switch (12 mm cutout)",
@@ -117,7 +102,7 @@
     "url": "https://www.digikey.com/en/products/detail/e-switch/KO133A801/1804779",
     "datasheet": "https://configured-product-images.s3.amazonaws.com/Datasheets/KO.pdf",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "Big STAGE button, 30 mm arcade, red LED",
@@ -132,7 +117,7 @@
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/3489/7349495",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2533/3489_Web.pdf",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "Motorised 100 mm fader (Adafruit 5466)",
@@ -147,7 +132,7 @@
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/5466/16645060",
     "datasheet": "https://cdn-shop.adafruit.com/product-files/5466/5466_datasheetSM10001.pdf",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "L9110H fader driver",
@@ -162,7 +147,7 @@
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/4489/11594498",
     "datasheet": "https://cdn-shop.adafruit.com/product-files/4489/4489_datasheet-l9110.pdf",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "Conductive nubbin for the fader",
@@ -177,7 +162,7 @@
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/5741/20370638",
     "datasheet": "",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "Rotary encoders (time warp, camera, page)",
@@ -192,7 +177,7 @@
     "url": "https://www.digikey.com/en/products/detail/bourns-inc/PEC11R-4215F-S0024/4499665",
     "datasheet": "https://www.bourns.com/docs/Product-Datasheets/PEC11R.pdf",
     "qty": 3,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "I2C expander for the switch panel",
@@ -202,12 +187,12 @@
     "manufacturer": "Microchip Technology",
     "description": "IC XPNDR 1.7MHZ I2C 28SDIP",
     "unit_price": 1.69,
-    "stock": 7990,
+    "stock": 7987,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/microchip-technology/MCP23017-E-SP/894272",
     "datasheet": "https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP23017-Data-Sheet-DS20001952.pdf",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "DIP-28 socket for the expander",
@@ -222,7 +207,7 @@
     "url": "https://www.digikey.com/en/products/detail/cnc-tech/245-28-1-06/3441586",
     "datasheet": "https://www.cnctech.us/pdfs/245-XX-1-06.pdf",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "74AHCT125 level shifter, DIP",
@@ -232,12 +217,12 @@
     "manufacturer": "Texas Instruments",
     "description": "IC BUFF 4.5V/5.5V 14-PDIP",
     "unit_price": 1.0,
-    "stock": 20191,
+    "stock": 20168,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74AHCT125N/375798",
     "datasheet": "https://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=https%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fsn74ahct125",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "DIP-14 socket for the level shifter",
@@ -252,7 +237,7 @@
     "url": "https://www.digikey.com/en/products/detail/cnc-tech/245-14-1-03/3441580",
     "datasheet": "https://www.cnctech.us/pdfs/245-XX-1-03.pdf",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "Matrix diodes (24 plus spares)",
@@ -262,12 +247,12 @@
     "manufacturer": "onsemi",
     "description": "DIODE STANDARD 100V 200MA DO35",
     "unit_price": 0.06,
-    "stock": 599669,
+    "stock": 599609,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/onsemi/1N4148/458603",
     "datasheet": "https://www.onsemi.com/pub/Collateral/1N914-D.PDF",
     "qty": 30,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "330 ohm pixel data resistor (1 spare)",
@@ -277,12 +262,12 @@
     "manufacturer": "Stackpole Electronics Inc",
     "description": "RES 330 OHM 5% 1/4W AXIAL",
     "unit_price": 0.1,
-    "stock": 283128,
+    "stock": 283138,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT330R/1741399",
     "datasheet": "https://www.seielect.com/catalog/SEI-CF_CFM.pdf",
     "qty": 2,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "4.7 kohm I2C pull-ups (spares)",
@@ -292,12 +277,12 @@
     "manufacturer": "Stackpole Electronics Inc",
     "description": "RES 4.7K OHM 5% 1/4W AXIAL",
     "unit_price": 0.1,
-    "stock": 249799,
+    "stock": 249789,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT4K70/1741428",
     "datasheet": "https://www.seielect.com/catalog/SEI-CF_CFM.pdf",
     "qty": 3,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "10 kohm expander reset pull-up (spares)",
@@ -307,12 +292,12 @@
     "manufacturer": "Stackpole Electronics Inc",
     "description": "RES 10K OHM 5% 1/4W AXIAL",
     "unit_price": 0.1,
-    "stock": 569120,
+    "stock": 568085,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT10K0/1741265",
     "datasheet": "https://www.seielect.com/catalog/SEI-CF_CFM.pdf",
     "qty": 3,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "1000 uF 16 V rail capacitor (1 spare)",
@@ -327,7 +312,7 @@
     "url": "https://www.digikey.com/en/products/detail/rubycon/16ZLH1000MEFC10X16/3134105",
     "datasheet": "https://www.rubycon.co.jp/wp-content/uploads/catalog-aluminum/ZLH.pdf",
     "qty": 2,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "47 uF 25 V fader driver capacitor (1 spare)",
@@ -337,12 +322,12 @@
     "manufacturer": "W\u00fcrth Elektronik",
     "description": "CAP ALUM 47UF 20% 25V RADIAL TH",
     "unit_price": 0.1,
-    "stock": 37985,
+    "stock": 37988,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/w\u00fcrth-elektronik/860020472006/5727060",
     "datasheet": "https://www.we-online.com/components/products/datasheet/860020472006.pdf",
     "qty": 2,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "0.1 uF decoupling and wiper capacitors",
@@ -352,12 +337,12 @@
     "manufacturer": "Vishay Beyschlag/Draloric/BC Components",
     "description": "CAP CER 0.1UF 50V X7R RADIAL",
     "unit_price": 0.17,
-    "stock": 304716,
+    "stock": 304721,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/vishay-beyschlag-draloric-bc-components/K104K15X7RF5TH5/286555",
     "datasheet": "https://www.vishay.com/docs/45171/kseries.pdf",
     "qty": 12,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "DB25 female panel jack (middle strip)",
@@ -372,7 +357,7 @@
     "url": "https://www.digikey.com/en/products/detail/itt-cannon-llc/ZDB25S/21361496",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7137/Cannon%20ZD%20Connectors.pdf",
     "qty": 4,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "DB25 male panel jack (outer pieces)",
@@ -387,7 +372,7 @@
     "url": "https://www.digikey.com/en/products/detail/itt-cannon-llc/ZDB25P/21361449",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7138/1003_ZDB25P_SPEC.pdf",
     "qty": 4,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "DB25 shielded cable, female to male, 1 m",
@@ -402,7 +387,7 @@
     "url": "https://www.digikey.com/en/products/detail/phoenix-contact/1656291/4449846",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/1047/1656291.pdf",
     "qty": 4,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "Panel USB micro-B extension for the Teensy",
@@ -417,7 +402,7 @@
     "url": "https://www.digikey.com/en/products/detail/sparkfun-electronics/15464/10440474",
     "datasheet": "https://cdn.sparkfun.com/assets/7/6/b/5/c/ACCA-2551_Model.pdf",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "Perfboard 81 x 51 mm (expander, wing and bus boards)",
@@ -427,12 +412,12 @@
     "manufacturer": "DigiKey Standard",
     "description": "BREADBOARD GENERAL PURPOSE PTH",
     "unit_price": 3.49,
-    "stock": 4575,
+    "stock": 4573,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/digikey/DKS-SOLDERBREAD-02/15970925",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/6170/DKS-SOLDERBREAD-02-ND.pdf",
     "qty": 4,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "Perfboard 94 x 63 mm (middle strip main board)",
@@ -447,7 +432,7 @@
     "url": "https://www.digikey.com/en/products/detail/sparkfun-electronics/12070/5230951",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/15/PRT-12070_Web.pdf",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "Screw terminal 5.08 mm, 2 position",
@@ -457,12 +442,12 @@
     "manufacturer": "On Shore Technology Inc.",
     "description": "TERM BLK 2P SIDE ENT 5.08MM PCB",
     "unit_price": 0.58,
-    "stock": 14953,
+    "stock": 25753,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/on-shore-technology-inc/OSTTC022162/614558",
     "datasheet": "http://www.on-shore.com/wp-content/uploads/OSTTCXX2162.pdf",
     "qty": 6,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "Screw terminal 5.08 mm, 4 position",
@@ -472,12 +457,12 @@
     "manufacturer": "On Shore Technology Inc.",
     "description": "TERM BLK 4P SIDE ENT 5.08MM PCB",
     "unit_price": 1.08,
-    "stock": 12673,
+    "stock": 12671,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/on-shore-technology-inc/OSTTC042162/614560",
     "datasheet": "http://www.on-shore.com/wp-content/uploads/OSTTCXX2162.pdf",
     "qty": 8,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "Female header 24 position (Teensy sockets, spare)",
@@ -492,7 +477,7 @@
     "url": "https://www.digikey.com/en/products/detail/sullins-connector-solutions/PPTC241LFBN-RC/810162",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/937/Female_Headers.100_DS.pdf",
     "qty": 3,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "Hookup wire 22 AWG stranded, 10 colours x 25 ft",
@@ -502,12 +487,12 @@
     "manufacturer": "Adafruit Industries LLC",
     "description": "HOOK-UP 22AWG STRAND - 10 X 25FT",
     "unit_price": 32.29,
-    "stock": 475,
+    "stock": 476,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/3175/6198258",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2365/3175_Web.pdf",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "Hookup wire 22 AWG solid, 6 colours x 25 ft (matrix)",
@@ -517,12 +502,12 @@
     "manufacturer": "Adafruit Industries LLC",
     "description": "HOOK-UP 22AWG SOLID - 6 X 25FT",
     "unit_price": 15.95,
-    "stock": 2443,
+    "stock": 2440,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/1311/6198255",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2146/1311_Web.pdf",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   },
   {
     "role": "Heat shrink assortment",
@@ -532,11 +517,11 @@
     "manufacturer": "Adafruit Industries LLC",
     "description": "PRE-CUT MULTI-COLORED HEAT SHRIN",
     "unit_price": 9.95,
-    "stock": 1248,
+    "stock": 1247,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/4559/12396896",
     "datasheet": "",
     "qty": 1,
-    "checked": "2026-10-19"
+    "checked": "2026-10-20"
   }
 ]

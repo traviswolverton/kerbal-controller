@@ -163,8 +163,9 @@ This file records what has been settled and what is still open.
   stable orbit, atmosphere, chute safe, link, and CONTROLS (lit while engaged). Most of these come straight from Simpit messages
   (resources, temperature limit, atmosphere conditions, altitude, orbit, flight status). Chute-safe would be derived
   from altitude and airspeed. **High G was dropped: Simpit has no G-force message.**
-- **Master power switch (middle strip):** in series with the 5 V rail. It cuts the pixels and the fader driver
-  but leaves the Teensy and expander powered over USB.
+- **Master power switch (middle strip, guarded):** in series with the 5 V rail. It cuts the pixels and the fader driver
+  but leaves the Teensy and expander powered over USB. It is a third guarded toggle from the AITRIP pack, so a bump cannot
+  kill the lights.
 - **Layout effect:** the right strip's freed corner holds the annunciator and the middle strip gets the master switch. The
   strips are now 245 mm wide (see the keyboard decision below).
 - **STAGE key (decided):** a key switch arms STAGE. The big STAGE button only fires while the key is on, which
@@ -182,7 +183,7 @@ This file records what has been settled and what is still open.
     position 1 only. Confirm in the datasheet that position 1 is OFF.
   - Big STAGE button: Adafruit 3489 arcade button (1528-2316-ND, $2.50), **30 mm cutout**, red 5 V LED, 2.8 mm quick-connect.
     The LED is open: always on, or driven later.
-  - Master power switch: E-Switch ST141D00 toggle (EG4810-ND, $6.52), SPST, 12 mm cutout.
+  - Master power switch: now a guarded AITRIP toggle (see below), replacing the E-Switch ST141D00 that was picked first.
   - Expander: MCP23017-E/SP (DIP-28, $1.69) with a socket, hand-wired on perfboard behind the panel instead of a breakout
     board. A0-A2 tied to GND (address 0x20), RESET through 10 k to 3V3, 0.1 uF across its supply.
 - **Open:** the expander's interrupt behaviour is untested, and the Digi-Key key switch's key position needs confirming.
@@ -242,7 +243,7 @@ This file records what has been settled and what is still open.
   cover is made for CW Industries' own toggle series, so mixing is a fit risk. The matched AITRIP pack stays.
 - **Part:** [AITRIP 6-pack, 12 V 20 A, 2-pin SPST ON/OFF toggle switches with red aircraft-style covers](https://www.amazon.com/Heavy-Rocker-Toggle-Switch-Cover/dp/B0CL4GNMJX)
   (Amazon B0CL4GNMJX). Seller-reported 12 mm mounting hole; price and stock not checked.
-  Two are used (ABORT and ENGAGE / DISENGAGE, on the switch panel), so four are left over. A guarded toggle is cheap enough to keep for ABORT;
+  Three are used (ABORT and ENGAGE / DISENGAGE on the switch panel, and the master power switch), so three are left over. A guarded toggle is cheap enough to keep for ABORT;
   the price in the Amazon listing was not visible when checked. Its title calls it a "rocker toggle": check the photos
   before ordering that it is the bat-handle style with a flip cover.
 - **Wiring:** one pin to ground, the other to a Teensy input with `INPUT_PULLUP`; debounce in firmware.

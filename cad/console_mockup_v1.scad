@@ -7,7 +7,7 @@
 //   piece 0  LEFT WING     translation stick, throttle fader, time-warp encoder
 //   piece 1  RIGHT WING    rotation stick, camera and page encoders
 //   piece 2  STRIP LEFT    12 navigation keys + the SWITCH PANEL (everything on the I2C expander, incl. the STAGE key switch and ENGAGE toggle)
-//   piece 3  STRIP MIDDLE  2 OLEDs, 4 fuel bars, buzzer, master power, Teensy and power jack inside
+//   piece 3  STRIP MIDDLE  2 OLEDs, 4 fuel bars, buzzer, guarded master power switch, Teensy and power jack inside
 //   piece 4  STRIP RIGHT   12 action-group keys + the ANNUNCIATOR (9 pixel windows)
 //
 // Panel coordinates: u across the piece from its left edge, v away from you along the slope from
@@ -201,7 +201,7 @@ module proxies(i) {
         }
         for (b = [0 : 3], k = [0 : 7])
             place(bar_u[b], bar_v0 + k * bar_pitch) glow(k < 6 - b ? (b == 3 ? "#fc0" : "#3c3") : "#555");
-        place(master[0], master[1]) toggle_proxy();
+        place(master[0], master[1]) guard_proxy();
     } else {
         key_proxies(false);
         for (k = [0 : 8]) place(ann_pos(k)[0], ann_pos(k)[1])

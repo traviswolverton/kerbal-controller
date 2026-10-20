@@ -1,13 +1,13 @@
 # Budget
 
-Combined order totals, USD, **before shipping and tax**. Digi-Key and Mouser prices come from the shortlist (`docs/parts-shortlist.json`, last checked 2026-10-19); Amazon prices are kept by hand in `docs/amazon-items.json` because Amazon has no price API. Regenerate with `python3 docs/tools/parts.py budget --md` (add `--live` to re-check the distributor prices first).
+Combined order totals, USD, **before shipping and tax**. Digi-Key and Mouser prices come from the shortlist (`docs/parts-shortlist.json`, last checked 2026-10-20); Amazon prices are kept by hand in `docs/amazon-items.json` because Amazon has no price API. Regenerate with `python3 docs/tools/parts.py budget --md` (add `--live` to re-check the distributor prices first).
 
 | | Lines | Amount |
 |---|---|---|
-| Digi-Key and Mouser | 36 | $322.72 |
+| Digi-Key and Mouser | 35 | $316.20 |
 | Amazon.com, priced | 1 | $37.58 |
 | Amazon.com, **no price yet** | 5 | not counted |
-| **Total so far** | | **$360.30** |
+| **Total so far** | | **$353.78** |
 
 The total is a floor: 5 Amazon item(s) have no price yet. Set one with `python3 docs/tools/parts.py amazon-price ASIN PRICE`.
 
@@ -17,7 +17,7 @@ The total is a floor: 5 Amazon item(s) have no price yet. Set one with `python3 
 |---|---|---|---|---|---|
 | JH-D400X-R4 joystick (SaiDian) | B08CGYGMJL | 2 | $18.79 | $37.58 | Price from the listing when chosen. |
 | DSA blank keycaps, 1u, 24-pack (Mechkeeb) | B0BWDQ3NKK | 2 | unchecked | - | Two packs for 37 caps. Colours to pick. |
-| Guarded toggle switches with covers, 6-pack (AITRIP) | B0CL4GNMJX | 1 | unchecked | - | Check the photos show a bat-handle toggle. |
+| Guarded toggle switches with covers, 6-pack (AITRIP) | B0CL4GNMJX | 1 | unchecked | - | ABORT, ENGAGE / DISENGAGE and the master power switch. Check the photos show a bat-handle toggle. |
 | Encoder knobs, 25 x 13 mm, D bore, 2-pack (NMOWYBPY) | B0H3NXPL9Z | 2 | unchecked | - | Two packs for 3 knobs plus a spare. |
 | 2.42 in OLED 128x64 SSD1309, SPI (Waveshare) | B0CM3RHMGP | 2 | unchecked | - | Board outline vs the 58 x 31 mm window unchecked. |
 | Steel ballast plates 6 x 6 x 1/4 in, 4-pack | B07L7DPKW7 | 1 | unchecked | - | Two per wing. Wipe and paint. |
@@ -44,7 +44,6 @@ See [parts-bom.md](parts-bom.md) for the per-line list with stock and flags.
 | Panel DC jack 5.5 x 2.1 mm | digikey | 839-54-00151-ND | 1 | $4.81 | $4.81 |
 | Panel fuse holder 5 x 20 mm | digikey | 732-952005000010000-ND | 1 | $2.15 | $2.15 |
 | 4 A fuse 5 x 20 mm (1 spare) | digikey | F1724-ND | 2 | $0.57 | $1.14 |
-| Master power switch, 12 mm toggle | digikey | EG4810-ND | 1 | $6.52 | $6.52 |
 | STAGE key switch (12 mm cutout) | digikey | EG5876-ND | 1 | $7.07 | $7.07 |
 | Big STAGE button, 30 mm arcade, red LED | digikey | 1528-2316-ND | 1 | $2.50 | $2.50 |
 | Motorised 100 mm fader (Adafruit 5466) | digikey | 1528-5466-ND | 1 | $24.95 | $24.95 |
