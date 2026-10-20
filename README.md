@@ -28,6 +28,7 @@ fader, 5 V power from a wall adapter, and one DB25 cable from each outer piece t
 
 | File | What it has |
 |---|---|
+| `docs/todo.md` | the checklist of what is left, from ordering to firmware |
 | `docs/decisions.md` | what is settled, why, and what is still open |
 | `docs/controls.md` | what every control does, panel by panel: the key map |
 | `docs/parts-list.md` | every part, its status and where to buy it |
