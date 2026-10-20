@@ -36,8 +36,8 @@ This file records what has been settled and what is still open.
   parametric data (panel cutouts, ratings). It also sells SparkFun, Adafruit and PJRC items, so the Teensy, fader, driver,
   nubbin and arcade button all moved there from Adafruit, PJRC and Amazon.
 - **Amazon.com exceptions:** the SaiDian joysticks (not stocked), the MX switches and buzzers already owned, the DSA keycaps,
-  the matched AITRIP guarded toggles, the encoder knobs (nothing suitable found at Digi-Key), the Waveshare OLEDs (Digi-Key's
-  2.42" OLEDs cost $30 to $57 each) and the steel ballast plates.
+  the matched AITRIP guarded toggles and the Waveshare OLEDs (Digi-Key's 2.42" OLEDs cost $30 to $57 each). The encoder knobs
+  moved to Digi-Key. The ballast steel is bought locally (the Amazon plate listings were dead links).
 - **Reel trap:** many small parts default to reels with minimums of 4,000 to 5,000. The tool prefers cut tape or bulk.
 
 ## Key bank
@@ -141,10 +141,10 @@ This file records what has been settled and what is still open.
 - **Panel thickness matters:** the bushing is only about 5 mm long, so with the washer and nut the panel at
   the encoders should be about 3 mm or less, or counterbored from behind. The mockup's 7 mm hole is
   about right for the bushing, but confirm the diameter against the drawing.
-- **Knobs:** [NMOWYBPY 25 x 13 mm aluminium, D-shaped bore](https://www.amazon.com/NMOWYBPY-Aluminum-Potentiometer-25x13mm-Control/dp/B0H3NXPL9Z),
-  2 per pack, so buy 2 packs for 3 knobs plus a spare. The D-hole should seat positively on the flatted
-  shaft. The mockup knob proxy is 25 x 15 mm; this one is 2 mm shorter, which changes nothing that matters.
-- **Open:** whether the listing includes a set screw, and prices. Both unchecked.
+- **Knobs:** CLIFF KMK25 silver, 25 x 15 mm knurled aluminium, 6 mm D shaft (Digi-Key 4654-FC7254-ND, $4.90, 3 needed, 9 in stock).
+  It replaces the NMOWYBPY Amazon knobs, whose listing went dead. Same 25 mm diameter and the same 15 mm height as the
+  mockup proxy. Silver only; the smaller KMK10E (10.7 mm, FC7259) comes in black if you prefer.
+- **Open:** how the knob clamps to the shaft (set screw or friction). Check the CLIFF datasheet.
 
 ## Switch panel and annunciator (proposed)
 - **Switch panel (left strip):** all inputs that are not wired to a stick or encoder go on one panel and one

@@ -4,8 +4,9 @@ Compiled from the design session on 2026-10-20. Check items off as you go. Where
 
 ## 1. Before you order
 
-- [ ] **Fill in the five Amazon prices** (keycaps x2, guarded toggles, encoder knobs x2, Waveshare OLEDs x2, steel plates), then run
-  `python3 docs/tools/parts.py budget --md`. Use `amazon-price ASIN PRICE`. Current total: $353.78 with those five missing.
+- [ ] **Fill in any remaining Amazon prices** (check `docs/amazon-items.json` for `null`), then run
+  `python3 docs/tools/parts.py budget --md`. Use `amazon-price ASIN PRICE`.
+- [ ] **Buy about 4.6 kg of ballast steel locally** (see `fabrication.md`); the Amazon plate listings were dead.
 - [ ] **Check the AITRIP photos show a bat-handle toggle with a flip cover**, not a flat rocker. Three of the six switches depend on it
   (ABORT, ENGAGE / DISENGAGE, master power).
 - [ ] **Confirm the key switch's key position**: in the E-Switch KO133A801 datasheet, is position 1 (key removable) OFF?

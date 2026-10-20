@@ -9,8 +9,8 @@ a total is [parts-bom.md](parts-bom.md), and the shortlist is [parts-shortlist.j
 
 ## Digi-Key order
 
-The table lists the 27 main lines ($219.26). The shortlist also holds the perfboard, terminal blocks, headers, wire and heat shrink
-from [electronics-build.md](electronics-build.md), 35 lines and $316.20 in all, re-checked live on 2026-10-20 with no flags. **The combined Digi-Key and Amazon total is in
+The table lists the 28 main lines. The shortlist also holds the perfboard, terminal blocks, headers, wire and heat shrink
+from [electronics-build.md](electronics-build.md), 36 lines and $330.90 in all. Re-checked live on 2026-10-20 with no flags. **The combined Digi-Key and Amazon total is in
 [budget.md](budget.md).**
 
 | Part | Qty | Digi-Key PN | Unit | Notes |
@@ -27,6 +27,7 @@ from [electronics-build.md](electronics-build.md), 35 lines and $316.20 in all, 
 | L9110H fader driver, Adafruit 4489 | 1 | 1528-4489-ND | $1.50 | Next to the fader motor. |
 | Conductive fader nubbin, Adafruit 5741 | 1 | 1528-5741-ND | $6.19 | For touch sensing. Only 37 in stock. |
 | Rotary encoder with push switch, Bourns PEC11R-4215F-S0024 | 3 | PEC11R-4215F-S0024-ND | $2.95 | 24 detents, 6 mm flatted shaft. Bushing only about 5 mm long: keep the panel about 3 mm at the encoders. |
+| Encoder knobs, CLIFF KMK25 silver, 25 x 15 mm | 3 | 4654-FC7254-ND | $4.90 | 6 mm D shaft, knurled aluminium, matches the mockup's 25 x 15 mm proxy. Only 9 in stock; silver only (the smaller KMK10E FC7259 comes in black). Set screw not confirmed. |
 | MCP23017-E/SP I2C expander, DIP-28 | 1 | MCP23017-E/SP-ND | $1.69 | Replaces the breakout board: hand-wired on perfboard behind the switch panel. |
 | DIP-28 socket | 1 | 1175-1490-ND | $1.29 | For the expander. |
 | 74AHCT125N level shifter, DIP-14 | 1 | 296-4655-5-ND | $1.00 | Pixel data line. |
@@ -56,9 +57,8 @@ the cut-tape or bulk versions with a minimum order of 1. The tool now prefers th
 | Buzzer module, low-level trigger | 1 of 5 | owned | [DIYables, Amazon B0DHGP95K4](https://www.amazon.com/dp/B0DHGP95K4) | Ordered 2026-10-10. Bench-test whether it is passive. Power from 3V3. |
 | DSA blank keycaps, 1u | 37 (two packs of 24) | chosen | [Mechkeeb](https://www.amazon.com/Mechkeeb-Profile-Switches-Keyboard-Replacement/dp/B0BWDQ3NKK) | Price and colours unchecked. Labels go on the panel. |
 | Guarded toggle switch, 12 mm | 3 (of a 6-pack) | chosen | [AITRIP 6-pack with red covers, B0CL4GNMJX](https://www.amazon.com/Heavy-Rocker-Toggle-Switch-Cover/dp/B0CL4GNMJX) | ABORT, ENGAGE / DISENGAGE and the master power switch. Kept: Digi-Key sells the guard and the toggle separately, and its cover is made for CW Industries' own series, so fit is a risk. Check the photos show a bat-handle toggle. Price unchecked. |
-| Encoder knobs, 25 x 13 mm, D-shaped bore | 3 (two packs) | proposed | [NMOWYBPY](https://www.amazon.com/NMOWYBPY-Aluminum-Potentiometer-25x13mm-Control/dp/B0H3NXPL9Z) | Digi-Key searches for knobs returned nothing useful. Set screw wording ambiguous. |
 | 2.42" OLED, 128x64, SSD1309 | 2 | proposed | [Waveshare](https://www.amazon.com/waveshare-Resolution-Raspberry-forArduino-Communication/dp/B0CM3RHMGP) | SPI, 3.3 V. Digi-Key's 2.42" OLEDs are $30 to $57 each, so this is a deliberate exception. Board outline vs the 58 x 31 mm window unchecked. |
-| Steel ballast plates, 6 x 6 x 1/4 in | 4 | proposed | [4-pack](https://www.amazon.com/clp/B07L7DPKW7) | Two per wing. Wipe and paint. |
+| Ballast steel, about 4.6 kg in all | 4 plates | open | local metal supplier or hardware store | 6 x 6 x 1/4 in plates (152.4 x 152.4 x 6.35 mm, about 1.16 kg each), two per wing, or equivalent steel. The Amazon listings were dead links. Wipe and paint. |
 
 ## Not yet specified
 

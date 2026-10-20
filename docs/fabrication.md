@@ -27,9 +27,8 @@ Print time is about 70 to 140 hours at 15 to 30 g/h. A 0.6 mm nozzle roughly hal
 The printed pieces plus parts weigh only about 3 kg, which a hand on the throttle or a tug on a cable can move.
 
 - **Ballast:** two 6 x 6 x 1/4 in steel plates per wing (152.4 x 152.4 x 6.35 mm, about 1.16 kg each, 4.6 kg in all)
-  lie on the floor of each wing. The 4-pack on Amazon is exactly four plates.
-  [4-pack](https://www.amazon.com/clp/B07L7DPKW7), [single](https://www.amazon.com/Steel-Plate-A36-Steel-25-Thick/dp/B07VV618NN).
-  Prices and stock not checked; one listing is nominally 15/64 in thick, so check before ordering.
+  lie on the floor of each wing. The Amazon listings were dead links, so buy the steel locally (a metal supplier's offcuts,
+  or hardware-store flat bar). Any steel of about the same footprint that totals about 4.6 kg will do.
   Wipe and paint the plates: they arrive oily and will rust.
 - **Clearance:** the plates sit under the stick, clear of the fader body. The left wing's plates start at u = 58 mm,
   because the fader body occupies u 21 to 39 mm.

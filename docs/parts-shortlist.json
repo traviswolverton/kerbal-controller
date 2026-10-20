@@ -523,5 +523,20 @@
     "datasheet": "",
     "qty": 1,
     "checked": "2026-10-20"
+  },
+  {
+    "role": "Encoder knobs, 25 mm D shaft (CLIFF KMK25)",
+    "source": "digikey",
+    "pn": "4654-FC7254-ND",
+    "mpn": "FC7254",
+    "manufacturer": "CLIFF Electronic Components Ltd",
+    "description": "KMK25 KNOB SILVER 6MM USA D",
+    "unit_price": 4.9,
+    "stock": 9,
+    "status": "Active",
+    "url": "https://www.digikey.com/en/products/detail/cliff-electronic-components-ltd/FC7254/21406846",
+    "datasheet": "https://www.cliffuk.co.uk/products/knobs/knobsKMK.pdf",
+    "qty": 3,
+    "checked": "2026-10-20"
   }
 ]

@@ -4,23 +4,19 @@ Combined order totals, USD, **before shipping and tax**. Digi-Key and Mouser pri
 
 | | Lines | Amount |
 |---|---|---|
-| Digi-Key and Mouser | 35 | $316.20 |
-| Amazon.com, priced | 1 | $37.58 |
-| Amazon.com, **no price yet** | 5 | not counted |
-| **Total so far** | | **$353.78** |
-
-The total is a floor: 5 Amazon item(s) have no price yet. Set one with `python3 docs/tools/parts.py amazon-price ASIN PRICE`.
+| Digi-Key and Mouser | 36 | $330.90 |
+| Amazon.com, priced | 4 | $105.53 |
+| Amazon.com, **no price yet** | 0 | not counted |
+| **Total so far** | | **$436.43** |
 
 ## Amazon.com to buy
 
 | Item | ASIN | Qty | Unit | Extended | Note |
 |---|---|---|---|---|---|
 | JH-D400X-R4 joystick (SaiDian) | B08CGYGMJL | 2 | $18.79 | $37.58 | Price from the listing when chosen. |
-| DSA blank keycaps, 1u, 24-pack (Mechkeeb) | B0BWDQ3NKK | 2 | unchecked | - | Two packs for 37 caps. Colours to pick. |
-| Guarded toggle switches with covers, 6-pack (AITRIP) | B0CL4GNMJX | 1 | unchecked | - | ABORT, ENGAGE / DISENGAGE and the master power switch. Check the photos show a bat-handle toggle. |
-| Encoder knobs, 25 x 13 mm, D bore, 2-pack (NMOWYBPY) | B0H3NXPL9Z | 2 | unchecked | - | Two packs for 3 knobs plus a spare. |
-| 2.42 in OLED 128x64 SSD1309, SPI (Waveshare) | B0CM3RHMGP | 2 | unchecked | - | Board outline vs the 58 x 31 mm window unchecked. |
-| Steel ballast plates 6 x 6 x 1/4 in, 4-pack | B07L7DPKW7 | 1 | unchecked | - | Two per wing. Wipe and paint. |
+| DSA blank keycaps, 1u, 24-pack (Mechkeeb) | B0BWDQ3NKK | 2 | $8.99 | $17.98 | Two packs for 37 caps. Colours to pick. |
+| Guarded toggle switches with covers, 6-pack (AITRIP) | B0CL4GNMJX | 1 | $9.99 | $9.99 | ABORT, ENGAGE / DISENGAGE and the master power switch. Check the photos show a bat-handle toggle. |
+| 2.42 in OLED 128x64 SSD1309, SPI (Waveshare) | B0CM3RHMGP | 2 | $19.99 | $39.98 | Board outline vs the 58 x 31 mm window unchecked. |
 
 ## Already owned
 
@@ -73,6 +69,7 @@ See [parts-bom.md](parts-bom.md) for the per-line list with stock and flags.
 | Hookup wire 22 AWG stranded, 10 colours x 25 ft | digikey | 1528-3175-ND | 1 | $32.29 | $32.29 |
 | Hookup wire 22 AWG solid, 6 colours x 25 ft (matrix) | digikey | 1528-1743-ND | 1 | $15.95 | $15.95 |
 | Heat shrink assortment | digikey | 1528-4559-ND | 1 | $9.95 | $9.95 |
+| Encoder knobs, 25 mm D shaft (CLIFF KMK25) | digikey | 4654-FC7254-ND | 3 | $4.90 | $14.70 |
 
 ## Not counted at all
 

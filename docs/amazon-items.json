@@ -11,7 +11,7 @@
     "item": "DSA blank keycaps, 1u, 24-pack (Mechkeeb)",
     "asin": "B0BWDQ3NKK",
     "qty": 2,
-    "unit_price": null,
+    "unit_price": 8.99,
     "status": "to buy",
     "note": "Two packs for 37 caps. Colours to pick."
   },
@@ -19,33 +19,17 @@
     "item": "Guarded toggle switches with covers, 6-pack (AITRIP)",
     "asin": "B0CL4GNMJX",
     "qty": 1,
-    "unit_price": null,
+    "unit_price": 9.99,
     "status": "to buy",
     "note": "ABORT, ENGAGE / DISENGAGE and the master power switch. Check the photos show a bat-handle toggle."
-  },
-  {
-    "item": "Encoder knobs, 25 x 13 mm, D bore, 2-pack (NMOWYBPY)",
-    "asin": "B0H3NXPL9Z",
-    "qty": 2,
-    "unit_price": null,
-    "status": "to buy",
-    "note": "Two packs for 3 knobs plus a spare."
   },
   {
     "item": "2.42 in OLED 128x64 SSD1309, SPI (Waveshare)",
     "asin": "B0CM3RHMGP",
     "qty": 2,
-    "unit_price": null,
+    "unit_price": 19.99,
     "status": "to buy",
     "note": "Board outline vs the 58 x 31 mm window unchecked."
-  },
-  {
-    "item": "Steel ballast plates 6 x 6 x 1/4 in, 4-pack",
-    "asin": "B07L7DPKW7",
-    "qty": 1,
-    "unit_price": null,
-    "status": "to buy",
-    "note": "Two per wing. Wipe and paint."
   },
   {
     "item": "MX-style blue clicky switches, 72-pack (Josojoou)",
