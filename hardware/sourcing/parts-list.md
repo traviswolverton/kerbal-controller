@@ -58,7 +58,7 @@ the cut-tape or bulk versions with a minimum order of 1. The tool now prefers th
 | DSA blank keycaps, 1u | 37 (two packs of 24) | chosen | [Mechkeeb](https://www.amazon.com/Mechkeeb-Profile-Switches-Keyboard-Replacement/dp/B0BWDQ3NKK) | Price and colours unchecked. Labels go on the panel. |
 | Guarded toggle switch, 12 mm | 3 (of a 6-pack) | chosen | [AITRIP 6-pack with red covers, B0CL4GNMJX](https://www.amazon.com/Heavy-Rocker-Toggle-Switch-Cover/dp/B0CL4GNMJX) | ABORT, ENGAGE / DISENGAGE and the master power switch. Kept: Digi-Key sells the guard and the toggle separately, and its cover is made for CW Industries' own series, so fit is a risk. Check the photos show a bat-handle toggle. Price unchecked. |
 | 2.42" OLED, 128x64, SSD1309 | 2 | proposed | [Waveshare](https://www.amazon.com/waveshare-Resolution-Raspberry-forArduino-Communication/dp/B0CM3RHMGP) | SPI, 3.3 V. Digi-Key's 2.42" OLEDs are $30 to $57 each, so this is a deliberate exception. Board outline vs the 58 x 31 mm window unchecked. |
-| Ballast steel, about 4.6 kg in all | 4 plates | open | local metal supplier or hardware store | 6 x 6 x 1/4 in plates (152.4 x 152.4 x 6.35 mm, about 1.16 kg each), two per wing, or equivalent steel. The Amazon listings were dead links. Wipe and paint. |
+| Weight vest steel plates, 8-pack, Mavee silver electroplated | 2 packs (16 plates) | chosen | [Amazon short link](https://a.co/d/0axItt4q), $25.99 a pack | Ballast: 8 plates per wing in two layers of 4, about 3.2 kg in all; the pocket takes 12 per wing if a third pack is needed. 5.9 x 0.98 x 0.28 in, 0.44 lb each, plated (no painting). ASIN not resolved; weigh one plate on arrival. |
 
 ## Not yet specified
 

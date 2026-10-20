@@ -5,9 +5,9 @@ Combined order totals, USD, **before shipping and tax**. Digi-Key and Mouser pri
 | | Lines | Amount |
 |---|---|---|
 | Digi-Key and Mouser | 36 | $328.54 |
-| Amazon.com, priced | 4 | $105.53 |
+| Amazon.com, priced | 5 | $157.51 |
 | Amazon.com, **no price yet** | 0 | not counted |
-| **Total so far** | | **$434.07** |
+| **Total so far** | | **$486.05** |
 
 ## Amazon.com to buy
 
@@ -17,6 +17,7 @@ Combined order totals, USD, **before shipping and tax**. Digi-Key and Mouser pri
 | DSA blank keycaps, 1u, 24-pack (Mechkeeb) | B0BWDQ3NKK | 2 | $8.99 | $17.98 | Two packs for 37 caps. Colours to pick. |
 | Guarded toggle switches with covers, 6-pack (AITRIP) | B0CL4GNMJX | 1 | $9.99 | $9.99 | ABORT, ENGAGE / DISENGAGE and the master power switch. Check the photos show a bat-handle toggle. |
 | 2.42 in OLED 128x64 SSD1309, SPI (Waveshare) | B0CM3RHMGP | 2 | $19.99 | $39.98 | Board outline vs the 58 x 31 mm window unchecked. |
+| Weight vest steel plates, 8-pack (Mavee, silver electroplated) | unknown | 2 | $25.99 | $51.98 | Ballast: 8 plates per wing (16 in all, 2 packs, about 3.2 kg); the pocket takes 12 per wing if a third pack is needed. Link: https://a.co/d/0axItt4q (short link, ASIN not resolved). 5.9 x 0.98 x 0.28 in, 0.44 lb each. |
 
 ## Already owned
 

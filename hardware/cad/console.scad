@@ -31,11 +31,12 @@ D_m     = [180, 180, 135, 135, 135];      // length of the panel along the slope
 plate_t = 3;                              // removable faceplate thickness
 hollow  = true;                           // shells are hollow: walls and floor, faceplate separate
 wall    = 2.4;                            // shell wall and floor thickness
-ballast = true;                           // 6 x 6 x 1/4 in steel plates in the wings (2 per wing)
+ballast = true;                           // 8 steel vest plates in each wing: 2 layers of 4 (the pocket takes 12, 2 layers of 6)
 cut_x   = -1;                             // >= 0: slice away everything beyond this x (local to the piece)
 part    = "all";                          // "all", "shell" or "plate": one part for STL export (use with mod)
 foot_d  = 20;                             // self-adhesive silicone foot diameter
-steel   = [152.4, 152.4, 6.35];           // ballast plate
+steel   = [24.9, 150, 7.1];                // one ballast plate (Mavee vest plate: 0.98 x 5.9 x 0.28 in, 0.44 lb)
+steel_gap = 0.4;                          // space between neighbouring plates in a layer
 
 // ---- shared sizes -----------------------------------------------------
 cut_mx   = 14.0;   // MX plate cutout
@@ -278,7 +279,7 @@ function foot_pos(i) = [[30, 30], [W[i] - 30, 30], [30, DD() * cos(T()) - 30], [
 module feet(i) color("#111") for (p = foot_pos(i)) translate([p[0], p[1], -3]) cylinder(d = foot_d, h = 3, $fn = 32);
 module ballast_stack(i) color("#7d8a99") {
     u0 = i == 0 ? 38 : 20;                  // left wing: keep clear of the fader body at u 16..34
-    for (k = [0, 1]) translate([u0, 12, wall + k * steel[2]]) cube(steel);
+    for (k = [0, 1], j = [0 : 3]) translate([u0 + j * (steel[0] + steel_gap), 12, wall + k * steel[2]]) cube(steel);   // 4 across, 2 layers
 }
 module extras(i) {
     feet(i);

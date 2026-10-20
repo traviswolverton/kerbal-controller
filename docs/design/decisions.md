@@ -37,7 +37,7 @@ This file records what has been settled and what is still open.
   nubbin and arcade button all moved there from Adafruit, PJRC and Amazon.
 - **Amazon.com exceptions:** the SaiDian joysticks (not stocked), the MX switches and buzzers already owned, the DSA keycaps,
   the matched AITRIP guarded toggles and the Waveshare OLEDs (Digi-Key's 2.42" OLEDs cost $30 to $57 each). The encoder knobs
-  moved to Digi-Key. The ballast steel is bought locally (the Amazon plate listings were dead links).
+  moved to Digi-Key. The ballast is Mavee weight-vest plates (the 6 x 6 in plate listings were dead links).
 - **Reel trap:** many small parts default to reels with minimums of 4,000 to 5,000. The tool prefers cut tape or bulk.
 
 ## Key bank

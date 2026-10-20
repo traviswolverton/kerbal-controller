@@ -6,7 +6,7 @@ Compiled from the design session on 2026-10-20. Check items off as you go. Where
 
 - [ ] **Fill in any remaining Amazon prices** (check `hardware/sourcing/amazon-items.json` for `null`), then run
   `python3 tools/parts.py budget --md`. Use `amazon-price ASIN PRICE`.
-- [ ] **Buy about 4.6 kg of ballast steel locally** (see `hardware/cad/fabrication.md`); the Amazon plate listings were dead.
+- [ ] **Order 2 packs of the Mavee vest plates** ($25.99 each, a third only if the console still creeps; link in `hardware/sourcing/parts-list.md`) and note the ASIN in `amazon-items.json`.
 - [ ] **Check the AITRIP photos show a bat-handle toggle with a flip cover**, not a flat rocker. Three of the six switches depend on it
   (ABORT, ENGAGE / DISENGAGE, master power).
 - [ ] **Confirm the key switch's key position**: in the E-Switch KO133A801 datasheet, is position 1 (key removable) OFF?

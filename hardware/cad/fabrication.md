@@ -26,15 +26,19 @@ Print time is about 70 to 140 hours at 15 to 30 g/h. A 0.6 mm nozzle roughly hal
 
 The printed pieces plus parts weigh only about 3 kg, which a hand on the throttle or a tug on a cable can move.
 
-- **Ballast:** two 6 x 6 x 1/4 in steel plates per wing (152.4 x 152.4 x 6.35 mm, about 1.16 kg each, 4.6 kg in all)
-  lie on the floor of each wing. The Amazon listings were dead links, so buy the steel locally (a metal supplier's offcuts,
-  or hardware-store flat bar). Any steel of about the same footprint that totals about 4.6 kg will do.
-  Wipe and paint the plates: they arrive oily and will rust.
-- **Clearance:** the plates sit under the stick, clear of the fader body. The left wing's plates start at u = 58 mm,
-  because the fader body occupies u 21 to 39 mm.
+- **Ballast:** 8 weight-vest steel plates per wing, 16 in all (Mavee, [Amazon short link](https://a.co/d/0axItt4q), 2 packs of 8
+  at $25.99). Each is 5.9 x 0.98 x 0.28 in (150 x 25 x 7.1 mm), listed at 0.44 lb, so a wing takes about 1.6 kg and the pair
+  about 3.2 kg. They lie on the floor of each wing as 4 side by side in two layers: a block about 100 x 150 x 14.2 mm. The
+  pocket takes 12 per wing (6 across), so a third pack (4.8 kg in all) can be added later if the console still creeps.
+  They are plated, so no painting. Weigh one on arrival, and any equivalent steel totalling about 3 kg will do.
+- **Clearance:** the block sits under the stick, clear of the fader body (the left wing's block starts at u = 38 mm). By my
+  calculation from the 30 mm front height, the 12 degree tilt and the 3 mm faceplate, the roof is only about 13 mm above the
+  block at its front edge (y = 12 mm), rising to about 45 mm at the back. Check the stick, encoder and fader fit.
+- **Hold-down:** thin loose plates need holding: a printed tray with a strap or lid. Not designed yet.
 - **Feet:** four 20 mm self-adhesive silicone feet per piece, in recesses 30 mm in from each corner.
-- **Total:** about 7 to 8 kg with the ballast. With rubber feet (friction about 0.6) that resists roughly 40 N
-  before sliding. My assumed loads are 5 to 10 N from a stick and a few newtons from a cable tug. Not measured.
+- **Total:** about 6 kg with the ballast (about 8 kg with the third pack). With rubber feet (friction about 0.6) that resists
+  roughly 36 N before sliding (about 46 N with three packs). A wing on its own, about 2.6 kg, resists about 15 N, so joining the
+  pieces matters. My assumed loads are 5 to 10 N from a stick and a few newtons from a cable tug. Not measured.
 - **Join the pieces** with screws or dowels so the five act as one mass. Not designed yet.
 - Avoid lead. Fall back to desk clamps if it still creeps.
 
