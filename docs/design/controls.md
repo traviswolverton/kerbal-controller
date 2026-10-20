@@ -1,7 +1,7 @@
 # Control map
 
 What every control does, panel by panel, so you can read it instead of asking. Labels match `cad/console_mockup_v1.scad`;
-pins and conductors are in [pin-map.md](pin-map.md). **Status:** *decided* is in `decisions.md`; *proposed* is my reading of
+pins and conductors are in [pin-map.md](../wiring/pin-map.md). **Status:** *decided* is in `design/decisions.md`; *proposed* is my reading of
 the label and not yet settled; *open* means no function chosen. KSP actions go through
 [KerbalSimpitRevamped](https://github.com/Simpit-team/KerbalSimpitRevamped). Nothing here is built or tested.
 
@@ -97,4 +97,4 @@ CONTROLS lights while ENGAGE is on. There is no HIGH G window: Simpit has no G-f
 ## What is not on the console
 
 The keyboard and mouse still handle typing, the VAB and SPH, EVA walking, and map-view clicks. The console is designed
-around a 12.2 in 60% keyboard in the open middle (see `decisions.md`).
+around a 12.2 in 60% keyboard in the open middle (see `design/decisions.md`).

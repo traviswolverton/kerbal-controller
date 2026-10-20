@@ -42,7 +42,7 @@ The printed pieces plus parts weigh only about 3 kg, which a hand on the throttl
 
 - Each shell prints floor down with the open sloped top facing up: the walls rise straight, so I expect no supports.
 - Faceplates print flat.
-- Largest envelopes: wings 195 x 176 x 67 mm, strips 245 x 119 x 128 mm. All fit the 256 mm bed, with 11 mm to spare on the strips. The console is 735 mm across (see the keyboard note in `decisions.md`).
+- Largest envelopes: wings 195 x 176 x 67 mm, strips 245 x 119 x 128 mm. All fit the 256 mm bed, with 11 mm to spare on the strips. The console is 735 mm across (see the keyboard note in `design/decisions.md`).
 
 ## Not designed yet
 
@@ -53,4 +53,4 @@ The printed pieces plus parts weigh only about 3 kg, which a hand on the throttl
 - DB25 jacks are modelled: cutouts 42.52 x 11.40 mm with two mounting holes, on each wing's outer end wall and the strips' back walls.
 - Internal mounts: the fader, stick, encoders, OLEDs, Teensy and DC jack.
 
-Renders: `docs/mockup/v1/renders/v1-wing-cutaway.png` and `v1-strip-cutaway.png`.
+Renders: `docs/mockup/renders/v1-wing-cutaway.png` and `v1-strip-cutaway.png`.

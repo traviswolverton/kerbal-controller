@@ -3,7 +3,7 @@
 # Needs: openscad, python3, chromium (for the PDFs), xvfb-run (for the PNG renders).
 set -euo pipefail
 cd "$(dirname "$0")"
-OUT=../docs/mockup
+OUT=../../../docs/archive/v0-mockup
 TMP=$(mktemp -d)
 if [ -z "${CHROME:-}" ]; then
   for c in chromium chromium-browser google-chrome /opt/pw-browsers/chromium-1194/chrome-linux/chrome; do
@@ -19,7 +19,7 @@ for m in 0 1 2; do
     openscad -D flat=true -D mod=$m -D "layer=\"$l\"" -o "$TMP/m${m}_$l.svg" console_mockup.scad
   done
 done
-python3 -I tools/merge_templates.py "$TMP" "$OUT/templates"
+python3 -I merge_templates.py "$TMP" "$OUT/templates"
 for n in left center right; do
   "$CHROME" --headless --no-sandbox --disable-gpu --no-pdf-header-footer \
     --print-to-pdf="$OUT/templates/$n-panel-template-1to1.pdf" "file://$OUT/templates/$n.html" >/dev/null 2>&1

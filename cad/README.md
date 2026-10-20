@@ -38,6 +38,12 @@ Fit the switches and keycaps, then prop the plate at about 28 degrees (a book or
 where you would sit. The pixel above each key should be clearly visible past the keycap in front. If it is
 not, we need a steeper tilt, a bigger row pitch, or a raised light post.
 
-## console_mockup.scad
+## console_mockup_v1.scad
 
-The full console mockup. See `../docs/mockup/README.md`. Regenerate everything with `./build_mockup.sh`.
+The current five-piece console layout. See `../docs/mockup/README.md`. The render and template commands are at the top of the file.
+`tools/stl_volume.py` measures shell and plate volume from exported STLs.
+
+## archive/v0
+
+The earlier three-module layout (`console_mockup.scad`, its build script and template merger), kept for reference. Its images
+are in `../docs/archive/v0-mockup/`. Not maintained.

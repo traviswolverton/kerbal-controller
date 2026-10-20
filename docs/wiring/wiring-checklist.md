@@ -1,6 +1,6 @@
 # Wiring checklist
 
-Companion to the wiring diagrams in [wiring.md](wiring.md) (also as [pinout.html](pinout.html) for a browser). Pin numbers and signal names are in
+Companion to the wiring diagrams in [wiring.md](wiring.md) (also as [pinout.html](../pinout.html) for a browser). Pin numbers and signal names are in
 [pin-map.md](pin-map.md). Nothing is built yet and none of this has been checked on real hardware: tick a box
 only after you have checked it on the actual part.
 

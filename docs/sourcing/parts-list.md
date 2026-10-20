@@ -5,12 +5,12 @@ confirmed), **open** (undecided). Sources are US retailers only. **Digi-Key is t
 below are one Digi-Key order; Amazon.com covers what Digi-Key does not carry or sells at a much worse price.
 Digi-Key prices and stock are from the Digi-Key API on 2026-10-19 (`docs/tools/parts.py`); the live order list with
 a total is [parts-bom.md](parts-bom.md), and the shortlist is [parts-shortlist.json](parts-shortlist.json). Re-run
-`python3 docs/tools/parts.py check --md` before ordering. Design context is in `decisions.md`.
+`python3 docs/tools/parts.py check --md` before ordering. Design context is in `design/decisions.md`.
 
 ## Digi-Key order
 
 The table lists the 28 main lines. The shortlist also holds the perfboard, terminal blocks, headers, wire and heat shrink
-from [electronics-build.md](electronics-build.md), 36 lines and $328.54 in all. Re-checked live on 2026-10-20 with no flags. **The combined Digi-Key and Amazon total is in
+from [electronics-build.md](../design/electronics-build.md), 36 lines and $328.54 in all. Re-checked live on 2026-10-20 with no flags. **The combined Digi-Key and Amazon total is in
 [budget.md](budget.md).**
 
 | Part | Qty | Digi-Key PN | Unit | Notes |

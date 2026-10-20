@@ -1,7 +1,7 @@
 # Kerbal controller
 
 KSP1 controller built around KerbalSimpitRevamped. Settled decisions and open items are in
-`docs/decisions.md`; the mockup is described in `docs/mockup/README.md`.
+`docs/design/decisions.md`; the mockup is described in `docs/archive/v0-mockup/README.md`.
 
 ## Sourcing parts
 

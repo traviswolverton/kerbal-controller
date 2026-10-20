@@ -36,8 +36,8 @@ under `~/.cache/kerbal-controller/`, outside the repo.
 python3 docs/tools/parts.py search "key switch 2 position panel mount" --in-stock --active --max-price 20
 python3 docs/tools/parts.py part 612-KO131A102        # parameters, links, price, stock for one part
 python3 docs/tools/parts.py add 612-KO131A102 --role "STAGE key switch" --qty 1
-python3 docs/tools/parts.py check --md                # re-check the shortlist, write docs/parts-bom.md
-python3 docs/tools/parts.py budget --md               # combined totals with the Amazon list, write docs/budget.md
+python3 docs/tools/parts.py check --md                # re-check the shortlist, write docs/sourcing/parts-bom.md
+python3 docs/tools/parts.py budget --md               # combined totals with the Amazon list, write docs/sourcing/budget.md
 python3 docs/tools/parts.py amazon-price B0BWDQ3NKK 11.99   # record a price you saw on Amazon
 ```
 
@@ -45,11 +45,11 @@ python3 docs/tools/parts.py amazon-price B0BWDQ3NKK 11.99   # record a price you
   applied locally. `--source digikey|mouser` limits it to one, and `--json` gives raw rows. If one source fails, the other's
   results still show, with a warning.
 - A Digi-Key number ends in `-ND`; anything else is treated as a Mouser number unless you pass `--source`.
-- `add` stores the part in `docs/parts-shortlist.json` with a price and stock snapshot.
+- `add` stores the part in `docs/sourcing/parts-shortlist.json` with a price and stock snapshot.
 - `check` flags a part that is no longer Active, below the quantity you need, below the minimum order, or changed in price.
   `--update` saves the new prices.
-- `budget` adds the shortlist's stored prices to the hand-kept Amazon list in `docs/amazon-items.json` (Amazon has no price API) and
-  writes `docs/budget.md`. Owned items are listed but not counted, and Amazon items with no price are named, not guessed. `--live`
+- `budget` adds the shortlist's stored prices to the hand-kept Amazon list in `docs/sourcing/amazon-items.json` (Amazon has no price API) and
+  writes `docs/sourcing/budget.md`. Owned items are listed but not counted, and Amazon items with no price are named, not guessed. `--live`
   re-checks the distributor prices first.
 - Mind each service's API terms of use.
 
@@ -58,5 +58,5 @@ say the price or stock came from a web page, not an API.
 
 ## Wiring diagrams: `gen_pinout.py`
 
-Generates `docs/pinout.html`, `docs/wiring.md`, `docs/diagrams/*.svg` and `docs/pin-map.md` from one data set.
+Generates `docs/pinout.html`, `docs/wiring/wiring.md`, `docs/wiring/diagrams/*.svg` and `docs/wiring/pin-map.md` from one data set.
 Run `python3 docs/tools/gen_pinout.py` from the repo root. Edit the data in the script, not the outputs.

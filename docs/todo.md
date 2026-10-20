@@ -4,9 +4,9 @@ Compiled from the design session on 2026-10-20. Check items off as you go. Where
 
 ## 1. Before you order
 
-- [ ] **Fill in any remaining Amazon prices** (check `docs/amazon-items.json` for `null`), then run
+- [ ] **Fill in any remaining Amazon prices** (check `docs/sourcing/amazon-items.json` for `null`), then run
   `python3 docs/tools/parts.py budget --md`. Use `amazon-price ASIN PRICE`.
-- [ ] **Buy about 4.6 kg of ballast steel locally** (see `fabrication.md`); the Amazon plate listings were dead.
+- [ ] **Buy about 4.6 kg of ballast steel locally** (see `design/fabrication.md`); the Amazon plate listings were dead.
 - [ ] **Check the AITRIP photos show a bat-handle toggle with a flip cover**, not a flat rocker. Three of the six switches depend on it
   (ABORT, ENGAGE / DISENGAGE, master power).
 - [ ] **Confirm the key switch's key position**: in the E-Switch KO133A801 datasheet, is position 1 (key removable) OFF?
@@ -54,11 +54,11 @@ Compiled from the design session on 2026-10-20. Check items off as you go. Where
 - [ ] Annunciator light box: separate cells, diffuser windows, legend.
 - [ ] Panel labels: engraved, printed, or a two-colour plate like goodnight-device.
 - [ ] 1:1 paper templates for the v1 pieces (the old v0 PDFs are stale and Chromium is not installed here to rebuild them).
-- [ ] Update `docs/mockup/README.md`, which still describes the earlier three-module layout.
+- [ ] Update `docs/archive/v0-mockup/README.md`, which still describes the earlier three-module layout.
 
 ## 5. Decisions still open
 
-- [ ] **Encoder push functions** (time warp, camera, display page). Suggestions in `controls.md`.
+- [ ] **Encoder push functions** (time warp, camera, display page). Suggestions in `design/controls.md`.
 - [ ] **OLED page contents**, and which events sound the buzzer.
 - [ ] **The two spare switch-panel buttons**: camera mode (V) and action group 10 are the suggestions.
 - [ ] **Annunciator**: thresholds, colour bands, and the CHUTE SAFE and STABLE ORBIT logic; off when fine or green when fine.
@@ -80,11 +80,11 @@ Compiled from the design session on 2026-10-20. Check items off as you go. Where
 
 ## 7. Build and bring-up
 
-- [ ] Wire the electronics per `docs/wiring-checklist.md` and `docs/electronics-build.md`.
+- [ ] Wire the electronics per `docs/wiring/wiring-checklist.md` and `docs/design/electronics-build.md`.
 - [ ] Check the 5 V rail polarity on the panel jack with a meter before connecting anything.
 - [ ] Run the continuity checks before first power-up, then bring up one outer piece at a time.
 
 ## 8. Housekeeping
 
 - [ ] Optional: ask GitHub Support to garbage-collect the repo so the old pre-scrub commits are no longer reachable by hash.
-- [ ] Keep `docs/amazon-items.json` and `docs/parts-shortlist.json` current as you order, then regenerate `docs/budget.md`.
+- [ ] Keep `docs/sourcing/amazon-items.json` and `docs/sourcing/parts-shortlist.json` current as you order, then regenerate `docs/sourcing/budget.md`.

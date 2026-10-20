@@ -1,6 +1,6 @@
 # Budget
 
-Combined order totals, USD, **before shipping and tax**. Digi-Key and Mouser prices come from the shortlist (`docs/parts-shortlist.json`, last checked 2026-10-20); Amazon prices are kept by hand in `docs/amazon-items.json` because Amazon has no price API. Regenerate with `python3 docs/tools/parts.py budget --md` (add `--live` to re-check the distributor prices first).
+Combined order totals, USD, **before shipping and tax**. Digi-Key and Mouser prices come from the shortlist (`docs/sourcing/parts-shortlist.json`, last checked 2026-10-20); Amazon prices are kept by hand in `docs/sourcing/amazon-items.json` because Amazon has no price API. Regenerate with `python3 docs/tools/parts.py budget --md` (add `--live` to re-check the distributor prices first).
 
 | | Lines | Amount |
 |---|---|---|

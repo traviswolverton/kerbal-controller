@@ -45,10 +45,10 @@ This file records what has been settled and what is still open.
   action groups).
 - **Layout B, "annunciator rows":** 19.05 mm column pitch, **36 mm row pitch**, with
   one pixel in its own clear space directly above each key.
-  `docs/pitch-examples.png` is the earlier 28 mm drawing and is superseded for row pitch.
+  `docs/reference/pitch-examples.png` is the earlier 28 mm drawing and is superseded for row pitch.
 - **Revised after the mockup:** at 30 mm rows and a 12 degree tilt the pixel above each key is
   hidden behind the keycap in front of it (a keycap is about 13.5 mm tall). The seat-view renders in
-  `docs/mockup/renders/` show it. The fix is a **steeper centre panel (28 degrees)** plus the
+  `docs/archive/v0-mockup/renders/` show it. The fix is a **steeper centre panel (28 degrees)** plus the
   **36 mm row pitch**; the two side modules stay at 12 degrees. Needs a real-world check with the test plate.
 - **Switches (owned):** Josojoou 72-piece pack of **blue clicky, 3-pin, pre-lubricated** MX-style switches
   ([Amazon listing](https://www.amazon.com/dp/B0GC33V4HK)), bought 2026-10-10. 24 are used, so 48 spare.
@@ -150,7 +150,7 @@ This file records what has been settled and what is still open.
 - **Switch panel (left strip):** all inputs that are not wired to a stick or encoder go on one panel and one
   chip, an MCP23017 I2C expander sitting right behind it: ABORT (guarded toggle), a key switch that arms STAGE, a guarded ENGAGE / DISENGAGE toggle, a big STAGE
   button, throttle FULL and CUT, MAP, focus previous and next, quicksave, quickload, precision, pause, UI hide,
-  and three spares. That is 16 inputs, listed in `pin-map.md`. Only SDA, SCL, the interrupt and 3V3 cross the
+  and three spares. That is 16 inputs, listed in `wiring/pin-map.md`. Only SDA, SCL, the interrupt and 3V3 cross the
   cable to the Teensy.
 - **Why:** the Teensy has no spare header pins, so extra buttons need an expander. A single panel keeps its
   wiring local and frees the toggle pins. This is also the part of the reference build (Altitude Workshops) we
@@ -194,14 +194,14 @@ This file records what has been settled and what is still open.
   Satellite microcontrollers with a 4-wire link would need fewer wires but add firmware and a second USB
   or serial path; revisit only if the cable count becomes a problem.
 - **Conductors per port:** left wing 19, right wing 14, left strip 21, right strip 16, all of 25. Full
-  pinouts and the Teensy pin table are in `pin-map.md`.
+  pinouts and the Teensy pin table are in `wiring/pin-map.md`.
 - **Pixels:** one chain of 65 on a single data pin: left strip (12), fuel bars in the middle (32), right strip
   (12 key pixels and 9 annunciator pixels). A break in the chain darkens everything after it.
 - **Keys:** one 4 x 6 matrix. The left strip carries rows 0-1, the right strip rows 2-3, both carry all six
   column lines.
 - **Parts (Digi-Key):** four **female** DB25 panel jacks on the middle piece (ITT Cannon ZDB25S) and one **male** jack
   on each outer piece (ZDB25P), joined by four straight-through shielded female-to-male cables, 1 m (Phoenix Contact
-  1656291), listed in `parts-list.md`. The cables fit only one way round. The jacks mount from inside, with the flange
+  1656291), listed in `sourcing/parts-list.md`. The cables fit only one way round. The jacks mount from inside, with the flange
   against the inner wall and the body standing 11 mm proud. The wing jack is on the wing's outer end wall; the two outer
   strips and the middle strip carry theirs on the back wall, so every cable runs outside, behind the console (about 0.6 m of
   path for a wing cable). They are 1 m for all four to keep one part number; coil the slack.
@@ -270,7 +270,7 @@ This file records what has been settled and what is still open.
 - **Open:** the board size and mounting hole position are not known. Measure one.
 
 ## Mockup (v0 proposal)
-See `docs/mockup/README.md`. Three modules of 220 / 240 / 220 mm width, 245 mm deep, tilted
+See `docs/archive/v0-mockup/README.md`. Three modules of 220 / 240 / 220 mm width, 245 mm deep, tilted
 12 / 28 / 12 degrees. All positions are a first proposal to react to.
 
 ## Open items

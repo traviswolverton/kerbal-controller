@@ -6,7 +6,7 @@ the API on 2026-10-19 and are in the shortlist and the budget. Nothing here is b
 ## Approach
 
 - Plated-through perfboard (2.54 mm grid), a screw-terminal bus for GND, 3V3 and 5 V in each piece, and stranded wire in the
-  colours from [wiring-checklist.md](wiring-checklist.md). The goodnight-device "bus board" worked the same way.
+  colours from [wiring-checklist.md](../wiring/wiring-checklist.md). The goodnight-device "bus board" worked the same way.
 - Sockets for every chip (Teensy, 74AHCT125, MCP23017) so a bad part is a swap, not a desolder.
 - Solder each DB25 jack's cups straight to its board or devices. No breakout boards: they would not fit a panel jack.
 - The matrix and the pixel chain are point-to-point on the back of each strip's faceplate: diodes in line with the key wires,

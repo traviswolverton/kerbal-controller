@@ -8,10 +8,10 @@ Every source that has credentials is searched, Digi-Key first. From the repo roo
     python3 docs/tools/parts.py search "key switch 2 position panel mount" --in-stock --active --max-price 20
     python3 docs/tools/parts.py part 504-10250T15712H620         # details and parameters for one part
     python3 docs/tools/parts.py add 504-10250T15712H620 --role "STAGE key switch" --qty 1
-    python3 docs/tools/parts.py check --md                       # live price/stock/status, writes docs/parts-bom.md
-    python3 docs/tools/parts.py budget --md                      # combined totals with the Amazon list, writes docs/budget.md
+    python3 docs/tools/parts.py check --md                       # live price/stock/status, writes docs/sourcing/parts-bom.md
+    python3 docs/tools/parts.py budget --md                      # combined totals with the Amazon list, writes docs/sourcing/budget.md
 
-The shortlist is docs/parts-shortlist.json. A Digi-Key number ends in -ND; anything else is treated as a Mouser number
+The shortlist is docs/sourcing/parts-shortlist.json. A Digi-Key number ends in -ND; anything else is treated as a Mouser number
 unless you pass --source.
 """
 import argparse
@@ -25,10 +25,10 @@ import mouser
 from common import REPO, PartsError, is_active, load_env, money, table
 
 SOURCES = {"digikey": digikey, "mouser": mouser}
-SHORTLIST = REPO / "docs" / "parts-shortlist.json"
-BOM_FILE = REPO / "docs" / "parts-bom.md"
-AMAZON_FILE = REPO / "docs" / "amazon-items.json"
-BUDGET_FILE = REPO / "docs" / "budget.md"
+SHORTLIST = REPO / "docs" / "sourcing" / "parts-shortlist.json"
+BOM_FILE = REPO / "docs" / "sourcing" / "parts-bom.md"
+AMAZON_FILE = REPO / "docs" / "sourcing" / "amazon-items.json"
+BUDGET_FILE = REPO / "docs" / "sourcing" / "budget.md"
 
 
 def active_sources(choice):
@@ -152,7 +152,7 @@ def check_rows(parts, fetch=fetch_row, update=False):
 def cmd_check(a):
     parts = load_shortlist()
     if not parts:
-        print("docs/parts-shortlist.json is empty. Use `add` first.")
+        print("docs/sourcing/parts-shortlist.json is empty. Use `add` first.")
         return
     rows, total = check_rows(parts, update=a.update)
     cols = ["Role", "Source", "Part number", "Qty", "Unit", "Extended", "Stock", "Flags"]
@@ -196,8 +196,8 @@ def cmd_budget(a):
     n_un = len(b["unpriced"])
     lines = ["# Budget", "",
              f"Combined order totals, USD, **before shipping and tax**. Digi-Key and Mouser prices come from the shortlist "
-             f"(`docs/parts-shortlist.json`, last checked {max((p.get('checked', '') for p in parts), default='never')}); Amazon prices are kept by hand in "
-             "`docs/amazon-items.json` because Amazon has no price API. Regenerate with `python3 docs/tools/parts.py budget --md` "
+             f"(`docs/sourcing/parts-shortlist.json`, last checked {max((p.get('checked', '') for p in parts), default='never')}); Amazon prices are kept by hand in "
+             "`docs/sourcing/amazon-items.json` because Amazon has no price API. Regenerate with `python3 docs/tools/parts.py budget --md` "
              "(add `--live` to re-check the distributor prices first).", "",
              "| | Lines | Amount |", "|---|---|---|",
              f"| Digi-Key and Mouser | {len(b['dk'])} | {money(b['dk_total'])} |",
@@ -237,7 +237,7 @@ def cmd_amazon_price(a):
     items = load_amazon()
     hit = [x for x in items if x["asin"] == a.asin]
     if not hit:
-        raise PartsError(f"no Amazon item with ASIN {a.asin} in docs/amazon-items.json")
+        raise PartsError(f"no Amazon item with ASIN {a.asin} in docs/sourcing/amazon-items.json")
     hit[0]["unit_price"] = a.price
     if a.qty:
         hit[0]["qty"] = a.qty
@@ -276,11 +276,11 @@ def main(argv=None):
     s.set_defaults(fn=cmd_add)
     s = sub.add_parser("check", help="re-check price, stock and status for the shortlist")
     s.add_argument("--update", action="store_true", help="save the new prices into the shortlist")
-    s.add_argument("--md", action="store_true", help="write docs/parts-bom.md")
+    s.add_argument("--md", action="store_true", help="write docs/sourcing/parts-bom.md")
     s.set_defaults(fn=cmd_check)
     s = sub.add_parser("budget", help="combined totals: shortlist plus the hand-kept Amazon list")
     s.add_argument("--live", action="store_true", help="re-check the distributor prices first")
-    s.add_argument("--md", action="store_true", help="write docs/budget.md")
+    s.add_argument("--md", action="store_true", help="write docs/sourcing/budget.md")
     s.set_defaults(fn=cmd_budget)
     s = sub.add_parser("amazon-price", help="set the price (and optionally quantity) of an Amazon item")
     s.add_argument("asin")
