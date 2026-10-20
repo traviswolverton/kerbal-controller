@@ -26,8 +26,8 @@ the API on 2026-10-19 and are in the shortlist and the budget. Nothing here is b
 
 | Part | Qty | Digi-Key PN | Unit | Notes |
 |---|---|---|---|---|
-| Perfboard 81 x 51 mm, PTH, DigiKey Standard | 4 | DKS-SOLDERBREAD-02-ND | $3.49 | Expander, wing and bus boards. |
-| Perfboard 94 x 63 mm, PTH, SparkFun 12070 | 1 | 1568-12070-ND | $8.65 | Middle strip main board. I found no bigger board in a quick search. |
+| Perfboard 78 x 58 mm, PTH, pad per hole, DFRobot FIT0203 | 4 | 1738-1001-ND | $2.90 | Expander, wing and bus boards. Replaces the DigiKey SOLDERBREAD-02, which is breadboard-style 5-hole pads and would short anything placed in a pad. |
+| Perfboard 94 x 63 mm, PTH, SparkFun 12070 | 1 | 1568-12070-ND | $8.65 | Middle strip main board. **Open:** this is also 5-hole-pad (breadboard-style), which suits the busiest board badly. The pad-per-hole Chip Quik SBBTH3040-1 (SBBTH3040-1-ND, 104 x 81 mm, $12.59) is the likely swap and fits the strip in plan view; height clearance under the sloped face is not checked. |
 | Screw terminal, 5.08 mm, 2 position | 6 | ED2609-ND | $0.58 | 5 V in, bus joins. |
 | Screw terminal, 5.08 mm, 4 position | 8 | ED2611-ND | $1.08 | GND, 3V3 and switch inputs. Chain several for the 16 inputs. |
 | Female header, 24 position, 2.54 mm (Sullins) | 3 | S7022-ND | $1.34 | Two for the Teensy, one spare for the OLEDs and cuts. |

@@ -4,10 +4,10 @@ Combined order totals, USD, **before shipping and tax**. Digi-Key and Mouser pri
 
 | | Lines | Amount |
 |---|---|---|
-| Digi-Key and Mouser | 36 | $330.90 |
+| Digi-Key and Mouser | 36 | $328.54 |
 | Amazon.com, priced | 4 | $105.53 |
 | Amazon.com, **no price yet** | 0 | not counted |
-| **Total so far** | | **$436.43** |
+| **Total so far** | | **$434.07** |
 
 ## Amazon.com to buy
 
@@ -61,7 +61,6 @@ See [parts-bom.md](parts-bom.md) for the per-line list with stock and flags.
 | DB25 male panel jack (outer pieces) | digikey | 1003-ZDB25P-ND | 4 | $3.42 | $13.68 |
 | DB25 shielded cable, female to male, 1 m | digikey | 277-12299-ND | 4 | $15.70 | $62.80 |
 | Panel USB micro-B extension for the Teensy | digikey | 1568-15464-ND | 1 | $4.42 | $4.42 |
-| Perfboard 81 x 51 mm (expander, wing and bus boards) | digikey | DKS-SOLDERBREAD-02-ND | 4 | $3.49 | $13.96 |
 | Perfboard 94 x 63 mm (middle strip main board) | digikey | 1568-12070-ND | 1 | $8.65 | $8.65 |
 | Screw terminal 5.08 mm, 2 position | digikey | ED2609-ND | 6 | $0.58 | $3.48 |
 | Screw terminal 5.08 mm, 4 position | digikey | ED2611-ND | 8 | $1.08 | $8.64 |
@@ -70,6 +69,7 @@ See [parts-bom.md](parts-bom.md) for the per-line list with stock and flags.
 | Hookup wire 22 AWG solid, 6 colours x 25 ft (matrix) | digikey | 1528-1743-ND | 1 | $15.95 | $15.95 |
 | Heat shrink assortment | digikey | 1528-4559-ND | 1 | $9.95 | $9.95 |
 | Encoder knobs, 25 mm D shaft (CLIFF KMK25) | digikey | 4654-FC7254-ND | 3 | $4.90 | $14.70 |
+| Perfboard 78 x 58 mm, pad per hole (expander, wing and bus boards) | digikey | 1738-1001-ND | 4 | $2.90 | $11.60 |
 
 ## Not counted at all
 

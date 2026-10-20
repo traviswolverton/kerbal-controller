@@ -405,21 +405,6 @@
     "checked": "2026-10-20"
   },
   {
-    "role": "Perfboard 81 x 51 mm (expander, wing and bus boards)",
-    "source": "digikey",
-    "pn": "DKS-SOLDERBREAD-02-ND",
-    "mpn": "DKS-SOLDERBREAD-02",
-    "manufacturer": "DigiKey Standard",
-    "description": "BREADBOARD GENERAL PURPOSE PTH",
-    "unit_price": 3.49,
-    "stock": 4573,
-    "status": "Active",
-    "url": "https://www.digikey.com/en/products/detail/digikey/DKS-SOLDERBREAD-02/15970925",
-    "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/6170/DKS-SOLDERBREAD-02-ND.pdf",
-    "qty": 4,
-    "checked": "2026-10-20"
-  },
-  {
     "role": "Perfboard 94 x 63 mm (middle strip main board)",
     "source": "digikey",
     "pn": "1568-12070-ND",
@@ -537,6 +522,21 @@
     "url": "https://www.digikey.com/en/products/detail/cliff-electronic-components-ltd/FC7254/21406846",
     "datasheet": "https://www.cliffuk.co.uk/products/knobs/knobsKMK.pdf",
     "qty": 3,
+    "checked": "2026-10-20"
+  },
+  {
+    "role": "Perfboard 78 x 58 mm, pad per hole (expander, wing and bus boards)",
+    "source": "digikey",
+    "pn": "1738-1001-ND",
+    "mpn": "FIT0203",
+    "manufacturer": "DFRobot",
+    "description": "BREADBOARD GENERAL PURPOSE PTH",
+    "unit_price": 2.9,
+    "stock": 2919,
+    "status": "Active",
+    "url": "https://www.digikey.com/en/products/detail/dfrobot/FIT0203/6588423",
+    "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2169/FIT0203_Web.pdf",
+    "qty": 4,
     "checked": "2026-10-20"
   }
 ]
