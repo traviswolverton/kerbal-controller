@@ -231,6 +231,77 @@ def d_db25():
                   "middle piece.")
 
 
+# ---- diagram 3b: soldering the DB25 jacks ---------------------------------------------------------------
+PITCH, ROWGAP = 27.7, 28.4            # 2.77 mm contact pitch and 2.84 mm row spacing at 10 px per mm
+STEPCOL = {1: ("blue", "#fff"), 2: ("green", "#0b1210"), 3: ("yellow", "#0b1210"), 4: ("purple", "#fff")}
+DOUBLE = {1, 7, 13, 20, 21, 24, 25}   # ground and 5 V pins: two wires in the cup
+
+
+def solder_steps(used):
+    """Alternate pins within each row: step 1 and 2 on the 1-13 row, 3 and 4 on the 14-25 row."""
+    top = sorted(p for p in used if p <= 13)
+    bot = sorted(p for p in used if p >= 14)
+    steps = {}
+    for row, base in ((top, 1), (bot, 3)):
+        for i, pin in enumerate(row):
+            steps[pin] = base + (i % 2)
+    return steps
+
+
+def jack_solder_side(x0, y0, male, used):
+    """One jack seen from the solder side (looking at the cups). The male view is the mirror image of the female view."""
+    steps = solder_steps(used)
+    span = 12 * PITCH
+    shell = (f'<path d="M{x0 - 28},{y0 - 24} L{x0 + span + 28},{y0 - 24} L{x0 + span + 20},{y0 + ROWGAP + 24} '
+             f'L{x0 - 20},{y0 + ROWGAP + 24} Z" fill="var(--pcb)" stroke="var(--pcb-edge)" stroke-width="2"/>')
+    out = shell
+    for pin in range(1, 26):
+        if pin <= 13:
+            x = (12 - (pin - 1)) * PITCH if male else (pin - 1) * PITCH
+            y = 0
+        else:
+            x = (11.5 - (pin - 14)) * PITCH if male else (pin - 14 + 0.5) * PITCH
+            y = ROWGAP
+        cx, cy = x0 + x, y0 + y
+        if pin in steps:
+            col, tc = STEPCOL[steps[pin]]
+            ring = ' stroke="var(--silk)" stroke-width="2.5" stroke-dasharray="3 2"' if pin in DOUBLE else ' stroke="var(--pcb-edge)" stroke-width="1.5"'
+            out += f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="11.5" fill="var(--c-{col})"{ring}/>' + text(cx, cy + 3.5, str(pin), 10, tc, "middle", 700)
+        else:
+            out += (f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="10" fill="none" stroke="var(--silk-dim)" stroke-width="1" stroke-dasharray="2 3"/>'
+                    + text(cx, cy + 3.5, str(pin), 9, "var(--silk-dim)", "middle"))
+    return out
+
+
+def d_db25_solder():
+    b = text(60, 28, "Solder-side view: you are looking at the cups. The top row (1 to 13) is the far row.", 11, "var(--silk-dim)")
+    b += text(60, 46, "Male numbering runs right to left, female left to right: the two ends of a cable are mirror images.", 11, "var(--silk-dim)")
+    # legend
+    lx = 60
+    for step, label in ((1, "1  1-13 row, every second pin"), (2, "2  1-13 row, the rest"),
+                        (3, "3  14-25 row, every second pin"), (4, "4  14-25 row, the rest")):
+        col, tc = STEPCOL[step]
+        b += f'<circle cx="{lx + 8}" cy="74" r="8" fill="var(--c-{col})"/>' + text(lx + 22, 78, label, 10)
+        lx += 255
+    b += ('<circle cx="68" cy="100" r="8" fill="none" stroke="var(--silk)" stroke-width="2.5" stroke-dasharray="3 2"/>'
+          + text(82, 104, "dashed ring: ground or 5 V pin, put two wires in the cup", 10)
+          + '<circle cx="520" cy="100" r="8" fill="none" stroke="var(--silk-dim)" stroke-width="1" stroke-dasharray="2 3"/>'
+          + text(534, 104, "unused pin: leave the cup empty", 10))
+    y = 210
+    b += text(60, y - 54, "OUTER PIECE: male jack (ZDB25P)", 11, weight=600) + text(600, y - 54, "MIDDLE STRIP: female jack (ZDB25S)", 11, weight=600)
+    for key in ("LW", "RW", "LS", "RS"):
+        name, pins = PORTS[key]
+        used = set(pins)
+        b += text(60, y - 30, f"{name.title()} · {len(used)} pins", 11, "var(--silk)", weight=600) + text(600, y - 30, f"{name.title()} · {len(used)} pins", 11, "var(--silk)", weight=600)
+        b += jack_solder_side(86, y, True, used) + jack_solder_side(626, y, False, used)
+        y += 150
+    return figure(svg(1100, y - 30, "DB25 jacks seen from the solder side, with the order to solder each pin", b),
+                  "Solder order for each jack, from the pin map. Do the 1&ndash;13 row first: blue pins, let the plastic cool, then "
+                  "green pins; then the 14&ndash;25 row the same way (yellow, then purple). The numbering follows the standard "
+                  "D-sub convention and the ITT Cannon datasheet only marks &ldquo;POS. 1&rdquo;, so confirm each pin with a "
+                  "continuity test before wiring. Ground and 5 V pins take two wires.")
+
+
 # ---- diagram 4: per-piece harness -----------------------------------------------------------------
 def harness(title, port, devices, note, extra_h=0):
     pins = sorted(PORTS[port][1].items())
@@ -568,7 +639,8 @@ def page():
          "<code>hardware/electronics/wiring/pin-map.md</code>.</p>",
          "<h2>The five pieces</h2>", d_overview(), legend(),
          "<h2>Teensy 4.1</h2>", d_teensy(),
-         "<h2>The four DB25 ports</h2>", d_db25()]
+         "<h2>The four DB25 ports</h2>", d_db25(),
+         "<h2>Soldering the DB25 jacks</h2>", d_db25_solder()]
     p.append("<h2>Inside each piece</h2>")
     for name, fig in d_pieces():
         p.append(f"<h3>{e(name)}</h3>{fig}")
@@ -777,9 +849,9 @@ Notes:
 - **DB25 jack cutouts** are not in the mockup yet.
 """
 
-FIG_NAMES = ["overview", "teensy", "db25", "left-wing", "right-wing", "strip-left", "strip-right",
+FIG_NAMES = ["overview", "teensy", "db25", "db25-solder", "left-wing", "right-wing", "strip-left", "strip-right",
              "switch-panel", "strip-middle", "power"]
-FIG_TITLES = ["The five pieces", "Teensy 4.1", "The four DB25 ports", "Left wing", "Right wing", "Strip left",
+FIG_TITLES = ["The five pieces", "Teensy 4.1", "The four DB25 ports", "Soldering the DB25 jacks", "Left wing", "Right wing", "Strip left",
               "Strip right", "Switch panel", "Strip middle", "Power"]
 SVG_VARS = ("--pcb:#123d2e;--pcb-edge:#1f5c45;--silk:#eef1ea;--silk-dim:#8fa097;--wire-power:#d9a35f;"
             "--wire-gnd:#7b8a82;--wire-warn:#e2666a;--c-red:#e5484d;--c-black:#161a18;--c-white:#f4f4f4;"

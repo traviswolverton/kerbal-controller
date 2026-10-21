@@ -102,15 +102,31 @@ and 16 on the right strip, the same again at the middle jack, so about 140 cup j
 - [ ] **Pre-tin each cup** with a small drop of solder and a little flux. Clamp the jack with the cups facing up.
 - [ ] **Solder:** a fine chisel tip, heating the cup and not the wire, until the solder flows around the strands. Do not leave the iron on a cup: the plastic softens and the pin can move.
 - [ ] **Alternate pins** (every second one, then the rest) so heat does not build up between neighbours, and let the plastic cool.
+  Do one row completely, starting with the 1 to 13 row (the far row when the cups face you), then the 14 to 25 row. The order per jack
+  is below and is drawn in the diagram underneath. The same order works at both ends of a cable: the pin numbers are the same, and
+  only the left-to-right layout is mirrored between the male and female jack.
 - [ ] **Slide the heat shrink** over each joint and shrink it, so a stray strand cannot touch its neighbour.
 - [ ] **Pin numbers:** the numbering seen from the solder side is the mirror image of the mating face. Confirm each wire's pin number with a continuity test from the matching cable end before assembling anything.
 - [ ] **After each jack:** no beep between any two adjacent pins, and each wire beeps from its cup to the right pin on a mating plug.
 - [ ] **If the first jack is painful,** the alternative is a crimp D-sub (crimp socket housings and contacts plus a crimp tool). It would need the cutout and mounting re-checked.
 
+Solder order for each jack (pin numbers as on the pin map; the first group in each cell, then the rest):
+
+| Jack | 1 to 13 row | 14 to 25 row |
+|---|---|---|
+| Left wing (19 pins) | 1 3 5 7 9 11 13, then 2 4 6 8 10 12 | 20 22 24, then 21 23 25 |
+| Right wing (14 pins) | 1 3 5 8 10 12, then 2 4 7 9 11 13 | 14, then 19 |
+| Strip left (21 pins) | 1 3 5 7 9 11 13, then 2 4 6 8 10 12 | 15 17 20 24, then 16 18 21 25 |
+| Strip right (16 pins) | 1 4 6 8 13, then 3 5 7 9 | 15 17 21 25, then 16 20 24 |
+
+![DB25 jacks seen from the solder side, with the order to solder each pin](diagrams/db25-solder.svg)
+
 ## Cables
 
 - [ ] Four straight-through shielded DB25 cables, 1 m, female to male (Phoenix Contact 1656291). The male end goes into a middle jack and the female end onto an outer jack. Coil the slack; the cables run outside, behind the console.
-- [ ] Ground each cable's shield at the **middle** end only.
+- [ ] Ground each cable's shield at the **middle** end only. The datasheet's circuit diagram lists the shield at both heads, so it is joined to both shells inside the cable: connect the middle jack's shell to ground and leave the outer jack's shell unconnected.
+- [ ] **Current limit:** the Phoenix datasheet rates the cable at **1 A** (it does not say per conductor, and gives no gauge). Treat each conductor as 1 A. Two conductors in parallel on 5 V (pins 20 and 21) are about 2 A: the right strip's 21 pixels are about 1.3 A at full white and the left strip's 12 about 0.7 A, so both fit, but only just on the right. The wing's fader motor current is still to be measured.
+- [ ] On arrival, measure the resistance of one conductor end to end and note the gauge on the cable, since the datasheet gives none.
 - [ ] A cable in the wrong port does no damage by design (see the DB25 grid in `pinout.html`) but will not work, so plug each into its labelled port.
 
 ## Before first power-up

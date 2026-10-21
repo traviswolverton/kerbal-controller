@@ -413,7 +413,7 @@
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/1047/1656291.pdf",
     "qty": 4,
     "checked": "2026-10-21",
-    "note": "Straight-through, 25 conductors. Male end into a middle jack, female end onto an outer jack."
+    "note": "Straight-through, 25 conductors. Male end into a middle jack, female end onto an outer jack. Datasheet (read 2026-10-21; Phoenix model VS-25-DSUB-20-LI-1,0): shielded, stranded (7-wire) conductors, grey PVC, IP20, rated current 1 A, 125 V, 0 to 70 C, 172.6 g. **It gives no conductor gauge**: check the cable on arrival."
   },
   {
     "role": "Panel USB micro-B extension for the Teensy",

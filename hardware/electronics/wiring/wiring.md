@@ -20,6 +20,12 @@ Each used pin is drawn in the wire colour of its signal, with a grey tag showing
 
 Standard DB25 numbering. All four middle jacks are alike, and the pins are laid out so a cable in the wrong port does no damage: ground and 5 V sit on the same pins everywhere, and everything the Teensy drives (matrix rows, pixel data, fader PWM) is on pins 15&ndash;23, which any module that does not use them leaves open. COL0&ndash;5 appear on both strip ports and join in the middle piece.
 
+## Soldering the DB25 jacks
+
+![Soldering the DB25 jacks](diagrams/db25-solder.svg)
+
+Solder order for each jack, from the pin map. Do the 1&ndash;13 row first: blue pins, let the plastic cool, then green pins; then the 14&ndash;25 row the same way (yellow, then purple). The numbering follows the standard D-sub convention and the ITT Cannon datasheet only marks &ldquo;POS. 1&rdquo;, so confirm each pin with a continuity test before wiring. Ground and 5 V pins take two wires.
+
 ## Left wing
 
 ![Left wing](diagrams/left-wing.svg)

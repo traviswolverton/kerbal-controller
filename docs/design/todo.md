@@ -28,6 +28,7 @@ Compiled from the design session on 2026-10-20. Check items off as you go. Where
 - [ ] **Pixel boards**: measure the diameter and height with calipers; set `pixel_d` and `pixel_h` in `hardware/cad/test_plate.scad`.
 - [ ] **Keycaps**: measure the real height from the plate with a switch fitted (the mockup assumes 13.5 mm).
 - [ ] **Buzzer module**: 5 V across it with I/O held low. Continuous tone means active (one pitch); a click means passive. Measure the board and buzzer diameter.
+- [ ] **Phoenix cables**: measure one conductor's resistance (a 1 m, 28 AWG conductor is about 0.2 ohm) to infer the gauge, since the datasheet has none, and re-check the 5 V pin budget in `hardware/electronics/wiring/wiring-checklist.md`.
 - [ ] **Fader motor**: measure its current at 5 V, check it moves smoothly. If it is weak, switch to a 12 V input with two bucks (see the 12 V discussion).
 - [ ] **Fader touch sensing**: Teensy 4.1 has no `touchRead()`. Try the FastTouch library on the conductive nubbin, or fall back to detecting your hand
   from wiper movement the motor did not cause.
