@@ -191,13 +191,8 @@ def amazon_link(x):
 
 
 def datasheet_link(p):
-    """The saved copy if there is one, else the maker's link (marked as not saved), else a dash."""
-    if p.get("datasheet_file"):
-        return f"[PDF]({p['datasheet_file']})"
     url = p.get("datasheet") or ""
-    if url.startswith("//"):
-        url = "https:" + url
-    return f"[link, not saved]({url})" if url.startswith("http") else "-"
+    return f"[datasheet]({url})" if url.startswith("http") else "-"
 
 
 def stored_flags(p):
