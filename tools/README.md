@@ -36,8 +36,8 @@ under `~/.cache/kerbal-controller/`, outside the repo.
 python3 tools/parts.py search "key switch 2 position panel mount" --in-stock --active --max-price 20
 python3 tools/parts.py part 612-KO131A102        # parameters, links, price, stock for one part
 python3 tools/parts.py add 612-KO131A102 --role "STAGE key switch" --qty 1
-python3 tools/parts.py check --md                # re-check the shortlist, write hardware/sourcing/parts-bom.md
-python3 tools/parts.py budget --md               # combined totals with the Amazon list, write hardware/sourcing/budget.md
+python3 tools/parts.py check                     # re-check the shortlist against the live sites
+python3 tools/parts.py budget --md               # totals and the full parts list, write hardware/sourcing/parts.md
 python3 tools/parts.py amazon-price B0BWDQ3NKK 11.99   # record a price you saw on Amazon
 ```
 
@@ -49,7 +49,7 @@ python3 tools/parts.py amazon-price B0BWDQ3NKK 11.99   # record a price you saw 
 - `check` flags a part that is no longer Active, below the quantity you need, below the minimum order, or changed in price.
   `--update` saves the new prices.
 - `budget` adds the shortlist's stored prices to the hand-kept Amazon list in `hardware/sourcing/amazon-items.json` (Amazon has no price API) and
-  writes `hardware/sourcing/budget.md`. Owned items are listed but not counted, and Amazon items with no price are named, not guessed. `--live`
+  writes `hardware/sourcing/parts.md`, the one parts-and-budget document (links, notes, totals). Owned items are listed but not counted, and Amazon items with no price are named, not guessed. `--live`
   re-checks the distributor prices first.
 - Mind each service's API terms of use.
 

@@ -8,8 +8,8 @@ Every source that has credentials is searched, Digi-Key first. From the repo roo
     python3 tools/parts.py search "key switch 2 position panel mount" --in-stock --active --max-price 20
     python3 tools/parts.py part 504-10250T15712H620         # details and parameters for one part
     python3 tools/parts.py add 504-10250T15712H620 --role "STAGE key switch" --qty 1
-    python3 tools/parts.py check --md                       # live price/stock/status, writes hardware/sourcing/parts-bom.md
-    python3 tools/parts.py budget --md                      # combined totals with the Amazon list, writes hardware/sourcing/budget.md
+    python3 tools/parts.py check                            # live price/stock/status for the shortlist
+    python3 tools/parts.py budget --md                      # totals plus every line, writes hardware/sourcing/parts.md (--live re-checks first)
 
 The shortlist is hardware/sourcing/parts-shortlist.json. A Digi-Key number ends in -ND; anything else is treated as a Mouser number
 unless you pass --source.
@@ -17,6 +17,7 @@ unless you pass --source.
 import argparse
 import datetime
 import json
+import re
 import urllib.parse
 import sys
 from pathlib import Path
@@ -27,9 +28,8 @@ from common import REPO, PartsError, is_active, load_env, money, table
 
 SOURCES = {"digikey": digikey, "mouser": mouser}
 SHORTLIST = REPO / "hardware" / "sourcing" / "parts-shortlist.json"
-BOM_FILE = REPO / "hardware" / "sourcing" / "parts-bom.md"
+PARTS_FILE = REPO / "hardware" / "sourcing" / "parts.md"
 AMAZON_FILE = REPO / "hardware" / "sourcing" / "amazon-items.json"
-BUDGET_FILE = REPO / "hardware" / "sourcing" / "budget.md"
 
 
 def active_sources(choice):
@@ -117,8 +117,10 @@ def snapshot(r, qty):
 def cmd_add(a):
     src = guess_source(a.pn, a.source)
     r = fetch_row(src, a.pn, a.qty)
+    old = [p for p in load_shortlist() if p["pn"] == a.pn and p["source"] == src]
+    note = a.note or (old[0].get("note") if old else None)
     parts = [p for p in load_shortlist() if not (p["pn"] == a.pn and p["source"] == src)]
-    parts.append({"role": a.role, "source": src, "pn": a.pn, **snapshot(r, a.qty)})
+    parts.append({"role": a.role, "source": src, "pn": a.pn, **snapshot(r, a.qty), **({"note": note} if note else {})})
     save_shortlist(parts)
     print(f"added {a.pn} ({r['mpn']}) from {src} as '{a.role}', qty {a.qty}, {money(r['unit_price'])} each, stock {r['stock']}")
 
@@ -161,14 +163,6 @@ def cmd_check(a):
     print(f"\nTotal at current prices: {money(total)} (before shipping and tax)")
     if a.update:
         save_shortlist(parts)
-    if a.md:
-        md = ["# Parts shortlist", "", f"Checked {datetime.date.today().isoformat()} with `tools/parts.py check`. Prices are USD "
-              "from the US sites at that time, before shipping and tax.", "", "| " + " | ".join(cols) + " |",
-              "|" + "---|" * len(cols)]
-        md += ["| " + " | ".join(str(c) for c in r) + " |" for r in rows]
-        md += ["", f"**Total: {money(total)}**", ""]
-        BOM_FILE.write_text("\n".join(md))
-        print(f"wrote {BOM_FILE.relative_to(REPO)}")
 
 
 def load_amazon():
@@ -189,19 +183,34 @@ def budget_summary(shortlist, amazon):
             "grand": dk_total + am_total}
 
 
-def cmd_budget(a):
-    parts = load_shortlist()
-    if a.live and parts:
-        check_rows(parts, update=True)
-        save_shortlist(parts)
-    b = budget_summary(parts, load_amazon())
+def amazon_link(x):
+    asin = x.get("asin", "")
+    url = x.get("url") or (f"https://www.amazon.com/dp/{asin}" if re.fullmatch(r"[A-Z0-9]{10}", asin) else "")
+    label = asin if asin and asin != "unknown" else "listing"
+    return f"[{label}]({url})" if url else label
+
+
+def stored_flags(p):
+    flags = []
+    if p.get("status") and not is_active(p["status"]):
+        flags.append(f"status {p['status']}")
+    if (p.get("stock") or 0) < p["qty"]:
+        flags.append("low stock")
+    return flags
+
+
+def render_parts_md(parts, amazon):
+    b = budget_summary(parts, amazon)
     n_un = len(b["unpriced"])
-    lines = ["# Budget", "",
-             f"Combined order totals, USD, **before shipping and tax**. Digi-Key and Mouser prices come from the shortlist "
-             f"(`hardware/sourcing/parts-shortlist.json`, last checked {max((p.get('checked', '') for p in parts), default='never')}); Amazon prices are kept by hand in "
-             "`hardware/sourcing/amazon-items.json` because Amazon has no price API. Regenerate with `python3 tools/parts.py budget --md` "
-             "(add `--live` to re-check the distributor prices first).", "",
-             "| | Lines | Amount |", "|---|---|---|",
+    checked = max((p.get("checked", "") for p in parts), default="never")
+    lines = ["# Parts and budget", "",
+             "Every part for the console, in one list. Sources are US retailers only: **Digi-Key** (primary, with Mouser as a back-up) "
+             "through their APIs, and Amazon.com for what they do not carry. Prices are USD, **before shipping and tax**. "
+             f"Digi-Key and Mouser prices and stock are the shortlist snapshot from {checked}; Amazon prices are kept by hand "
+             "because Amazon has no price API. This file is generated: edit the data and notes in `parts-shortlist.json` and "
+             "`amazon-items.json`, then run `python3 tools/parts.py budget --md` (add `--live` to re-check the distributors first). "
+             "Design context is in `docs/design/decisions.md`.", "",
+             "## Totals", "", "| | Lines | Amount |", "|---|---|---|",
              f"| Digi-Key and Mouser | {len(b['dk'])} | {money(b['dk_total'])} |",
              f"| Amazon.com, priced | {len(b['buy']) - n_un} | {money(b['am_total'])} |",
              f"| Amazon.com, **no price yet** | {n_un} | not counted |",
@@ -209,31 +218,49 @@ def cmd_budget(a):
     if n_un:
         lines += [f"The total is a floor: {n_un} Amazon item(s) have no price yet. Set one with "
                   "`python3 tools/parts.py amazon-price ASIN PRICE`.", ""]
-    lines += ["## Amazon.com to buy", "", "| Item | ASIN | Qty | Unit | Extended | Note |", "|---|---|---|---|---|---|"]
+    lines += ["## Digi-Key and Mouser", "",
+              "| Part | Part number | Qty | Unit | Extended | Stock | Notes |", "|---|---|---|---|---|---|---|"]
+    for p in parts:
+        u = p.get("unit_price")
+        url = b["urls"].get(p["pn"])
+        link = f"[{p['pn']}]({url})" if url else p["pn"]
+        if p["source"] != "digikey":
+            link += f" ({p['source'].title()})"
+        fl = stored_flags(p)
+        stock = f"{p.get('stock', '?')}" + (f" ⚠ {'; '.join(fl)}" if fl else "")
+        lines.append(f"| {p['role']} | {link} | {p['qty']} | {money(u)} | {money(u * p['qty']) if u is not None else '-'} | "
+                     f"{stock} | {p.get('note', '')} |")
+    lines += ["", "## Amazon.com to buy", "", "| Item | Listing | Qty | Unit | Extended | Note |", "|---|---|---|---|---|---|"]
     for x in b["buy"]:
         u = x.get("unit_price")
-        lines.append(f"| {x['item']} | {x['asin']} | {x['qty']} | {money(u) if u is not None else 'unchecked'} | "
+        lines.append(f"| {x['item']} | {amazon_link(x)} | {x['qty']} | {money(u) if u is not None else 'unchecked'} | "
                      f"{money(u * x['qty']) if u is not None else '-'} | {x.get('note', '')} |")
     lines += ["", "## Already owned", "", "Not in the total. Prices are the listing price seen, not necessarily what was paid.", "",
-              "| Item | ASIN | Qty | Listing price | Note |", "|---|---|---|---|---|"]
+              "| Item | Listing | Qty | Listing price | Note |", "|---|---|---|---|---|"]
     for x in b["owned"]:
         u = x.get("unit_price")
-        lines.append(f"| {x['item']} | {x['asin']} | {x['qty']} | {money(u) if u is not None else 'unknown'} | {x.get('note', '')} |")
-    lines += ["", "## Digi-Key and Mouser", "", "See [parts-bom.md](parts-bom.md) for the per-line list with stock and flags.", "",
-              "| Role | Source | Part number | Qty | Unit | Extended |", "|---|---|---|---|---|---|"]
-    for role, q, u, src, pn in b["dk"]:
-        link = f"[{pn}]({b['urls'][pn]})" if b["urls"].get(pn) else pn
-        lines.append(f"| {role} | {src} | {link} | {q} | {money(u)} | {money(u * q) if u is not None else '-'} |")
-    lines += ["", "## Not counted at all", "", "Solder and flux, cable clips and zip ties, M3 screws and standoffs, silicone feet, filament (2 to 3 kg), "
-              "mains-side extras, the stick and encoder connectors, and shipping and tax.", ""]
-    text = "\n".join(lines)
+        lines.append(f"| {x['item']} | {amazon_link(x)} | {x['qty']} | {money(u) if u is not None else 'unknown'} | {x.get('note', '')} |")
+    lines += ["", "## Not yet specified or counted", "",
+              "Solder and flux, cable clips and zip ties, M3 screws (countersunk for the fader) and standoffs, heat-set inserts, silicone "
+              "feet (20 mm), printer filament (about 2 to 3 kg), connectors for the sticks and encoders, a round attitude TFT (open), "
+              "the annunciator's translucent windows and light box (printed), and shipping and tax. Heat shrink is already owned.", ""]
+    return "\n".join(lines), b
+
+
+def cmd_budget(a):
+    parts = load_shortlist()
+    if a.live and parts:
+        check_rows(parts, update=True)
+        save_shortlist(parts)
+    text, b = render_parts_md(parts, load_amazon())
+    n_un = len(b["unpriced"])
     print(f"Digi-Key/Mouser {money(b['dk_total'])} ({len(b['dk'])} lines)   Amazon priced {money(b['am_total'])}   "
           f"Amazon unpriced: {n_un}   TOTAL so far {money(b['grand'])}")
     for x in b["unpriced"]:
         print(f"  no price: {x['item']} x{x['qty']} ({x['asin']})")
     if a.md:
-        BUDGET_FILE.write_text(text)
-        print(f"wrote {BUDGET_FILE.relative_to(REPO)}")
+        PARTS_FILE.write_text(text)
+        print(f"wrote {PARTS_FILE.relative_to(REPO)}")
 
 
 def cmd_amazon_price(a):
@@ -275,15 +302,15 @@ def main(argv=None):
     s.add_argument("pn")
     s.add_argument("--role", required=True)
     s.add_argument("--qty", type=int, default=1)
+    s.add_argument("--note", help="a note shown in parts.md (kept when the part is re-added)")
     common(s)
     s.set_defaults(fn=cmd_add)
     s = sub.add_parser("check", help="re-check price, stock and status for the shortlist")
     s.add_argument("--update", action="store_true", help="save the new prices into the shortlist")
-    s.add_argument("--md", action="store_true", help="write hardware/sourcing/parts-bom.md")
     s.set_defaults(fn=cmd_check)
-    s = sub.add_parser("budget", help="combined totals: shortlist plus the hand-kept Amazon list")
+    s = sub.add_parser("budget", help="totals and the full parts list: shortlist plus the hand-kept Amazon list")
     s.add_argument("--live", action="store_true", help="re-check the distributor prices first")
-    s.add_argument("--md", action="store_true", help="write hardware/sourcing/budget.md")
+    s.add_argument("--md", action="store_true", help="write hardware/sourcing/parts.md")
     s.set_defaults(fn=cmd_budget)
     s = sub.add_parser("amazon-price", help="set the price (and optionally quantity) of an Amazon item")
     s.add_argument("asin")

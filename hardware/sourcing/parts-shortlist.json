@@ -12,7 +12,8 @@
     "url": "https://www.digikey.com/en/products/detail/sparkfun-electronics/20360/16688096",
     "datasheet": "",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "3.3 V pins, not 5 V tolerant. No `touchRead()` on 4.x. 16771 is the same board without headers, $31.50."
   },
   {
     "role": "5 V 4 A desktop adapter (Mean Well GST25A05-P1J)",
@@ -27,7 +28,8 @@
     "url": "https://www.digikey.com/en/products/detail/mean-well-usa-inc/GST25A05-P1J/7703645",
     "datasheet": "https://www.meanwellusa.com/upload/pdf/GST25A/GST25A-spec.pdf",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "Positive centre, 2.1 x 5.5 mm plug, 1 m lead, cULus. IEC C14 inlet, **cord sold separately**."
   },
   {
     "role": "Mains cord NEMA 5-15 to IEC C13 for the adapter",
@@ -42,7 +44,8 @@
     "url": "https://www.digikey.com/en/products/detail/tensility/11-00022/3900584",
     "datasheet": "https://tensility.s3.us-west-2.amazonaws.com/uploads/pdffiles/11-00022.pdf",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "For the adapter."
   },
   {
     "role": "Panel DC jack 5.5 x 2.1 mm",
@@ -57,7 +60,8 @@
     "url": "https://www.digikey.com/en/products/detail/tensility/54-00151/9829987",
     "datasheet": "https://tensility.s3.us-west-2.amazonaws.com/uploads/pdffiles/54-00151.pdf",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "7.5 A, solder cup, rear nut. **Panel cutout (datasheet, read 2026-10-20):** 10.9 mm round with two flats 9.8 mm apart, panel 1.5 to 4.5 mm, M11 nut."
   },
   {
     "role": "Panel fuse holder 5 x 20 mm",
@@ -72,7 +76,8 @@
     "url": "https://www.digikey.com/en/products/detail/w\u00fcrth-elektronik/952005000010000/28172649",
     "datasheet": "https://www.we-online.com/components/products/datasheet/952005000010000.pdf",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "On the 5 V rail. **Panel hole (datasheet, read 2026-10-20):** 13 mm round with a 1.8 mm key out to 14 mm, panel 0.8 to 2.8 mm."
   },
   {
     "role": "4 A fuse 5 x 20 mm (1 spare)",
@@ -87,7 +92,8 @@
     "url": "https://www.digikey.com/en/products/detail/littelfuse-inc/0217004-MXP/777547",
     "datasheet": "https://www.littelfuse.com/assetdocs/littelfuse-fuse-217-datasheet?assetguid=af55be94-c42e-41b1-ad43-e070e09443fe",
     "qty": 2,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "One spare. Rated for AC; fine at 5 V DC."
   },
   {
     "role": "STAGE key switch (12 mm cutout)",
@@ -102,7 +108,8 @@
     "url": "https://www.digikey.com/en/products/detail/e-switch/KO133A801/1804779",
     "datasheet": "https://configured-product-images.s3.amazonaws.com/Datasheets/KO.pdf",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "2-position SPST, **12 mm cutout**, key removable in position 1 only. Confirm in the datasheet that position 1 is OFF."
   },
   {
     "role": "Big STAGE button, 30 mm arcade, red LED",
@@ -117,7 +124,8 @@
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/3489/7349495",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2533/3489_Web.pdf",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "**30 mm cutout**, 5 V LED, 2.8 mm quick-connect tabs. LED wiring is open (always on, or driven later)."
   },
   {
     "role": "Motorised 100 mm fader (Adafruit 5466)",
@@ -132,7 +140,8 @@
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/5466/16645060",
     "datasheet": "https://cdn-shop.adafruit.com/product-files/5466/5466_datasheetSM10001.pdf",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "6-10 V motor, run at 5 V. Two M3 holes 120 mm apart. Only 37 in stock."
   },
   {
     "role": "L9110H fader driver",
@@ -147,7 +156,8 @@
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/4489/11594498",
     "datasheet": "https://cdn-shop.adafruit.com/product-files/4489/4489_datasheet-l9110.pdf",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "Next to the fader motor."
   },
   {
     "role": "Conductive nubbin for the fader",
@@ -162,7 +172,8 @@
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/5741/20370638",
     "datasheet": "",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "For touch sensing. Only 37 in stock."
   },
   {
     "role": "Rotary encoders (time warp, camera, page)",
@@ -177,7 +188,8 @@
     "url": "https://www.digikey.com/en/products/detail/bourns-inc/PEC11R-4215F-S0024/4499665",
     "datasheet": "https://www.bourns.com/docs/Product-Datasheets/PEC11R.pdf",
     "qty": 3,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "24 detents, 6 mm flatted shaft. Bushing only about 5 mm long: keep the panel about 3 mm at the encoders."
   },
   {
     "role": "I2C expander for the switch panel",
@@ -192,7 +204,8 @@
     "url": "https://www.digikey.com/en/products/detail/microchip-technology/MCP23017-E-SP/894272",
     "datasheet": "https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP23017-Data-Sheet-DS20001952.pdf",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "Replaces the breakout board: hand-wired on perfboard behind the switch panel."
   },
   {
     "role": "DIP-28 socket for the expander",
@@ -207,7 +220,8 @@
     "url": "https://www.digikey.com/en/products/detail/cnc-tech/245-28-1-06/3441586",
     "datasheet": "https://www.cnctech.us/pdfs/245-XX-1-06.pdf",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "For the expander."
   },
   {
     "role": "74AHCT125 level shifter, DIP",
@@ -222,7 +236,8 @@
     "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74AHCT125N/375798",
     "datasheet": "https://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=https%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fsn74ahct125",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "Pixel data line."
   },
   {
     "role": "DIP-14 socket for the level shifter",
@@ -237,7 +252,8 @@
     "url": "https://www.digikey.com/en/products/detail/cnc-tech/245-14-1-03/3441580",
     "datasheet": "https://www.cnctech.us/pdfs/245-XX-1-03.pdf",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "For the level shifter."
   },
   {
     "role": "Matrix diodes (24 plus spares)",
@@ -252,7 +268,8 @@
     "url": "https://www.digikey.com/en/products/detail/onsemi/1N4148/458603",
     "datasheet": "https://www.onsemi.com/pub/Collateral/1N914-D.PDF",
     "qty": 30,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "24 matrix diodes plus spares."
   },
   {
     "role": "330 ohm pixel data resistor (1 spare)",
@@ -267,7 +284,8 @@
     "url": "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT330R/1741399",
     "datasheet": "https://www.seielect.com/catalog/SEI-CF_CFM.pdf",
     "qty": 2,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "Pixel data series resistor, one spare."
   },
   {
     "role": "4.7 kohm I2C pull-ups (spares)",
@@ -282,7 +300,8 @@
     "url": "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT4K70/1741428",
     "datasheet": "https://www.seielect.com/catalog/SEI-CF_CFM.pdf",
     "qty": 3,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "SDA and SCL pull-ups, one spare."
   },
   {
     "role": "10 kohm expander reset pull-up (spares)",
@@ -297,7 +316,8 @@
     "url": "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT10K0/1741265",
     "datasheet": "https://www.seielect.com/catalog/SEI-CF_CFM.pdf",
     "qty": 3,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "Expander reset pull-up, spares."
   },
   {
     "role": "1000 uF 16 V rail capacitor (1 spare)",
@@ -312,7 +332,8 @@
     "url": "https://www.digikey.com/en/products/detail/rubycon/16ZLH1000MEFC10X16/3134105",
     "datasheet": "https://www.rubycon.co.jp/wp-content/uploads/catalog-aluminum/ZLH.pdf",
     "qty": 2,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "5 V rail, one spare."
   },
   {
     "role": "47 uF 25 V fader driver capacitor (1 spare)",
@@ -327,7 +348,8 @@
     "url": "https://www.digikey.com/en/products/detail/w\u00fcrth-elektronik/860020472006/5727060",
     "datasheet": "https://www.we-online.com/components/products/datasheet/860020472006.pdf",
     "qty": 2,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "Across the fader driver's supply, one spare."
   },
   {
     "role": "0.1 uF decoupling and wiper capacitors",
@@ -342,7 +364,8 @@
     "url": "https://www.digikey.com/en/products/detail/vishay-beyschlag-draloric-bc-components/K104K15X7RF5TH5/286555",
     "datasheet": "https://www.vishay.com/docs/45171/kseries.pdf",
     "qty": 12,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "Decoupling, and one per stick and fader wiper."
   },
   {
     "role": "DB25 female panel jack (middle strip)",
@@ -357,7 +380,8 @@
     "url": "https://www.digikey.com/en/products/detail/itt-cannon-llc/ZDB25S/21361496",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7137/Cannon%20ZD%20Connectors.pdf",
     "qty": 4,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "Middle strip, one per outer piece."
   },
   {
     "role": "DB25 male panel jack (outer pieces)",
@@ -372,7 +396,8 @@
     "url": "https://www.digikey.com/en/products/detail/itt-cannon-llc/ZDB25P/21361449",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7138/1003_ZDB25P_SPEC.pdf",
     "qty": 4,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "One on each outer piece."
   },
   {
     "role": "DB25 shielded cable, female to male, 1 m",
@@ -387,7 +412,8 @@
     "url": "https://www.digikey.com/en/products/detail/phoenix-contact/1656291/4449846",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/1047/1656291.pdf",
     "qty": 4,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "Straight-through, 25 conductors. Male end into a middle jack, female end onto an outer jack."
   },
   {
     "role": "Panel USB micro-B extension for the Teensy",
@@ -402,7 +428,8 @@
     "url": "https://www.digikey.com/en/products/detail/sparkfun-electronics/15464/10440474",
     "datasheet": "https://cdn.sparkfun.com/assets/7/6/b/5/c/ACCA-2551_Model.pdf",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "For the Teensy."
   },
   {
     "role": "Perfboard 94 x 63 mm (middle strip main board)",
@@ -507,7 +534,8 @@
     "url": "https://www.digikey.com/en/products/detail/cliff-electronic-components-ltd/FC7254/21406846",
     "datasheet": "https://www.cliffuk.co.uk/products/knobs/knobsKMK.pdf",
     "qty": 3,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "6 mm D shaft, knurled aluminium, matches the mockup's 25 x 15 mm proxy. Only 9 in stock; silver only (the smaller KMK10E FC7259 comes in black). Set screw not confirmed."
   },
   {
     "role": "Perfboard 78 x 58 mm, pad per hole (expander, wing and bus boards)",
@@ -537,6 +565,7 @@
     "url": "https://www.digikey.com/en/products/detail/dfrobot/DFR0669/13280137",
     "datasheet": "https://wiki.dfrobot.com/3.5inches_480_320_TFT_LCD_Capacitive_Touchscreen_SKU_DFR0669",
     "qty": 2,
-    "checked": "2026-10-20"
+    "checked": "2026-10-20",
+    "note": "480 x 320, ILI9488, SPI, 73.44 x 48.96 mm display area, board 55.5 x 95 mm with 2 mm holes on a 90 x 50 mm pitch (DFRobot wiki). Capacitive touch and SD pins unused. 117 in stock. Window planned at 75 x 50 mm: measure where the display area sits relative to the holes."
   }
 ]

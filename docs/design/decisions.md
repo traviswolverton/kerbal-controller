@@ -200,7 +200,7 @@ This file records what has been settled and what is still open.
   column lines.
 - **Parts (Digi-Key):** four **female** DB25 panel jacks on the middle piece (ITT Cannon ZDB25S) and one **male** jack
   on each outer piece (ZDB25P), joined by four straight-through shielded female-to-male cables, 1 m (Phoenix Contact
-  1656291), listed in `hardware/sourcing/parts-list.md`. The cables fit only one way round. The jacks mount from inside, with the flange
+  1656291), listed in `hardware/sourcing/parts.md`. The cables fit only one way round. The jacks mount from inside, with the flange
   against the inner wall and the body standing 11 mm proud. The wing jack is on the wing's outer end wall; the two outer
   strips and the middle strip carry theirs on the back wall, so every cable runs outside, behind the console (about 0.6 m of
   path for a wing cable). They are 1 m for all four to keep one part number; coil the slack.

@@ -5,7 +5,8 @@
     "qty": 2,
     "unit_price": 18.79,
     "status": "to buy",
-    "note": "Price from the listing when chosen."
+    "note": "Mounting holes unmeasured. Power from 3.3 V. Price re-confirmed by the owner.",
+    "url": "https://www.amazon.com/dp/B08CGYGMJL"
   },
   {
     "item": "DSA blank keycaps, 1u, 24-pack (Mechkeeb)",
@@ -13,7 +14,8 @@
     "qty": 2,
     "unit_price": 8.99,
     "status": "to buy",
-    "note": "Two packs for 37 caps. Colours to pick."
+    "note": "Two packs of 24 for 37 caps. Colours to pick. Labels go on the panel.",
+    "url": "https://www.amazon.com/dp/B0BWDQ3NKK"
   },
   {
     "item": "Guarded toggle switches with covers, 6-pack (AITRIP)",
@@ -21,7 +23,8 @@
     "qty": 1,
     "unit_price": 9.99,
     "status": "to buy",
-    "note": "ABORT, ENGAGE / DISENGAGE and the master power switch. Check the photos show a bat-handle toggle."
+    "note": "ABORT, ENGAGE / DISENGAGE and the master power switch (3 of the 6 used). Kept over Digi-Key: its guard and toggle are sold separately, its cover is made for CW Industries' own series, so fit is a risk, and it costs far more. Check the photos show a bat-handle toggle with a flip cover.",
+    "url": "https://www.amazon.com/dp/B0CL4GNMJX"
   },
   {
     "item": "MX-style blue clicky switches, 72-pack (Josojoou)",
@@ -29,7 +32,8 @@
     "qty": 1,
     "unit_price": 12.99,
     "status": "owned",
-    "note": "Bought 2026-10-10. 37 used."
+    "note": "Bought 2026-10-10. 37 of 72 used.",
+    "url": "https://www.amazon.com/dp/B0GC33V4HK"
   },
   {
     "item": "Passive buzzer module, 5-pack (DIYables)",
@@ -37,7 +41,8 @@
     "qty": 1,
     "unit_price": 6.99,
     "status": "owned",
-    "note": "Ordered 2026-10-10."
+    "note": "Ordered 2026-10-10; 1 of 5 used. Bench-test whether it is passive. Power from 3V3.",
+    "url": "https://www.amazon.com/dp/B0DHGP95K4"
   },
   {
     "item": "Weight vest steel plates, 8-pack (Mavee, silver electroplated)",
@@ -45,7 +50,8 @@
     "qty": 2,
     "unit_price": 25.99,
     "status": "to buy",
-    "note": "Ballast: 8 plates per wing (16 in all, 2 packs, about 3.2 kg); the pocket takes 12 per wing if a third pack is needed. Link: https://a.co/d/0axItt4q (short link, ASIN not resolved). 5.9 x 0.98 x 0.28 in, 0.44 lb each."
+    "note": "Ballast: 8 plates per wing (16 in all, 2 packs, about 3.2 kg); the pocket takes 12 per wing if a third pack is needed. ASIN not resolved; weigh one plate on arrival. 5.9 x 0.98 x 0.28 in, 0.44 lb each.",
+    "url": "https://a.co/d/0axItt4q"
   },
   {
     "item": "WS2812B 10 mm pixel boards, 100 (BTF-LIGHTING)",
@@ -53,6 +59,6 @@
     "qty": 1,
     "unit_price": null,
     "status": "owned",
-    "note": "65 used."
+    "note": "65 of 100 used: 24 keys, 32 fuel bars, 9 annunciator windows. GRB. One chain through the three strip pieces."
   }
 ]

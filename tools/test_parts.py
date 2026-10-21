@@ -136,6 +136,16 @@ class Tool(unittest.TestCase):
         self.assertIn("price was $5.00", flags)
         self.assertAlmostEqual(total, 1234.5 * 2000)
 
+    def test_parts_md_has_links_notes_and_totals(self):
+        shortlist = [{"role": "Widget", "source": "digikey", "pn": "W-1-ND", "qty": 2, "unit_price": 3.0, "stock": 10,
+                      "status": "Active", "url": "https://example.com/w", "note": "a note"}]
+        amazon = [{"item": "Box", "asin": "B000000001", "qty": 1, "unit_price": 5.0, "status": "to buy", "note": "box note"}]
+        text, _ = parts.render_parts_md(shortlist, amazon)
+        self.assertIn("[W-1-ND](https://example.com/w)", text)
+        self.assertIn("a note", text)
+        self.assertIn("https://www.amazon.com/dp/B000000001", text)
+        self.assertIn("$11.00", text)   # 2 x 3.00 + 5.00
+
     def test_budget_totals(self):
         shortlist = [{"role": "a", "source": "digikey", "pn": "x", "qty": 2, "unit_price": 3.0},
                      {"role": "b", "source": "mouser", "pn": "y", "qty": 1, "unit_price": 1.5}]

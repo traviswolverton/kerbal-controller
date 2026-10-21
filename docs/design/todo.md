@@ -6,7 +6,7 @@ Compiled from the design session on 2026-10-20. Check items off as you go. Where
 
 - [ ] **Fill in any remaining Amazon prices** (check `hardware/sourcing/amazon-items.json` for `null`), then run
   `python3 tools/parts.py budget --md`. Use `amazon-price ASIN PRICE`.
-- [ ] **Order 2 packs of the Mavee vest plates** ($25.99 each, a third only if the console still creeps; link in `hardware/sourcing/parts-list.md`) and note the ASIN in `amazon-items.json`.
+- [ ] **Order 2 packs of the Mavee vest plates** ($25.99 each, a third only if the console still creeps; link in `hardware/sourcing/parts.md`) and note the ASIN in `amazon-items.json`.
 - [ ] **Check the AITRIP photos show a bat-handle toggle with a flip cover**, not a flat rocker. Three of the six switches depend on it
   (ABORT, ENGAGE / DISENGAGE, master power).
 - [ ] **Confirm the key switch's key position**: in the E-Switch KO133A801 datasheet, is position 1 (key removable) OFF?
@@ -15,7 +15,7 @@ Compiled from the design session on 2026-10-20. Check items off as you go. Where
   logic level (not stated), the backlight tie-off, and that an ILI9488 driver library works on the Teensy 4.1.
 - [ ] **Verify the Teensy's physical pin order** against [PJRC's pinout card](https://www.pjrc.com/store/teensy41.html). The diagram's order is from memory.
 - [ ] **Fader and nubbin stock** was only 37 each at Digi-Key; order early.
-- [ ] Re-run `python3 tools/parts.py check --md` right before ordering, then place the Digi-Key order (35 lines, about $316) and the Amazon order.
+- [ ] Re-run `python3 tools/parts.py budget --live --md` right before ordering (it re-checks price and stock), then place the Digi-Key order (36 lines, about $370) and the Amazon order.
 - [ ] **Not yet specified, buy as needed:** solder and flux, cable clips and zip ties, M3 screws and heat-set inserts (the fader needs two countersunk M3), 20 mm silicone feet, filament (2 to 3 kg), board standoffs, connectors for the sticks and encoders.
 
 ## 2. When the parts arrive: measure and bench-test
@@ -87,4 +87,4 @@ Compiled from the design session on 2026-10-20. Check items off as you go. Where
 ## 8. Housekeeping
 
 - [ ] Optional: ask GitHub Support to garbage-collect the repo so the old pre-scrub commits are no longer reachable by hash.
-- [ ] Keep `hardware/sourcing/amazon-items.json` and `hardware/sourcing/parts-shortlist.json` current as you order, then regenerate `hardware/sourcing/budget.md`.
+- [ ] Keep `hardware/sourcing/amazon-items.json` and `hardware/sourcing/parts-shortlist.json` current as you order, then regenerate `hardware/sourcing/parts.md`.
