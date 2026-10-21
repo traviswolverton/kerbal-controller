@@ -7,12 +7,12 @@
     "manufacturer": "SparkFun Electronics",
     "description": "TEENSY 4.1 WITHOUT ETHERNET (HEA",
     "unit_price": 33.6,
-    "stock": 136,
+    "stock": 85,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/sparkfun-electronics/20360/16688096",
     "datasheet": "",
     "qty": 1,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "3.3 V pins, not 5 V tolerant. No `touchRead()` on 4.x. 16771 is the same board without headers, $31.50."
   },
   {
@@ -23,12 +23,12 @@
     "manufacturer": "MEAN WELL USA Inc.",
     "description": "AC/DC DESKTOP ADAPTER 5V 20W",
     "unit_price": 14.3,
-    "stock": 3039,
+    "stock": 3038,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/mean-well-usa-inc/GST25A05-P1J/7703645",
     "datasheet": "https://www.meanwellusa.com/upload/pdf/GST25A/GST25A-spec.pdf",
     "qty": 1,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "Positive centre, 2.1 x 5.5 mm plug, 1 m lead, cULus. IEC C14 inlet, **cord sold separately**."
   },
   {
@@ -39,12 +39,12 @@
     "manufacturer": "Tensility International Corp",
     "description": "CORD 18AWG 5-15P - 320-C13 3.28'",
     "unit_price": 4.37,
-    "stock": 3666,
+    "stock": 3557,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/tensility/11-00022/3900584",
     "datasheet": "https://tensility.s3.us-west-2.amazonaws.com/uploads/pdffiles/11-00022.pdf",
     "qty": 1,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "For the adapter."
   },
   {
@@ -55,12 +55,12 @@
     "manufacturer": "Tensility International Corp",
     "description": "CONN JACK PNL MNT 5.5X2.1MM ISO",
     "unit_price": 4.81,
-    "stock": 6633,
+    "stock": 6626,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/tensility/54-00151/9829987",
     "datasheet": "https://tensility.s3.us-west-2.amazonaws.com/uploads/pdffiles/54-00151.pdf",
     "qty": 1,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "7.5 A, solder cup, rear nut. **Panel cutout (datasheet, read 2026-10-20):** 10.9 mm round with two flats 9.8 mm apart, panel 1.5 to 4.5 mm, M11 nut."
   },
   {
@@ -76,7 +76,7 @@
     "url": "https://www.digikey.com/en/products/detail/w\u00fcrth-elektronik/952005000010000/28172649",
     "datasheet": "https://www.we-online.com/components/products/datasheet/952005000010000.pdf",
     "qty": 1,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "On the 5 V rail. **Panel hole (datasheet, read 2026-10-20):** 13 mm round with a 1.8 mm key out to 14 mm, panel 0.8 to 2.8 mm."
   },
   {
@@ -87,12 +87,12 @@
     "manufacturer": "Littelfuse Inc.",
     "description": "FUSE GLASS 4A 250VAC 5X20MM",
     "unit_price": 0.57,
-    "stock": 19807,
+    "stock": 19717,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/littelfuse-inc/0217004-MXP/777547",
     "datasheet": "https://www.littelfuse.com/assetdocs/littelfuse-fuse-217-datasheet?assetguid=af55be94-c42e-41b1-ad43-e070e09443fe",
     "qty": 2,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "One spare. Rated for AC; fine at 5 V DC."
   },
   {
@@ -108,7 +108,7 @@
     "url": "https://www.digikey.com/en/products/detail/e-switch/KO133A801/1804779",
     "datasheet": "https://configured-product-images.s3.amazonaws.com/Datasheets/KO.pdf",
     "qty": 1,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "2-position SPST, **12 mm cutout**, key removable in position 1 only. Confirm in the datasheet that position 1 is OFF."
   },
   {
@@ -124,7 +124,7 @@
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/3489/7349495",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2533/3489_Web.pdf",
     "qty": 1,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "**30 mm cutout**, 5 V LED, 2.8 mm quick-connect tabs. LED wiring is open (always on, or driven later)."
   },
   {
@@ -140,7 +140,7 @@
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/5466/16645060",
     "datasheet": "https://cdn-shop.adafruit.com/product-files/5466/5466_datasheetSM10001.pdf",
     "qty": 1,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "6-10 V motor, run at 5 V. Two M3 holes 120 mm apart. Only 37 in stock."
   },
   {
@@ -156,7 +156,7 @@
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/4489/11594498",
     "datasheet": "https://cdn-shop.adafruit.com/product-files/4489/4489_datasheet-l9110.pdf",
     "qty": 1,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "Next to the fader motor."
   },
   {
@@ -167,12 +167,12 @@
     "manufacturer": "Adafruit Industries LLC",
     "description": "CONDUCTIVE PLASTIC SLIDE POT",
     "unit_price": 6.19,
-    "stock": 37,
+    "stock": 36,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/5741/20370638",
     "datasheet": "",
     "qty": 1,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "For touch sensing. Only 37 in stock."
   },
   {
@@ -183,12 +183,12 @@
     "manufacturer": "Bourns Inc.",
     "description": "ENCODER MECH QUAD VERT PC PIN",
     "unit_price": 2.95,
-    "stock": 12326,
+    "stock": 12317,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/bourns-inc/PEC11R-4215F-S0024/4499665",
     "datasheet": "https://www.bourns.com/docs/Product-Datasheets/PEC11R.pdf",
     "qty": 3,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "24 detents, 6 mm flatted shaft. Bushing only about 5 mm long: keep the panel about 3 mm at the encoders."
   },
   {
@@ -199,12 +199,12 @@
     "manufacturer": "Microchip Technology",
     "description": "IC XPNDR 1.7MHZ I2C 28SDIP",
     "unit_price": 1.69,
-    "stock": 7987,
+    "stock": 7927,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/microchip-technology/MCP23017-E-SP/894272",
     "datasheet": "https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP23017-Data-Sheet-DS20001952.pdf",
     "qty": 1,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "Replaces the breakout board: hand-wired on perfboard behind the switch panel."
   },
   {
@@ -220,7 +220,7 @@
     "url": "https://www.digikey.com/en/products/detail/cnc-tech/245-28-1-06/3441586",
     "datasheet": "https://www.cnctech.us/pdfs/245-XX-1-06.pdf",
     "qty": 1,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "For the expander."
   },
   {
@@ -231,12 +231,12 @@
     "manufacturer": "Texas Instruments",
     "description": "IC BUFF 4.5V/5.5V 14-PDIP",
     "unit_price": 1.0,
-    "stock": 20168,
+    "stock": 20099,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/texas-instruments/SN74AHCT125N/375798",
     "datasheet": "https://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=https%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fsn74ahct125",
     "qty": 1,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "Pixel data line."
   },
   {
@@ -247,12 +247,12 @@
     "manufacturer": "CNC Tech",
     "description": "CONN IC DIP SOCKET 14POS TIN",
     "unit_price": 0.73,
-    "stock": 5745,
+    "stock": 5730,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/cnc-tech/245-14-1-03/3441580",
     "datasheet": "https://www.cnctech.us/pdfs/245-XX-1-03.pdf",
     "qty": 1,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "For the level shifter."
   },
   {
@@ -263,12 +263,12 @@
     "manufacturer": "onsemi",
     "description": "DIODE STANDARD 100V 200MA DO35",
     "unit_price": 0.06,
-    "stock": 599609,
+    "stock": 595777,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/onsemi/1N4148/458603",
     "datasheet": "https://www.onsemi.com/pub/Collateral/1N914-D.PDF",
     "qty": 30,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "24 matrix diodes plus spares."
   },
   {
@@ -279,12 +279,12 @@
     "manufacturer": "Stackpole Electronics Inc",
     "description": "RES 330 OHM 5% 1/4W AXIAL",
     "unit_price": 0.1,
-    "stock": 283138,
+    "stock": 283061,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT330R/1741399",
     "datasheet": "https://www.seielect.com/catalog/SEI-CF_CFM.pdf",
     "qty": 2,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "Pixel data series resistor, one spare."
   },
   {
@@ -295,12 +295,12 @@
     "manufacturer": "Stackpole Electronics Inc",
     "description": "RES 4.7K OHM 5% 1/4W AXIAL",
     "unit_price": 0.1,
-    "stock": 249789,
+    "stock": 248594,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT4K70/1741428",
     "datasheet": "https://www.seielect.com/catalog/SEI-CF_CFM.pdf",
     "qty": 3,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "SDA and SCL pull-ups, one spare."
   },
   {
@@ -311,12 +311,12 @@
     "manufacturer": "Stackpole Electronics Inc",
     "description": "RES 10K OHM 5% 1/4W AXIAL",
     "unit_price": 0.1,
-    "stock": 568085,
+    "stock": 566429,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/stackpole-electronics-inc/CF14JT10K0/1741265",
     "datasheet": "https://www.seielect.com/catalog/SEI-CF_CFM.pdf",
     "qty": 3,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "Expander reset pull-up, spares."
   },
   {
@@ -327,12 +327,12 @@
     "manufacturer": "Rubycon",
     "description": "CAP ALUM 1000UF 20% 16V RADIAL",
     "unit_price": 0.71,
-    "stock": 15853,
+    "stock": 15844,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/rubycon/16ZLH1000MEFC10X16/3134105",
     "datasheet": "https://www.rubycon.co.jp/wp-content/uploads/catalog-aluminum/ZLH.pdf",
     "qty": 2,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "5 V rail, one spare."
   },
   {
@@ -343,12 +343,12 @@
     "manufacturer": "W\u00fcrth Elektronik",
     "description": "CAP ALUM 47UF 20% 25V RADIAL TH",
     "unit_price": 0.1,
-    "stock": 37988,
+    "stock": 34958,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/w\u00fcrth-elektronik/860020472006/5727060",
     "datasheet": "https://www.we-online.com/components/products/datasheet/860020472006.pdf",
     "qty": 2,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "Across the fader driver's supply, one spare."
   },
   {
@@ -359,12 +359,12 @@
     "manufacturer": "Vishay Beyschlag/Draloric/BC Components",
     "description": "CAP CER 0.1UF 50V X7R RADIAL",
     "unit_price": 0.17,
-    "stock": 304721,
+    "stock": 304643,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/vishay-beyschlag-draloric-bc-components/K104K15X7RF5TH5/286555",
     "datasheet": "https://www.vishay.com/docs/45171/kseries.pdf",
     "qty": 12,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "Decoupling, and one per stick and fader wiper."
   },
   {
@@ -379,9 +379,9 @@
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/itt-cannon-llc/ZDB25S/21361496",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7137/Cannon%20ZD%20Connectors.pdf",
-    "qty": 4,
-    "checked": "2026-10-20",
-    "note": "Middle strip, one per outer piece."
+    "qty": 8,
+    "checked": "2026-10-21",
+    "note": "Middle strip, one per outer piece. Doubled to 8 (4 to fit plus 4 spares) so you can practise soldering the cups on 1 or 2 before the real ones."
   },
   {
     "role": "DB25 male panel jack (outer pieces)",
@@ -395,9 +395,9 @@
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/itt-cannon-llc/ZDB25P/21361449",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7138/1003_ZDB25P_SPEC.pdf",
-    "qty": 4,
-    "checked": "2026-10-20",
-    "note": "One on each outer piece."
+    "qty": 8,
+    "checked": "2026-10-21",
+    "note": "One on each outer piece. Doubled to 8 (4 to fit plus 4 spares) so you can practise soldering the cups on 1 or 2 before the real ones."
   },
   {
     "role": "DB25 shielded cable, female to male, 1 m",
@@ -407,12 +407,12 @@
     "manufacturer": "Phoenix Contact",
     "description": "CABLE ASSY DB25 25POS SHLD 3.28'",
     "unit_price": 15.7,
-    "stock": 1240,
+    "stock": 1227,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/phoenix-contact/1656291/4449846",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/1047/1656291.pdf",
     "qty": 4,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "Straight-through, 25 conductors. Male end into a middle jack, female end onto an outer jack."
   },
   {
@@ -428,7 +428,7 @@
     "url": "https://www.digikey.com/en/products/detail/sparkfun-electronics/15464/10440474",
     "datasheet": "https://cdn.sparkfun.com/assets/7/6/b/5/c/ACCA-2551_Model.pdf",
     "qty": 1,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "For the Teensy."
   },
   {
@@ -439,12 +439,12 @@
     "manufacturer": "SparkFun Electronics",
     "description": "BREADBOARD GENERAL PURPOSE PTH",
     "unit_price": 8.65,
-    "stock": 715,
+    "stock": 713,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/sparkfun-electronics/12070/5230951",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/15/PRT-12070_Web.pdf",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-21"
   },
   {
     "role": "Screw terminal 5.08 mm, 2 position",
@@ -454,12 +454,12 @@
     "manufacturer": "On Shore Technology Inc.",
     "description": "TERM BLK 2P SIDE ENT 5.08MM PCB",
     "unit_price": 0.58,
-    "stock": 25753,
+    "stock": 36435,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/on-shore-technology-inc/OSTTC022162/614558",
     "datasheet": "http://www.on-shore.com/wp-content/uploads/OSTTCXX2162.pdf",
     "qty": 6,
-    "checked": "2026-10-20"
+    "checked": "2026-10-21"
   },
   {
     "role": "Screw terminal 5.08 mm, 4 position",
@@ -469,12 +469,12 @@
     "manufacturer": "On Shore Technology Inc.",
     "description": "TERM BLK 4P SIDE ENT 5.08MM PCB",
     "unit_price": 1.08,
-    "stock": 12671,
+    "stock": 12672,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/on-shore-technology-inc/OSTTC042162/614560",
     "datasheet": "http://www.on-shore.com/wp-content/uploads/OSTTCXX2162.pdf",
     "qty": 8,
-    "checked": "2026-10-20"
+    "checked": "2026-10-21"
   },
   {
     "role": "Female header 24 position (Teensy sockets, spare)",
@@ -484,12 +484,12 @@
     "manufacturer": "Sullins Connector Solutions",
     "description": "CONN HDR 24POS 0.1 TIN PCB",
     "unit_price": 1.34,
-    "stock": 20228,
+    "stock": 20324,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/sullins-connector-solutions/PPTC241LFBN-RC/810162",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/937/Female_Headers.100_DS.pdf",
     "qty": 3,
-    "checked": "2026-10-20"
+    "checked": "2026-10-21"
   },
   {
     "role": "Hookup wire 22 AWG stranded, 10 colours x 25 ft",
@@ -499,12 +499,12 @@
     "manufacturer": "Adafruit Industries LLC",
     "description": "HOOK-UP 22AWG STRAND - 10 X 25FT",
     "unit_price": 32.29,
-    "stock": 476,
+    "stock": 470,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/3175/6198258",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2365/3175_Web.pdf",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-21"
   },
   {
     "role": "Hookup wire 22 AWG solid, 6 colours x 25 ft (matrix)",
@@ -514,12 +514,12 @@
     "manufacturer": "Adafruit Industries LLC",
     "description": "HOOK-UP 22AWG SOLID - 6 X 25FT",
     "unit_price": 15.95,
-    "stock": 2440,
+    "stock": 2420,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/1311/6198255",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2146/1311_Web.pdf",
     "qty": 1,
-    "checked": "2026-10-20"
+    "checked": "2026-10-21"
   },
   {
     "role": "Encoder knobs, 25 mm D shaft (CLIFF KMK25)",
@@ -534,7 +534,7 @@
     "url": "https://www.digikey.com/en/products/detail/cliff-electronic-components-ltd/FC7254/21406846",
     "datasheet": "https://www.cliffuk.co.uk/products/knobs/knobsKMK.pdf",
     "qty": 3,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "6 mm D shaft, knurled aluminium, matches the mockup's 25 x 15 mm proxy. Only 9 in stock; silver only (the smaller KMK10E FC7259 comes in black). Set screw not confirmed."
   },
   {
@@ -545,12 +545,12 @@
     "manufacturer": "DFRobot",
     "description": "BREADBOARD GENERAL PURPOSE PTH",
     "unit_price": 2.9,
-    "stock": 2919,
+    "stock": 3322,
     "status": "Active",
     "url": "https://www.digikey.com/en/products/detail/dfrobot/FIT0203/6588423",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2169/FIT0203_Web.pdf",
     "qty": 4,
-    "checked": "2026-10-20"
+    "checked": "2026-10-21"
   },
   {
     "role": "3.5in IPS TFT display 480x320 SPI (DFRobot DFR0669)",
@@ -565,7 +565,7 @@
     "url": "https://www.digikey.com/en/products/detail/dfrobot/DFR0669/13280137",
     "datasheet": "https://wiki.dfrobot.com/3.5inches_480_320_TFT_LCD_Capacitive_Touchscreen_SKU_DFR0669",
     "qty": 2,
-    "checked": "2026-10-20",
+    "checked": "2026-10-21",
     "note": "480 x 320, ILI9488, SPI, 73.44 x 48.96 mm display area, board 55.5 x 95 mm with 2 mm holes on a 90 x 50 mm pitch (DFRobot wiki). Capacitive touch and SD pins unused. 117 in stock. Window planned at 75 x 50 mm: measure where the display area sits relative to the holes."
   }
 ]

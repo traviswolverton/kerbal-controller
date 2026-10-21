@@ -89,6 +89,24 @@ Left strip (DB25 LS, 21 conductors) and right strip (DB25 RS, 16 conductors):
 
 - [ ] Nine pixels, one behind each 24 x 12 mm window, after the 12 key pixels in the chain. Windows: low fuel, low power, overheat, low altitude, stable orbit, atmosphere, chute safe, link, controls (lit while engaged). Give each window its own light-tight cell so the colours do not bleed.
 
+## Soldering the DB25 jacks
+
+Eight ITT Cannon jacks (four ZDB25S female in the middle strip, four ZDB25P male on the outer pieces; the order has four spares of each for practice) have **solder cups** with
+very little room between them. Only the pins in use are wired: 19 on the left wing, 14 on the right wing, 21 on the left strip
+and 16 on the right strip, the same again at the middle jack, so about 140 cup joints in all. Nothing here has been tried yet.
+
+- [ ] **Practise first** on a spare jack or a scrap connector before the real ones.
+- [ ] **Wire:** use thin stranded wire for the signal pins. Cut-off Dupont jumpers (about 26 AWG) fit a cup far better than 22 AWG, which barely goes in. Trial-fit one wire in a cup before you start, since I have not measured the cup bore.
+- [ ] **Power pins:** pins 20 and 21 (5 V) and the grounds carry the most current. Put two thin wires in the same cup, or use 22 to 24 AWG with the strands flattened.
+- [ ] **Prep each wire:** slide about 10 mm of small heat shrink on first, strip 3 to 4 mm and tin the strands.
+- [ ] **Pre-tin each cup** with a small drop of solder and a little flux. Clamp the jack with the cups facing up.
+- [ ] **Solder:** a fine chisel tip, heating the cup and not the wire, until the solder flows around the strands. Do not leave the iron on a cup: the plastic softens and the pin can move.
+- [ ] **Alternate pins** (every second one, then the rest) so heat does not build up between neighbours, and let the plastic cool.
+- [ ] **Slide the heat shrink** over each joint and shrink it, so a stray strand cannot touch its neighbour.
+- [ ] **Pin numbers:** the numbering seen from the solder side is the mirror image of the mating face. Confirm each wire's pin number with a continuity test from the matching cable end before assembling anything.
+- [ ] **After each jack:** no beep between any two adjacent pins, and each wire beeps from its cup to the right pin on a mating plug.
+- [ ] **If the first jack is painful,** the alternative is a crimp D-sub (crimp socket housings and contacts plus a crimp tool). It would need the cutout and mounting re-checked.
+
 ## Cables
 
 - [ ] Four straight-through shielded DB25 cables, 1 m, female to male (Phoenix Contact 1656291). The male end goes into a middle jack and the female end onto an outer jack. Coil the slack; the cables run outside, behind the console.
