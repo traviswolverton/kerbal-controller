@@ -1,5 +1,10 @@
 # Control map
 
+> **What this covers:** what every key, switch, stick and knob does in the game, panel by panel.  
+> **Read it if:** you want to know what the console does, or you are writing the firmware.  
+> **Status:** Planned. Each row is marked decided, proposed or open below.  
+> **Next:** [parts and budget](../../hardware/sourcing/parts.md), what it is made of.
+
 What every control does, panel by panel, so you can read it instead of asking. Labels match `hardware/cad/console.scad`;
 pins and conductors are in [pin-map.md](../../hardware/electronics/wiring/pin-map.md). **Status:** *decided* is in `design/decisions.md`; *proposed* is my reading of
 the label and not yet settled; *open* means no function chosen. KSP actions go through

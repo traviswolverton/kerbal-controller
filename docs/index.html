@@ -1,5 +1,82 @@
 <!doctype html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<meta http-equiv="refresh" content="0; url=pinout.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kerbal controller</title>
-<p><a href="pinout.html">Wiring diagrams</a></p>
+<meta name="description" content="A hand-built, 3D printed Kerbal Space Program controller, documented end to end for beginners.">
+<style>
+  :root { --paper:#f5f2ea; --ink:#201d16; --ink-dim:#6b6657; --rule:#ded7c4; --accent:#8a5a2b; --card:#ffffff; }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper:#14171a; --ink:#eae6d9; --ink-dim:#96917f; --rule:#2c2f2a; --accent:#d9a35f; --card:#1b1e1a; }
+  }
+  * { box-sizing: border-box; }
+  body { background:var(--paper); color:var(--ink); font-family:"IBM Plex Sans", system-ui, sans-serif; line-height:1.55;
+         margin:0 auto; max-width:900px; padding:32px 20px 72px; }
+  h1, h2 { font-family:"IBM Plex Mono", ui-monospace, monospace; text-wrap:balance; }
+  h1 { font-size:clamp(1.6rem, 1.1rem + 2vw, 2.3rem); margin:0 0 6px; letter-spacing:-0.01em; }
+  h2 { font-size:1.1rem; margin:44px 0 10px; padding-bottom:8px; border-bottom:1px solid var(--rule); }
+  .eyebrow { font-family:"IBM Plex Mono", monospace; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin:0 0 6px; }
+  .lede { font-size:1.1rem; max-width:62ch; margin:8px 0 22px; }
+  img.hero { width:100%; height:auto; border-radius:10px; border:1px solid var(--rule); background:#fff; }
+  a { color:var(--accent); }
+  .cta { display:flex; flex-wrap:wrap; gap:10px; margin:20px 0 0; }
+  .cta a { background:var(--accent); color:var(--paper); text-decoration:none; padding:9px 16px; border-radius:8px; font-weight:600; }
+  .cta a.alt { background:transparent; color:var(--accent); border:1px solid var(--accent); }
+  table { width:100%; border-collapse:collapse; font-size:0.95rem; background:var(--card); border:1px solid var(--rule); border-radius:8px; overflow:hidden; }
+  th, td { text-align:left; padding:9px 12px; border-bottom:1px solid var(--rule); vertical-align:top; }
+  th { color:var(--ink-dim); font-weight:600; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.06em; }
+  tr:last-child td { border-bottom:0; }
+  .state { white-space:nowrap; font-family:"IBM Plex Mono", monospace; font-size:0.82rem; }
+  .done { color:#2f8f4e; } .wip { color:var(--accent); } .todo { color:var(--ink-dim); }
+  ol.path { padding-left:1.3em; } ol.path li { margin:6px 0; }
+  ol.path span { color:var(--ink-dim); }
+  footer { margin-top:48px; color:var(--ink-dim); font-size:0.85rem; }
+  @media (max-width:560px) { .state { white-space:normal; } }
+</style>
+</head>
+<body>
+<p class="eyebrow">kerbal-controller</p>
+<h1>A KSP controller, built from scratch</h1>
+<p class="lede">A hand-built, 3D printed control panel for Kerbal Space Program: two joysticks, a motorised throttle, keys that light up with the
+game's state, two screens and a row of guarded switches. This site and repo document the whole thing, end to end, for someone who
+knows none of it, including the mistakes. I am learning as I build, so I wrote it down.</p>
+
+<img class="hero" src="img/iso.png" alt="Render of the five-piece console: three raised strips at the back and two lower wings at the front">
+
+<div class="cta">
+  <a href="https://github.com/traviswolverton/kerbal-controller/blob/main/docs/how-it-works.md">How it works</a>
+  <a class="alt" href="https://github.com/traviswolverton/kerbal-controller/blob/main/docs/journey.md">The journey</a>
+  <a class="alt" href="pinout.html">Wiring diagrams</a>
+  <a class="alt" href="https://github.com/traviswolverton/kerbal-controller">Repo on GitHub</a>
+</div>
+
+<h2>Where it stands</h2>
+<table>
+  <tr><th>Stage</th><th>State</th><th>What exists</th></tr>
+  <tr><td>1. Idea and requirements</td><td class="state done">Done</td><td>Goals, limits and the control map</td></tr>
+  <tr><td>2. Choosing parts</td><td class="state wip">In progress</td><td>Every part picked and priced. Nothing ordered yet</td></tr>
+  <tr><td>3. Shape and layout (CAD)</td><td class="state wip">In progress</td><td>A five-piece 3D model and renders. Nothing printed yet</td></tr>
+  <tr><td>4. Wiring design</td><td class="state wip">In progress</td><td><a href="pinout.html">Colour-coded diagrams</a> generated from one pin file</td></tr>
+  <tr><td>5. Firmware</td><td class="state todo">Not started</td><td>A design outline</td></tr>
+  <tr><td>6. Printing</td><td class="state todo">Not started</td><td></td></tr>
+  <tr><td>7. Build and bring-up</td><td class="state todo">Not started</td><td>The first power-up procedure is written</td></tr>
+</table>
+
+<h2>Read it in this order</h2>
+<ol class="path">
+  <li><a href="https://github.com/traviswolverton/kerbal-controller/blob/main/docs/how-it-works.md">How it works</a> <span>one page, one picture</span></li>
+  <li><a href="https://github.com/traviswolverton/kerbal-controller/blob/main/docs/glossary.md">Glossary</a> <span>every term in plain words</span></li>
+  <li><a href="https://github.com/traviswolverton/kerbal-controller/blob/main/docs/journey.md">Journey</a> <span>the story, and what went wrong</span></li>
+  <li><a href="https://github.com/traviswolverton/kerbal-controller/blob/main/docs/design/decisions.md">Decisions</a> and <a href="https://github.com/traviswolverton/kerbal-controller/blob/main/docs/design/why-not.md">why not X?</a></li>
+  <li><a href="https://github.com/traviswolverton/kerbal-controller/blob/main/hardware/sourcing/parts.md">Parts and budget</a></li>
+  <li><a href="pinout.html">Wiring</a> and the <a href="https://github.com/traviswolverton/kerbal-controller/blob/main/hardware/electronics/bring-up.md">first power-up</a></li>
+  <li><a href="https://github.com/traviswolverton/kerbal-controller/blob/main/firmware/README.md">Firmware</a></li>
+</ol>
+
+<h2>The view from the seat</h2>
+<img class="hero" src="img/seat-view.png" alt="Render of the console as seen from the pilot's seat">
+
+<footer>MIT licensed. Parts from US retailers only. Corrections welcome: <a href="https://github.com/traviswolverton/kerbal-controller/blob/main/CONTRIBUTING.md">CONTRIBUTING</a>.</footer>
+</body>
+</html>

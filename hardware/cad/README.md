@@ -1,5 +1,10 @@
 # CAD
 
+> **What this covers:** the OpenSCAD source, and the test plate that checks the key and light fit before the big print.  
+> **Read it if:** you want to print the test plate or change the design.  
+> **Status:** Planned. The test plate is drawn and its STLs are exported, but it has not been printed.  
+> **Next:** [fabrication estimate](fabrication.md).
+
 Parametric OpenSCAD source. STL exports live in `stl/`.
 
 ## test_plate.scad

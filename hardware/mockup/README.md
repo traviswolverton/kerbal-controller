@@ -1,5 +1,10 @@
 # Console mockup
 
+> **What this covers:** the renders of the five-piece console, the size of each piece, and how to regenerate the pictures.  
+> **Read it if:** you want to see the design, or change it.  
+> **Status:** Planned. A model only; part shapes are simple blocks and nothing is printed.  
+> **Next:** [the CAD](../cad/README.md).
+
 Renders of the current layout, generated from [`hardware/cad/console.scad`](../cad/console.scad). The panel
 contents of each piece are in [controls.md](../../docs/design/controls.md); the sizes and layout choices are in
 [decisions.md](../../docs/design/decisions.md).

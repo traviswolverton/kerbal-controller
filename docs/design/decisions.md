@@ -1,5 +1,10 @@
 # Design decisions so far
 
+> **What this covers:** every settled choice, the reason for it, and what is still open, by topic.  
+> **Read it if:** you want the *why* behind a part or a layout. Short answers to "why not the other way?" are in [why-not.md](why-not.md).  
+> **Status:** Planned and Seller claim. Dimensions come from listings and datasheets; nothing is Measured or Tested yet.  
+> **Next:** [controls.md](controls.md), what each control does.
+
 Kerbal Space Program controller built around
 [KerbalSimpitRevamped](https://github.com/Simpit-team/KerbalSimpitRevamped).
 This file records what has been settled and what is still open.

@@ -1,5 +1,10 @@
 # Firmware
 
+> **What this covers:** the PlatformIO project for the Teensy, how to build and upload it, and how the pin file is generated.  
+> **Read it if:** you are writing or flashing the controller's program.  
+> **Status:** Planned. A stub; the toolchain has not been run in this repo.  
+> **Next:** [the architecture outline](../docs/firmware/architecture.md).
+
 Code that runs on the Teensy 4.1 and talks to KSP through the
 [KerbalSimpitRevamped](https://github.com/Simpit-team/KerbalSimpitRevamped) mod. Nothing is written yet; the design outline is
 in [`docs/firmware/architecture.md`](../docs/firmware/architecture.md).

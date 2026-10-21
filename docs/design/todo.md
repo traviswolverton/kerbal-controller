@@ -1,6 +1,26 @@
 # To do
 
-Compiled from the design session on 2026-10-20. Check items off as you go. Where something is already written down, the file is named.
+> **What this covers:** everything still to do, in the order it needs doing, with what blocks what.  
+> **Read it if:** you want to know what happens next, or what has to happen before something else can.  
+> **Status:** A live list. Compiled from the design session on 2026-10-20 and updated since.  
+> **Next:** the first unchecked item in section 1.
+
+Check items off as you go. Where something is already written down, the file is named. Many items are facts waiting to be promoted from
+*Seller claim* to *Measured* or *Tested* (see [docs/README.md](../README.md)).
+
+## The route in six steps
+
+| Step | Done when | What it unlocks | Sections |
+|---|---|---|---|
+| A. Ready to order | The last prices and two photo checks are done, and the list is final | The order | 1 |
+| B. Parts arrive | Every part is measured and bench-tested | Real cutout sizes for the CAD, and the electronics design is confirmed | 2 |
+| C. Test print | The test plate fits and the key lights are visible | Printing the five pieces | 3 |
+| D. Full CAD and print | Mounts, joints and templates are done and the pieces are printed | Putting the electronics in | 4 |
+| E. Wire and bring up | Each piece passes the [first power-up](../../hardware/electronics/bring-up.md) | The firmware has real hardware to talk to | 7 |
+| F. Firmware and game | The console flies a rocket | Done | 5, 6 |
+
+A few things block others: the **joystick measurements** and **display board measurements** block the panel cutouts; the **Teensy pin order check** blocks all
+wiring; the **test plate** blocks the strip prints; and the **bring-up test programs** (the first firmware to write) block phase 5 of bring-up.
 
 ## 1. Before you order
 
@@ -87,5 +107,19 @@ Compiled from the design session on 2026-10-20. Check items off as you go. Where
 
 ## 8. Housekeeping
 
-- [ ] Optional: ask GitHub Support to garbage-collect the repo so the old pre-scrub commits are no longer reachable by hash.
-- [ ] Keep `hardware/sourcing/amazon-items.json` and `hardware/sourcing/parts-shortlist.json` current as you order, then regenerate `hardware/sourcing/parts.md`.
+- [ ] Keep `hardware/sourcing/amazon-items.json` and `hardware/sourcing/parts-shortlist.json` current as you order, then run `make` to regenerate `hardware/sourcing/parts.md`.
+- [ ] Run `make check` before each push. CI runs it too.
+
+## 9. Documentation (so a beginner can follow it)
+
+- [ ] **First build photos** as they exist: see the list in [gallery.md](../gallery.md).
+- [ ] **A journey entry after each stage**, with a row in the mistakes table for anything that went wrong: [journey.md](../journey.md).
+- [ ] **Fill in "Why a Teensy 4.1 and not an Arduino?"** in [why-not.md](why-not.md) in your own words.
+- [ ] **Promote a fact's status** (Seller claim to Measured to Tested) in the docs whenever you check one on a real part.
+- [ ] **Run the PlatformIO build once** and update the status in [firmware/README.md](../../firmware/README.md) and [getting-started.md](../getting-started.md).
+- [ ] **Write the bring-up test programs** (raw pin readings over USB) that phase 5 of [bring-up.md](../../hardware/electronics/bring-up.md) needs.
+- [ ] **Set the GitHub repo description and topics**, and turn on Pages if it is not on (Settings, Pages, branch `main`, folder `/docs`).
+
+## Maintainer notes (not part of the build)
+
+- Optional: ask GitHub Support to garbage-collect the repo so the old pre-scrub commits are no longer reachable by hash.

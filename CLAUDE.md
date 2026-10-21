@@ -4,6 +4,15 @@ KSP1 controller built around KerbalSimpitRevamped. Settled decisions and open it
 `docs/design/decisions.md`; the mockup is described in `hardware/mockup/README.md`. Layout: `hardware/` (CAD, electronics,
 sourcing), `firmware/` (PlatformIO code for the Teensy), `docs/` (decisions, control map, to-do, the Pages site) and `tools/` (scripts).
 
+## Docs for beginners
+
+The repo is meant to be readable by someone who knows nothing, so a reader should never have to probe for details.
+
+- Start every hand-written doc with the four-line header (What this covers / Read it if / Status / Next) described in `docs/README.md`, and use its status words: Planned, Seller claim, Measured, Tested.
+- Explain a new term where it first appears or add it to `docs/glossary.md`.
+- Never hand-edit a generated file (`parts.md`, the wiring docs, `pins.h`, `docs/pinout.html`): edit its data or generator, then run `make`. `make check` must pass.
+- Record a mistake or a surprise in `docs/journey.md` and a rejected alternative in `docs/design/why-not.md`.
+
 ## Sourcing parts
 
 - **US only.** When searching for or recommending parts, use US retailers and listings that ship

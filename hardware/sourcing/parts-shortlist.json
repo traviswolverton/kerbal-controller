@@ -29,7 +29,8 @@
     "datasheet": "https://www.meanwellusa.com/upload/pdf/GST25A/GST25A-spec.pdf",
     "qty": 1,
     "checked": "2026-10-21",
-    "note": "Positive centre, 2.1 x 5.5 mm plug, 1 m lead, cULus. IEC C14 inlet, **cord sold separately**."
+    "note": "Positive centre, 2.1 x 5.5 mm plug, 1 m lead, cULus. IEC C14 inlet, **cord sold separately**.",
+    "datasheet_file": "datasheets/GST25A05-P1J.pdf"
   },
   {
     "role": "Mains cord NEMA 5-15 to IEC C13 for the adapter",
@@ -45,7 +46,8 @@
     "datasheet": "https://tensility.s3.us-west-2.amazonaws.com/uploads/pdffiles/11-00022.pdf",
     "qty": 1,
     "checked": "2026-10-21",
-    "note": "For the adapter."
+    "note": "For the adapter.",
+    "datasheet_file": "datasheets/11-00022.pdf"
   },
   {
     "role": "Panel DC jack 5.5 x 2.1 mm",
@@ -61,7 +63,8 @@
     "datasheet": "https://tensility.s3.us-west-2.amazonaws.com/uploads/pdffiles/54-00151.pdf",
     "qty": 1,
     "checked": "2026-10-21",
-    "note": "7.5 A, solder cup, rear nut. **Panel cutout (datasheet, read 2026-10-20):** 10.9 mm round with two flats 9.8 mm apart, panel 1.5 to 4.5 mm, M11 nut."
+    "note": "7.5 A, solder cup, rear nut. **Panel cutout (datasheet, read 2026-10-20):** 10.9 mm round with two flats 9.8 mm apart, panel 1.5 to 4.5 mm, M11 nut.",
+    "datasheet_file": "datasheets/54-00151.pdf"
   },
   {
     "role": "Panel fuse holder 5 x 20 mm",
@@ -109,7 +112,8 @@
     "datasheet": "https://configured-product-images.s3.amazonaws.com/Datasheets/KO.pdf",
     "qty": 1,
     "checked": "2026-10-21",
-    "note": "2-position SPST, **12 mm cutout**, key removable in position 1 only. Confirm in the datasheet that position 1 is OFF."
+    "note": "2-position SPST, **12 mm cutout**, key removable in position 1 only. Confirm in the datasheet that position 1 is OFF.",
+    "datasheet_file": "datasheets/KO133A801.pdf"
   },
   {
     "role": "Big STAGE button, 30 mm arcade, red LED",
@@ -125,7 +129,8 @@
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2533/3489_Web.pdf",
     "qty": 1,
     "checked": "2026-10-21",
-    "note": "**30 mm cutout**, 5 V LED, 2.8 mm quick-connect tabs. LED wiring is open (always on, or driven later)."
+    "note": "**30 mm cutout**, 5 V LED, 2.8 mm quick-connect tabs. LED wiring is open (always on, or driven later).",
+    "datasheet_file": "datasheets/3489.pdf"
   },
   {
     "role": "Motorised 100 mm fader (Adafruit 5466)",
@@ -141,7 +146,8 @@
     "datasheet": "https://cdn-shop.adafruit.com/product-files/5466/5466_datasheetSM10001.pdf",
     "qty": 1,
     "checked": "2026-10-21",
-    "note": "6-10 V motor, run at 5 V. Two M3 holes 120 mm apart. Only 37 in stock."
+    "note": "6-10 V motor, run at 5 V. Two M3 holes 120 mm apart. Only 37 in stock.",
+    "datasheet_file": "datasheets/5466.pdf"
   },
   {
     "role": "L9110H fader driver",
@@ -157,7 +163,8 @@
     "datasheet": "https://cdn-shop.adafruit.com/product-files/4489/4489_datasheet-l9110.pdf",
     "qty": 1,
     "checked": "2026-10-21",
-    "note": "Next to the fader motor."
+    "note": "Next to the fader motor.",
+    "datasheet_file": "datasheets/4489.pdf"
   },
   {
     "role": "Conductive nubbin for the fader",
@@ -189,7 +196,8 @@
     "datasheet": "https://www.bourns.com/docs/Product-Datasheets/PEC11R.pdf",
     "qty": 3,
     "checked": "2026-10-21",
-    "note": "24 detents, 6 mm flatted shaft. Bushing only about 5 mm long: keep the panel about 3 mm at the encoders."
+    "note": "24 detents, 6 mm flatted shaft. Bushing only about 5 mm long: keep the panel about 3 mm at the encoders.",
+    "datasheet_file": "datasheets/PEC11R-4215F-S0024.pdf"
   },
   {
     "role": "I2C expander for the switch panel",
@@ -205,7 +213,8 @@
     "datasheet": "https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP23017-Data-Sheet-DS20001952.pdf",
     "qty": 1,
     "checked": "2026-10-21",
-    "note": "Replaces the breakout board: hand-wired on perfboard behind the switch panel."
+    "note": "Replaces the breakout board: hand-wired on perfboard behind the switch panel.",
+    "datasheet_file": "datasheets/MCP23017-E_SP.pdf"
   },
   {
     "role": "DIP-28 socket for the expander",
@@ -221,7 +230,8 @@
     "datasheet": "https://www.cnctech.us/pdfs/245-XX-1-06.pdf",
     "qty": 1,
     "checked": "2026-10-21",
-    "note": "For the expander."
+    "note": "For the expander.",
+    "datasheet_file": "datasheets/245-28-1-06.pdf"
   },
   {
     "role": "74AHCT125 level shifter, DIP",
@@ -237,7 +247,8 @@
     "datasheet": "https://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=https%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fsn74ahct125",
     "qty": 1,
     "checked": "2026-10-21",
-    "note": "Pixel data line."
+    "note": "Pixel data line.",
+    "datasheet_file": "datasheets/SN74AHCT125N.pdf"
   },
   {
     "role": "DIP-14 socket for the level shifter",
@@ -253,7 +264,8 @@
     "datasheet": "https://www.cnctech.us/pdfs/245-XX-1-03.pdf",
     "qty": 1,
     "checked": "2026-10-21",
-    "note": "For the level shifter."
+    "note": "For the level shifter.",
+    "datasheet_file": "datasheets/245-14-1-03.pdf"
   },
   {
     "role": "Matrix diodes (24 plus spares)",
@@ -269,7 +281,8 @@
     "datasheet": "https://www.onsemi.com/pub/Collateral/1N914-D.PDF",
     "qty": 30,
     "checked": "2026-10-21",
-    "note": "24 matrix diodes plus spares."
+    "note": "24 matrix diodes plus spares.",
+    "datasheet_file": "datasheets/1N4148.pdf"
   },
   {
     "role": "330 ohm pixel data resistor (1 spare)",
@@ -333,7 +346,8 @@
     "datasheet": "https://www.rubycon.co.jp/wp-content/uploads/catalog-aluminum/ZLH.pdf",
     "qty": 2,
     "checked": "2026-10-21",
-    "note": "5 V rail, one spare."
+    "note": "5 V rail, one spare.",
+    "datasheet_file": "datasheets/16ZLH1000MEFC10X16.pdf"
   },
   {
     "role": "47 uF 25 V fader driver capacitor (1 spare)",
@@ -365,7 +379,8 @@
     "datasheet": "https://www.vishay.com/docs/45171/kseries.pdf",
     "qty": 12,
     "checked": "2026-10-21",
-    "note": "Decoupling, and one per stick and fader wiper."
+    "note": "Decoupling, and one per stick and fader wiper.",
+    "datasheet_file": "datasheets/K104K15X7RF5TH5.pdf"
   },
   {
     "role": "DB25 female panel jack (middle strip)",
@@ -381,7 +396,8 @@
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7137/Cannon%20ZD%20Connectors.pdf",
     "qty": 8,
     "checked": "2026-10-21",
-    "note": "Middle strip, one per outer piece. Doubled to 8 (4 to fit plus 4 spares) so you can practise soldering the cups on 1 or 2 before the real ones."
+    "note": "Middle strip, one per outer piece. Doubled to 8 (4 to fit plus 4 spares) so you can practise soldering the cups on 1 or 2 before the real ones.",
+    "datasheet_file": "datasheets/ZDB25S.pdf"
   },
   {
     "role": "DB25 male panel jack (outer pieces)",
@@ -397,7 +413,8 @@
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7138/1003_ZDB25P_SPEC.pdf",
     "qty": 8,
     "checked": "2026-10-21",
-    "note": "One on each outer piece. Doubled to 8 (4 to fit plus 4 spares) so you can practise soldering the cups on 1 or 2 before the real ones."
+    "note": "One on each outer piece. Doubled to 8 (4 to fit plus 4 spares) so you can practise soldering the cups on 1 or 2 before the real ones.",
+    "datasheet_file": "datasheets/ZDB25P.pdf"
   },
   {
     "role": "DB25 shielded cable, female to male, 1 m",
@@ -413,7 +430,8 @@
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/1047/1656291.pdf",
     "qty": 4,
     "checked": "2026-10-21",
-    "note": "Straight-through, 25 conductors. Male end into a middle jack, female end onto an outer jack. Datasheet (read 2026-10-21; Phoenix model VS-25-DSUB-20-LI-1,0): shielded, stranded (7-wire) conductors, grey PVC, IP20, rated current 1 A, 125 V, 0 to 70 C, 172.6 g. **It gives no conductor gauge**: check the cable on arrival."
+    "note": "Straight-through, 25 conductors. Male end into a middle jack, female end onto an outer jack. Datasheet (read 2026-10-21; Phoenix model VS-25-DSUB-20-LI-1,0): shielded, stranded (7-wire) conductors, grey PVC, IP20, rated current 1 A, 125 V, 0 to 70 C, 172.6 g. **It gives no conductor gauge**: check the cable on arrival.",
+    "datasheet_file": "datasheets/1656291.pdf"
   },
   {
     "role": "Panel USB micro-B extension for the Teensy",
@@ -429,7 +447,8 @@
     "datasheet": "https://cdn.sparkfun.com/assets/7/6/b/5/c/ACCA-2551_Model.pdf",
     "qty": 1,
     "checked": "2026-10-21",
-    "note": "For the Teensy."
+    "note": "For the Teensy.",
+    "datasheet_file": "datasheets/15464.pdf"
   },
   {
     "role": "Perfboard 94 x 63 mm (middle strip main board)",
@@ -444,7 +463,8 @@
     "url": "https://www.digikey.com/en/products/detail/sparkfun-electronics/12070/5230951",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/15/PRT-12070_Web.pdf",
     "qty": 1,
-    "checked": "2026-10-21"
+    "checked": "2026-10-21",
+    "datasheet_file": "datasheets/12070.pdf"
   },
   {
     "role": "Screw terminal 5.08 mm, 2 position",
@@ -459,7 +479,8 @@
     "url": "https://www.digikey.com/en/products/detail/on-shore-technology-inc/OSTTC022162/614558",
     "datasheet": "http://www.on-shore.com/wp-content/uploads/OSTTCXX2162.pdf",
     "qty": 6,
-    "checked": "2026-10-21"
+    "checked": "2026-10-21",
+    "datasheet_file": "datasheets/OSTTC022162.pdf"
   },
   {
     "role": "Screw terminal 5.08 mm, 4 position",
@@ -474,7 +495,8 @@
     "url": "https://www.digikey.com/en/products/detail/on-shore-technology-inc/OSTTC042162/614560",
     "datasheet": "http://www.on-shore.com/wp-content/uploads/OSTTCXX2162.pdf",
     "qty": 8,
-    "checked": "2026-10-21"
+    "checked": "2026-10-21",
+    "datasheet_file": "datasheets/OSTTC022162.pdf"
   },
   {
     "role": "Female header 24 position (Teensy sockets, spare)",
@@ -489,7 +511,8 @@
     "url": "https://www.digikey.com/en/products/detail/sullins-connector-solutions/PPTC241LFBN-RC/810162",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/937/Female_Headers.100_DS.pdf",
     "qty": 3,
-    "checked": "2026-10-21"
+    "checked": "2026-10-21",
+    "datasheet_file": "datasheets/PPTC241LFBN-RC.pdf"
   },
   {
     "role": "Hookup wire 22 AWG stranded, 10 colours x 25 ft",
@@ -504,7 +527,8 @@
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/3175/6198258",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2365/3175_Web.pdf",
     "qty": 1,
-    "checked": "2026-10-21"
+    "checked": "2026-10-21",
+    "datasheet_file": "datasheets/3175.pdf"
   },
   {
     "role": "Hookup wire 22 AWG solid, 6 colours x 25 ft (matrix)",
@@ -519,7 +543,8 @@
     "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/1311/6198255",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2146/1311_Web.pdf",
     "qty": 1,
-    "checked": "2026-10-21"
+    "checked": "2026-10-21",
+    "datasheet_file": "datasheets/1311.pdf"
   },
   {
     "role": "Encoder knobs, 25 mm D shaft (CLIFF KMK25)",
@@ -535,7 +560,8 @@
     "datasheet": "https://www.cliffuk.co.uk/products/knobs/knobsKMK.pdf",
     "qty": 3,
     "checked": "2026-10-21",
-    "note": "6 mm D shaft, knurled aluminium, matches the mockup's 25 x 15 mm proxy. Only 9 in stock; silver only (the smaller KMK10E FC7259 comes in black). Set screw not confirmed."
+    "note": "6 mm D shaft, knurled aluminium, matches the mockup's 25 x 15 mm proxy. Only 9 in stock; silver only (the smaller KMK10E FC7259 comes in black). Set screw not confirmed.",
+    "datasheet_file": "datasheets/FC7254.pdf"
   },
   {
     "role": "Perfboard 78 x 58 mm, pad per hole (expander, wing and bus boards)",
@@ -550,7 +576,8 @@
     "url": "https://www.digikey.com/en/products/detail/dfrobot/FIT0203/6588423",
     "datasheet": "//mm.digikey.com/Volume0/opasdata/d220001/medias/docus/2169/FIT0203_Web.pdf",
     "qty": 4,
-    "checked": "2026-10-21"
+    "checked": "2026-10-21",
+    "datasheet_file": "datasheets/FIT0203.pdf"
   },
   {
     "role": "3.5in IPS TFT display 480x320 SPI (DFRobot DFR0669)",

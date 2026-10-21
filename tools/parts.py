@@ -190,6 +190,16 @@ def amazon_link(x):
     return f"[{label}]({url})" if url else label
 
 
+def datasheet_link(p):
+    """The saved copy if there is one, else the maker's link (marked as not saved), else a dash."""
+    if p.get("datasheet_file"):
+        return f"[PDF]({p['datasheet_file']})"
+    url = p.get("datasheet") or ""
+    if url.startswith("//"):
+        url = "https:" + url
+    return f"[link, not saved]({url})" if url.startswith("http") else "-"
+
+
 def stored_flags(p):
     flags = []
     if p.get("status") and not is_active(p["status"]):
@@ -204,6 +214,22 @@ def render_parts_md(parts, amazon):
     n_un = len(b["unpriced"])
     checked = max((p.get("checked", "") for p in parts), default="never")
     lines = ["# Parts and budget", "",
+             "> **What this covers:** every part for the console, where to buy it, what it costs, and the running total.  ",
+             "> **Read it if:** you are about to order, or want to know what the console is made of.  ",
+             f"> **Status:** Seller claim. Prices and stock are a snapshot from {checked}; specs come from listings and datasheets, not the real parts.  ",
+             "> **Next:** [the CAD](../cad/README.md), what the parts are mounted in.", "",
+             "## The shopping list at a glance", "",
+             "| Group | What | Where it comes from |", "|---|---|---|",
+             "| The brain | Teensy 4.1 and its sockets | Digi-Key |",
+             "| Steering | Two joysticks, a motorised throttle slider with its driver, three rotary encoders and knobs | Amazon (joysticks), Digi-Key |",
+             "| Keys and lights | 24 key switches (owned), 24 keycaps, 65 colour pixels (owned), diodes, a level shifter | Amazon, Digi-Key |",
+             "| Switch panel | Guarded toggles, a key switch, a big STAGE button, an I2C expander | Amazon (toggles), Digi-Key |",
+             "| Screens and sound | Two 3.5 inch IPS displays, a buzzer (owned) | Digi-Key, Amazon |",
+             "| Power | 5 V wall adapter and mains cord, panel jack, fuse and holder, capacitors | Digi-Key |",
+             "| Connections | Eight DB25 jacks plus spares, four DB25 cables, USB extension, wire, terminals, headers, perfboards | Digi-Key |",
+             "| Weight | Steel weight-vest plates for the wing ballast | Amazon |",
+             "| Not yet bought | Solder and flux, screws and inserts, feet, 2 to 3 kg of filament | various |", "",
+             "The exact lines, links and prices are below. Totals are in the next section.", "",
              "Every part for the console, in one list. Sources are US retailers only: **Digi-Key** (primary, with Mouser as a back-up) "
              "through their APIs, and Amazon.com for what they do not carry. Prices are USD, **before shipping and tax**. "
              f"Digi-Key and Mouser prices and stock are the shortlist snapshot from {checked}; Amazon prices are kept by hand "
@@ -219,7 +245,7 @@ def render_parts_md(parts, amazon):
         lines += [f"The total is a floor: {n_un} Amazon item(s) have no price yet. Set one with "
                   "`python3 tools/parts.py amazon-price ASIN PRICE`.", ""]
     lines += ["## Digi-Key and Mouser", "",
-              "| Part | Part number | Qty | Unit | Extended | Stock | Notes |", "|---|---|---|---|---|---|---|"]
+              "| Part | Part number | Qty | Unit | Extended | Stock | Datasheet | Notes |", "|---|---|---|---|---|---|---|---|"]
     for p in parts:
         u = p.get("unit_price")
         url = b["urls"].get(p["pn"])
@@ -229,7 +255,7 @@ def render_parts_md(parts, amazon):
         fl = stored_flags(p)
         stock = f"{p.get('stock', '?')}" + (f" ⚠ {'; '.join(fl)}" if fl else "")
         lines.append(f"| {p['role']} | {link} | {p['qty']} | {money(u)} | {money(u * p['qty']) if u is not None else '-'} | "
-                     f"{stock} | {p.get('note', '')} |")
+                     f"{stock} | {datasheet_link(p)} | {p.get('note', '')} |")
     lines += ["", "## Amazon.com to buy", "", "| Item | Listing | Qty | Unit | Extended | Note |", "|---|---|---|---|---|---|"]
     for x in b["buy"]:
         u = x.get("unit_price")

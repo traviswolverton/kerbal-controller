@@ -1,5 +1,10 @@
 # Tools
 
+> **What this covers:** the parts search and budget tool, the wiring generator, and the staleness check.  
+> **Read it if:** you want live prices, or you are changing a generated file. For one-command use see [getting-started](../docs/getting-started.md).  
+> **Status:** Tested. The offline tests pass, and both distributor APIs were used live.  
+> **Next:** [getting started](../docs/getting-started.md).
+
 ## Parts selection: `parts.py` (Digi-Key and Mouser)
 
 Searches Digi-Key and Mouser through their APIs (US sites, USD), keeps a shortlist, and re-checks live price, stock
@@ -8,7 +13,7 @@ the same way, is simpler to set up, and is the better fallback. Every source tha
 
 **Status:** both sources are tested live (search, part details, shortlist, check). Digi-Key returned real data on its
 first run, including parameters such as panel cutout dimensions, with a daily limit of 1,000 requests that the tool
-reports. `python3 -B -m unittest` in this folder runs 16 offline tests.
+reports. `make test` (or `python3 -B -m unittest` in this folder) runs the 23 offline tests.
 
 ### Setup (an account sign-up, so you do it)
 
@@ -62,3 +67,8 @@ Reads `hardware/electronics/pinmap.json` (the single source for the Teensy pin a
 `docs/pinout.html`, `hardware/electronics/wiring/wiring.md`, `hardware/electronics/wiring/diagrams/*.svg`,
 `hardware/electronics/wiring/pin-map.md` and `firmware/ksp/include/pins.h`. Run `python3 tools/gen_wiring.py`.
 Edit `pinmap.json`, not the outputs.
+
+## Keeping generated files honest: `check_generated.py`
+
+`make check` (or `python3 tools/check_generated.py`) re-runs both generators, compares every generated file with what is committed, puts the old
+contents back, and exits 1 listing any that were out of date. CI runs it on every push.

@@ -1,5 +1,10 @@
 # Electronics build notes (rough recommendation)
 
+> **What this covers:** how each piece's electronics will be built by hand on perfboard, and the extra parts that needs.  
+> **Read it if:** you are about to order or solder the boards.  
+> **Status:** Planned. Prices are from the Digi-Key API on 2026-10-19; nothing is built.  
+> **Next:** the [wiring checklist](wiring/wiring-checklist.md), then [first power-up](bring-up.md).
+
 How I'd build the electronics: hand-wired on perfboard, no custom PCB. Digi-Key part numbers and prices are from
 the API on 2026-10-19 and are in the shortlist and `hardware/sourcing/parts.md`. Nothing here is built or tested.
 

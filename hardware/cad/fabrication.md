@@ -1,5 +1,10 @@
 # Fabrication estimate
 
+> **What this covers:** filament, weight, print time and print orientation for the five pieces, and how the ballast keeps the console from sliding.  
+> **Read it if:** you are about to slice or print.  
+> **Status:** Planned. Weights come from the CAD model and seller figures; nothing is printed or weighed.  
+> **Next:** [the wiring](../electronics/wiring/wiring.md).
+
 First estimate of filament, weight and print orientation for the five-piece console
 (`hardware/cad/console.scad`). The shells are modelled as plain hollow boxes: no ribs, screw bosses, cable
 holes or joints yet, so treat the numbers as a floor and expect to add about 15%.

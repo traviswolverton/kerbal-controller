@@ -1,5 +1,10 @@
 # Firmware architecture (outline)
 
+> **What this covers:** how the Teensy's program will be organised: what it reads, what it drives, and the modules.  
+> **Read it if:** you are about to write or review firmware.  
+> **Status:** Planned. Nothing is implemented, and the Simpit message names are not yet verified.  
+> **Next:** [the to-do](../design/todo.md), section 6, for the firmware still to write.
+
 A starting outline for the controller firmware, written before any code. Nothing here is implemented or tested. Control
 behaviour is in [controls.md](../design/controls.md), pin assignments in
 [pin-map.md](../../hardware/electronics/wiring/pin-map.md), and the project is set up in [firmware/README.md](../../firmware/README.md).
