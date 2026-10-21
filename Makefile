@@ -1,7 +1,7 @@
 # One command to rebuild everything generated in this repo. See docs/getting-started.md.
 PY ?= python3
 
-.PHONY: all wiring parts site test check help
+.PHONY: all wiring parts renders site test check help
 
 all: wiring parts site   ## regenerate wiring docs, pins.h, parts.md and the site images
 
@@ -10,6 +10,9 @@ wiring:                  ## pinmap.json -> wiring docs, diagrams, docs/pinout.ht
 
 parts:                   ## parts-shortlist.json + amazon-items.json -> hardware/sourcing/parts.md (offline)
 	$(PY) tools/parts.py budget --md
+
+renders:                 ## console.scad -> hardware/mockup/renders/*.png (needs openscad and xvfb-run; not part of `make all`)
+	bash hardware/cad/render.sh
 
 site:                    ## copy the renders that the GitHub Pages landing page shows
 	mkdir -p docs/img

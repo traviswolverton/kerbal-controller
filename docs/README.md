@@ -71,4 +71,5 @@ Marked **generated** at the top. Edit the data, not the output, then run `make` 
 |---|---|---|
 | `docs/pinout.html`, `hardware/electronics/wiring/wiring.md`, `pin-map.md`, `diagrams/*.svg`, `firmware/ksp/include/pins.h` | `tools/gen_wiring.py` | `hardware/electronics/pinmap.json` |
 | `hardware/sourcing/parts.md` | `tools/parts.py budget --md` | `parts-shortlist.json`, `amazon-items.json` |
+| `hardware/mockup/renders/*.png` | `make renders` | `hardware/cad/console.scad` |
 | `docs/img/*.png` | `make site` | `hardware/mockup/renders/` |

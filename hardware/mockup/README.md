@@ -17,7 +17,7 @@ contents of each piece are in [controls.md](../../docs/design/controls.md); the 
 | `seat-view.png` | what you see from a seat |
 | `wing-cutaway.png`, `strip-cutaway.png` | the shells cut open: ballast, feet, jacks, wall thickness |
 
-The renders were last generated before the DC jack and fuse holder cutouts were corrected, so the middle strip's back wall differs slightly.
+Regenerated 2026-10-21 from the current model: the two TFT windows, the horizontal fuel bars, and the DC jack and fuse holder cutouts from their datasheets. The USB extension's cutout is still an orange placeholder (see the rear view).
 
 ## Pieces
 
@@ -34,9 +34,12 @@ The console is 735 mm wide with a 345 mm open middle, designed around a 12.2 in 
 ## Regenerating
 
 ```
-xvfb-run -a openscad -o out.png --imgsize=1800,900 --projection=p --camera=cx,cy,cz,rx,ry,rz,dist hardware/cad/console.scad
+make renders            # rewrites every picture in renders/ (needs openscad and xvfb-run)
+make site               # then copies iso.png and seat-view.png to docs/img/ for the Pages landing page
 openscad -D flat=true -D mod=0 -o left_wing.svg hardware/cad/console.scad    # 1:1 template of piece 0
 ```
+
+The cameras for each picture are in [`hardware/cad/render.sh`](../cad/render.sh).
 
 There is no one-step build script. Part proxies (keycaps, knobs, toggles, grips) are simple blocks, not real models.
 The USB extension's cutout is still an orange placeholder.
