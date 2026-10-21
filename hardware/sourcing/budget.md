@@ -4,10 +4,10 @@ Combined order totals, USD, **before shipping and tax**. Digi-Key and Mouser pri
 
 | | Lines | Amount |
 |---|---|---|
-| Digi-Key and Mouser | 37 | $380.34 |
+| Digi-Key and Mouser | 36 | $370.39 |
 | Amazon.com, priced | 4 | $117.53 |
 | Amazon.com, **no price yet** | 0 | not counted |
-| **Total so far** | | **$497.87** |
+| **Total so far** | | **$487.92** |
 
 ## Amazon.com to buy
 
@@ -67,7 +67,6 @@ See [parts-bom.md](parts-bom.md) for the per-line list with stock and flags.
 | Female header 24 position (Teensy sockets, spare) | digikey | [S7022-ND](https://www.digikey.com/en/products/detail/sullins-connector-solutions/PPTC241LFBN-RC/810162) | 3 | $1.34 | $4.02 |
 | Hookup wire 22 AWG stranded, 10 colours x 25 ft | digikey | [1528-3175-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/3175/6198258) | 1 | $32.29 | $32.29 |
 | Hookup wire 22 AWG solid, 6 colours x 25 ft (matrix) | digikey | [1528-1743-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/1311/6198255) | 1 | $15.95 | $15.95 |
-| Heat shrink assortment | digikey | [1528-4559-ND](https://www.digikey.com/en/products/detail/adafruit-industries-llc/4559/12396896) | 1 | $9.95 | $9.95 |
 | Encoder knobs, 25 mm D shaft (CLIFF KMK25) | digikey | [4654-FC7254-ND](https://www.digikey.com/en/products/detail/cliff-electronic-components-ltd/FC7254/21406846) | 3 | $4.90 | $14.70 |
 | Perfboard 78 x 58 mm, pad per hole (expander, wing and bus boards) | digikey | [1738-1001-ND](https://www.digikey.com/en/products/detail/dfrobot/FIT0203/6588423) | 4 | $2.90 | $11.60 |
 | 3.5in IPS TFT display 480x320 SPI (DFRobot DFR0669) | digikey | [1738-DFR0669-ND](https://www.digikey.com/en/products/detail/dfrobot/DFR0669/13280137) | 2 | $25.90 | $51.80 |

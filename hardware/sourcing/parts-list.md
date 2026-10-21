@@ -9,8 +9,8 @@ a total is [parts-bom.md](parts-bom.md), and the shortlist is [parts-shortlist.j
 
 ## Digi-Key order
 
-The table lists the 29 main lines. The shortlist also holds the perfboard, terminal blocks, headers, wire and heat shrink
-from [electronics-build.md](../electronics/electronics-build.md), 37 lines and $380.34 in all. Re-checked live on 2026-10-20 with no flags. **The combined Digi-Key and Amazon total is in
+The table lists the 29 main lines. The shortlist also holds the perfboard, terminal blocks, headers and wire
+from [electronics-build.md](../electronics/electronics-build.md), 36 lines and $370.39 in all. Re-checked live on 2026-10-20 with no flags. **The combined Digi-Key and Amazon total is in
 [budget.md](budget.md).**
 
 | Part | Qty | Digi-Key PN | Unit | Notes |

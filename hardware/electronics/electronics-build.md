@@ -33,9 +33,8 @@ the API on 2026-10-19 and are in the shortlist and the budget. Nothing here is b
 | Female header, 24 position, 2.54 mm (Sullins) | 3 | S7022-ND | $1.34 | Two for the Teensy, one spare for the TFT headers and cuts. |
 | Hookup wire 22 AWG stranded, 10 colours x 25 ft (Adafruit 3175) | 1 | 1528-3175-ND | $32.29 | Wire colours follow the checklist. Pink and teal are not in it: use tape or striped wire. |
 | Hookup wire 22 AWG solid, 6 colours x 25 ft (Adafruit 1311) | 1 | 1528-1743-ND | $15.95 | Matrix rows and columns on the strips. |
-| Heat shrink assortment (Adafruit 4559) | 1 | 1528-4559-ND | $9.95 | |
 
-Rough total about $95. Not in the list yet: solder and flux, zip ties and cable clips for the cables behind the console, a
+Rough total about $85 (heat shrink is already owned). Not in the list yet: solder and flux, zip ties and cable clips for the cables behind the console, a
 pin-header strip, M3 screws and standoffs for mounting the boards, and the connector for each stick and encoder (check
 what the sticks arrive with).
 

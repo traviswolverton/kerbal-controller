@@ -18,12 +18,12 @@ Checked 2026-10-20 with `tools/parts.py check`. Prices are USD from the US sites
 | Rotary encoders (time warp, camera, page) | digikey | PEC11R-4215F-S0024-ND | 3 | $2.95 | $8.85 | 12305 | ok |
 | I2C expander for the switch panel | digikey | MCP23017-E/SP-ND | 1 | $1.69 | $1.69 | 7984 | ok |
 | DIP-28 socket for the expander | digikey | 1175-1490-ND | 1 | $1.29 | $1.29 | 1569 | ok |
-| 74AHCT125 level shifter, DIP | digikey | 296-4655-5-ND | 1 | $1.00 | $1.00 | 20120 | ok |
+| 74AHCT125 level shifter, DIP | digikey | 296-4655-5-ND | 1 | $1.00 | $1.00 | 20115 | ok |
 | DIP-14 socket for the level shifter | digikey | 1175-1487-ND | 1 | $0.73 | $0.73 | 5730 | ok |
 | Matrix diodes (24 plus spares) | digikey | 1N4148FS-ND | 30 | $0.06 | $1.80 | 596379 | ok |
 | 330 ohm pixel data resistor (1 spare) | digikey | CF14JT330RCT-ND | 2 | $0.10 | $0.20 | 283073 | ok |
 | 4.7 kohm I2C pull-ups (spares) | digikey | CF14JT4K70CT-ND | 3 | $0.10 | $0.30 | 249614 | ok |
-| 10 kohm expander reset pull-up (spares) | digikey | CF14JT10K0CT-ND | 3 | $0.10 | $0.30 | 566594 | ok |
+| 10 kohm expander reset pull-up (spares) | digikey | CF14JT10K0CT-ND | 3 | $0.10 | $0.30 | 566584 | ok |
 | 1000 uF 16 V rail capacitor (1 spare) | digikey | 1189-1147-ND | 2 | $0.71 | $1.42 | 15844 | ok |
 | 47 uF 25 V fader driver capacitor (1 spare) | digikey | 732-8823-1-ND | 2 | $0.10 | $0.20 | 34958 | ok |
 | 0.1 uF decoupling and wiper capacitors | digikey | BC1101CT-ND | 12 | $0.17 | $2.04 | 304655 | ok |
@@ -36,10 +36,9 @@ Checked 2026-10-20 with `tools/parts.py check`. Prices are USD from the US sites
 | Screw terminal 5.08 mm, 4 position | digikey | ED2611-ND | 8 | $1.08 | $8.64 | 12672 | ok |
 | Female header 24 position (Teensy sockets, spare) | digikey | S7022-ND | 3 | $1.34 | $4.02 | 20352 | ok |
 | Hookup wire 22 AWG stranded, 10 colours x 25 ft | digikey | 1528-3175-ND | 1 | $32.29 | $32.29 | 470 | ok |
-| Hookup wire 22 AWG solid, 6 colours x 25 ft (matrix) | digikey | 1528-1743-ND | 1 | $15.95 | $15.95 | 2424 | ok |
-| Heat shrink assortment | digikey | 1528-4559-ND | 1 | $9.95 | $9.95 | 1236 | ok |
+| Hookup wire 22 AWG solid, 6 colours x 25 ft (matrix) | digikey | 1528-1743-ND | 1 | $15.95 | $15.95 | 2422 | ok |
 | Encoder knobs, 25 mm D shaft (CLIFF KMK25) | digikey | 4654-FC7254-ND | 3 | $4.90 | $14.70 | 9 | ok |
 | Perfboard 78 x 58 mm, pad per hole (expander, wing and bus boards) | digikey | 1738-1001-ND | 4 | $2.90 | $11.60 | 3319 | ok |
 | 3.5in IPS TFT display 480x320 SPI (DFRobot DFR0669) | digikey | 1738-DFR0669-ND | 2 | $25.90 | $51.80 | 117 | ok |
 
-**Total: $380.34**
+**Total: $370.39**

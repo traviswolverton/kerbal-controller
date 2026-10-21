@@ -495,21 +495,6 @@
     "checked": "2026-10-20"
   },
   {
-    "role": "Heat shrink assortment",
-    "source": "digikey",
-    "pn": "1528-4559-ND",
-    "mpn": "4559",
-    "manufacturer": "Adafruit Industries LLC",
-    "description": "PRE-CUT MULTI-COLORED HEAT SHRIN",
-    "unit_price": 9.95,
-    "stock": 1247,
-    "status": "Active",
-    "url": "https://www.digikey.com/en/products/detail/adafruit-industries-llc/4559/12396896",
-    "datasheet": "",
-    "qty": 1,
-    "checked": "2026-10-20"
-  },
-  {
     "role": "Encoder knobs, 25 mm D shaft (CLIFF KMK25)",
     "source": "digikey",
     "pn": "4654-FC7254-ND",
