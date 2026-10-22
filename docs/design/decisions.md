@@ -229,8 +229,8 @@ This file records what has been settled and what is still open.
   1 m lead, cULus approved. It has an IEC C14 inlet, so a mains cord is a separate part (Tensility 11-00022, NEMA 5-15 to
   C13, $4.37). This replaces the Adafruit 1466.
 - **Panel connector:** Tensility 54-00151 (Digi-Key 839-54-00151-ND, $4.81): 5.5 x 2.1 mm panel jack, 7.5 A, solder cup,
-  rear nut. **Its panel cutout is not verified** (the datasheet is an image), so measure the jack or read the drawing
-  before cutting. This replaces the Tugermoola kit from Amazon.
+  rear nut. Its panel cutout is 10.9 mm round with two flats 9.8 mm apart (datasheet, panel 1.5 to 4.5 mm); check it on the real jack.
+  This replaces the Tugermoola kit from Amazon.
   - Wire from the solder cups: the centre pin is +. Check polarity with a meter before connecting anything.
   - Keep the jack close to the fuse and 5 V rail, or extend the wires.
 - **Budget:** pixels are 65 x 60 mA = 3.9 A worst case (all white, which firmware must never allow); fader motor is unknown at 5 V, measure
@@ -244,6 +244,14 @@ This file records what has been settled and what is still open.
   - The 3.5" TFT displays take 3.3-5.5 V at about 48 mA each (wiki figure) and state no logic level, so they run from the Teensy's 3.3 V
     (about 100 mA for both).
   - The pixels are spread over the three strip pieces (12, 32, 21). Each outer strip takes 5 V over its DB25 cable; one power input in the middle strip feeds everything.
+- **A 24 V supply stepped down to 5 V: considered and not chosen (2026-10-22).** It would cut the current in the DB25 cables to about a
+  fifth, which would ease the Phoenix cable's 1 A per conductor rating, and a 24 V 60 W adapter is easy to buy (Mean Well GST60A24-P1J,
+  Digi-Key 1866-2152-ND, $19.40 against $14.30 now). Against it: about four step-down modules (middle strip, both strips, left wing), none
+  chosen or priced; switching noise next to the analog and I2C lines; more parts that can fail, each needing its own fuse; and 24 V on
+  connector pins that today only ever carry 5 V. The cable limit is not a real problem once firmware caps pixel brightness (the right
+  strip's 21 pixels are about 0.3 A at 25%). Revisit only if a bench test shows cable drop or heat, or a weak fader. For the fader, a
+  12 V input is the more natural step than 24 V (the L9110H takes up to 12 V and the motor is rated 6 to 10 V). An earlier 12 V
+  idea was dropped for the same reason: nothing else on the console needs it.
 
 ## Guarded toggles (chosen, not yet ordered)
 - **Why not Digi-Key:** it sells the guard (e.g. CW Industries GT-4R, $5.72) and the toggle separately, and that

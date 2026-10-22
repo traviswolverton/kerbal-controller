@@ -24,6 +24,11 @@ needs a lot of pins and runs fast enough, and everything on it is wired for 3.3 
 
 **Why not power the pots from 5 V?** The Teensy's analog pins only read up to 3.3 V, so the sticks and slider are powered from 3.3 V to keep their readings in range.
 
+**Why not a 24 V supply stepped down to 5 V?** It would cut the current in the cables to about a fifth, but it needs a step-down module in each
+piece, adds switching noise near the sticks and the I2C line, and puts 24 V on pins that only carry 5 V today. With pixel brightness capped, 5 V
+over the cables is well inside their rating. If the fader turns out weak at 5 V, 12 V is the next step to try, not 24 V. Details in
+[decisions.md](decisions.md).
+
 **Why not power the Teensy from the 5 V supply?** The Teensy gets its power only from USB. The supply feeds only the lights, the level shifter and the
 slider motor, with the grounds joined. That way the two sources cannot fight each other.
 
